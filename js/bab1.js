@@ -188,45 +188,162 @@ function buildMission2() {
     }
     floatingNext.innerHTML = floatingHTML;
 
-    // Suntik Soal Pilihan Ganda dengan Acak Posisi (Shuffle)
-    const quizDataM2 = {
+    // Suntik Soal Pilihan Ganda Bertingkat (2 Soal Per Tahap)
+    const m2QuizBank = {
         2: [
-            { text: "Mendengar suara sepatu", isCorrect: false, msg: "Mata tidak bisa mendengar suara langkah kaki." },
-            { text: "Melihat warna baju", isCorrect: true, msg: "Tepat sekali! Mata menangkap pantulan cahaya sehingga kamu bisa melihat warna merah cerah baju temanmu." },
-            { text: "Mencium bau keringat", isCorrect: false, msg: "Mencium bau adalah tugas indra pembau (hidung)." },
-            { text: "Merasakan hembusan angin", isCorrect: false, msg: "Merasakan sesuatu adalah tugas indra peraba (kulit)." }
+            {
+                q: "Saat berolahraga di Lapangan Tambi, kamu melihat temanmu berlari memakai baju olahraga berwarna merah cerah. Apa fungsi matamu pada kejadian tersebut?",
+                opts: [
+                    { text: "Mendengar suara sepatu", isCorrect: false, msg: "Mata tidak bisa mendengar suara langkah kaki." },
+                    { text: "Melihat warna baju", isCorrect: true, msg: "Tepat sekali! Mata menangkap pantulan cahaya." },
+                    { text: "Mencium bau keringat", isCorrect: false, msg: "Mencium bau adalah tugas indra pembau (hidung)." },
+                    { text: "Merasakan hembusan angin", isCorrect: false, msg: "Merasakan sesuatu adalah tugas indra peraba (kulit)." }
+                ]
+            },
+            {
+                q: "Selain melihat warna, matamu juga sangat penting saat di lapangan olahraga untuk...",
+                opts: [
+                    { text: "Mengetahui arah bola terbang", isCorrect: true, msg: "Sempurna! Matamu memandu agar kamu bisa menangkap bola." },
+                    { text: "Mendengar aba-aba pelatih", isCorrect: false, msg: "Mendengar adalah tugas telinga." },
+                    { text: "Mengetahui teh terasa manis", isCorrect: false, msg: "Mengecap adalah tugas lidah." },
+                    { text: "Merasakan teriknya matahari", isCorrect: false, msg: "Merasakan suhu adalah tugas kulit." }
+                ]
+            }
         ],
         3: [
-            { text: "Indra Penglihat", isCorrect: false, msg: "Mata digunakan untuk melihat, bukan untuk menangkap suara." },
-            { text: "Indra Pembau", isCorrect: false, msg: "Hidung digunakan untuk mendeteksi bau." },
-            { text: "Indra Pendengar", isCorrect: true, msg: "Benar sekali! Telingamu berhasil menangkap getaran suara dari tiupan peluit wasit." },
-            { text: "Indra Peraba", isCorrect: false, msg: "Kulit digunakan untuk merasakan sentuhan fisik." }
+            {
+                q: "Tiba-tiba kamu mendengar tiupan peluit yang keras dari wasit di tengah lapangan. Indra apa yang bertugas menangkap suara itu?",
+                opts: [
+                    { text: "Indra Pendengar", isCorrect: true, msg: "Benar sekali! Telingamu berhasil menangkap getaran suara peluit wasit." },
+                    { text: "Indra Penglihat", isCorrect: false, msg: "Mata digunakan untuk melihat, bukan untuk menangkap suara." },
+                    { text: "Indra Pembau", isCorrect: false, msg: "Hidung digunakan untuk mendeteksi bau." },
+                    { text: "Indra Peraba", isCorrect: false, msg: "Kulit digunakan untuk merasakan sentuhan fisik." }
+                ]
+            },
+            {
+                q: "Selain mendengar peluit wasit, fungsi telingamu saat bermain di lapangan sangat penting untuk...",
+                opts: [
+                    { text: "Mendengar panggilan teman", isCorrect: true, msg: "Sempurna! Kamu bisa berkomunikasi karena telinga menangkap suara." },
+                    { text: "Melihat garis batas lapangan", isCorrect: false, msg: "Melihat garis lapangan adalah fungsi mata." },
+                    { text: "Mengecap rasa air minum", isCorrect: false, msg: "Mengecap rasa adalah fungsi lidah." },
+                    { text: "Mencium bau rumput", isCorrect: false, msg: "Mencium bau adalah fungsi hidung." }
+                ]
+            }
         ],
         5: [
-            { text: "Melihat es krim mencair", isCorrect: false, msg: "Melihat benda mencair adalah tugas mata." },
-            { text: "Merasakan dinginnya es", isCorrect: false, msg: "Merasakan suhu (panas/dingin) adalah tugas kulit." },
-            { text: "Mengecap rasa manis", isCorrect: true, msg: "Tepat! Lidah bertugas mengecap dan mendeteksi rasa manis dari es krim cokelat tersebut." },
-            { text: "Mencium aroma susu", isCorrect: false, msg: "Mencium aroma adalah tugas hidung." }
+            {
+                q: "Setelah lelah berolahraga, kamu memakan es krim rasa cokelat yang dijual di pinggir lapangan. Apa fungsi lidah saat kamu memakannya?",
+                opts: [
+                    { text: "Mengecap rasa manis", isCorrect: true, msg: "Tepat! Lidah bertugas mengecap rasa manis dari es krim cokelat." },
+                    { text: "Melihat es krim mencair", isCorrect: false, msg: "Melihat benda mencair adalah tugas mata." },
+                    { text: "Merasakan dinginnya es", isCorrect: false, msg: "Merasakan suhu dingin (es) adalah tugas kulit." },
+                    { text: "Mencium aroma susu", isCorrect: false, msg: "Mencium aroma adalah tugas hidung." }
+                ]
+            },
+            {
+                q: "Kamu kemudian meminum es jeruk peras murni tanpa gula. Saat airnya masuk ke mulut, lidahmu akan mengecap rasa...",
+                opts: [
+                    { text: "Asam", isCorrect: true, msg: "Benar! Bagian samping lidahmu sangat peka terhadap rasa asam." },
+                    { text: "Pedas", isCorrect: false, msg: "Jeruk peras tidak mengandung cabai yang memicu rasa pedas." },
+                    { text: "Asin", isCorrect: false, msg: "Jeruk tidak mengandung garam laut." },
+                    { text: "Pahit", isCorrect: false, msg: "Jeruk murni rasanya lebih dominan ke asam." }
+                ]
+            }
         ],
         6: [
-            { text: "Indra Penglihat", isCorrect: false, msg: "Mata bisa melihat rumput, tapi tidak bisa merasakan kasarnya." },
-            { text: "Indra Pengecap", isCorrect: false, msg: "Lidah hanya untuk mengecap rasa makanan." },
-            { text: "Indra Peraba", isCorrect: true, msg: "Benar! Saraf di kulitmu langsung mendeteksi tekstur tajam dan kasar dari rumput lapangan." },
-            { text: "Indra Pendengar", isCorrect: false, msg: "Telinga untuk mendengarkan suara." }
+            {
+                q: "Kamu duduk beristirahat di atas rumput lapangan dan merasa permukaannya cukup tajam dan kasar. Indra apa yang bekerja?",
+                opts: [
+                    { text: "Indra Peraba", isCorrect: true, msg: "Benar! Saraf di kulitmu langsung mendeteksi tekstur tajam dari rumput." },
+                    { text: "Indra Penglihat", isCorrect: false, msg: "Mata bisa melihat rumput, tapi tidak bisa merasakan kasarnya." },
+                    { text: "Indra Pengecap", isCorrect: false, msg: "Lidah hanya untuk mengecap rasa makanan." },
+                    { text: "Indra Pendengar", isCorrect: false, msg: "Telinga untuk mendengarkan suara." }
+                ]
+            },
+            {
+                q: "Cuaca siang itu sangat terik. Kulitmu tiba-tiba merasakan kepanasan dan akhirnya memicu tubuhmu untuk mengeluarkan...",
+                opts: [
+                    { text: "Keringat", isCorrect: true, msg: "Sempurna! Kelenjar kulit akan mengeluarkan keringat untuk mendinginkan tubuhmu." },
+                    { text: "Air mata", isCorrect: false, msg: "Air mata dikeluarkan oleh mata, bukan dari seluruh kulit." },
+                    { text: "Bulu kuduk berdiri", isCorrect: false, msg: "Bulu kuduk berdiri terjadi saat cuaca sangat dingin, bukan panas." },
+                    { text: "Liur", isCorrect: false, msg: "Air liur dihasilkan di dalam rongga mulut." }
+                ]
+            }
         ]
     };
 
-    [2,3,5,6].forEach(stage => {
+    // Mesin Penggerak Kuis Beruntun Misi 2
+    let currentM2QuizIndex = { 2: 0, 3: 0, 5: 0, 6: 0 };
+
+    window.loadM2Quiz = function(stage) {
+        const data = m2QuizBank[stage];
+        const currentIndex = currentM2QuizIndex[stage];
         const grid = document.getElementById(`grid-m2-s${stage}`);
-        const options = [...quizDataM2[stage]].sort(() => Math.random() - 0.5);
-        options.forEach(opt => {
+        const qBox = grid.previousElementSibling; // Trik ajaib untuk mengambil teks paragraf tepat di atas tombol
+
+        if (currentIndex >= data.length) {
+            // Jika kedua soal sudah berhasil dijawab
+            const checkIcon = `<svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M14 2h2v2h-2V2zm-2 2h2v2h-2V4zm-2 2h2v2h-2V6zm-2 2h2v2H8V8zm-2 2h2v2H6v-2zm-2 2h2v2H4v-2zm-2-2h2v2H2v-2zm-2-2h2v2H0v-2z"/></svg>`;
+            showCustomModal("TANTANGAN SELESAI!", "Hebat! Kamu berhasil menjawab semua soal tantangan fungsi ini dengan sempurna.", checkIcon, "alert", () => {
+                // Panggil dialog NPC (jika ada), lalu sistem akan otomatis memunculkan tombol 'LANJUTKAN'
+                if (typeof triggerPostDialog === 'function') {
+                    triggerPostDialog(stage);
+                } else {
+                    const nextBtn = document.getElementById(`btn-next-${stage}`);
+                    if(nextBtn) nextBtn.style.display = 'inline-flex';
+                }
+            });
+            return;
+        }
+
+        const currentQ = data[currentIndex];
+        
+        // Animasi transisi teks agar tidak kaku saat soal berganti
+        qBox.style.opacity = 0;
+        setTimeout(() => {
+            qBox.innerText = `Tantangan ${currentIndex + 1} / 2:\n\n${currentQ.q}`;
+            qBox.style.opacity = 1;
+        }, 200);
+        
+        grid.innerHTML = ''; // Kosongkan tombol lama
+
+        const shuffledOpts = [...currentQ.opts].sort(() => Math.random() - 0.5);
+        
+        shuffledOpts.forEach(opt => {
             const btn = document.createElement('button');
             btn.className = 'btn-explore';
             btn.innerText = opt.text;
-            btn.onclick = () => checkMiniGame(btn, stage, opt.isCorrect, opt.msg, 2);
+            
+            btn.onclick = () => {
+                if (btn.classList.contains('btn-correct') || btn.classList.contains('btn-wrong')) return;
+                
+                if (opt.isCorrect) {
+                    // JAWABAN BENAR
+                    sfxBenar.currentTime = 0; sfxBenar.play().catch(e=>console.warn(e));
+                    btn.classList.add('btn-correct');
+                    addScore(10); // +10 Poin per soal
+                    
+                    // Beri jeda 0.8 detik sebelum soal kedua masuk
+                    setTimeout(() => {
+                        currentM2QuizIndex[stage]++;
+                        loadM2Quiz(stage);
+                    }, 800);
+                } else {
+                    // JAWABAN SALAH
+                    sfxSalah.currentTime = 0; sfxSalah.play().catch(e=>console.warn(e));
+                    btn.classList.add('btn-wrong');
+                    reduceLife();
+                    
+                    const lockIcon = `<svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M4 2h8v2h2v10H2V4h2V2zm2 2v2h4V4H6zm-2 4v4h8V8H4z"/></svg>`;
+                    showCustomModal("SALAH!", `${opt.msg}\n(Nyawa Berkurang 1)`, lockIcon, "error");
+                }
+            };
             grid.appendChild(btn);
         });
-    });
+    };
+
+    // Panggil mesin pemuat kuis ini untuk tahap 2, 3, 5, dan 6
+    [2, 3, 5, 6].forEach(stage => loadM2Quiz(stage));
 
     // Pasang Naskah Dialog Pascagame
     currentMissionDialogs = {
@@ -556,35 +673,8 @@ if (btnMisi1) {
         });
 
         // MERAKIT UJIAN BOSS TAHAP 7 (KHUSUS MISI 1)
-        const qBox = document.getElementById('quiz-question');
-        const optBox = document.getElementById('quiz-options');
-        if (qBox && optBox) {
-            qBox.innerText = misi1Quiz.question;
-            optBox.innerHTML = '';
-            
-            // Acak urutan opsi jawaban Boss sebelum dibuat menjadi tombol
-            const shuffledOptions = [...misi1Quiz.options].sort(() => Math.random() - 0.5);
-            
-            shuffledOptions.forEach(opt => {
-                const btn = document.createElement('button');
-                btn.className = 'btn-quiz';
-                btn.innerText = opt.text;
-                btn.onclick = () => {
-                    if (btn.classList.contains('btn-correct') || btn.classList.contains('btn-wrong')) return;
-                    if (opt.isCorrect) {
-                        btn.classList.add('btn-correct');
-                        btn.innerText = "BENAR!";
-                        triggerPostDialog(7); // Panggil Dialog Lulus Boss
-                    } else {
-                        btn.classList.add('btn-wrong');
-                        reduceLife();
-                        const lockIcon = `<svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M4 2h8v2h2v10H2V4h2V2zm2 2v2h4V4H6zm-2 4v4h8V8H4z"/></svg>`;
-                        showCustomModal("SALAH!", "Coba ingat-ingat lagi! (Nyawa Berkurang 1)", lockIcon, "error");
-                    }
-                };
-                optBox.appendChild(btn);
-            });
-        }
+        currentMisi1BossIndex = 0;
+        loadMisi1BossQuestion();
 
         // MENYIAPKAN DIALOG PASCAGAME UNTUK TAHAP 2 s/d 7 (MISI 1)
         currentMissionDialogs = {
@@ -975,8 +1065,17 @@ window.handleDetektifAnswer = function(chosen, correct) {
     }
 };
 
+// Musik Latar Khusus Tantangan Kamera AR (Misi 5)
+const bgmBossMisi5 = new Audio('assets/sound/music-boss.mp3');
+bgmBossMisi5.loop = true;
+bgmBossMisi5.volume = 0.4; // Atur volume agar tidak menutupi efek suara
+
 // Fungsi Pembatalan / Kabur dari Layar Kamera
 window.abortMission5 = function() {
+    // Matikan musik boss
+    bgmBossMisi5.pause();
+    bgmBossMisi5.currentTime = 0;
+
     if (window.arStream) {
         window.arStream.getTracks().forEach(track => track.stop());
         window.arStream = null;
@@ -999,6 +1098,10 @@ window.abortMission5 = function() {
 window.startDetektifWarna = function() {
         document.getElementById('ar-color-area').style.display = 'flex';
         
+        // Putar Musik Boss
+        bgmBossMisi5.currentTime = 0;
+        bgmBossMisi5.play().catch(e => console.log("BGM Boss diblokir browser: ", e));
+
         const video = document.getElementById('ar-color-video');
         const canvas = document.getElementById('ar-color-hidden-canvas');
         if (!video || !canvas) return;
@@ -1012,30 +1115,23 @@ window.startDetektifWarna = function() {
         let colorsFound = 0; // Tambahan: Menghitung skor tebakan yang benar
         const targetWin = 3; // Tambahan: Menang setelah 3 kali tebakan warna benar
         
-        // 15 Database Target Warna dengan Logika Pembacaan RGB Relatif
+        // 15 Database Target Warna Menggunakan Mesin HSL Super Akurat
         const colors = [
-            // 1-4: Warna Primer & Sekunder Dasar
-            { name: 'MERAH', text: 'CARI BENDA WARNA MERAH!', rgbMatch: (r,g,b) => r > g + 40 && r > b + 40 },
-            { name: 'HIJAU', text: 'CARI BENDA WARNA HIJAU!', rgbMatch: (r,g,b) => g > r + 30 && g > b + 30 },
-            { name: 'BIRU', text: 'CARI BENDA WARNA BIRU!', rgbMatch: (r,g,b) => b > r + 30 && b > g + 30 },
-            { name: 'KUNING', text: 'CARI BENDA WARNA KUNING!', rgbMatch: (r,g,b) => r > 130 && g > 130 && b < 100 && Math.abs(r-g) < 50 },
-            
-            // 5-7: Warna Netral / Monokrom
-            { name: 'PUTIH', text: 'CARI BENDA WARNA PUTIH!', rgbMatch: (r,g,b) => r > 180 && g > 180 && b > 180 && Math.abs(r-g) < 30 && Math.abs(g-b) < 30 },
-            { name: 'HITAM / GELAP', text: 'CARI BENDA HITAM / GELAP!', rgbMatch: (r,g,b) => r < 60 && g < 60 && b < 60 },
-            { name: 'ABU-ABU', text: 'CARI BENDA WARNA ABU-ABU!', rgbMatch: (r,g,b) => r > 80 && r < 170 && Math.abs(r-g) < 25 && Math.abs(g-b) < 25 },
-            
-            // 8-11: Warna Campuran
-            { name: 'ORANYE', text: 'CARI BENDA WARNA ORANYE!', rgbMatch: (r,g,b) => r > 150 && g > 70 && g < 160 && b < 80 && r > g + 30 },
-            { name: 'COKELAT', text: 'CARI BENDA WARNA COKELAT!', rgbMatch: (r,g,b) => r > 80 && r < 180 && g > 40 && g < 120 && b < 80 && r > g + 20 },
-            { name: 'UNGU', text: 'CARI BENDA WARNA UNGU!', rgbMatch: (r,g,b) => r > 90 && b > 90 && g < 70 && Math.abs(r-b) < 60 },
-            { name: 'PINK / MERAH MUDA', text: 'CARI WARNA MERAH MUDA!', rgbMatch: (r,g,b) => r > 150 && g < 140 && b > 100 && r > b + 20 },
-            
-            // 12-15: Pengulangan Variasi Warna Umum di Sekitar (Lebih spesifik)
-            { name: 'MERAH CERAH', text: 'CARI BENDA MERAH CERAH!', rgbMatch: (r,g,b) => r > g + 60 && r > b + 60 && r > 150 },
-            { name: 'HIJAU DAUN', text: 'CARI WARNA HIJAU DAUN!', rgbMatch: (r,g,b) => g > r + 30 && g > b + 30 && g > 100 },
-            { name: 'BIRU LANGIT', text: 'CARI WARNA BIRU LANGIT!', rgbMatch: (r,g,b) => b > r + 30 && b > g + 10 && b > 120 },
-            { name: 'KUNING CERAH', text: 'CARI BENDA KUNING CERAH!', rgbMatch: (r,g,b) => r > 150 && g > 150 && b < 100 && Math.abs(r-g) < 40 }
+            { name: 'MERAH', text: 'CARI BENDA WARNA MERAH!', rgbMatch: (r,g,b) => isColorMatchHSL(r,g,b, 'MERAH') },
+            { name: 'HIJAU', text: 'CARI BENDA WARNA HIJAU!', rgbMatch: (r,g,b) => isColorMatchHSL(r,g,b, 'HIJAU') },
+            { name: 'BIRU', text: 'CARI BENDA WARNA BIRU!', rgbMatch: (r,g,b) => isColorMatchHSL(r,g,b, 'BIRU') },
+            { name: 'KUNING', text: 'CARI BENDA WARNA KUNING!', rgbMatch: (r,g,b) => isColorMatchHSL(r,g,b, 'KUNING') },
+            { name: 'PUTIH', text: 'CARI BENDA WARNA PUTIH!', rgbMatch: (r,g,b) => isColorMatchHSL(r,g,b, 'PUTIH') },
+            { name: 'HITAM / GELAP', text: 'CARI BENDA HITAM / GELAP!', rgbMatch: (r,g,b) => isColorMatchHSL(r,g,b, 'HITAM') },
+            { name: 'ABU-ABU', text: 'CARI BENDA WARNA ABU-ABU!', rgbMatch: (r,g,b) => isColorMatchHSL(r,g,b, 'ABU') },
+            { name: 'ORANYE', text: 'CARI BENDA WARNA ORANYE!', rgbMatch: (r,g,b) => isColorMatchHSL(r,g,b, 'ORANYE') },
+            { name: 'COKELAT', text: 'CARI BENDA WARNA COKELAT!', rgbMatch: (r,g,b) => isColorMatchHSL(r,g,b, 'COKELAT') },
+            { name: 'UNGU', text: 'CARI BENDA WARNA UNGU!', rgbMatch: (r,g,b) => isColorMatchHSL(r,g,b, 'UNGU') },
+            { name: 'PINK / MERAH MUDA', text: 'CARI WARNA MERAH MUDA!', rgbMatch: (r,g,b) => isColorMatchHSL(r,g,b, 'PINK') },
+            { name: 'MERAH CERAH', text: 'CARI BENDA MERAH CERAH!', rgbMatch: (r,g,b) => isColorMatchHSL(r,g,b, 'MERAH CERAH') },
+            { name: 'HIJAU DAUN', text: 'CARI WARNA HIJAU DAUN!', rgbMatch: (r,g,b) => isColorMatchHSL(r,g,b, 'HIJAU DAUN') },
+            { name: 'BIRU LANGIT', text: 'CARI WARNA BIRU LANGIT!', rgbMatch: (r,g,b) => isColorMatchHSL(r,g,b, 'BIRU LANGIT') },
+            { name: 'KUNING CERAH', text: 'CARI BENDA KUNING CERAH!', rgbMatch: (r,g,b) => isColorMatchHSL(r,g,b, 'KUNING CERAH') }
         ];
         
         let currentColor = colors[Math.floor(Math.random() * colors.length)];
@@ -1139,6 +1235,9 @@ window.startDetektifWarna = function() {
         
         if (colorsFound >= targetWin) {
             // MENANG TOTAL
+            bgmBossMisi5.pause();
+            bgmBossMisi5.currentTime = 0;
+
             addScore(50);
             showCustomModal("MISI 5 SELESAI!", "BINGO! Matamu berhasil mendeteksi dan membedakan spektrum warna dengan sempurna. Kamu resmi menjadi Ahli Detektif Banyu Bening!", checkIcon, "alert", () => {
                 if (window.arStream) {
@@ -1186,6 +1285,10 @@ window.startBanyuBeningAR = function() {
     // Munculkan kotak kamera secara dramatis setelah dialog NPC selesai
     document.getElementById('ar-game-area').style.display = 'flex';
     
+    // Putar Musik Boss
+    bgmBossMisi5.currentTime = 0;
+    bgmBossMisi5.play().catch(e => console.log("BGM Boss diblokir browser: ", e));
+
     const video = document.getElementById('ar-video');
     const canvas = document.getElementById('ar-hidden-canvas');
     if (!video || !canvas) return;
@@ -1400,10 +1503,13 @@ window.startBanyuBeningAR = function() {
             
             arScore++;
             document.getElementById('ar-score-txt').innerText = `${arScore} / 20`;
-            addScore(10); 
+            addScore(10, true); // true = Mainkan suara tangkap.mp3 
 
             if (arScore >= 20) {
                 // MENANG TOTAL
+                bgmBossMisi5.pause();
+                bgmBossMisi5.currentTime = 0;
+                
                 window.arActive = false;
                 
                 if (window.arStream) {
@@ -1427,7 +1533,7 @@ window.startBanyuBeningAR = function() {
         } else {
             
             // JIKA SALAH MENANGKAP BUAH
-            reduceLife();
+            reduceLife(true); // true = Mainkan suara nottanngkap.mp3
             window.arActive = false; // Tahan sensor saat Modal Error muncul
             
             // Ambil ekspektasi target dari Teks (contoh: "TANGKAP BUAH APEL!" -> "BUAH APEL")
@@ -1703,6 +1809,16 @@ function nextStage1Text() {
     currentStage1Index++;
     if (currentStage1Index < stage1Texts.length) {
         document.getElementById('stage-1-text').innerHTML = stage1Texts[currentStage1Index];
+        
+        /* Force Reading Delay */
+        const btn = document.getElementById('btn-stage-1-next');
+        if (btn) {
+            btn.style.display = 'none';
+            clearTimeout(window.stage1Timer);
+            window.stage1Timer = setTimeout(() => {
+                btn.style.display = 'flex';
+            }, 2500);
+        }
     } else {
         // Halaman 5 (Terakhir): Sembunyikan teks & tombol lanjut, lalu tampilkan soal trivia
         document.getElementById('stage-1-text').parentElement.style.display = 'none';
@@ -1980,6 +2096,14 @@ function nextM4Text(divId, nextStageNum) {
     currentM4Index++;
     if (currentM4Index < m4Texts.length) {
         document.getElementById(divId).innerText = m4Texts[currentM4Index];
+        
+        /* Force Reading Delay */
+        const btn = document.querySelector(`#${divId}`).parentElement.nextElementSibling;
+        if (btn && btn.tagName === 'BUTTON') {
+            btn.style.display = 'none';
+            clearTimeout(window.m4Timer);
+            window.m4Timer = setTimeout(() => { btn.style.display = 'flex'; }, 2500);
+        }
     } else {
         nextMissionStage(nextStageNum); 
     }
@@ -1989,6 +2113,14 @@ function startM4Intro(divId, textsArray) {
     m4Texts = textsArray;
     currentM4Index = 0;
     document.getElementById(divId).innerText = m4Texts[0];
+    
+    /* Force Reading Delay on Start */
+    const btn = document.querySelector(`#${divId}`).parentElement.nextElementSibling;
+    if (btn && btn.tagName === 'BUTTON') {
+        btn.style.display = 'none';
+        clearTimeout(window.m4Timer);
+        window.m4Timer = setTimeout(() => { btn.style.display = 'flex'; }, 2500);
+    }
 }
 
 // Generator Misi 4: Merawat Pancaindra (7 TAHAP FULL)
@@ -2269,6 +2401,14 @@ function buildMission4() {
         currentAdaptasiIdx++;
         if (currentAdaptasiIdx < m4IntroAdaptasi.length) {
             txtAdaptasi.innerText = m4IntroAdaptasi[currentAdaptasiIdx];
+            
+            /* Force Reading Delay */
+            const btn = document.getElementById('btn-m4-adaptasi-lanjut');
+            if (btn) {
+                btn.style.display = 'none';
+                clearTimeout(window.adaptasiTimer);
+                window.adaptasiTimer = setTimeout(() => { btn.style.display = 'flex'; }, 2500);
+            }
         } else {
             // Sembunyikan Kotak Teks dan Tombol Lanjut saat materi habis
             txtAdaptasi.closest('.m4-intro-box').style.display = 'none';
@@ -2987,5 +3127,134 @@ if (btnSaveScore) {
         showCustomModal("SKOR TERSIMPAN!", `Luar biasa ${playerName}! Skormu berhasil dicatat di Papan Peringkat.`, checkIcon, "alert", () => {
             exitMissionScreen();
         });
+    });
+}
+
+/**
+ * Fungsi Pintar Analisis Warna (Mode HSL)
+ * Super Akurat & Tahan Gelap untuk 15 Variasi Warna
+ */
+function isColorMatchHSL(r, g, b, targetColor) {
+    r /= 255; g /= 255; b /= 255;
+    let max = Math.max(r, g, b), min = Math.min(r, g, b);
+    let h, s, l = (max + min) / 2;
+
+    if (max == min) {
+        h = s = 0; 
+    } else {
+        let d = max - min;
+        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+        switch (max) {
+            case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+            case g: h = (b - r) / d + 2; break;
+            case b: h = (r - g) / d + 4; break;
+        }
+        h /= 6;
+    }
+    
+    h = Math.round(h * 360); 
+    s = Math.round(s * 100); 
+    l = Math.round(l * 100); 
+
+    // 1. Pengecekan Warna Netral (Tanpa Saturation / Warna Pudar)
+    if (targetColor.includes("HITAM")) return l < 20; 
+    if (targetColor.includes("PUTIH")) return l > 80 && s < 20;
+    if (targetColor.includes("ABU")) return l >= 20 && l <= 80 && s < 25;
+
+    // 2. Filter Kecerahan Mutlak untuk warna-warni (Abaikan gelap gulita atau silau)
+    if (s < 20 || l < 15 || l > 90) return false;
+
+    // 3. Pengecekan Spektrum Nada Warna (Hue) Tahan Banting
+    if (targetColor.includes("KUNING")) return (h >= 35 && h <= 70); 
+    if (targetColor.includes("MERAH") && !targetColor.includes("PINK")) return (h >= 340 || h <= 15);
+    if (targetColor.includes("BIRU")) return (h >= 170 && h <= 260);
+    if (targetColor.includes("HIJAU")) return (h > 70 && h < 170);
+    if (targetColor.includes("ORANYE")) return (h > 15 && h < 40) && l > 40;
+    if (targetColor.includes("COKELAT")) return (h > 10 && h < 45) && l <= 45;
+    if (targetColor.includes("UNGU")) return (h > 260 && h < 315);
+    if (targetColor.includes("PINK")) return (h >= 315 && h < 340);
+    
+    return false;
+}
+
+// ================= MESIN BOSS MISI 1 (10 SOAL BERUNTUN) =================
+const misi1BossQuestions = [
+    { q: "Berapa jumlah alat sensor utama yang dimiliki oleh manusia?", opts: ["3 Indra", "4 Indra", "5 Indra", "6 Indra"], ans: "5 Indra" },
+    { q: "Bagian tubuh mana yang berfungsi untuk mendengarkan lagu atau musik?", opts: ["Mata", "Telinga", "Hidung", "Lidah"], ans: "Telinga" },
+    { q: "Untuk mengetahui harumnya bunga mawar di taman, kita menggunakan indra...", opts: ["Penglihat (Mata)", "Pembau (Hidung)", "Pengecap (Lidah)", "Peraba (Kulit)"], ans: "Pembau (Hidung)" },
+    { q: "Saat memakan es krim, organ apa yang bekerja mengecap rasa manisnya?", opts: ["Hidung", "Kulit", "Lidah", "Mata"], ans: "Lidah" },
+    { q: "Alat sensor yang menutupi seluruh tubuh kita dan bertugas merasakan sentuhan adalah...", opts: ["Kulit", "Rambut", "Kuku", "Tulang"], ans: "Kulit" },
+    { q: "Kita bisa melihat pelangi yang indah di langit setelah hujan menggunakan indra...", opts: ["Pendengar", "Peraba", "Penglihat", "Pengecap"], ans: "Penglihat" },
+    { q: "Kelima alat sensor ajaib kita (Mata, Telinga, Hidung, Lidah, Kulit) secara bersamaan disebut dengan nama...", opts: ["Pancasila", "Pancaindra", "Pancawarna", "Pancajiwa"], ans: "Pancaindra" },
+    { q: "Jika kamu menutup mata rapat-rapat saat bermain petak umpet, indra apa yang sedang tidak bisa digunakan?", opts: ["Indra Peraba", "Indra Pendengar", "Indra Penglihat", "Indra Pembau"], ans: "Indra Penglihat" },
+    { q: "Saat berjalan tanpa sandal dan kakimu menginjak kerikil tajam, organ apa yang mengirimkan rasa sakit itu ke otak?", opts: ["Kulit kaki", "Mata kaki", "Bulu kaki", "Kuku kaki"], ans: "Kulit kaki" },
+    { q: "Suara petir yang sangat keras menggema di saat hujan lebat ditangkap oleh indra...", opts: ["Penglihat", "Peraba", "Pengecap", "Pendengar"], ans: "Pendengar" }
+];
+
+let currentMisi1BossIndex = 0;
+
+function loadMisi1BossQuestion() {
+    const qBox = document.getElementById('quiz-question');
+    const optBox = document.getElementById('quiz-options');
+    if (!qBox || !optBox) return;
+
+    // Jika ke-10 soal sudah habis dijawab benar
+    if (currentMisi1BossIndex >= misi1BossQuestions.length) {
+        const checkIcon = `<svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M14 2h2v2h-2V2zm-2 2h2v2h-2V4zm-2 2h2v2h-2V6zm-2 2h2v2H8V8zm-2 2h2v2H6v-2zm-2 2h2v2H4v-2zm-2-2h2v2H2v-2zm-2-2h2v2H0v-2z"/></svg>`;
+        showCustomModal(
+            "LULUS UJIAN MISI 1!", 
+            "Luar Biasa! Kamu berhasil menjawab 10 soal dasar Pancaindra dengan sangat tepat.", 
+            checkIcon, 
+            "alert", 
+            () => {
+                triggerPostDialog(7); // Panggil dialog Visual Novel kelulusan Boss
+            }
+        );
+        return;
+    }
+
+    // Tampilkan Soal
+    const currentQ = misi1BossQuestions[currentMisi1BossIndex];
+    qBox.innerText = `Pertanyaan ${currentMisi1BossIndex + 1} / 10:\n\n${currentQ.q}`;
+    
+    // Ubah tampilan opsi menjadi bentuk kotak "Arcade" (btn-explore)
+    optBox.innerHTML = '';
+    optBox.className = 'explore-grid'; 
+    optBox.style.width = '100%';
+    
+    // Acak posisi jawaban
+    const shuffledOpts = [...currentQ.opts].sort(() => Math.random() - 0.5);
+    
+    shuffledOpts.forEach(optText => {
+        const btn = document.createElement('button');
+        btn.className = 'btn-explore';
+        btn.innerText = optText;
+        
+        btn.onclick = () => {
+            // Tahan input jika tombol sudah diklik
+            if (btn.classList.contains('btn-correct') || btn.classList.contains('btn-wrong')) return;
+            
+            if (optText === currentQ.ans) {
+                // JAWABAN BENAR
+                sfxBenar.currentTime = 0; sfxBenar.play().catch(e => console.warn(e));
+                btn.classList.add('btn-correct');
+                addScore(10); // Beri +10 Skor setiap 1 soal benar
+                
+                // Jeda 0.6 detik agar siswa sempat melihat tombol hijau, lalu lanjut soal
+                setTimeout(() => {
+                    currentMisi1BossIndex++;
+                    loadMisi1BossQuestion();
+                }, 600);
+                
+            } else {
+                // JAWABAN SALAH
+                btn.classList.add('btn-wrong');
+                reduceLife(); // Kurangi nyawa. Jika 0, sistem UKS akan otomatis mencegah layar.
+                
+                const lockIcon = `<svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M4 2h8v2h2v10H2V4h2V2zm2 2v2h4V4H6zm-2 4v4h8V8H4z"/></svg>`;
+                showCustomModal("SALAH!", "Coba ingat-ingat lagi materi yang baru dipelajari!\n(Nyawa Berkurang 1)", lockIcon, "error");
+            }
+        };
+        optBox.appendChild(btn);
     });
 }

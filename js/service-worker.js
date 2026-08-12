@@ -1,55 +1,45 @@
-const CACHE_NAME = 'ipas-adventure-kediri-v1';
-
-// Daftar aset inti yang wajib disimpan agar game bisa berjalan offline
-const assetsToCache = [
+// Nama cache untuk menyimpan file agar bisa dimainkan offline
+const CACHE_NAME = 'ipas-adventure-v1';
+const urlsToCache = [
   './',
   './index.html',
   './css/style.css',
-  './js/script.js',
-  './js/three.min.js',
-  './js/GLTFLoader.js',
-  './js/OrbitControls.js',
-  './assets/ipas-adventur3.webp',
-  './assets/background/background-main.webp',
-  './assets/background/background-maps.webp',
-  './assets/background/maps-kediri.webp',
-  './assets/background/maps-kandangan.webp'
+  './js/engine.js',
+  './js/bab1.js'
 ];
 
-// Saat Service Worker dipasang, simpan aset ke cache
+// 1. Proses Instalasi (Menyimpan file ke memori)
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => {
-        return cache.addAll(assetsToCache);
+        return cache.addAll(urlsToCache);
       })
-      .then(() => self.skipWaiting())
   );
 });
 
-// Mengaktifkan Service Worker dan membersihkan cache lama jika ada pembaruan
+// 2. Proses Aktivasi (Membersihkan cache lama jika ada versi baru)
 self.addEventListener('activate', event => {
   event.waitUntil(
-    caches.keys().then(keys => {
+    caches.keys().then(cacheNames => {
       return Promise.all(
-        keys.filter(key => key !== CACHE_NAME).map(key => caches.delete(key))
+        cacheNames.map(cacheName => {
+          if (cacheName !== CACHE_NAME) {
+            return caches.delete(cacheName);
+          }
+        })
       );
-    }).then(() => self.clients.claim())
+    })
   );
 });
 
-// Menangkap permintaan data (fetch), ambil dari cache jika offline
+// 3. Proses Pengambilan (Membaca file dari cache jika tidak ada internet)
 self.addEventListener('fetch', event => {
   event.respondWith(
     caches.match(event.request)
-      .then(cachedResponse => {
-        // Kembalikan dari cache jika ada, jika tidak ambil dari jaringan
-        if (cachedResponse) {
-          return cachedResponse;
-        }
-        return fetch(event.request).catch(() => {
-          // Fallback opsional jika koneksi putus dan file tidak ada di cache
-        });
+      .then(response => {
+        // Kembalikan file dari cache, atau ambil dari internet jika belum ada
+        return response || fetch(event.request);
       })
   );
 });

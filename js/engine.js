@@ -16,6 +16,12 @@ const sfxRadio = new Audio('assets/sound/radio.mp3');
 sfxRadio.loop = true;
 sfxRadio.volume = 0.6;
 
+/* --- Efek Suara Jawaban & Tangkapan --- */
+const sfxBenar = new Audio('assets/sound/benar.mp3');
+const sfxSalah = new Audio('assets/sound/salah.mp3');
+const sfxTangkap = new Audio('assets/sound/tangkap.mp3');
+const sfxNotTangkap = new Audio('assets/sound/nottangkap.mp3');
+
 // Trik melewati blokir Autoplay Browser: Putar musik saat klik pertama di layar
 let isMusicPlaying = false;
 document.body.addEventListener('click', () => {
@@ -408,6 +414,7 @@ const btnModalCancel = document.getElementById('btn-modal-cancel');
 const btnModalConfirm = document.getElementById('btn-modal-confirm');
 
 let confirmCallback = null;
+window.pendingUKS = false; // Penanda khusus untuk menahan Pop-up Hukuman UKS
 
 // Fungsi Ajaib untuk memanggil Pop-up dari mana saja!
 function showCustomModal(title, message, iconSvg, type = 'confirm', callback = null) {
@@ -439,7 +446,18 @@ btnModalCancel.addEventListener('click', () => {
 
 btnModalConfirm.addEventListener('click', () => {
     customModal.classList.remove('active');
-    if (confirmCallback) confirmCallback(); 
+    
+    let originalCallback = confirmCallback;
+    confirmCallback = null;
+
+    // CEGAT ALUR! Jika nyawa habis, jalankan UKS dulu sebelum game dilanjutkan
+    if (window.pendingUKS && !modalTitle.innerText.includes("NYAWA HABIS") && !modalTitle.innerText.includes("PULIH") && !modalTitle.innerText.includes("SALAH RAMUAN")) {
+        window.pendingUKS = false;
+        triggerRecoveryQuiz(originalCallback);
+        return;
+    }
+
+    if (originalCallback) originalCallback(); 
 });
 
 // ================= PENGGUNAAN POP-UP PADA TOMBOL RESET =================
@@ -476,6 +494,28 @@ btnResetData.addEventListener('click', () => {
     btnModalConfirm.style.backgroundColor = '#ff4757';
 });
 
+// ================= LOGIKA INFORMASI & KREDIT =================
+const infoScreen = document.getElementById('info-screen');
+const btnInformasi = document.getElementById('btn-informasi');
+const btnBackInfo = document.getElementById('btn-back-info');
+const btnInstallApk = document.getElementById('btn-install-apk');
+const btnPlayOnline = document.getElementById('btn-play-online');
+const infoImagePopup = document.getElementById('info-image-popup');
+const infoPopupImg = document.getElementById('info-popup-img');
+const btnCloseInfoImg = document.getElementById('btn-close-info-img');
+
+// Buka/Tutup Layar Informasi
+if (btnInformasi) {
+    btnInformasi.addEventListener('click', () => {
+        infoScreen.classList.add('active');
+    });
+}
+if (btnBackInfo) {
+    btnBackInfo.addEventListener('click', () => {
+        infoScreen.classList.remove('active');
+    });
+}
+
 // Buka/Tutup Popup Kredit
 btnCredit.addEventListener('click', () => {
     creditPopup.classList.add('active');
@@ -483,6 +523,29 @@ btnCredit.addEventListener('click', () => {
 btnCloseCredit.addEventListener('click', () => {
     creditPopup.classList.remove('active');
 });
+
+// Buka Popup Gambar Install APK
+if (btnInstallApk) {
+    btnInstallApk.addEventListener('click', () => {
+        infoPopupImg.src = 'assets/item/install-apk.webp';
+        infoImagePopup.classList.add('active');
+    });
+}
+
+// Buka Popup Gambar Play Online
+if (btnPlayOnline) {
+    btnPlayOnline.addEventListener('click', () => {
+        infoPopupImg.src = 'assets/item/play-online.webp';
+        infoImagePopup.classList.add('active');
+    });
+}
+
+// Tutup Popup Gambar Informasi
+if (btnCloseInfoImg) {
+    btnCloseInfoImg.addEventListener('click', () => {
+        infoImagePopup.classList.remove('active');
+    });
+}
 
 // ================= LOGIKA PAPAN SKOR =================
 const scoreScreen = document.getElementById('score-screen');
@@ -721,7 +784,14 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Fungsi 1: Menambah Skor
-function addScore(points) {
+function addScore(points, isFruitCatch = false) {
+    // Putar efek suara berdasarkan sumber poin
+    if (isFruitCatch) {
+        sfxTangkap.currentTime = 0; sfxTangkap.play().catch(e => console.warn(e));
+    } else {
+        sfxBenar.currentTime = 0; sfxBenar.play().catch(e => console.warn(e));
+    }
+
     globalScore += points;
     localStorage.setItem('globalScore', globalScore); // Simpan permanen ke memori
     hudScoreVal.innerText = globalScore;
@@ -739,38 +809,137 @@ function updateLivesHUD() {
     
     hearts.forEach((heart, index) => {
         if (index < currentLives) {
-            heart.classList.remove('lost'); // Nyawa penuh (Merah)
+            heart.classList.remove('lost'); 
         } else {
-            heart.classList.add('lost'); // Nyawa hilang (Abu-abu & Mengecil)
+            heart.classList.add('lost'); 
         }
     });
 }
 
-// Fungsi 3: Mengurangi Nyawa di Bab Aktif
-function reduceLife() {
+/* --- Life System & Penalty Handling --- */
+function reduceLife(isFruitCatch = false) {
+    if (isFruitCatch) {
+        sfxNotTangkap.currentTime = 0; sfxNotTangkap.play().catch(e => console.warn(e));
+    } else {
+        sfxSalah.currentTime = 0; sfxSalah.play().catch(e => console.warn(e));
+    }
+
+    // 1. Kurangi nyawa hanya jika masih di atas 0
     if (chapterLives[currentChapter] > 0) {
         chapterLives[currentChapter]--;
-        localStorage.setItem('chapterLives', JSON.stringify(chapterLives)); // Simpan permanen
+        localStorage.setItem('chapterLives', JSON.stringify(chapterLives)); 
         updateLivesHUD();
-        
-        if (chapterLives[currentChapter] === 0) {
-            // Tampilkan Modal Hukuman Mini-game
-            const warningIcon = `<svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M6 0h4v2h2v2h2v8h-2v2H6v-2H4V4h2V2zm2 2H6v10h4V2zm0 8h2v2H8v-2zm0-6h2v4H8V4z"/></svg>`;
-            showCustomModal(
-                "NYAWA HABIS!", 
-                "Kamu kehabisan nyawa di bab ini! Bersiaplah menyelesaikan mini-game rahasia untuk memulihkan nyawamu.", 
-                warningIcon, 
-                "alert"
-            );
-            
-            // Untuk sementara, nyawa otomatis penuh setelah 5 detik
-            setTimeout(() => {
-                chapterLives[currentChapter] = 5;
-                localStorage.setItem('chapterLives', JSON.stringify(chapterLives)); // Simpan pemulihan
-                updateLivesHUD();
-            }, 5000); 
-        }
     }
+    
+    // 2. CEGAH BUG REFRESH: Jika nyawa <= 0 (baru saja habis ATAU sudah habis dari awal karena curang/refresh)
+    // Maka paksa alarm UKS menyala, sehingga saat Pop-Up salah ditutup, pemain langsung dievakuasi!
+    if (chapterLives[currentChapter] <= 0) {
+        window.pendingUKS = true;
+    }
+}
+
+/**
+ * Initiates the Recovery Quiz (UKS Room) when player lives reach zero.
+ * Overlays a cinematic "UKS" room screen while suspending mission state.
+ * 
+ * @param {Function} resumeCallback - Original function to resume the game after healing.
+ */
+function triggerRecoveryQuiz(resumeCallback = null) {
+    const warningIcon = `<svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M6 0h4v2h2v2h2v8h-2v2H6v-2H4V4h2V2zm2 2H6v10h4V2zm0 8h2v2H8v-2zm0-6h2v4H8V4z"/></svg>`;
+    const heartIcon = `<svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M2 4h4v2h4V4h4v4h-2v2h-2v2H8v2H6v-2H4v-2H2V8H0V4h2z"/></svg>`;
+    
+    // 1. Bekukan sistem game yang sedang berjalan
+    if (window.arActive) window.arActive = false; 
+    if (window.arColorActive) window.arColorActive = false;
+
+    // 2. Munculkan Layar UKS secara perlahan (Fade In)
+    const uksOverlay = document.getElementById('uks-overlay');
+    if (uksOverlay) {
+        uksOverlay.style.display = 'block';
+        void uksOverlay.offsetWidth; // Paksa peramban untuk membaca perubahan display sebelum transisi
+        uksOverlay.classList.add('active');
+    }
+
+    // 3. Beri jeda 1 detik agar animasi layar gelap selesai, barulah NPC menyapa
+    setTimeout(() => {
+        showCustomModal(
+            "NYAWA HABIS!", 
+            "Aduh, kamu kelelahan! Kamu dievakuasi ke ruang UKS untuk memulihkan kristal nyawamu.", 
+            warningIcon, 
+            "error",
+            () => {
+                const recoveryBank = [
+                    { q: "Warna bendera negara kita, Indonesia, adalah?", opt1: "MERAH PUTIH", opt2: "MERAH BIRU", correct: 1 },
+                    { q: "Binatang apakah yang memiliki belalai panjang dan telinga lebar?", opt1: "JERAPAH", opt2: "GAJAH", correct: 2 },
+                    { q: "Benda langit apakah yang menyinari bumi pada siang hari?", opt1: "MATAHARI", opt2: "BULAN", correct: 1 },
+                    { q: "Berapakah jumlah kaki yang dimiliki oleh seekor sapi?", opt1: "DUA", opt2: "EMPAT", correct: 2 },
+                    { q: "Makanan pokok sebagian besar penduduk Indonesia adalah...", opt1: "NASI", opt2: "GANDUM", correct: 1 },
+                    { q: "Ikan bernapas di dalam air menggunakan alat pernapasan berupa...", opt1: "PARU-PARU", opt2: "INSANG", correct: 2 },
+                    { q: "Matahari terbit setiap pagi dari arah...", opt1: "TIMUR", opt2: "BARAT", correct: 1 },
+                    { q: "Hewan serangga apakah yang bisa menghasilkan madu?", opt1: "NYAMUK", opt2: "LEBAH", correct: 2 },
+                    { q: "Sila pertama Pancasila dilambangkan dengan gambar...", opt1: "BINTANG", opt2: "RANTAI", correct: 1 },
+                    { q: "Rasa dari air laut adalah...", opt1: "MANIS", opt2: "ASIN", correct: 2 }
+                ];
+
+                const randomQ = recoveryBank[Math.floor(Math.random() * recoveryBank.length)];
+
+                const handleRecoveryAnswer = (chosenOption) => {
+                    document.getElementById('vn-overlay').style.display = 'none';
+                    
+                    if (chosenOption === randomQ.correct) {
+                        // KONDISI MENANG (SEMBUH)
+                        sfxBenar.currentTime = 0; sfxBenar.play().catch(e => console.warn(e));
+                        
+                        chapterLives[currentChapter] = 5;
+                        localStorage.setItem('chapterLives', JSON.stringify(chapterLives));
+                        updateLivesHUD();
+                        
+                        showCustomModal("PULIH!", "Tepat sekali! Kamu sudah sehat kembali. 5 Kristal Nyawamu telah penuh, ayo lanjutkan misi!", heartIcon, "alert", () => {
+                            
+                            // 4. Tutup Layar UKS secara perlahan (Fade Out)
+                            if (uksOverlay) {
+                                uksOverlay.classList.remove('active');
+                                setTimeout(() => {
+                                    uksOverlay.style.display = 'none';
+                                }, 1000); // Waktu animasi memudar
+                            }
+
+                            // 5. Kembalikan semua fungsi misi yang sempat dibekukan
+                            if (document.getElementById('ar-game-area') && document.getElementById('ar-game-area').style.display !== 'none') window.arActive = true;
+                            if (document.getElementById('ar-color-area') && document.getElementById('ar-color-area').style.display !== 'none') window.arColorActive = true;
+                            
+                            // 6. Resume Callback: Eksekusi sisa kode game yang sempat dicegat
+                            if (resumeCallback) resumeCallback();
+                        });
+                    } else {
+                        // KONDISI SALAH (BELUM SEMBUH)
+                        sfxSalah.currentTime = 0; sfxSalah.play().catch(e => console.warn(e));
+                        
+                        showCustomModal("SALAH RAMUAN!", "Waduh, tebakanmu salah. Coba ingat-ingat lagi agar kamu cepat sembuh!", warningIcon, "error", () => {
+                            // Ulangi proses pemulihan, layar UKS tetap dibiarkan menyala
+                            triggerRecoveryQuiz(resumeCallback); 
+                        });
+                    }
+                };
+
+                const recoveryDialog = [
+                    { text: "Sepertinya kamu butuh obat pemulihan. Tapi kotak obatnya terkunci oleh teka-teki sandi!", mood: "sad" },
+                    { 
+                        text: `Jawab sandi ini dengan cepat! ${randomQ.q}`, 
+                        mood: "neutral", 
+                        isChoice: true,
+                        btn1Text: randomQ.opt1, 
+                        btn2Text: randomQ.opt2, 
+                        onYes: () => handleRecoveryAnswer(1),
+                        onNo: () => handleRecoveryAnswer(2)
+                    }
+                ];
+                
+                /* Trigger VN Dialog with the dedicated 'healer' NPC sprite */
+                startVnDialog(recoveryDialog, "Petugas UKS", "healer", null);
+            }
+        );
+    }, 1000); 
 }
 
 // ================= SISTEM ALUR MISI BERTAHAP =================
@@ -1333,34 +1502,39 @@ function updateVnDialog() {
         vnCharacter.src = `assets/character/${currentNpcPrefix}-${current.mood}.webp`;
         vnCharacter.onerror = function() { this.onerror = null; this.src = `assets/character/${currentNpcPrefix}-neutral.webp`; };
         
-        // Cek apakah dialog ini memiliki sistem Pilihan Ganda (Terima/Tolak)
         const vnChoicesContainer = document.getElementById('vn-choices');
-        if (current.isChoice) {
-            btnVnNext.style.display = 'none'; // Matikan tombol lanjut biasa
-            vnChoicesContainer.style.display = 'flex'; // Nyalakan opsi
-            
-            const btnYes = document.getElementById('btn-vn-yes');
-            const btnNo = document.getElementById('btn-vn-no');
-            
-            // Mengubah Teks Tombol secara Dinamis (Atau gunakan bawaan jika kosong)
-            btnYes.innerText = current.btn1Text || "TERIMA MISI";
-            btnNo.innerText = current.btn2Text || "TOLAK";
-            
-            // Pasang fungsi pada tombol
-            btnYes.onclick = current.onYes;
-            
-            if (current.hideNo) {
-                btnNo.style.display = 'none'; // Sembunyikan tolak jika dipaksa
+                
+                /* Force Reading Delay: Sembunyikan tombol saat teks baru muncul */
+                btnVnNext.style.display = 'none';
+                vnChoicesContainer.style.display = 'none';
+                
+                /* Bersihkan antrean waktu sebelumnya agar tidak bentrok jika ditekan cepat */
+                clearTimeout(window.vnBtnTimer);
+                
+                /* Tunda kemunculan tombol selama 2.5 detik (2500 ms) */
+                window.vnBtnTimer = setTimeout(() => {
+                    if (current.isChoice) {
+                        vnChoicesContainer.style.display = 'flex'; 
+                        
+                        const btnYes = document.getElementById('btn-vn-yes');
+                        const btnNo = document.getElementById('btn-vn-no');
+                        
+                        btnYes.innerText = current.btn1Text || "TERIMA MISI";
+                        btnNo.innerText = current.btn2Text || "TOLAK";
+                        btnYes.onclick = current.onYes;
+                        
+                        if (current.hideNo) {
+                            btnNo.style.display = 'none'; 
+                        } else {
+                            btnNo.style.display = 'flex';
+                            btnNo.onclick = current.onNo;
+                        }
+                    } else {
+                        btnVnNext.style.display = 'flex';
+                    }
+                }, 2500); // <-- Anda bisa mengubah angka 2500 ini (2500 = 2.5 detik)
+                
             } else {
-                btnNo.style.display = 'block';
-                btnNo.onclick = current.onNo;
-            }
-        } else {
-            btnVnNext.style.display = 'block';
-            vnChoicesContainer.style.display = 'none';
-        }
-        
-    } else {
         // Tutup Tirai
         vnOverlay.style.opacity = '0';
         setTimeout(() => {

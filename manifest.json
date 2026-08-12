@@ -1,15 +1,23 @@
 {
-  "name": "IPAS Adventure 3: Kab Kediri Edition",
-  "short_name": "IPAS Adventure 3",
+  "name": "IPAS Adventure 3",
+  "short_name": "IPAS Adv",
   "start_url": "./index.html",
-  "display": "standalone",
-  "background_color": "#2f3640",
-  "theme_color": "#2f3640",
+  "display": "fullscreen",
+  "background_color": "#1e272e",
+  "theme_color": "#1e272e",
+  "orientation": "landscape",
   "icons": [
     {
-      "src": "assets/ipas-adventur3.webp",
+      "src": "assets/icon.png",
       "sizes": "192x192",
-      "type": "image/webp"
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ]
 }
