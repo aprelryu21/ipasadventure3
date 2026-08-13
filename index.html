@@ -32,6 +32,23 @@
     </script>
 </head>
 <body>
+    <!-- ================= CUSTOM WEB SPLASH SCREEN (VOXEL STYLE) ================= -->
+    <div id="voxel-splash" class="voxel-splash">
+        <!-- Latar belakang kotak-kotak -->
+        <div class="voxel-bg-pattern"></div>
+        
+        <!-- Ikon aplikasi berputar 3D -->
+        <div class="splash-logo-container">
+            <img src="assets/icon.png" alt="Icon" class="splash-icon">
+        </div>
+        
+        <h1 class="splash-text">MEMBUAT DUNIA...</h1>
+        
+        <!-- Loading Bar ala Minecraft Exp Bar -->
+        <div class="loading-bar-container">
+            <div class="loading-bar-fill"></div>
+        </div>
+    </div>
 
     <!-- Judul di Atas Game saat Potrait -->
     <div id="portrait-title">
@@ -474,7 +491,7 @@
         </div>
 
         <!-- ================= CUSTOM POP-UP (GLOBAL ALERT/CONFIRM) ================= -->
-        <div id="custom-modal" class="popup-overlay" style="z-index: 999;">
+        <div id="custom-modal" class="popup-overlay" style="z-index: 9999;">
             <div class="popup-box" style="width: 45cqw; background-color: #2f3542;">
                 <h2 id="modal-title" class="settings-title" style="color: #ff4757;">
                     <!-- SVG Ikon dan Judul akan disuntik dari Javascript -->

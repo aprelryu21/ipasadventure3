@@ -1,5 +1,5 @@
 // Nama cache untuk menyimpan file agar bisa dimainkan offline
-const CACHE_NAME = 'ipas-adventure-v2gitgit';
+const CACHE_NAME = 'ipas-adventure-v2';
 const urlsToCache = [
   './',
   './index.html',

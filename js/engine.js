@@ -1,3 +1,21 @@
+// ================= CUSTOM WEB SPLASH SCREEN =================
+document.addEventListener('DOMContentLoaded', () => {
+    const splashScreen = document.getElementById('voxel-splash');
+    
+    if (splashScreen) {
+        // Tahan splash screen selama 3 detik untuk menyesuaikan dengan animasi CSS XP Bar
+        setTimeout(() => {
+            // Tambahkan kelas untuk memicu animasi dissolve (memudar)
+            splashScreen.classList.add('hide-splash');
+            
+            // Hapus elemen dari memori agar tidak memberatkan HP siswa setelah 1 detik
+            setTimeout(() => {
+                splashScreen.remove();
+            }, 1000); 
+        }, 3000); // 3000ms = 3 detik
+    }
+});
+
 // ================= AUDIO (Musik Latar) =================
 const bgmIntro = new Audio('assets/music/music-intro.mp3');
 bgmIntro.loop = true;  
@@ -1325,12 +1343,17 @@ function nextMissionStage(stageNumber) {
             window.arStream = null;
         }
         window.arActive = false;
+        window.arColorActive = false;
         clearInterval(window.arLoop);
         clearInterval(window.arSpawner);
+        clearInterval(window.arColorLoop);
+        clearInterval(window.arColorTimer);
         
-        // Sembunyikan area AR Tahap 1 secara paksa
+        // Sembunyikan area AR secara paksa
         const arArea = document.getElementById('ar-game-area');
+        const arColorArea = document.getElementById('ar-color-area');
         if (arArea) arArea.style.display = 'none';
+        if (arColorArea) arColorArea.style.display = 'none';
     }
     // ======================================================================================
 
@@ -1437,8 +1460,11 @@ function exitMissionScreen() {
         window.arStream.getTracks().forEach(track => track.stop());
         window.arStream = null;
         window.arActive = false;
+        window.arColorActive = false;
         clearInterval(window.arLoop);
         clearInterval(window.arSpawner);
+        clearInterval(window.arColorLoop);
+        clearInterval(window.arColorTimer);
     }
     // ==============================================================================
 
@@ -1511,7 +1537,7 @@ function updateVnDialog() {
                 /* Bersihkan antrean waktu sebelumnya agar tidak bentrok jika ditekan cepat */
                 clearTimeout(window.vnBtnTimer);
                 
-                /* Tunda kemunculan tombol selama 2.5 detik (2500 ms) */
+                /* Tunda kemunculan tombol selama 2 detik (2000 ms) */
                 window.vnBtnTimer = setTimeout(() => {
                     if (current.isChoice) {
                         vnChoicesContainer.style.display = 'flex'; 
@@ -1532,7 +1558,7 @@ function updateVnDialog() {
                     } else {
                         btnVnNext.style.display = 'flex';
                     }
-                }, 2500); // <-- Anda bisa mengubah angka 2500 ini (2500 = 2.5 detik)
+                }, 2000); // <-- Diubah menjadi 2000 (2 detik)
                 
             } else {
         // Tutup Tirai

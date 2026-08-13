@@ -1221,3 +1221,105 @@ body:has(#mission-screen.active[data-misi="6"]) { background-image: url('../asse
     opacity: 1;
     pointer-events: auto;
 }
+
+/* ================= CUSTOM WEB SPLASH SCREEN ================= */
+.voxel-splash {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background-color: #2f3542; 
+    z-index: 999999; /* Pastikan berada paling atas menutupi semuanya */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* Transisi saat menghilang (Efek Dissolve / Fade Out) */
+    transition: opacity 1s ease-in-out;
+}
+
+/* Pola kotak-kotak ala bongkahan blok */
+.voxel-bg-pattern {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-image: 
+        linear-gradient(45deg, #353b48 25%, transparent 25%, transparent 75%, #353b48 75%, #353b48), 
+        linear-gradient(45deg, #353b48 25%, transparent 25%, transparent 75%, #353b48 75%, #353b48);
+    background-size: 6cqw 6cqw;
+    background-position: 0 0, 3cqw 3cqw;
+    opacity: 0.4;
+    z-index: 1;
+}
+
+/* Ikon melayang dan berputar seperti item drop di Minecraft */
+.splash-logo-container {
+    z-index: 2;
+    perspective: 1000px; /* Kedalaman 3D */
+}
+
+.splash-icon {
+    width: 15cqw;
+    image-rendering: pixelated; /* Mempertahankan tepian kasar khas voxel */
+    animation: itemFloat 2s infinite ease-in-out, itemSpin 3s ease-out forwards;
+    filter: drop-shadow(0.6cqw 0.6cqw 0px rgba(0,0,0,0.8));
+}
+
+.splash-text {
+    z-index: 2;
+    color: #FFEA00;
+    font-size: 2.5cqw;
+    margin-top: 2cqw;
+    text-shadow: 0.3cqw 0.3cqw 0px #111;
+    font-family: inherit;
+    animation: textPulse 1s infinite alternate;
+}
+
+/* Bilah Loading XP Bar */
+.loading-bar-container {
+    z-index: 2;
+    width: 35cqw;
+    height: 1.5cqw;
+    background: #111;
+    border: 0.3cqw solid #555;
+    margin-top: 1.5cqw;
+    border-radius: 0.2cqw;
+    box-shadow: 0.3cqw 0.3cqw 0px #000;
+    padding: 0.2cqw;
+}
+
+.loading-bar-fill {
+    height: 100%;
+    width: 0%;
+    background: #2ed573;
+    border-top: 0.3cqw solid #7bed9f; /* Pantulan cahaya pixel */
+    animation: fillExpBar 2.5s ease-out forwards;
+}
+
+/* KUMPULAN ANIMASI */
+@keyframes itemFloat {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-2cqw); }
+    100% { transform: translateY(0); }
+}
+
+@keyframes itemSpin {
+    0% { transform: rotateY(-180deg) scale(0); opacity: 0; }
+    50% { transform: rotateY(20deg) scale(1.2); opacity: 1; }
+    100% { transform: rotateY(0deg) scale(1); opacity: 1; }
+}
+
+@keyframes textPulse {
+    0% { opacity: 0.6; }
+    100% { opacity: 1; }
+}
+
+@keyframes fillExpBar {
+    0% { width: 0%; }
+    30% { width: 40%; }
+    70% { width: 75%; }
+    100% { width: 100%; }
+}
+
+/* Kelas saat dipanggil oleh Javascript untuk menghilang (Dissolve) */
+.voxel-splash.hide-splash {
+    opacity: 0;
+    pointer-events: none;
+}

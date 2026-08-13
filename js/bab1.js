@@ -1066,7 +1066,7 @@ window.handleDetektifAnswer = function(chosen, correct) {
 };
 
 // Musik Latar Khusus Tantangan Kamera AR (Misi 5)
-const bgmBossMisi5 = new Audio('assets/sound/music-boss.mp3');
+const bgmBossMisi5 = new Audio('assets/music/music-boss.mp3');
 bgmBossMisi5.loop = true;
 bgmBossMisi5.volume = 0.4; // Atur volume agar tidak menutupi efek suara
 
