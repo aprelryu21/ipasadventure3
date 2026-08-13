@@ -517,6 +517,7 @@ const infoScreen = document.getElementById('info-screen');
 const btnInformasi = document.getElementById('btn-informasi');
 const btnBackInfo = document.getElementById('btn-back-info');
 const btnInstallApk = document.getElementById('btn-install-apk');
+const btnInstallExe = document.getElementById('btn-install-exe');
 const btnPlayOnline = document.getElementById('btn-play-online');
 const infoImagePopup = document.getElementById('info-image-popup');
 const infoPopupImg = document.getElementById('info-popup-img');
@@ -546,6 +547,14 @@ btnCloseCredit.addEventListener('click', () => {
 if (btnInstallApk) {
     btnInstallApk.addEventListener('click', () => {
         infoPopupImg.src = 'assets/item/install-apk.webp';
+        infoImagePopup.classList.add('active');
+    });
+}
+
+// Buka Popup Gambar Install EXE
+if (btnInstallExe) {
+    btnInstallExe.addEventListener('click', () => {
+        infoPopupImg.src = 'assets/item/install-exe.webp';
         infoImagePopup.classList.add('active');
     });
 }
@@ -923,8 +932,11 @@ function triggerRecoveryQuiz(resumeCallback = null) {
                             }
 
                             // 5. Kembalikan semua fungsi misi yang sempat dibekukan
-                            if (document.getElementById('ar-game-area') && document.getElementById('ar-game-area').style.display !== 'none') window.arActive = true;
-                            if (document.getElementById('ar-color-area') && document.getElementById('ar-color-area').style.display !== 'none') window.arColorActive = true;
+                            // Beri jeda 1.5 detik agar tangan pemain tidak langsung terdeteksi kamera
+                            setTimeout(() => {
+                                if (document.getElementById('ar-game-area') && document.getElementById('ar-game-area').style.display !== 'none') window.arActive = true;
+                                if (document.getElementById('ar-color-area') && document.getElementById('ar-color-area').style.display !== 'none') window.arColorActive = true;
+                            }, 1500);
                             
                             // 6. Resume Callback: Eksekusi sisa kode game yang sempat dicegat
                             if (resumeCallback) resumeCallback();
@@ -1016,6 +1028,10 @@ function triggerPostDialog(stageNum) {
                 }
             }
         });
+    } else {
+        // JIKA TIDAK ADA DIALOG: Langsung munculkan tombol "LANJUTKAN"
+        const nextBtn = document.getElementById(`btn-next-${stageNum}`);
+        if(nextBtn) nextBtn.style.display = 'inline-flex';
     }
 }
 
@@ -1537,7 +1553,7 @@ function updateVnDialog() {
                 /* Bersihkan antrean waktu sebelumnya agar tidak bentrok jika ditekan cepat */
                 clearTimeout(window.vnBtnTimer);
                 
-                /* Tunda kemunculan tombol selama 2 detik (2000 ms) */
+                /* Tunda kemunculan tombol selama 1 detik (1000 ms) */
                 window.vnBtnTimer = setTimeout(() => {
                     if (current.isChoice) {
                         vnChoicesContainer.style.display = 'flex'; 
@@ -1558,7 +1574,7 @@ function updateVnDialog() {
                     } else {
                         btnVnNext.style.display = 'flex';
                     }
-                }, 2000); // <-- Diubah menjadi 2000 (2 detik)
+                }, 1000); // <-- Diubah menjadi 1000 (1 detik)
                 
             } else {
         // Tutup Tirai

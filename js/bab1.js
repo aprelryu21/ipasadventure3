@@ -888,6 +888,9 @@ function buildMission5() {
                 
                 <div class="ar-color-target"></div>
                 
+                <!-- Teks Live Pendeteksi Warna -->
+                <div id="ar-detected-color" style="position: absolute; top: 66%; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.8); color: #fff; padding: 0.5cqw 1.5cqw; border-radius: 0.5cqw; font-size: 1.5cqw; font-weight: bold; z-index: 10; border: 0.2cqw solid #fff; pointer-events: none; text-shadow: 0.1cqw 0.1cqw 0 #000; white-space: nowrap;">Terdeteksi: -</div>
+
                 <div class="ar-color-timer-container">
                     <div id="ar-color-timer-fill" class="ar-color-timer-fill"></div>
                 </div>
@@ -1111,9 +1114,9 @@ window.startDetektifWarna = function() {
         canvas.height = 90;
 
         window.arColorActive = false;
-        let timeRemaining = 20;
-        let colorsFound = 0; // Tambahan: Menghitung skor tebakan yang benar
-        const targetWin = 3; // Tambahan: Menang setelah 3 kali tebakan warna benar
+        let timeRemaining = 30; // Waktu ditingkatkan menjadi 30 detik
+        let colorsFound = 0; 
+        const targetWin = 5; // DIUBAH: Sekarang harus mencari 5 barang
         
         // 15 Database Target Warna Menggunakan Mesin HSL Super Akurat
         const colors = [
@@ -1156,7 +1159,7 @@ window.startDetektifWarna = function() {
     }
 
     function startColorTimer() {
-        timeRemaining = 20;
+        timeRemaining = 30; // Waktu ditingkatkan
         const bar = document.getElementById('ar-color-timer-fill');
         bar.style.width = '100%';
         bar.style.backgroundColor = '#2ed573';
@@ -1164,15 +1167,16 @@ window.startDetektifWarna = function() {
         window.arColorTimer = setInterval(() => {
             if (!window.arColorActive) return;
             timeRemaining--;
-            let pct = (timeRemaining / 20) * 100;
+            let pct = (timeRemaining / 30) * 100; // Pembagi diubah menjadi 30
             bar.style.width = pct + '%';
             
             if (pct <= 50) bar.style.backgroundColor = '#ffa502';
             if (pct <= 20) bar.style.backgroundColor = '#ff4757';
             
             if (timeRemaining <= 0) {
+                window.arColorActive = false; // Jeda kamera saat pop-up error muncul
                 clearInterval(window.arColorTimer);
-                clearInterval(window.arColorLoop);
+                // Baris clearInterval(window.arColorLoop) dihapus agar siswa bisa mencoba lagi!
                 handleColorTimeout();
             }
         }, 1000);
@@ -1187,6 +1191,8 @@ window.startDetektifWarna = function() {
         
         setTimeout(() => { showColorOverlay(currentColor.text); }, 500);
         
+        let holdTime = 0; // Variabel baru untuk menghitung waktu tahan (hold)
+        
         // Mesin Pemindai Piksel (Scanning Scanner Box)
         window.arColorLoop = setInterval(() => {
             if (!window.arColorActive) return;
@@ -1197,28 +1203,76 @@ window.startDetektifWarna = function() {
                 
                 let matchCount = 0;
                 let totalCount = 0;
+                let colorCounts = {}; // Untuk menyimpan tebakan semua warna
+                colors.forEach(c => colorCounts[c.name] = 0);
                 
-                // Hanya menyortir warna yang berada TEPAT DI TENGAH KOTAK TARGET (Area 30% Layar Tengah)
-                for (let y = 30; y < 60; y++) {
-                    for (let x = 50; x < 110; x++) {
+                // Hanya menyortir warna yang berada TEPAT DI TENGAH KOTAK TARGET
+                // (Menggunakan y+=2 dan x+=2 untuk mempercepat performa di HP jadul)
+                for (let y = 30; y < 60; y+=2) { 
+                    for (let x = 50; x < 110; x+=2) {
                         let idx = (y * 160 + x) * 4;
                         let r = currentImg.data[idx];
                         let g = currentImg.data[idx+1];
                         let b = currentImg.data[idx+2];
                         
+                        // 1. Hitung warna untuk target utama
                         if (currentColor.rgbMatch(r,g,b)) {
                             matchCount++;
+                        }
+                        
+                        // 2. Hitung warna untuk teks Live di layar
+                        for (let i = 0; i < colors.length; i++) {
+                            if (colors[i].rgbMatch(r,g,b)) {
+                                colorCounts[colors[i].name]++;
+                                break; // Lanjut ke piksel berikutnya jika sudah nemu warna
+                            }
                         }
                         totalCount++;
                     }
                 }
                 
-                // Jika benda memadati setidaknya 30% luas dari kotak target
-                if (matchCount / totalCount > 0.3) {
-                    window.arColorActive = false;
-                    clearInterval(window.arColorTimer);
-                    clearInterval(window.arColorLoop);
-                    handleColorSuccess();
+                // Logika Teks Live Pendeteksi (Cari warna apa yang paling mendominasi)
+                let dominantColor = "-";
+                let maxCount = 0;
+                for (let cName in colorCounts) {
+                    if (colorCounts[cName] > maxCount) {
+                        maxCount = colorCounts[cName];
+                        dominantColor = cName;
+                    }
+                }
+                
+                let detectedTextEl = document.getElementById('ar-detected-color');
+                
+                // CEK TARGET WARNA UTAMA
+                if (matchCount / totalCount > 0.05) {
+                    holdTime += 200; // Tambah 200ms setiap kali kamera berhasil mendeteksi tanpa putus
+                    
+                    if (detectedTextEl) {
+                        // Menghitung sisa detik hitung mundur (3 detik = 3000ms)
+                        let sisaDetik = Math.ceil((3000 - holdTime) / 1000);
+                        detectedTextEl.innerText = `TAHAN POSISI... ${sisaDetik}`;
+                        detectedTextEl.style.color = "#2ed573"; // Teks berubah hijau
+                    }
+                    
+                    // Jika benda sudah ditahan selama 3 detik di kotak tanpa goyang
+                    if (holdTime >= 3000) {
+                        window.arColorActive = false; 
+                        clearInterval(window.arColorTimer);
+                        holdTime = 0; // Reset waktu tahan
+                        handleColorSuccess();
+                    }
+                } else {
+                    holdTime = 0; // Reset waktu jika barang bergeser atau warna putus
+                    
+                    if (detectedTextEl) {
+                        if (maxCount / totalCount > 0.05) { 
+                            detectedTextEl.innerText = "Terdeteksi: " + dominantColor;
+                            detectedTextEl.style.color = "#FFEA00"; 
+                        } else {
+                            detectedTextEl.innerText = "Terdeteksi: - (Terlalu Gelap/Pudar)";
+                            detectedTextEl.style.color = "#ff4757"; 
+                        }
+                    }
                 }
                 
             } catch(e) {}
@@ -1457,12 +1511,17 @@ window.startBanyuBeningAR = function() {
                                         let isSkin = (r > 60 && g > 35 && b > 15 && r > g && r > b && Math.abs(r - g) > 10);
                                         
                                         if (isSkin) {
-                                            // SYARAT 3: ZONA ANTI-WAJAH (Deadzone) DIPERKECIL!
-                                            // Lebar kanvas: 160x90. Kotak wajah sekarang di kisaran X: 60-100, Y: 0-45 (Hanya 25% lebar layar)
-                                            let isFaceZone = (x > 60 && x < 100 && y < 45);
+                                            // SYARAT 3: ZONA ANTI-WAJAH & BADAN (Deadzone Diperbesar & Diturunkan)
+                                            // Lebar kanvas: 160x90.
+                                            // Area Kepala (Agak turun dari atap): X antara 60-100, Y dari 15 sampai 55
+                                            let isHead = (x > 60 && x < 100 && y > 15 && y < 55);
+                                            // Area Badan/Bahu (Lebih lebar ke bawah): X antara 40-120, Y dari 55 sampai 90
+                                            let isBody = (x > 40 && x < 120 && y >= 55);
                                             
-                                            // Jika piksel kulit yang bergerak BUKAN berada di wajah, maka itu TANGAN!
-                                            if (!isFaceZone) {
+                                            let isPlayerBodyZone = isHead || isBody;
+                                            
+                                            // Jika piksel kulit yang bergerak BUKAN berada di kepala atau badan, maka itu TANGAN!
+                                            if (!isPlayerBodyZone) {
                                                 motionPx++;
                                             }
                                         }
@@ -1541,7 +1600,10 @@ window.startBanyuBeningAR = function() {
             
             showCustomModal("SALAH TANGKAP!", `Fokuskan matamu! Kamu seharusnya menangkap: ${expected}\\n(Nyawa Berkurang 1)`, lockIcon, "error", () => {
                 if (chapterLives[currentChapter] > 0) {
-                    window.arActive = true; 
+                    // Beri jeda 1.5 detik agar tangan pemain bisa turun setelah mengeklik tombol OK
+                    setTimeout(() => {
+                        window.arActive = true; 
+                    }, 1500);
                 } else {
                     abortMission5(); // Keluar jika nyawa habis
                 }
@@ -3156,23 +3218,29 @@ function isColorMatchHSL(r, g, b, targetColor) {
     s = Math.round(s * 100); 
     l = Math.round(l * 100); 
 
-    // 1. Pengecekan Warna Netral (Tanpa Saturation / Warna Pudar)
-    if (targetColor.includes("HITAM")) return l < 20; 
-    if (targetColor.includes("PUTIH")) return l > 80 && s < 20;
-    if (targetColor.includes("ABU")) return l >= 20 && l <= 80 && s < 25;
+    // 1. KATEGORI PIXEL NETRAL (Dipersempit agar warna kusam tetap bisa lolos)
+    let isBlack = l < 15; // Hitam harus benar-benar gelap gulita
+    let isWhite = l > 85 && s < 25; 
+    let isGray = l >= 15 && l <= 85 && s < 12; // Saturasi abu-abu diturunkan agar warna pudar lolos
 
-    // 2. Filter Kecerahan Mutlak untuk warna-warni (Abaikan gelap gulita atau silau)
-    if (s < 20 || l < 15 || l > 90) return false;
+    if (targetColor.includes("HITAM") || targetColor.includes("GELAP")) return isBlack;
+    if (targetColor.includes("PUTIH")) return isWhite;
+    if (targetColor.includes("ABU")) return isGray;
 
-    // 3. Pengecekan Spektrum Nada Warna (Hue) Tahan Banting
-    if (targetColor.includes("KUNING")) return (h >= 35 && h <= 70); 
-    if (targetColor.includes("MERAH") && !targetColor.includes("PINK")) return (h >= 340 || h <= 15);
-    if (targetColor.includes("BIRU")) return (h >= 170 && h <= 260);
-    if (targetColor.includes("HIJAU")) return (h > 70 && h < 170);
-    if (targetColor.includes("ORANYE")) return (h > 15 && h < 40) && l > 40;
-    if (targetColor.includes("COKELAT")) return (h > 10 && h < 45) && l <= 45;
-    if (targetColor.includes("UNGU")) return (h > 260 && h < 315);
-    if (targetColor.includes("PINK")) return (h >= 315 && h < 340);
+    if (isBlack || isWhite || isGray) return false;
+
+    // 2. Filter Kecerahan Mutlak (Lebih longgar lagi untuk kamera gelap)
+    if (s < 10 || l < 10) return false;
+
+    // 3. Pengecekan Spektrum Nada Warna (Hue) Diperlebar Secara Maksimal
+    if (targetColor.includes("KUNING")) return (h >= 30 && h <= 90); // Menangkap kuning yang menghijau/mengoranye
+    if (targetColor.includes("MERAH") && !targetColor.includes("PINK")) return (h >= 330 || h <= 30); // Sangat lebar
+    if (targetColor.includes("BIRU")) return (h >= 150 && h <= 280);
+    if (targetColor.includes("HIJAU")) return (h > 65 && h < 165);
+    if (targetColor.includes("ORANYE")) return (h > 5 && h <= 45); 
+    if (targetColor.includes("COKELAT")) return (h >= 0 && h <= 50) && l <= 60; 
+    if (targetColor.includes("UNGU")) return (h > 240 && h <= 320);
+    if (targetColor.includes("PINK")) return (h > 300 && h < 350);
     
     return false;
 }

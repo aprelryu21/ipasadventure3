@@ -1149,13 +1149,14 @@ body:has(#mission-screen.active[data-misi="6"]) { background-image: url('../asse
 .ar-effect { transform: scale(1.8) rotate(15deg); opacity: 0; transition: all 0.2s ease-out; }
 .ar-frame { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; border: 1.5cqw solid rgba(46, 204, 113, 0.6); box-shadow: inset 0 0 4cqw rgba(0,0,0,0.5); z-index: 2; box-sizing: border-box; }
 
-/* Panduan Area Wajah (Muncul di Awal) */
+/* Panduan Area Wajah & Badan (Muncul di Awal) */
 .ar-face-guide {
     position: absolute;
-    top: 0; left: 50%; transform: translateX(-50%);
-    width: 25%; height: 50%; /* Diperkecil agar ruang tangan lebih luas */
+    bottom: 0; left: 50%; transform: translateX(-50%); /* Menempel di lantai/bawah */
+    width: 50%; height: 80%; /* Lebar dan tinggi diperbesar mencakup badan */
     border: 0.4cqw dashed #ff4757;
-    border-radius: 50% 50% 40% 40%; /* Menyerupai siluet kepala */
+    border-bottom: none; /* Hilangkan garis bawah karena menempel lantai */
+    border-radius: 40% 40% 0 0; /* Melengkung di atas (kepala/bahu), bersudut rata di bawah */
     display: flex; justify-content: center; align-items: center;
     z-index: 15; pointer-events: none;
     transition: opacity 1s ease-in-out;
@@ -1166,6 +1167,7 @@ body:has(#mission-screen.active[data-misi="6"]) { background-image: url('../asse
     padding: 0.5cqw 1cqw; border-radius: 0.5cqw;
     font-size: 1.2cqw; font-weight: bold; text-align: center;
     text-shadow: 0.1cqw 0.1cqw 0 #111;
+    transform: translateY(-10cqw); /* Naikkan teks sedikit ke area kepala */
 }
 
 /* ================= TAHAP 3: DETEKTIF WARNA ================= */
