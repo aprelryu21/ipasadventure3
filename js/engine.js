@@ -29,6 +29,11 @@ const bgmBoss = new Audio('assets/music/music-boss.mp3');
 bgmBoss.loop = true;
 bgmBoss.volume = 0.4; // Volume disamakan dengan musik misi
 
+// Musik Khusus Ruang UKS (Hukuman)
+const bgmUKS = new Audio('assets/music/music-uks.mp3');
+bgmUKS.loop = true;
+bgmUKS.volume = 0.4;
+
 // Suara Berisik Radio (Tahap 3)
 const sfxRadio = new Audio('assets/sound/radio.mp3');
 sfxRadio.loop = true;
@@ -88,17 +93,26 @@ btnFullscreen.addEventListener('click', () => {
         } else if (document.documentElement.webkitRequestFullscreen) { /* Untuk Safari / iPhone */
             document.documentElement.webkitRequestFullscreen();
         }
-        btnFullscreen.innerHTML = iconExit; 
-        localStorage.setItem('gameFullscreen', 'true'); // Rekam status layar penuh
     } else {
         if (document.exitFullscreen) {
             document.exitFullscreen();
         } else if (document.webkitExitFullscreen) { /* Untuk Safari / iPhone */
             document.webkitExitFullscreen();
         }
-        btnFullscreen.innerHTML = iconEnter; 
-        localStorage.setItem('gameFullscreen', 'false'); // Hapus rekaman
     }
+});
+
+// Listener pendeteksi perubahan layar penuh yang sesungguhnya (Menangani tombol ESC keyboard)
+['fullscreenchange', 'webkitfullscreenchange'].forEach(evt => {
+    document.addEventListener(evt, () => {
+        if (document.fullscreenElement || document.webkitFullscreenElement) {
+            btnFullscreen.innerHTML = iconExit; 
+            localStorage.setItem('gameFullscreen', 'true');
+        } else {
+            btnFullscreen.innerHTML = iconEnter; 
+            localStorage.setItem('gameFullscreen', 'false');
+        }
+    });
 });
 
 // ================= PENGEMBALIAN FULLSCREEN OTOMATIS SAAT PINDAH HALAMAN =================
@@ -393,12 +407,14 @@ toggleBgm.addEventListener('click', () => {
         bgmIntro.muted = false;
         bgmMission.muted = false;
         bgmBoss.muted = false;
+        bgmUKS.muted = false;
         toggleBgm.innerText = "ON";
         toggleBgm.className = "btn btn-toggle on";
     } else {
         bgmIntro.muted = true;
         bgmMission.muted = true;
         bgmBoss.muted = true;
+        bgmUKS.muted = true;
         toggleBgm.innerText = "OFF";
         toggleBgm.className = "btn btn-toggle off";
     }
@@ -410,6 +426,7 @@ volumeBgm.addEventListener('input', (e) => {
     bgmIntro.volume = vol;
     bgmMission.volume = vol * 0.8; // Menyesuaikan agar misi sedikit lebih pelan
     bgmBoss.volume = vol * 0.8;
+    bgmUKS.volume = vol * 0.8; // Tambahkan kontrol volume untuk UKS
 });
 
 // Kontrol Efek Suara (Persiapan untuk fitur SFX nanti)
@@ -485,11 +502,7 @@ btnResetData.addEventListener('click', () => {
     // Ikon Centang (Checkmark) Voxel
     const checkIcon = `<svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M14 2h2v2h-2V2zm-2 2h2v2h-2V4zm-2 2h2v2h-2V6zm-2 2h2v2H8V8zm-2 2h2v2H6v-2zm-2 2h2v2H4v-2zm-2-2h2v2H2v-2zm-2-2h2v2H0v-2z"/></svg>`;
 
-    // Ubah sementara warna Custom Modal khusus untuk Hapus Data
-    const originalColor = modalTitle.style.color;
-    modalTitle.style.color = '#ff4757';
-    
-    // Panggil Pop-up Konfirmasi
+    // Panggil Pop-up Konfirmasi (Warna akan kita ubah SETELAH fungsi ini dipanggil)
     showCustomModal(
         "PERINGATAN!", 
         "Apakah Anda yakin ingin menghapus seluruh data dan skor? Data yang dihapus tidak dapat dikembalikan.", 
@@ -510,6 +523,7 @@ btnResetData.addEventListener('click', () => {
     // Mengembalikan gaya khusus hapus data
     btnModalConfirm.innerText = 'YA, HAPUS';
     btnModalConfirm.style.backgroundColor = '#ff4757';
+    modalTitle.style.color = '#ff4757'; // Pindahkan ke sini agar warna merahnya tidak tertimpa!
 });
 
 // ================= LOGIKA INFORMASI & KREDIT =================
@@ -865,6 +879,11 @@ function reduceLife(isFruitCatch = false) {
     }
 }
 
+// Memori Penyimpan Status Musik Sebelum Masuk UKS
+let pausedByUKS_Mission = false;
+let pausedByUKS_Boss = false;
+let pausedByUKS_Radio = false;
+
 /**
  * Initiates the Recovery Quiz (UKS Room) when player lives reach zero.
  * Overlays a cinematic "UKS" room screen while suspending mission state.
@@ -878,6 +897,20 @@ function triggerRecoveryQuiz(resumeCallback = null) {
     // 1. Bekukan sistem game yang sedang berjalan
     if (window.arActive) window.arActive = false; 
     if (window.arColorActive) window.arColorActive = false;
+
+    // 1B. Bekukan Musik Latar Saat Ini (Hanya pada pemanggilan pertama)
+    if (bgmUKS.paused) {
+        pausedByUKS_Mission = !bgmMission.paused;
+        pausedByUKS_Boss = !bgmBoss.paused;
+        pausedByUKS_Radio = typeof sfxRadio !== 'undefined' && !sfxRadio.paused;
+
+        bgmMission.pause();
+        bgmBoss.pause();
+        if (typeof sfxRadio !== 'undefined') sfxRadio.pause();
+
+        bgmUKS.currentTime = 0;
+        bgmUKS.play().catch(e => console.warn("Audio UKS diblokir browser: " + e));
+    }
 
     // 2. Munculkan Layar UKS secara perlahan (Fade In)
     const uksOverlay = document.getElementById('uks-overlay');
@@ -923,6 +956,16 @@ function triggerRecoveryQuiz(resumeCallback = null) {
                         
                         showCustomModal("PULIH!", "Tepat sekali! Kamu sudah sehat kembali. 5 Kristal Nyawamu telah penuh, ayo lanjutkan misi!", heartIcon, "alert", () => {
                             
+                            // Matikan Musik UKS dan kembalikan Musik sebelumnya
+                            bgmUKS.pause();
+                            if (pausedByUKS_Mission) bgmMission.play().catch(e => console.warn(e));
+                            if (pausedByUKS_Boss) bgmBoss.play().catch(e => console.warn(e));
+                            if (pausedByUKS_Radio) sfxRadio.play().catch(e => console.warn(e));
+                            
+                            pausedByUKS_Mission = false;
+                            pausedByUKS_Boss = false;
+                            pausedByUKS_Radio = false;
+
                             // 4. Tutup Layar UKS secara perlahan (Fade Out)
                             if (uksOverlay) {
                                 uksOverlay.classList.remove('active');
@@ -1460,6 +1503,8 @@ function exitMissionScreen() {
     bgmBoss.currentTime = 0;
     sfxRadio.pause();
     sfxRadio.currentTime = 0;
+    bgmUKS.pause();
+    bgmUKS.currentTime = 0;
 
     // FIX: Mematikan semua audio tambahan yang mungkin masih menyala agar tidak bocor
     document.querySelectorAll('audio').forEach(audio => {

@@ -653,50 +653,276 @@ function getRejectionDialog(missionId, title1, title2) {
     }
 }
 
+// ================= GENERATOR MISI 1 (MENGENAL PANCAINDRA) =================
+function buildMission1() {
+    document.getElementById('mission-title').innerText = "MISI 1: MENGENAL PANCAINDRA";
+    const contentArea = document.getElementById('mission-content-area');
+    const floatingNext = document.getElementById('floating-next-container');
+    
+    contentArea.innerHTML = `
+        <!-- TAHAP 1: PENGANTAR -->
+        <div id="stage-1" class="mission-stage active-stage">
+            <h3 class="stage-title">TAHAP 1: PENGANTAR</h3>
+            <div class="mission-text-box" style="font-size: 1.4cqw; text-align: center; min-height: 6cqw; display: flex; align-items: center; justify-content: center;">
+                <p id="stage-1-text" style="margin: 0; line-height: 1.5;">Pernahkah kamu berpikir bagaimana cara kita mengetahui warna langit atau merdu-nya musik? Ternyata, tubuh kita dilengkapi dengan 'jendela-jendela' ajaib untuk Menjelajahi dunia.</p>
+            </div>
+            <button class="btn btn-play" id="btn-stage-1-next" onclick="nextStage1Text()">LANJUT</button>
+            <div id="stage-1-quiz" style="display: none; width: 100%; align-items: center; flex-direction: column;">
+                <p class="mission-text-box" id="text-m1-s1" style="width: auto; margin-bottom: 1.5cqw;">Memuat Pertanyaan...</p>
+                <div class="explore-grid" id="grid-m1-s1" style="width: 100%; margin-bottom: 0;"></div>
+            </div>
+        </div>
+
+        <!-- TAHAP 2: MATA -->
+        <div id="stage-2" class="mission-stage">
+            <h3 class="stage-title" style="color: #2980b9;">TAHAP 2: INDRA PENGLIHAT</h3>
+            <div id="stage-2-intro" class="stage-layout">
+                <div class="stage-img-box" onclick="open3DViewer('assets/3d/mata.glb', 'MATA (INDRA PENGLIHAT)')" title="Klik untuk Memutar 3D">
+                    <img src="assets/item/anatomi-mata.webp" alt="Mata" style="width: 100%; height: 15cqw; object-fit: cover; background: #dfe6e9;">
+                    <div style="position: absolute; top: 0; left: 0; background: #ff4757; color: white; padding: 0.2cqw 1cqw; font-size: 1.2cqw; font-weight: bold;">3D INTERAKTIF</div>
+                </div>
+                <div class="stage-content-right">
+                    <p class="mission-text-box" style="width: auto; font-size: 1.3cqw;">Ini adalah <b>Mata</b>, alat sensor tubuh untuk melihat cahaya, warna, dan bentuk di sekelilingmu.<br><br>Klik kotak 3D di samping untuk memutar bola matamu!</p>
+                    <button class="btn btn-play" style="font-size: 1.5cqw;" onclick="proceedToQuiz(2)">MULAI TANTANGAN MATA</button>
+                </div>
+            </div>
+            <div id="stage-2-quiz" style="display: none; width: 100%; align-items: center; flex-direction: column;">
+                <p class="mission-text-box" id="text-m1-s2" style="width: auto; margin-bottom: 1.5cqw;">Memuat Pertanyaan...</p>
+                <div class="explore-grid" id="grid-m1-s2" style="width: 100%;"></div>
+            </div>
+        </div>
+
+        <!-- TAHAP 3: TELINGA -->
+        <div id="stage-3" class="mission-stage">
+            <h3 class="stage-title" style="color: #8e44ad;">TAHAP 3: INDRA PENDENGAR</h3>
+            <div id="stage-3-intro" class="stage-layout">
+                <div class="stage-img-box" onclick="open3DViewer('assets/3d/telinga.glb', 'TELINGA (INDRA PENDENGAR)')" title="Klik untuk Memutar 3D">
+                    <img src="assets/item/anatomi-telinga.webp" alt="Telinga" style="width: 100%; height: 15cqw; object-fit: cover; background: #dfe6e9;">
+                    <div style="position: absolute; top: 0; left: 0; background: #ff4757; color: white; padding: 0.2cqw 1cqw; font-size: 1.2cqw; font-weight: bold;">3D INTERAKTIF</div>
+                </div>
+                <div class="stage-content-right">
+                    <p class="mission-text-box" style="width: auto; font-size: 1.3cqw;">Ini adalah <b>Telinga</b>, alat sensor untuk menangkap getaran suara dari luar.<br><br>Klik kotak 3D di samping untuk melihat bentuknya!</p>
+                    <button class="btn btn-play" style="font-size: 1.5cqw;" onclick="proceedToQuiz(3)">MULAI TANTANGAN TELINGA</button>
+                </div>
+            </div>
+            <div id="stage-3-quiz" style="display: none; width: 100%; align-items: center; flex-direction: column;">
+                <p class="mission-text-box" id="text-m1-s3" style="width: auto; margin-bottom: 1.5cqw;">Memuat Pertanyaan...</p>
+                <div class="explore-grid" id="grid-m1-s3" style="width: 100%;"></div>
+            </div>
+        </div>
+
+        <!-- TAHAP 4: HIDUNG -->
+        <div id="stage-4" class="mission-stage">
+            <h3 class="stage-title" style="color: #d35400;">TAHAP 4: INDRA PEMBAU</h3>
+            <div id="stage-4-intro" class="stage-layout">
+                <div class="stage-img-box" onclick="open3DViewer('assets/3d/hidung.glb', 'HIDUNG (INDRA PEMBAU)')" title="Klik untuk Memutar 3D">
+                    <img src="assets/item/anatomi-hidung.webp" alt="Hidung" style="width: 100%; height: 15cqw; object-fit: cover; background: #dfe6e9;">
+                    <div style="position: absolute; top: 0; left: 0; background: #ff4757; color: white; padding: 0.2cqw 1cqw; font-size: 1.2cqw; font-weight: bold;">3D INTERAKTIF</div>
+                </div>
+                <div class="stage-content-right">
+                    <p class="mission-text-box" style="width: auto; font-size: 1.3cqw;">Ini adalah <b>Hidung</b>. Rongga saraf di dalamnya bertugas mendeteksi bau di udara.<br><br>Klik kotak 3D di samping untuk melihat rongga hidung!</p>
+                    <button class="btn btn-play" style="font-size: 1.5cqw;" onclick="proceedToQuiz(4)">MULAI TANTANGAN HIDUNG</button>
+                </div>
+            </div>
+            <div id="stage-4-quiz" style="display: none; width: 100%; align-items: center; flex-direction: column;">
+                <p class="mission-text-box" id="text-m1-s4" style="width: auto; margin-bottom: 1.5cqw;">Memuat Pertanyaan...</p>
+                <div class="explore-grid" id="grid-m1-s4" style="width: 100%;"></div>
+            </div>
+        </div>
+
+        <!-- TAHAP 5: LIDAH -->
+        <div id="stage-5" class="mission-stage">
+            <h3 class="stage-title" style="color: #e84393;">TAHAP 5: INDRA PENGECAP</h3>
+            <div id="stage-5-intro" class="stage-layout">
+                <div class="stage-img-box" onclick="open3DViewer('assets/3d/lidah.glb', 'LIDAH (INDRA PENGECAP)')" title="Klik untuk Memutar 3D">
+                    <img src="assets/item/anatomi-lidah.webp" alt="Lidah" style="width: 100%; height: 15cqw; object-fit: cover; background: #dfe6e9;">
+                    <div style="position: absolute; top: 0; left: 0; background: #ff4757; color: white; padding: 0.2cqw 1cqw; font-size: 1.2cqw; font-weight: bold;">3D INTERAKTIF</div>
+                </div>
+                <div class="stage-content-right">
+                    <p class="mission-text-box" style="width: auto; font-size: 1.3cqw;">Ini adalah <b>Lidah</b>. Permukaannya kasar untuk merasakan manis, asam, asin, dan pahit.<br><br>Klik kotak 3D di samping untuk melihat lidah lebih dekat!</p>
+                    <button class="btn btn-play" style="font-size: 1.5cqw;" onclick="proceedToQuiz(5)">MULAI TANTANGAN LIDAH</button>
+                </div>
+            </div>
+            <div id="stage-5-quiz" style="display: none; width: 100%; align-items: center; flex-direction: column;">
+                <p class="mission-text-box" id="text-m1-s5" style="width: auto; margin-bottom: 1.5cqw;">Memuat Pertanyaan...</p>
+                <div class="explore-grid" id="grid-m1-s5" style="width: 100%;"></div>
+            </div>
+        </div>
+
+        <!-- TAHAP 6: KULIT -->
+        <div id="stage-6" class="mission-stage">
+            <h3 class="stage-title" style="color: #27ae60;">TAHAP 6: INDRA PERABA</h3>
+            <div id="stage-6-intro" class="stage-layout">
+                <div class="stage-img-box" onclick="open3DViewer('assets/3d/kulit.glb', 'KULIT (INDRA PERABA)')" title="Klik untuk Memutar 3D">
+                    <img src="assets/item/anatomi-kulit1.webp" alt="Kulit" style="width: 100%; height: 15cqw; object-fit: cover; background: #dfe6e9;">
+                    <div style="position: absolute; top: 0; left: 0; background: #ff4757; color: white; padding: 0.2cqw 1cqw; font-size: 1.2cqw; font-weight: bold;">3D INTERAKTIF</div>
+                </div>
+                <div class="stage-content-right">
+                    <p class="mission-text-box" style="width: auto; font-size: 1.3cqw;">Ini adalah <b>Kulit</b>. Saraf peraba yang tersebar membantumu merasakan sentuhan, tekstur, dan suhu.<br><br>Klik kotak 3D untuk melihat potongan kulit!</p>
+                    <button class="btn btn-play" style="font-size: 1.5cqw;" onclick="proceedToQuiz(6)">MULAI TANTANGAN KULIT</button>
+                </div>
+            </div>
+            <div id="stage-6-quiz" style="display: none; width: 100%; align-items: center; flex-direction: column;">
+                <p class="mission-text-box" id="text-m1-s6" style="width: auto; margin-bottom: 1.5cqw;">Memuat Pertanyaan...</p>
+                <div class="explore-grid" id="grid-m1-s6" style="width: 100%;"></div>
+            </div>
+        </div>
+
+        <!-- TAHAP 7: UJIAN NYAWA (BOSS) -->
+        <div id="stage-7" class="mission-stage">
+            <h3 class="stage-title" style="color: #ff4757;">TAHAP 7: UJIAN NYAWA</h3>
+            <div class="learning-card" style="margin-top: 1cqw;"><p>Kerja bagus! Kelima alat sensor tubuh yang baru saja kita tes secara bersamaan disebut sebagai <b>PANCAINDRA</b>.</p></div>
+            <p id="quiz-question" class="quiz-text">Pertanyaan memuat...</p>
+            <div class="quiz-options" id="quiz-options"></div>
+        </div>
+    `;
+
+    // Pasang tombol Tab Lanjutkan untuk transisi tahap
+    let floatingHTML = '';
+    for(let i=1; i<=6; i++) {
+        floatingHTML += `<button class="btn btn-play btn-floating-next" id="btn-next-${i}" style="display: none;" onclick="nextMissionStage(${i+1})">LANJUTKAN</button>`;
+    }
+    floatingNext.innerHTML = floatingHTML;
+
+    // --- DATABASE KUIS MISI 1 (Letak, Bentuk, & Nama) ---
+    const m1QuizBank = {
+        1: [
+            { q: "Berdasarkan informasi tadi, ada berapa pancaindra yang dimiliki oleh manusia?", opts: [{t: "3 Indra", c: false, m: "Panca berarti lima, bukan tiga!"}, {t: "4 Indra", c: false, m: "Panca berarti lima, bukan empat!"}, {t: "5 Indra", c: true, m: "Tepat sekali! Manusia punya 5 indra."}, {t: "6 Indra", c: false, m: "Panca berarti lima, bukan enam!"}] },
+            { q: "Kumpulan sistem sensor yang bekerja siang dan malam untuk menjelajahi dunia ini dinamakan...", opts: [{t: "Pancakes", c: false, m: "Itu nama makanan!"}, {t: "Pancaindra", c: true, m: "Benar sekali!"}, {t: "Pancasila", c: false, m: "Itu dasar negara kita."}, {t: "Pancawarna", c: false, m: "Itu berarti lima warna."}] },
+            { q: "Pancaindra kita terdiri dari 5 organ utama, yaitu...", opts: [{t: "Mata, Telinga, Hidung, Lidah, Kulit", c: true, m: "Hebat! Lengkap dan benar."}, {t: "Kepala, Pundak, Lutut, Kaki", c: false, m: "Itu lagu anak-anak!"}, {t: "Jantung, Paru, Lambung, Usus", c: false, m: "Itu organ pencernaan dan pernapasan dalam."}, {t: "Tangan, Kaki, Perut, Punggung", c: false, m: "Itu bagian anggota tubuh biasa."}] }
+        ],
+        2: [
+            { q: "Di manakah letak organ Mata pada tubuh kita?", opts: [{t: "Di bagian dada", c: false, m: "Dada adalah tempat jantung dan paru-paru."}, {t: "Di samping kepala", c: false, m: "Samping kepala adalah letak telinga."}, {t: "Di bagian depan wajah", c: true, m: "Tepat! Mata berada di wajah untuk melihat ke depan."}, {t: "Di telapak tangan", c: false, m: "Tidak ada mata di telapak tangan."}] },
+            { q: "Coba perhatikan model 3D tadi, bagaimana bentuk dasar dari organ mata kita?", opts: [{t: "Kotak seperti dadu", c: false, m: "Bentuk mata tidak bersudut."}, {t: "Bulat seperti bola", c: true, m: "Benar! Makanya sering disebut 'Bola Mata'."}, {t: "Pipih seperti kertas", c: false, m: "Mata memiliki ruang dan isi di dalamnya."}, {t: "Segitiga", c: false, m: "Mata tidak berbentuk segitiga."}] },
+            { q: "Nama pancaindra yang menggunakan Mata untuk menangkap cahaya dan warna disebut...", opts: [{t: "Indra Penglihat", c: true, m: "Sempurna!"}, {t: "Indra Peraba", c: false, m: "Itu tugas kulit."}, {t: "Indra Pembau", c: false, m: "Itu tugas hidung."}, {t: "Indra Pengecap", c: false, m: "Itu tugas lidah."}] }
+        ],
+        3: [
+            { q: "Berdasarkan posisinya, di manakah letak Telinga pada tubuh kita?", opts: [{t: "Di atas dahi", c: false, m: "Bukan di situ letaknya."}, {t: "Di bagian wajah depan", c: false, m: "Wajah depan untuk mata dan hidung."}, {t: "Di samping kanan dan kiri kepala", c: true, m: "Tepat! Untuk menangkap suara dari berbagai arah."}, {t: "Di belakang leher", c: false, m: "Tidak ada telinga di leher."}] },
+            { q: "Bentuk bagian luar daun telinga manusia agak melebar yang fungsinya mirip seperti...", opts: [{t: "Corong penangkap suara", c: true, m: "Benar! Bentuk melengkungnya sangat pas untuk mengumpulkan gelombang suara."}, {t: "Pipa lurus", c: false, m: "Bentuk telinga memiliki banyak lipatan."}, {t: "Kotak persegi", c: false, m: "Telinga tidak memiliki sudut."}, {t: "Jaring saringan", c: false, m: "Telinga tidak berlubang-lubang seperti jaring."}] },
+            { q: "Apa nama indra yang bertugas untuk menangkap getaran suara melalui Telinga?", opts: [{t: "Indra Penglihat", c: false, m: "Ini untuk mata."}, {t: "Indra Pendengar", c: true, m: "Hebat! Kamu benar."}, {t: "Indra Pengecap", c: false, m: "Ini untuk lidah."}, {t: "Indra Peraba", c: false, m: "Ini untuk kulit."}] }
+        ],
+        4: [
+            { q: "Coba sentuh hidungmu! Di manakah letak organ Hidung pada manusia?", opts: [{t: "Di atas kepala", c: false, m: "Itu tempat tumbuhnya rambut."}, {t: "Tepat di tengah wajah", c: true, m: "Benar sekali! Posisinya pas di antara mata dan mulut."}, {t: "Di dagu bagian bawah", c: false, m: "Bukan di situ."}, {t: "Di bawah leher", c: false, m: "Itu adalah leher dan dada."}] },
+            { q: "Bagaimana ciri khas bentuk Hidung manusia untuk menghirup udara?", opts: [{t: "Memiliki dua lubang rongga", c: true, m: "Tepat! Lubang ini adalah jalan masuknya udara dan bau."}, {t: "Berbentuk pipih tak berlubang", c: false, m: "Hidung pasti memiliki lubang."}, {t: "Berbentuk bulat sempurna", c: false, m: "Itu lebih mirip bola mata."}, {t: "Menjulur panjang ke bawah", c: false, m: "Itu belalai gajah, bukan hidung manusia."}] },
+            { q: "Nama pancaindra yang bertugas mengenali wangi atau bau tak sedap disebut...", opts: [{t: "Indra Pendengar", c: false, m: "Itu untuk suara."}, {t: "Indra Peraba", c: false, m: "Itu untuk sentuhan kulit."}, {t: "Indra Pengecap", c: false, m: "Itu untuk rasa di lidah."}, {t: "Indra Pembau", c: true, m: "Sempurna! Hidung adalah indra pembau."}] }
+        ],
+        5: [
+            { q: "Di manakah letak organ Lidah yang aman pada tubuh kita?", opts: [{t: "Terlindungi di dalam rongga mulut", c: true, m: "Tepat sekali! Bersembunyi di balik gigi dan bibir."}, {t: "Menempel di luar pipi", c: false, m: "Lidah berada di dalam mulut."}, {t: "Di atap kepala", c: false, m: "Tentu saja bukan."}, {t: "Di bawah dagu", c: false, m: "Itu bagian luar wajah."}] },
+            { q: "Jika diperhatikan, bagaimana bentuk dari permukaan lidah manusia?", opts: [{t: "Keras dan terbuat dari tulang", c: false, m: "Lidah adalah otot yang lentur."}, {t: "Halus licin seperti kaca", c: false, m: "Lidah memiliki tekstur."}, {t: "Berotot lentur dan memiliki bintik-bintik perasa", c: true, m: "Benar! Bintik itu disebut papila."}, {t: "Berbentuk tajam bergerigi", c: false, m: "Itu lebih mirip gigi hiu."}] },
+            { q: "Nama pancaindra yang menggunakan lidah untuk merasakan manis, asam, dan pahit adalah...", opts: [{t: "Indra Penglihat", c: false, m: "Untuk melihat (mata)."}, {t: "Indra Pengecap", c: true, m: "Luar biasa! Kamu memahaminya."}, {t: "Indra Pendengar", c: false, m: "Untuk mendengar (telinga)."}, {t: "Indra Pembau", c: false, m: "Untuk mencium bau (hidung)."}] }
+        ],
+        6: [
+            { q: "Di manakah letak organ Kulit pada tubuh kita?", opts: [{t: "Hanya ada di telapak tangan", c: false, m: "Saraf peraba ada di mana-mana."}, {t: "Berada di dalam perut", c: false, m: "Itu organ pencernaan dalam."}, {t: "Melapisi seluruh permukaan luar tubuh kita", c: true, m: "Sempurna! Kulit adalah organ terluas pelindung tubuh."}, {t: "Hanya di bagian wajah", c: false, m: "Seluruh tubuh memiliki kulit."}] },
+            { q: "Bagaimana bentuk dari organ kulit manusia?", opts: [{t: "Menjulur seperti kabel", c: false, m: "Bentuk kulit bukan seperti itu."}, {t: "Bulat kecil-kecil", c: false, m: "Bukan bulat."}, {t: "Berbentuk lapisan jaringan tipis yang lebar", c: true, m: "Benar! Kulit memiliki banyak lapisan pelindung."}, {t: "Bongkahan keras seperti batu", c: false, m: "Kulit sangat lentur."}] },
+            { q: "Nama pancaindra yang bertugas merasakan sentuhan, kasar, halus, dan suhu pada kulit adalah...", opts: [{t: "Indra Peraba", c: true, m: "Tepat sekali!"}, {t: "Indra Pengecap", c: false, m: "Itu untuk lidah."}, {t: "Indra Pembau", c: false, m: "Itu untuk hidung."}, {t: "Indra Pendengar", c: false, m: "Itu untuk telinga."}] }
+        ]
+    };
+
+    // --- MESIN PEMUTAR KUIS MISI 1 ---
+    let currentM1QuizIndex = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0 };
+
+    window.loadM1Quiz = function(stage) {
+        const data = m1QuizBank[stage];
+        const currentIndex = currentM1QuizIndex[stage];
+        const grid = document.getElementById(`grid-m1-s${stage}`);
+        const qBox = document.getElementById(`text-m1-s${stage}`);
+
+        if (currentIndex >= data.length) {
+            const checkIcon = `<svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M14 2h2v2h-2V2zm-2 2h2v2h-2V4zm-2 2h2v2h-2V6zm-2 2h2v2H8V8zm-2 2h2v2H6v-2zm-2 2h2v2H4v-2zm-2-2h2v2H2v-2zm-2-2h2v2H0v-2z"/></svg>`;
+            showCustomModal("TANTANGAN SELESAI!", "Hebat! Kamu berhasil menjawab semua pertanyaan di tahap ini.", checkIcon, "alert", () => {
+                // Cek dialog Nagata Pascagame, lalu munculkan tombol lanjut
+                if (typeof triggerPostDialog === 'function') {
+                    triggerPostDialog(stage);
+                } else {
+                    const nextBtn = document.getElementById(`btn-next-${stage}`);
+                    if(nextBtn) nextBtn.style.display = 'inline-flex';
+                }
+            });
+            return;
+        }
+
+        const currentQ = data[currentIndex];
+        
+        qBox.style.opacity = 0;
+        setTimeout(() => {
+            qBox.innerText = `Pertanyaan ${currentIndex + 1} / 3:\n\n${currentQ.q}`;
+            qBox.style.opacity = 1;
+        }, 200);
+        
+        grid.innerHTML = ''; 
+
+        const shuffledOpts = [...currentQ.opts].sort(() => Math.random() - 0.5);
+        
+        shuffledOpts.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.className = 'btn-explore';
+            btn.innerText = opt.t;
+            
+            btn.onclick = () => {
+                if (btn.classList.contains('btn-correct') || btn.classList.contains('btn-wrong')) return;
+                
+                if (opt.c) {
+                    sfxBenar.currentTime = 0; sfxBenar.play().catch(e=>console.warn(e));
+                    btn.classList.add('btn-correct');
+                    addScore(10);
+                    
+                    setTimeout(() => {
+                        currentM1QuizIndex[stage]++;
+                        loadM1Quiz(stage);
+                    }, 800);
+                } else {
+                    sfxSalah.currentTime = 0; sfxSalah.play().catch(e=>console.warn(e));
+                    btn.classList.add('btn-wrong');
+                    reduceLife();
+                    
+                    const lockIcon = `<svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M4 2h8v2h2v10H2V4h2V2zm2 2v2h4V4H6zm-2 4v4h8V8H4z"/></svg>`;
+                    showCustomModal("KURANG TEPAT!", `${opt.m}\n(Nyawa Berkurang 1)`, lockIcon, "error");
+                }
+            };
+            grid.appendChild(btn);
+        });
+    };
+
+    // Eksekusi Pemuat Kuis untuk Tahap 1 s/d 6
+    [1, 2, 3, 4, 5, 6].forEach(stage => loadM1Quiz(stage));
+
+    // Eksekusi Ulang Pemuat Boss Tahap 7
+    currentMisi1BossIndex = 0;
+    loadMisi1BossQuestion();
+
+    // Siapkan Dialog Nagata untuk Akhir Setiap Tahap (Misi 1)
+    currentMissionDialogs = {
+        1: { dialog: [{ text: "Bagus sekali! Sekarang kamu tahu gambaran umum tentang 5 jendela ajaibmu. Ayo selidiki satu per satu!", mood: "happy" }] },
+        2: { dialog: [{ text: "Matamu mengenali bentuk dan letaknya dengan baik! Ayo lanjut ke indra berikutnya.", mood: "happy" }] },
+        3: { dialog: [{ text: "Telingamu pendengar yang hebat! Ayo kita selidiki indra yang lain.", mood: "happy" }] },
+        4: { dialog: [{ text: "Hidung yang peka! Bau sate memang sangat lezat.", mood: "happy" }] },
+        5: { dialog: [{ text: "Lidahmu berhasil mengecap rasa manis! Sempurna.", mood: "happy" }] },
+        6: { dialog: [{ text: "Kulitmu bisa membedakan tekstur kasar dan tajam dengan sangat baik!", mood: "happy" }] },
+        7: { 
+            isBoss: true,
+            dialog: [
+                { text: "Luar Biasa! Kamu berhasil menyelesaikan semua ujian pengenalan di Misi 1.", mood: "happy" },
+                { text: "Kamu mendapatkan 100 Koin Emas. Segel ajaib Misi 2 telah terbuka!", mood: "happy" },
+                { text: "Mari kita keluar dan kembali ke Peta Utama!", mood: "neutral" }
+            ]
+        }
+    };
+}
+
 // ================= MEMULAI MISI 1 (MENGENAL PANCAINDRA) =================
 const btnMisi1 = document.getElementById('misi-1');
 if (btnMisi1) {
     btnMisi1.addEventListener('click', function() {
         if (this.classList.contains('locked-pin')) return; 
         
-        document.getElementById('mission-content-area').innerHTML = originalMission1HTML;
-        document.getElementById('floating-next-container').innerHTML = originalFloatingNextHTML;
-        document.getElementById('mission-title').innerText = "MISI 1: MENGENAL PANCAINDRA";
-        currentStage1Index = 0;
-
-        // TRIK AJAIB: Acak posisi semua tombol jawaban di Tahap 1 sampai 6
-        const exploreGrids = document.querySelectorAll('#mission-content-area .explore-grid');
-        exploreGrids.forEach(grid => {
-            for (let i = grid.children.length; i >= 0; i--) {
-                grid.appendChild(grid.children[Math.random() * i | 0]);
-            }
-        });
-
-        // MERAKIT UJIAN BOSS TAHAP 7 (KHUSUS MISI 1)
-        currentMisi1BossIndex = 0;
-        loadMisi1BossQuestion();
-
-        // MENYIAPKAN DIALOG PASCAGAME UNTUK TAHAP 2 s/d 7 (MISI 1)
-        currentMissionDialogs = {
-            2: { dialog: [{ text: "Matamu bekerja dengan sangat baik! Ayo lanjut ke indra berikutnya.", mood: "happy" }] },
-            3: { dialog: [{ text: "Telingamu pendengar yang hebat! Ayo kita selidiki yang lain.", mood: "happy" }] },
-            4: { dialog: [{ text: "Hidung yang peka! Bau sate memang sangat lezat.", mood: "happy" }] },
-            5: { dialog: [{ text: "Lidahmu berhasil mengecap rasa manis! Sempurna.", mood: "happy" }] },
-            6: { dialog: [{ text: "Kulitmu bisa membedakan tekstur kasar dan tajam dengan sangat baik!", mood: "happy" }] },
-            7: { 
-                isBoss: true,
-                dialog: [
-                    { text: "Luar Biasa! Kamu berhasil menyelesaikan semua ujian pengenalan di Misi 1.", mood: "happy" },
-                    { text: "Kamu mendapatkan 100 Koin Emas. Segel ajaib Misi 2 telah terbuka!", mood: "happy" },
-                    { text: "Mari kita keluar dan kembali ke Peta Utama!", mood: "neutral" }
-                ]
-            }
-        };
+        // Panggil Mesin Generator Misi 1 Secara Dinamis
+        buildMission1();
+        currentStage1Index = 0; // Reset teks pengantar tahap 1
 
         const dramaMisi1 = [
             { text: "Hai! Mau mengulang kembali petualangan kita di Pasar Kandangan?", mood: "happy" },
             { 
-                text: "Ayo kita ingat-ingat lagi 5 alat sensor ajaib pada tubuh kita. Kamu siap?", 
+                text: "Ayo kita ingat-ingat lagi letak, bentuk, dan nama 5 alat sensor ajaib pada tubuh kita. Kamu siap?", 
                 mood: "neutral", isChoice: true,
                 onYes: () => enterMissionScreen("MISI 1", "MENGENAL PANCAINDRA", 1),
                 onNo: () => {
@@ -1335,6 +1561,16 @@ window.startDetektifWarna = function() {
     }
 }
 
+// Daftar Audio Perintah AR (Dideklarasikan di luar agar tidak memicu memory leak pada HP)
+const audioArCmd = {
+    'TANGKAP BUAH APEL!': new Audio('assets/sound/cmd-tangkap-apel.mp3'),
+    'TANGKAP BUAH MANGGA!': new Audio('assets/sound/cmd-tangkap-mangga.mp3'),
+    'TANGKAP BUAH PISANG!': new Audio('assets/sound/cmd-tangkap-pisang.mp3'),
+    'TANGKAP STROBERI & JERUK!': new Audio('assets/sound/cmd-tangkap-stroberi-jeruk.mp3'),
+    'TANGKAP SEMANGKA & ANGGUR!': new Audio('assets/sound/cmd-tangkap-semangka-anggur.mp3'),
+    'TANGKAP MANGGA & APEL!': new Audio('assets/sound/cmd-tangkap-mangga-apel.mp3')
+};
+
 window.startBanyuBeningAR = function() {
     // Munculkan kotak kamera secara dramatis setelah dialog NPC selesai
     document.getElementById('ar-game-area').style.display = 'flex';
@@ -1355,16 +1591,6 @@ window.startBanyuBeningAR = function() {
     let arBoxesData = [];
     let arScore = 0;
     window.arActive = false; 
-
-    // Daftar Audio Perintah (Siapkan file MP3 ini di folder assets/sound/ jika ada)
-    const audioArCmd = {
-        'TANGKAP BUAH APEL!': new Audio('assets/sound/cmd-tangkap-apel.mp3'),
-        'TANGKAP BUAH MANGGA!': new Audio('assets/sound/cmd-tangkap-mangga.mp3'),
-        'TANGKAP BUAH PISANG!': new Audio('assets/sound/cmd-tangkap-pisang.mp3'),
-        'TANGKAP STROBERI & JERUK!': new Audio('assets/sound/cmd-tangkap-stroberi-jeruk.mp3'),
-        'TANGKAP SEMANGKA & ANGGUR!': new Audio('assets/sound/cmd-tangkap-semangka-anggur.mp3'),
-        'TANGKAP MANGGA & APEL!': new Audio('assets/sound/cmd-tangkap-mangga-apel.mp3')
-    };
 
     // 6 Pilihan Variatif yang diacak urutannya setiap kali bermain
     let targetPhases = [
