@@ -915,11 +915,13 @@ if (btnMisi1) {
     btnMisi1.addEventListener('click', function() {
         if (this.classList.contains('locked-pin')) return; 
         
-        // Panggil Mesin Generator Misi 1 Secara Dinamis
         buildMission1();
-        currentStage1Index = 0; // Reset teks pengantar tahap 1
+        currentStage1Index = 0; 
 
-        const dramaMisi1 = [
+        // Cek apakah Misi 1 sudah pernah diselesaikan
+        const isCompleted = localStorage.getItem('misi_1_completed') === 'true';
+
+        let dramaMisi1 = [
             { text: "Hai! Mau mengulang kembali petualangan kita di Pasar Kandangan?", mood: "happy" },
             { 
                 text: "Ayo kita ingat-ingat lagi letak, bentuk, dan nama 5 alat sensor ajaib pada tubuh kita. Kamu siap?", 
@@ -931,6 +933,22 @@ if (btnMisi1) {
                 }
             }
         ];
+
+        // Jika sudah selesai, ubah dialog untuk memunculkan Opsi Ke-3 (Lihat Jurnal)
+        if (isCompleted) {
+            dramaMisi1[1].text = "Kamu sudah menyelesaikan misi ini. Ingin mengulangnya, atau melihat jurnal petualanganmu?";
+            dramaMisi1[1].btn1Text = "ULANGI MISI";
+            dramaMisi1[1].btn2Text = "TUTUP";
+            dramaMisi1[1].btn3Text = "LIHAT JURNAL";
+            
+            dramaMisi1[1].onBtn3 = () => {
+                showJurnalRecap(1); // Tampilkan Pop-Up Rekap Jurnal
+            };
+            dramaMisi1[1].onNo = () => {
+                document.getElementById('vn-overlay').style.display = 'none'; // Tutup obrolan
+            };
+        }
+
         startVnDialog(dramaMisi1, "Petualang Nagata", "npc1", null);
     });
 }
@@ -943,7 +961,10 @@ if (btnMisi2) {
         
         buildMission2(); 
 
-        const dramaMisi2 = [
+        // Cek apakah Misi 2 sudah pernah diselesaikan
+        const isCompleted = localStorage.getItem('misi_2_completed') === 'true';
+
+        let dramaMisi2 = [
             { text: "Wah, kamu kembali lagi ke Lapangan Tambi yang luas dan ramai ini.", mood: "happy" },
             { 
                 text: "Apakah kamu ingin kembali membedah fungsi utama dari masing-masing pancaindra?", 
@@ -955,6 +976,22 @@ if (btnMisi2) {
                 }
             }
         ];
+
+        // Jika sudah selesai, ubah dialog untuk memunculkan Opsi Ke-3 (Lihat Jurnal)
+        if (isCompleted) {
+            dramaMisi2[1].text = "Kamu sudah menyelesaikan misi ini. Ingin mengulangnya, atau melihat jurnal petualanganmu?";
+            dramaMisi2[1].btn1Text = "ULANGI MISI";
+            dramaMisi2[1].btn2Text = "TUTUP";
+            dramaMisi2[1].btn3Text = "LIHAT JURNAL";
+            
+            dramaMisi2[1].onBtn3 = () => {
+                showJurnalRecap(2); // Tampilkan Pop-Up Rekap Jurnal Misi 2
+            };
+            dramaMisi2[1].onNo = () => {
+                document.getElementById('vn-overlay').style.display = 'none'; // Tutup obrolan
+            };
+        }
+
         startVnDialog(dramaMisi2, "Petualang Nagata", "npc1", null);
     });
 }
@@ -967,7 +1004,10 @@ if (btnMisi3) {
         
         buildMission3(); 
 
-        const dramaMisi3 = [
+        // Cek apakah Misi 3 sudah pernah diselesaikan
+        const isCompleted = localStorage.getItem('misi_3_completed') === 'true';
+
+        let dramaMisi3 = [
             { text: "Selamat! Segel Misi 3 telah terbuka. Kali ini kita akan berkunjung ke tempat yang sangat bersih dan tenang.", mood: "happy" },
             { 
                 text: "Kita sedang berada di Puskesmas Kandangan! Di sini kita akan belajar mengenali bagian-bagian penyusun pancaindra. Sudah siap bertemu dokter?", 
@@ -979,6 +1019,22 @@ if (btnMisi3) {
                 }
             }
         ];
+
+        // Jika sudah selesai, ubah dialog untuk memunculkan Opsi Ke-3 (Lihat Jurnal)
+        if (isCompleted) {
+            dramaMisi3[1].text = "Kamu sudah menyelesaikan kunjungan ke Puskesmas. Ingin mengulangnya, atau melihat jurnal petualanganmu?";
+            dramaMisi3[1].btn1Text = "ULANGI MISI";
+            dramaMisi3[1].btn2Text = "TUTUP";
+            dramaMisi3[1].btn3Text = "LIHAT JURNAL";
+            
+            dramaMisi3[1].onBtn3 = () => {
+                showJurnalRecap(3); // Tampilkan Pop-Up Rekap Jurnal Misi 3
+            };
+            dramaMisi3[1].onNo = () => {
+                document.getElementById('vn-overlay').style.display = 'none'; // Tutup obrolan
+            };
+        }
+
         startVnDialog(dramaMisi3, "Petualang Nagata", "npc1", null);
     });
 }
@@ -991,7 +1047,10 @@ if (btnMisi4) {
         
         buildMission4(); 
 
-        const dramaMisi4 = [
+        // Cek apakah Misi 4 sudah pernah diselesaikan
+        const isCompleted = localStorage.getItem('misi_4_completed') === 'true';
+
+        let dramaMisi4 = [
             { text: "Hore! Segel Misi 4 telah terbuka. Kita akan pergi ke markas utama petualang hari ini.", mood: "happy" },
             { 
                 text: "Kita sudah sampai di SD Negeri Medowo 1! Siapkah kamu menghadapi Ujian Dadakan tentang Merawat Pancaindra?", 
@@ -1003,6 +1062,22 @@ if (btnMisi4) {
                 }
             }
         ];
+
+        // Jika sudah selesai, ubah dialog untuk memunculkan Opsi Ke-3 (Lihat Jurnal)
+        if (isCompleted) {
+            dramaMisi4[1].text = "Kamu sudah menaklukkan Ujian Dadakan di SD Negeri Medowo 1. Ingin mengulangnya, atau melihat jurnal?";
+            dramaMisi4[1].btn1Text = "ULANGI MISI";
+            dramaMisi4[1].btn2Text = "TUTUP";
+            dramaMisi4[1].btn3Text = "LIHAT JURNAL";
+            
+            dramaMisi4[1].onBtn3 = () => {
+                showJurnalRecap(4); // Tampilkan Pop-Up Rekap Jurnal Misi 4
+            };
+            dramaMisi4[1].onNo = () => {
+                document.getElementById('vn-overlay').style.display = 'none'; // Tutup obrolan
+            };
+        }
+
         startVnDialog(dramaMisi4, "Petualang Nagata", "npc1", null);
     });
 }
@@ -1845,35 +1920,57 @@ if (btnMisi5) {
         if (this.classList.contains('locked-pin')) return; 
         
         buildMission5(); 
+        
+        const isCompleted = localStorage.getItem('misi_5_completed') === 'true';
 
-        // 1. Minta konfirmasi sederhana dulu sebelum masuk (Standar Peta)
-        showCustomModal(
-            "BAB 5: WISATA BANYU BENING", 
-            "Materi: Tantangan Rahasia. Ayo uji kehebatan pancaindramu di alam terbuka!", 
-            mapIcon, 
-            "confirm", 
-            () => {
-                // 2. Buka Layar Misi dan ubah latar belakang
-                enterMissionScreen("MISI 5", "TANTANGAN RAHASIA", 5);
-                
-                // 3. Tunggu animasi pisau transisi Persona selesai (sekitar 2.8 detik)
-                setTimeout(() => {
-                    // 4. Mulai Percakapan NPC dengan latar belakang Banyu Bening yang sudah terbuka!
-                    const dramaMisi5 = [
-                        { text: "Wah, akhirnya kita sampai di Wisata Banyu Bening Medowo! Sungainya sangat jernih dan udaranya segar.", mood: "happy" },
-                        { text: "Untuk membuka segel wilayah ini, aku punya permainan khusus untukmu. Kita akan panen buah-buahan segar!", mood: "happy" },
-                        { text: "Tantangan ini akan menguji kejelian MATAMU (fokus bentuk & warna) dan kecepatan refleks OTOT SENDIMU (keseimbangan tubuh).", mood: "neutral" },
-                        { text: "Akan ada instruksi target buah di layarmu. Arahkan dan sapu tanganmu di udara HANYA ke arah buah yang diperintahkan ya!", mood: "warning" },
-                        { text: "Tekan tombol LANJUT, izinkan akses kamera di browsermu jika diminta, dan mari kita mulai panennya!", mood: "happy" }
-                    ];
+        // Fungsi untuk melanjutkan masuk ke Misi 5
+        const proceedToMisi5 = () => {
+            // 1. Minta konfirmasi sederhana dulu sebelum masuk (Standar Peta)
+            showCustomModal(
+                "BAB 5: WISATA BANYU BENING", 
+                "Materi: Tantangan Rahasia. Ayo uji kehebatan pancaindramu di alam terbuka!", 
+                mapIcon, 
+                "confirm", 
+                () => {
+                    // 2. Buka Layar Misi dan ubah latar belakang
+                    enterMissionScreen("MISI 5", "TANTANGAN RAHASIA", 5);
                     
-                    startVnDialog(dramaMisi5, "Petualang Nagata", "npc1", () => {
-                        // 5. Begitu dialog selesai, Kamera langsung MENYALA!
-                        startBanyuBeningAR();
-                    });
-                }, 2800);
-            }
-        );
+                    // 3. Tunggu animasi pisau transisi Persona selesai (sekitar 2.8 detik)
+                    setTimeout(() => {
+                        // 4. Mulai Percakapan NPC dengan latar belakang Banyu Bening yang sudah terbuka!
+                        const dramaMisi5 = [
+                            { text: "Wah, akhirnya kita sampai di Wisata Banyu Bening Medowo! Sungainya sangat jernih dan udaranya segar.", mood: "happy" },
+                            { text: "Untuk membuka segel wilayah ini, aku punya permainan khusus untukmu. Kita akan panen buah-buahan segar!", mood: "happy" },
+                            { text: "Tantangan ini akan menguji kejelian MATAMU (fokus bentuk & warna) dan kecepatan refleks OTOT SENDIMU (keseimbangan tubuh).", mood: "neutral" },
+                            { text: "Akan ada instruksi target buah di layarmu. Arahkan dan sapu tanganmu di udara HANYA ke arah buah yang diperintahkan ya!", mood: "warning" },
+                            { text: "Tekan tombol LANJUT, izinkan akses kamera di browsermu jika diminta, dan mari kita mulai panennya!", mood: "happy" }
+                        ];
+                        
+                        startVnDialog(dramaMisi5, "Petualang Nagata", "npc1", () => {
+                            // 5. Begitu dialog selesai, Kamera langsung MENYALA!
+                            startBanyuBeningAR();
+                        });
+                    }, 2800);
+                }
+            );
+        };
+
+        // Jika sudah selesai, cegat dengan dialog NPC pilihan jurnal
+        if (isCompleted) {
+            let dramaMisi5Done = [
+                { 
+                    text: "Kamu sudah menaklukkan Tantangan Rahasia di Banyu Bening. Ingin mengulangnya, atau melihat jurnal?", 
+                    mood: "happy", isChoice: true, 
+                    btn1Text: "ULANGI MISI", btn2Text: "TUTUP", btn3Text: "LIHAT JURNAL",
+                    onYes: () => proceedToMisi5(),
+                    onNo: () => { document.getElementById('vn-overlay').style.display = 'none'; },
+                    onBtn3: () => { showJurnalRecap(5); }
+                }
+            ];
+            startVnDialog(dramaMisi5Done, "Petualang Nagata", "npc1", null);
+        } else {
+            proceedToMisi5();
+        }
     });
 }
 
@@ -1885,7 +1982,9 @@ if (btnMisi6) {
         
         buildMission6(); 
 
-        const dramaMisi6 = [
+        const isCompleted = localStorage.getItem('misi_6_completed') === 'true';
+
+        let dramaMisi6 = [
             { text: "Selamat! Kamu telah mencapai pos ujian akhir di Wisata Bukit Gandrung Tanggulasi.", mood: "happy" },
             { text: "Tempat ini sangat luas dan indah! Ada cafe, kolam renang, taman, dan area kemah di atas bukit.", mood: "happy" },
             { text: "Untuk mendapatkan Medali Kelulusan Bab 1, kamu harus menyelesaikan tantangan di setiap area wisata ini.", mood: "neutral" },
@@ -1899,6 +1998,22 @@ if (btnMisi6) {
                 }
             }
         ];
+
+        // Jika sudah tamat
+        if (isCompleted) {
+            dramaMisi6 = [
+                { text: "Selamat! Kamu telah mencapai pos ujian akhir di Wisata Bukit Gandrung Tanggulasi.", mood: "happy" },
+                { 
+                    text: "Kamu sudah lulus dari Ujian Akhir ini! Ingin mengulangnya, atau melihat jurnal kelulusanmu?", 
+                    mood: "happy", isChoice: true,
+                    btn1Text: "ULANGI MISI", btn2Text: "TUTUP", btn3Text: "LIHAT JURNAL",
+                    onYes: () => enterMissionScreen("MISI 6", "UJIAN BUKIT GANDRUNG", 6),
+                    onNo: () => { document.getElementById('vn-overlay').style.display = 'none'; },
+                    onBtn3: () => { showJurnalRecap(6); }
+                }
+            ];
+        }
+
         startVnDialog(dramaMisi6, "Petualang Nagata", "npc1", null);
     });
 }

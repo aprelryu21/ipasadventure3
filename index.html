@@ -418,6 +418,94 @@
         <!-- ================= OVERLAY RUANG UKS (HUKUMAN) ================= -->
         <div id="uks-overlay" class="uks-overlay" style="display: none;"></div>
 
+        <!-- ================= JURNAL PETUALANG (REFLEKSI) ================= -->
+        <div id="jurnal-overlay" class="popup-overlay" style="z-index: 10000; display: none; transition: opacity 0.4s;">
+            <div class="jurnal-container">
+                <h2 class="jurnal-title">
+                    <!-- SVG Ikon Buku Jurnal -->
+                    <svg class="svg-icon" viewBox="0 0 16 16" style="width:1em;height:1em;vertical-align:middle;margin-top:-0.2em;"><path fill="currentColor" d="M13 2H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM3 12V4h2v8H3zm4 0V4h6v8H7z"/></svg> 
+                    JURNAL PETUALANG
+                </h2>
+                <h3 id="jurnal-subtitle" style="color: #111; margin-top: 0.5cqw; margin-bottom: 2cqw; text-align: center; font-size: 1.8cqw; text-shadow: 0.1cqw 0.1cqw 0 #fff;">MISI X</h3>
+
+                <!-- Halaman 1: Mood Check (Dengan SVG Voxel) -->
+                <div id="jurnal-page-1" class="jurnal-page active" style="align-items: center;">
+                    <p>Bagaimana perasaanmu setelah menyelesaikan petualangan ini?</p>
+                    <div class="jurnal-mood-grid">
+                        <button class="btn-mood" onclick="selectMood(this, 'Senang')">
+                            <svg class="svg-icon" viewBox="0 0 16 16" style="width:4cqw;height:4cqw;"><path fill="#f1c40f" d="M2 2h12v12H2z"/><path fill="#111" d="M4 4h2v2H4zm6 0h2v2h-2zm-6 6h1v1h6v-1h1v2H4z"/></svg>
+                            <br><span>Senang</span>
+                        </button>
+                        <button class="btn-mood" onclick="selectMood(this, 'Bangga')">
+                            <svg class="svg-icon" viewBox="0 0 16 16" style="width:4cqw;height:4cqw;"><path fill="#f1c40f" d="M2 2h12v12H2z"/><path fill="#111" d="M3 5h10v3h-1v1H4V8H3zm2 0V4h6v1z"/></svg>
+                            <br><span>Bangga</span>
+                        </button>
+                        <button class="btn-mood" onclick="selectMood(this, 'Lelah')">
+                            <svg class="svg-icon" viewBox="0 0 16 16" style="width:4cqw;height:4cqw;"><path fill="#f1c40f" d="M2 2h12v12H2z"/><path fill="#111" d="M3 4h2v1H4v1h2V5h1v2H6V6H5V5H4v1H3zm6 0h2v1h-1v1h2V5h1v2h-1V6h-1V5h-1v1h-1zm-4 6h6v1H5z"/></svg>
+                            <br><span>Lelah</span>
+                        </button>
+                    </div>
+                    <button class="btn btn-play" id="btn-jurnal-next-1" style="margin-top: 3cqw; font-size: 1.5cqw; padding: 1cqw 3cqw; opacity: 0.5;" onclick="nextJurnal(2)" disabled>KIRIM & LANJUT</button>
+                </div>
+
+                <!-- Halaman 2: Flashback (Bisa pilih > 1) -->
+                <div id="jurnal-page-2" class="jurnal-page" style="display: none; align-items: center;">
+                    <p id="jurnal-q-flashback">Hal apa yang paling kamu sukai di misi ini? (Boleh pilih lebih dari satu)</p>
+                    <div id="jurnal-flashback-opts" style="display: flex; flex-direction: column; gap: 1cqw; align-items: center; width: 100%;">
+                        <!-- Opsi Injeksi Javascript -->
+                    </div>
+                    <button class="btn btn-play" id="btn-jurnal-next-2" style="margin-top: 3cqw; font-size: 1.5cqw; padding: 1cqw 3cqw; opacity: 0.5;" onclick="nextJurnal(3)" disabled>KIRIM & LANJUT</button>
+                </div>
+
+                <!-- Halaman 3: Janji -->
+                <div id="jurnal-page-3" class="jurnal-page" style="display: none; align-items: center;">
+                    <p>Ucapkan janji pahlawanmu:</p>
+                    <label class="jurnal-janji-box" for="jurnal-checkbox">
+                        <input type="checkbox" id="jurnal-checkbox" style="width: 2.5cqw; height: 2.5cqw; cursor: pointer;">
+                        <span id="jurnal-janji-text" style="font-weight: bold; font-size: 1.4cqw; color: #111; line-height: 1.4; cursor: pointer;">Aku berjanji...</span>
+                    </label>
+                    <button class="btn btn-play" id="btn-jurnal-janji" style="margin-top: 3cqw; font-size: 1.8cqw; padding: 1cqw 3cqw; opacity: 0.5;" onclick="submitJurnal()" disabled>KIRIM & TANDA TANGANI</button>
+                </div>
+
+                <!-- Halaman 4: Reward -->
+                <div id="jurnal-page-4" class="jurnal-page" style="display: none; align-items: center; justify-content: center;">
+                    <p>Hebat! Petualanganmu tercatat dalam sejarah.</p>
+                    <div class="jurnal-stamp" id="jurnal-stamp">STEMPEL</div>
+                    <button class="btn btn-play" style="margin-top: 3cqw; font-size: 1.5cqw;" onclick="closeJurnal()">TUTUP JURNAL</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= REKAP JURNAL (POP-UP LIHAT JURNAL) ================= -->
+        <div id="recap-jurnal-overlay" class="popup-overlay" style="z-index: 10000; display: none;">
+            <div class="jurnal-container">
+                <button class="btn-close-mission" style="position: absolute; top: -1.5cqw; right: -1.5cqw; width: 3.5cqw; height: 3.5cqw; font-size: 2cqw;" onclick="document.getElementById('recap-jurnal-overlay').style.display='none'">X</button>
+                <h2 class="jurnal-title">
+                    <svg class="svg-icon" viewBox="0 0 16 16" style="width:1em;height:1em;vertical-align:middle;margin-top:-0.2em;"><path fill="currentColor" d="M13 2H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM3 12V4h2v8H3zm4 0V4h6v8H7z"/></svg> 
+                    CATATAN PETUALANG
+                </h2>
+                <h3 id="recap-subtitle" style="color: #111; margin-top: 0.5cqw; margin-bottom: 2cqw; text-align: center; font-size: 1.8cqw; text-shadow: 0.1cqw 0.1cqw 0 #fff;">MISI X</h3>
+
+                <div style="background: rgba(255,255,255,0.8); border: 0.3cqw dashed #8e44ad; padding: 2cqw; border-radius: 1cqw; flex-grow: 1; display: flex; flex-direction: column; gap: 1.5cqw;">
+                    <div style="display: flex; gap: 1cqw; align-items: center;">
+                        <span style="font-weight: 900; color: #111; font-size: 1.5cqw;">Perasaanmu:</span>
+                        <span id="recap-mood" style="font-size: 1.5cqw; font-weight: bold; background: #f1c40f; padding: 0.5cqw 1cqw; border: 0.2cqw solid #111; border-radius: 0.5cqw;">Senang</span>
+                    </div>
+                    <div>
+                        <span style="font-weight: 900; color: #111; font-size: 1.5cqw;">Hal yang paling disukai:</span>
+                        <ul id="recap-flashback" style="margin: 0.5cqw 0 0 0; padding-left: 2cqw; color: #111; font-size: 1.4cqw; font-weight: bold; line-height: 1.4;"></ul>
+                    </div>
+                    <div>
+                        <span style="font-weight: 900; color: #111; font-size: 1.5cqw;">Janji Pahlawan:</span>
+                        <p id="recap-janji" style="margin: 0.5cqw 0 0 0; color: #111; font-size: 1.4cqw; font-style: italic; line-height: 1.4; border-left: 0.3cqw solid #8e44ad; padding-left: 1cqw;"></p>
+                    </div>
+                    <div style="margin-top: auto; text-align: right;">
+                        <div class="jurnal-stamp stamped" id="recap-stamp" style="font-size: 2.5cqw; transform: rotate(-5deg); margin-top: 1cqw;">STEMPEL</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- ================= VISUAL NOVEL (SISTEM DIALOG GLOBAL) ================= -->
         <div id="vn-overlay" class="vn-overlay" style="display: none;">
             <div class="vn-backdrop"></div> 
@@ -439,6 +527,7 @@
                 <div id="vn-choices" class="vn-choices" style="display: none;">
                     <button class="btn btn-play" id="btn-vn-yes">TERIMA MISI</button>
                     <button class="btn btn-menu" id="btn-vn-no" style="background: #ff4757;">TOLAK</button>
+                    <button class="btn btn-menu" id="btn-vn-jurnal" style="background: #9b59b6; display: none;">LIHAT JURNAL</button>
                 </div>
             </div>
         </div>

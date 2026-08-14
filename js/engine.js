@@ -1063,12 +1063,22 @@ function triggerPostDialog(stageNum) {
                     
                 loadKandanganProgress();
                     
-                // Cegat jika yang ditamatkan adalah Misi 6 (Tamat Bab 1)
-                if (currentMissionId === 6) {
-                    document.getElementById('name-modal').classList.add('active');
-                } else {
-                    exitMissionScreen();
-                }
+                // Buka Jurnal Petualang sebelum keluar (Sesi Refleksi)
+                    if (typeof startJurnal === 'function') {
+                        startJurnal(currentMissionId, () => {
+                            if (currentMissionId === 6) {
+                                document.getElementById('name-modal').classList.add('active');
+                            } else {
+                                exitMissionScreen();
+                            }
+                        });
+                    } else {
+                        if (currentMissionId === 6) {
+                            document.getElementById('name-modal').classList.add('active');
+                        } else {
+                            exitMissionScreen();
+                        }
+                    }
             }
         });
     } else {
@@ -1616,6 +1626,17 @@ function updateVnDialog() {
                             btnNo.style.display = 'flex';
                             btnNo.onclick = current.onNo;
                         }
+
+                        // Menyalakan Tombol Ke-3 (Lihat Jurnal)
+                        const btnJurnal = document.getElementById('btn-vn-jurnal');
+                        if (current.btn3Text && btnJurnal) {
+                            btnJurnal.style.display = 'flex';
+                            // Menambahkan Ikon Buku SVG ke dalam teks tombol
+                            btnJurnal.innerHTML = `<svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M13 2H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM3 12V4h2v8H3zm4 0V4h6v8H7z"/></svg> ` + current.btn3Text;
+                            btnJurnal.onclick = current.onBtn3;
+                        } else if (btnJurnal) {
+                            btnJurnal.style.display = 'none';
+                        }
                     } else {
                         btnVnNext.style.display = 'flex';
                     }
@@ -1868,3 +1889,239 @@ document.addEventListener('touchmove', dndMove, {passive: false});
 document.addEventListener('mouseup', dndEnd);
 document.addEventListener('touchend', dndEnd);
 
+// ================= MESIN JURNAL PETUALANG (REFLEKSI) =================
+let currentJurnalCallback = null;
+let currentJurnalMissionId = 1;
+let selectedMood = "";
+let selectedFlashbacks = [];
+
+// Database Refleksi per Misi
+const jurnalData = {
+    1: {
+        title: "MISI 1: MENGENAL PANCAINDRA",
+        flashbackOpts: [
+            "Mengetahui letak dan nama 5 Indra kita",
+            "Memutar gambar 3D Mata & Telinga",
+            "Berhasil menaklukkan Ujian Boss"
+        ],
+        janji: "Sebagai Pahlawan Cilik, aku berjanji akan bersyukur dan selalu menggunakan kelima indraku untuk belajar hal-hal yang baik!",
+        stampText: "PENJELAJAH PEMULA"
+    },
+    2: {
+        title: "MISI 2: FUNGSI PANCAINDRA",
+        flashbackOpts: [
+            "Menarik garis fungsi pancaindra",
+            "Menjawab tebakan fungsi mata dan telinga",
+            "Menjadi Detektif Boss Fungsi"
+        ],
+        janji: "Aku berjanji akan menggunakan pancaindraku untuk membantu teman dan melakukan kebaikan!",
+        stampText: "DETEKTIF FUNGSI"
+    },
+    3: {
+        title: "MISI 3: BAGIAN PANCAINDRA",
+        flashbackOpts: [
+            "Kunjungan ke Puskesmas",
+            "Menyusun nama anatomi organ",
+            "Mempelajari fakta unik tubuh"
+        ],
+        janji: "Aku berjanji akan merawat seluruh bagian pancaindraku agar tetap sehat dan kuat!",
+        stampText: "DOKTER CILIK"
+    },
+    4: {
+        title: "MISI 4: MERAWAT TUBUHKU",
+        flashbackOpts: [
+            "Membaca Mading Perawatan",
+            "Simulasi Pahlawan Adaptasi",
+            "Mempelajari kekuatan super hewan"
+        ],
+        janji: "Aku berjanji akan menghargai teman dengan kondisi khusus dan selalu menjaga kebersihan tubuh!",
+        stampText: "AHLI KESEHATAN"
+    },
+    5: {
+        title: "MISI 5: TANTANGAN RAHASIA",
+        flashbackOpts: [
+            "Menangkap buah pakai kamera (AR)",
+            "Mencari benda pakai senter malam",
+            "Memindai warna benda aseli"
+        ],
+        janji: "Aku berjanji akan selalu teliti, waspada, dan melatih refleks tubuhku dengan berolahraga!",
+        stampText: "AGEN RAHASIA"
+    },
+    6: {
+        title: "MISI 6: UJIAN BUKIT GANDRUNG",
+        flashbackOpts: [
+            "Menebak suara hewan malam",
+            "Menjawab Ujian Kilat Time Attack",
+            "Lulus Evaluasi Akhir Boss!"
+        ],
+        janji: "Aku berjanji akan terus semangat belajar IPAS untuk menjelajahi kehebatan dunia ini!",
+        stampText: "LULUSAN TERBAIK"
+    }
+};
+
+function startJurnal(missionId, callback) {
+    const data = jurnalData[missionId];
+    if(!data) {
+        if(callback) callback();
+        return;
+    }
+
+    currentJurnalCallback = callback;
+    currentJurnalMissionId = missionId;
+    selectedMood = "";
+    selectedFlashbacks = [];
+
+    document.getElementById('jurnal-subtitle').innerText = data.title;
+    
+    // Reset Halaman 1 (Mood)
+    document.querySelectorAll('.btn-mood').forEach(btn => btn.classList.remove('selected'));
+    const btnNext1 = document.getElementById('btn-jurnal-next-1');
+    btnNext1.disabled = true; btnNext1.style.opacity = '0.5';
+
+    // Reset Halaman 2 (Flashback)
+    const optsContainer = document.getElementById('jurnal-flashback-opts');
+    optsContainer.innerHTML = '';
+    data.flashbackOpts.forEach(opt => {
+        const btn = document.createElement('button');
+        btn.className = 'btn-jurnal-opt';
+        btn.innerText = opt;
+        btn.onclick = () => selectFlashback(btn, opt);
+        optsContainer.appendChild(btn);
+    });
+    const btnNext2 = document.getElementById('btn-jurnal-next-2');
+    btnNext2.disabled = true; btnNext2.style.opacity = '0.5';
+
+    // Reset Halaman 3 (Janji)
+    document.getElementById('jurnal-janji-text').innerText = data.janji;
+    document.getElementById('jurnal-checkbox').checked = false;
+    const btnJanji = document.getElementById('btn-jurnal-janji');
+    btnJanji.disabled = true; btnJanji.style.opacity = '0.5';
+
+    // Reset Stempel
+    document.getElementById('jurnal-stamp').innerText = data.stampText;
+    document.getElementById('jurnal-stamp').classList.remove('stamped');
+
+    showJurnalPage(1);
+    
+    const overlay = document.getElementById('jurnal-overlay');
+    overlay.style.display = 'flex';
+    overlay.style.opacity = '0';
+    setTimeout(() => overlay.style.opacity = '1', 10);
+}
+
+function selectMood(btn, mood) {
+    document.querySelectorAll('.btn-mood').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    selectedMood = mood;
+    const btnNext1 = document.getElementById('btn-jurnal-next-1');
+    btnNext1.disabled = false; btnNext1.style.opacity = '1';
+    if(typeof sfxTangkap !== 'undefined') { sfxTangkap.currentTime = 0; sfxTangkap.play().catch(e=>{}); }
+}
+
+function selectFlashback(btn, text) {
+    // Bisa pilih/batal pilih lebih dari satu
+    if (btn.classList.contains('selected')) {
+        btn.classList.remove('selected');
+        selectedFlashbacks = selectedFlashbacks.filter(item => item !== text);
+    } else {
+        btn.classList.add('selected');
+        selectedFlashbacks.push(text);
+    }
+    
+    const btnNext2 = document.getElementById('btn-jurnal-next-2');
+    if (selectedFlashbacks.length > 0) {
+        btnNext2.disabled = false; btnNext2.style.opacity = '1';
+    } else {
+        btnNext2.disabled = true; btnNext2.style.opacity = '0.5';
+    }
+    if(typeof sfxTangkap !== 'undefined') { sfxTangkap.currentTime = 0; sfxTangkap.play().catch(e=>{}); }
+}
+
+function showJurnalPage(pageNum) {
+    for(let i=1; i<=4; i++) {
+        document.getElementById('jurnal-page-'+i).style.display = 'none';
+    }
+    document.getElementById('jurnal-page-'+pageNum).style.display = 'flex';
+}
+
+function nextJurnal(nextPage) {
+    if(typeof sfxTangkap !== 'undefined') { sfxTangkap.currentTime = 0; sfxTangkap.play().catch(e=>{}); }
+    showJurnalPage(nextPage);
+}
+
+function submitJurnal() {
+    // Simpan pilihan pemain ke dalam memori browser
+    const dataToSave = {
+        mood: selectedMood,
+        flashbacks: selectedFlashbacks,
+        janji: jurnalData[currentJurnalMissionId].janji,
+        stamp: jurnalData[currentJurnalMissionId].stampText
+    };
+    localStorage.setItem('jurnal_misi_' + currentJurnalMissionId, JSON.stringify(dataToSave));
+
+    showJurnalPage(4);
+    setTimeout(() => {
+        document.getElementById('jurnal-stamp').classList.add('stamped');
+        if(typeof sfxBenar !== 'undefined') { sfxBenar.currentTime = 0; sfxBenar.play().catch(e=>{}); }
+    }, 400);
+}
+
+function closeJurnal() {
+    const overlay = document.getElementById('jurnal-overlay');
+    overlay.style.opacity = '0';
+    setTimeout(() => {
+        overlay.style.display = 'none';
+        if (currentJurnalCallback) currentJurnalCallback();
+    }, 400);
+}
+
+const jurnalCheckbox = document.getElementById('jurnal-checkbox');
+if(jurnalCheckbox) {
+    jurnalCheckbox.addEventListener('change', function() {
+        const btn = document.getElementById('btn-jurnal-janji');
+        if(this.checked) {
+            btn.disabled = false;
+            btn.style.opacity = '1';
+        } else {
+            btn.disabled = true;
+            btn.style.opacity = '0.5';
+        }
+    });
+}
+
+// Menampilkan Rekap Jurnal Jika Tombol "Lihat Jurnal" Ditekan
+window.showJurnalRecap = function(missionId) {
+    // Sembunyikan Dialog NPC agar tidak tumpang tindih
+    document.getElementById('vn-overlay').style.display = 'none';
+    
+    const savedData = JSON.parse(localStorage.getItem('jurnal_misi_' + missionId));
+    
+    // PERBAIKAN: Jika data jurnal kosong (karena memori terhapus saat debugging), munculkan Pop-up Notifikasi!
+    if (!savedData || !jurnalData[missionId]) {
+        const warnIcon = `<svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M6 0h4v2h2v2h2v8h-2v2H6v-2H4V4h2V2zm2 2H6v10h4V2zm0 8h2v2H8v-2zm0-6h2v4H8V4z"/></svg>`;
+        showCustomModal(
+            "JURNAL KOSONG", 
+            "Kamu belum mengisi Jurnal Petualangan untuk misi ini. Selesaikan misinya untuk mengisi jurnal!", 
+            warnIcon, 
+            "alert"
+        );
+        return;
+    }
+
+    document.getElementById('recap-subtitle').innerText = jurnalData[missionId].title;
+    document.getElementById('recap-mood').innerText = savedData.mood;
+    
+    // Tulis ulang daftar pilihan flashback (Bisa lebih dari 1)
+    const ul = document.getElementById('recap-flashback');
+    ul.innerHTML = '';
+    savedData.flashbacks.forEach(text => {
+        const li = document.createElement('li');
+        li.innerText = text;
+        ul.appendChild(li);
+    });
+
+    document.getElementById('recap-janji').innerText = savedData.janji;
+    document.getElementById('recap-stamp').innerText = savedData.stamp;
+
+    document.getElementById('recap-jurnal-overlay').style.display = 'flex';
+};
