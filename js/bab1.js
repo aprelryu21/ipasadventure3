@@ -3251,18 +3251,23 @@ const dataDetektifM6 = {
     }
 };
 
-window.startDetektifM6 = function() {
-    document.getElementById('intro-detektif-m6').style.display = 'none';
-    isFlashlightM6Active = true;
-    currentDetektifM6Index = 0;
-    
-    // Acak 5 Objek Area Wisata
-    detektifM6Targets = ['kemah', 'kolam', 'cafe', 'taman', 'aula'].sort(() => Math.random() - 0.5); 
-    
-    document.getElementById('flashlight-layer-m6').style.display = 'block';
-    document.getElementById('target-m6-' + detektifM6Targets[0]).style.display = 'block';
-    
-    // Sensor Pengikut Mouse/Jari untuk Senter
+let activeTargetM6 = ""; // Tambahan variabel penyimpan target yang sedang diklik
+
+    window.startDetektifM6 = function() {
+        document.getElementById('intro-detektif-m6').style.display = 'none';
+        isFlashlightM6Active = true;
+        currentDetektifM6Index = 0; // Digunakan sebagai penghitung jumlah yang sudah ditemukan
+        
+        detektifM6Targets = ['kemah', 'kolam', 'cafe', 'taman', 'aula']; 
+        
+        document.getElementById('flashlight-layer-m6').style.display = 'block';
+        
+        // Tampilkan semua 5 kotak target secara bersamaan agar bisa dicari secara bebas!
+        detektifM6Targets.forEach(target => {
+            document.getElementById('target-m6-' + target).style.display = 'block';
+        });
+        
+        // Sensor Pengikut Mouse/Jari untuk Senter
     const gameArea = document.getElementById('detektif-m6-area');
     const updateFlashlightM6 = (e) => {
         if (!isFlashlightM6Active) return;
@@ -3285,22 +3290,21 @@ window.startDetektifM6 = function() {
 };
 
 window.checkDetektifM6 = function(targetName) {
-    if (targetName === detektifM6Targets[currentDetektifM6Index]) {
-        isFlashlightM6Active = false;
-        document.getElementById('target-m6-' + targetName).style.display = 'none';
-        
-        let data = dataDetektifM6[targetName];
-        let quizDialog = [
-            {
-                text: data.dialog, mood: "happy", isChoice: true,
-                btn1Text: data.ans1, btn2Text: data.ans2,
-                onYes: () => handleDetektifM6Answer(1, data.correct),
-                onNo: () => handleDetektifM6Answer(2, data.correct)
-            }
-        ];
-        
-        setTimeout(() => { startVnDialog(quizDialog, "Petualang Nagata", "npc1", null); }, 800);
-    }
+    isFlashlightM6Active = false; // Matikan gerakan senter sementara kuis berjalan
+    activeTargetM6 = targetName; // Simpan memori target apa yang sedang diklik
+    document.getElementById('target-m6-' + targetName).style.display = 'none'; // Sembunyikan agar tidak bisa diklik dobel
+    
+    let data = dataDetektifM6[targetName];
+    let quizDialog = [
+        {
+            text: data.dialog, mood: "happy", isChoice: true,
+            btn1Text: data.ans1, btn2Text: data.ans2,
+            onYes: () => handleDetektifM6Answer(1, data.correct),
+            onNo: () => handleDetektifM6Answer(2, data.correct)
+        }
+    ];
+    
+    setTimeout(() => { startVnDialog(quizDialog, "Petualang Nagata", "npc1", null); }, 800);
 };
 
 window.handleDetektifM6Answer = function(chosen, correct) {
@@ -3311,12 +3315,11 @@ window.handleDetektifM6Answer = function(chosen, correct) {
     if (chosen === correct) {
         addScore(20);
         showCustomModal("TEPAT SEKALI!", "Kamu memahami cara adaptasi pahlawan dengan baik!", checkIcon, "alert", () => {
-            currentDetektifM6Index++;
+            currentDetektifM6Index++; // Menambah jumlah pencarian yang berhasil
             if (currentDetektifM6Index < detektifM6Targets.length) {
-                isFlashlightM6Active = true;
-                document.getElementById('target-m6-' + detektifM6Targets[currentDetektifM6Index]).style.display = 'block';
+                isFlashlightM6Active = true; // Nyalakan senter lagi untuk mencari target yang tersisa
             } else {
-                showCustomModal("PENCARIAN SELESAI!", "Kamu berhasil menemukan semua benda. Saatnya menuju Area Pertemuan!", checkIcon, "alert", () => {
+                showCustomModal("PENCARIAN SELESAI!", "Kamu berhasil menemukan semua titik wahana. Saatnya menuju Area Pertemuan!", checkIcon, "alert", () => {
                     // Kembalikan Mode Layar Normal
                     document.querySelector('.mission-wrapper').classList.remove('fullscreen-mode');
                     document.querySelector('.mission-full-box').classList.remove('fullscreen-mode');
@@ -3330,7 +3333,7 @@ window.handleDetektifM6Answer = function(chosen, correct) {
         reduceLife();
         showCustomModal("KURANG TEPAT!", "Coba ingat lagi materi adaptasinya! (Nyawa Berkurang 1)", lockIcon, "error", () => {
             if (chapterLives[currentChapter] > 0) {
-                let data = dataDetektifM6[detektifM6Targets[currentDetektifM6Index]];
+                let data = dataDetektifM6[activeTargetM6]; // Gunakan memori target aktif
                 let quizDialog = [{
                     text: data.dialog, mood: "warning", isChoice: true,
                     btn1Text: data.ans1, btn2Text: data.ans2,
