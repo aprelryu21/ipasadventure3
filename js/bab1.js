@@ -1133,7 +1133,7 @@ function buildMission5() {
                 </div>
 
                 <div class="ar-hud">
-                    <div class="ar-score-box">Buah Terkumpul: <span id="ar-score-txt">0 / 20</span></div>
+                    <div class="ar-score-box">Buah Terkumpul: <span id="ar-score-txt">0 / 50</span></div>
                     <button class="btn-close-mission" style="position: static; margin-left: auto;" onclick="abortMission5()">X</button>
                 </div>
                 <div class="ar-frame"></div>
@@ -1638,12 +1638,16 @@ window.startDetektifWarna = function() {
 
 // Daftar Audio Perintah AR (Dideklarasikan di luar agar tidak memicu memory leak pada HP)
 const audioArCmd = {
-    'TANGKAP BUAH APEL!': new Audio('assets/sound/cmd-tangkap-apel.mp3'),
-    'TANGKAP BUAH MANGGA!': new Audio('assets/sound/cmd-tangkap-mangga.mp3'),
-    'TANGKAP BUAH PISANG!': new Audio('assets/sound/cmd-tangkap-pisang.mp3'),
-    'TANGKAP STROBERI & JERUK!': new Audio('assets/sound/cmd-tangkap-stroberi-jeruk.mp3'),
-    'TANGKAP SEMANGKA & ANGGUR!': new Audio('assets/sound/cmd-tangkap-semangka-anggur.mp3'),
-    'TANGKAP MANGGA & APEL!': new Audio('assets/sound/cmd-tangkap-mangga-apel.mp3')
+    'HINDARI BUAH APEL!': new Audio('assets/sound/cmd-hindari-apel.mp3'),
+    'HINDARI BUAH MANGGA!': new Audio('assets/sound/cmd-hindari-mangga.mp3'),
+    'HINDARI BUAH PISANG!': new Audio('assets/sound/cmd-hindari-pisang.mp3'),
+    'HINDARI BUAH JERUK!': new Audio('assets/sound/cmd-hindari-jeruk.mp3'),
+    'HINDARI BUAH SEMANGKA!': new Audio('assets/sound/cmd-hindari-semangka.mp3'),
+    'HINDARI STROBERI & JERUK!': new Audio('assets/sound/cmd-hindari-stroberi-jeruk.mp3'),
+    'HINDARI SEMANGKA & ANGGUR!': new Audio('assets/sound/cmd-hindari-semangka-anggur.mp3'),
+    'HINDARI MANGGA & APEL!': new Audio('assets/sound/cmd-hindari-mangga-apel.mp3'),
+    'HINDARI PISANG & ANGGUR!': new Audio('assets/sound/cmd-hindari-pisang-anggur.mp3'),
+    'HINDARI JERUK & APEL!': new Audio('assets/sound/cmd-hindari-jeruk-apel.mp3')
 };
 
 window.startBanyuBeningAR = function() {
@@ -1667,14 +1671,18 @@ window.startBanyuBeningAR = function() {
     let arScore = 0;
     window.arActive = false; 
 
-    // 6 Pilihan Variatif yang diacak urutannya setiap kali bermain
+    // 10 Pilihan Variatif yang diacak urutannya setiap kali bermain
     let targetPhases = [
-        { fruits: ['apel'], text: 'TANGKAP BUAH APEL!' },
-        { fruits: ['mangga'], text: 'TANGKAP BUAH MANGGA!' },
-        { fruits: ['pisang'], text: 'TANGKAP BUAH PISANG!' },
-        { fruits: ['stroberi', 'jeruk'], text: 'TANGKAP STROBERI & JERUK!' },
-        { fruits: ['semangka', 'anggur'], text: 'TANGKAP SEMANGKA & ANGGUR!' },
-        { fruits: ['mangga', 'apel'], text: 'TANGKAP MANGGA & APEL!' }
+        { fruits: ['apel'], text: 'HINDARI BUAH APEL!' },
+        { fruits: ['mangga'], text: 'HINDARI BUAH MANGGA!' },
+        { fruits: ['pisang'], text: 'HINDARI BUAH PISANG!' },
+        { fruits: ['jeruk'], text: 'HINDARI BUAH JERUK!' },
+        { fruits: ['semangka'], text: 'HINDARI BUAH SEMANGKA!' },
+        { fruits: ['stroberi', 'jeruk'], text: 'HINDARI STROBERI & JERUK!' },
+        { fruits: ['semangka', 'anggur'], text: 'HINDARI SEMANGKA & ANGGUR!' },
+        { fruits: ['mangga', 'apel'], text: 'HINDARI MANGGA & APEL!' },
+        { fruits: ['pisang', 'anggur'], text: 'HINDARI PISANG & ANGGUR!' },
+        { fruits: ['jeruk', 'apel'], text: 'HINDARI JERUK & APEL!' }
     ].sort(() => Math.random() - 0.5);
     
     let currentPhaseIndex = 0;
@@ -1854,18 +1862,18 @@ window.startBanyuBeningAR = function() {
         const lockIcon = `<svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M4 2h8v2h2v10H2V4h2V2zm2 2v2h4V4H6zm-2 4v4h8V8H4z"/></svg>`;
         const checkIcon = `<svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M14 2h2v2h-2V2zm-2 2h2v2h-2V4zm-2 2h2v2h-2V6zm-2 2h2v2H8V8zm-2 2h2v2H6v-2zm-2 2h2v2H4v-2zm-2-2h2v2H2v-2zm-2-2h2v2H0v-2z"/></svg>`;
 
-        // Pengecekan Ketepatan Buah
-        if (currentTarget.fruits.includes(box.type)) {
+        // Pengecekan Ketepatan Buah (DIBALIK: Menghindari buah jebakan)
+        if (!currentTarget.fruits.includes(box.type)) {
             
-            // JIKA BENAR: Ledakkan buah dan tambah poin
+            // JIKA BENAR (MENANGKAP SELAIN JEBAKAN): Ledakkan buah dan tambah poin
             box.el.classList.add('ar-effect');
             setTimeout(() => box.el.remove(), 200);
             
             arScore++;
-            document.getElementById('ar-score-txt').innerText = `${arScore} / 20`;
+            document.getElementById('ar-score-txt').innerText = `${arScore} / 50`;
             addScore(10, true); // true = Mainkan suara tangkap.mp3 
 
-            if (arScore >= 20) {
+            if (arScore >= 50) {
                 // MENANG TOTAL
                 bgmBossMisi5.pause();
                 bgmBossMisi5.currentTime = 0;
@@ -1879,27 +1887,27 @@ window.startBanyuBeningAR = function() {
                 clearInterval(window.arLoop);
                 clearInterval(window.arSpawner);
 
-                showCustomModal("TANGKAPAN BERHASIL!", "Luar biasa! Matamu sangat teliti. Kamu berhasil memanen 20 buah dengan sempurna!", checkIcon, "alert", () => {
+                showCustomModal("TANGKAPAN BERHASIL!", "Luar biasa! Matamu sangat teliti. Kamu berhasil memanen 50 buah dengan sempurna tanpa terkena jebakan!", checkIcon, "alert", () => {
                     // Tetap pertahankan mode Fullscreen untuk Tahap 2
                     nextMissionStage(2); 
                 });
 
-            } else if (arScore % 4 === 0 && currentPhaseIndex < targetPhases.length - 1) {
-                // 🌟 GANTI TARGET SETIAP 4 BUAH TERTANGKAP (Munculkan Overlay Baru)
+            } else if (arScore % 10 === 0 && currentPhaseIndex < targetPhases.length - 1) {
+                // 🌟 GANTI TARGET JEBAKAN SETIAP 10 BUAH TERTANGKAP (Munculkan Overlay Baru)
                 currentPhaseIndex++;
                 showPhaseOverlay(targetPhases[currentPhaseIndex]);
             }
 
         } else {
             
-            // JIKA SALAH MENANGKAP BUAH
-            reduceLife(true); // true = Mainkan suara nottanngkap.mp3
+            // JIKA SALAH (MENYENTUH BUAH JEBAKAN)
+            reduceLife(true); // true = Mainkan suara nottangkap.mp3
             window.arActive = false; // Tahan sensor saat Modal Error muncul
             
-            // Ambil ekspektasi target dari Teks (contoh: "TANGKAP BUAH APEL!" -> "BUAH APEL")
-            const expected = currentTarget.text.replace('TANGKAP ', '').replace('!', '');
+            // Ambil nama jebakan dari Teks (contoh: "HINDARI BUAH APEL!" -> "BUAH APEL")
+            const expected = currentTarget.text.replace('HINDARI ', '').replace('!', '');
             
-            showCustomModal("SALAH TANGKAP!", `Fokuskan matamu! Kamu seharusnya menangkap: ${expected}\\n(Nyawa Berkurang 1)`, lockIcon, "error", () => {
+            showCustomModal("AWAS JEBAKAN!", `Fokuskan matamu! Kamu harus menghindari: ${expected}\\n(Nyawa Berkurang 1)`, lockIcon, "error", () => {
                 if (chapterLives[currentChapter] > 0) {
                     // Beri jeda 1.5 detik agar tangan pemain bisa turun setelah mengeklik tombol OK
                     setTimeout(() => {
