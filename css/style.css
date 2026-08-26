@@ -1136,8 +1136,8 @@ body:has(#mission-screen.active[data-misi="6"]) { background-image: url('../asse
 .mission-wrapper.fullscreen-mode { width: 100% !important; max-width: 100% !important; height: 100% !important; max-height: 100% !important; margin: 0 !important; }
 .mission-full-box.fullscreen-mode { padding: 0 !important; border: none !important; border-radius: 0 !important; background: transparent !important; height: 100% !important; max-width: 100% !important; display: flex !important; align-items: center !important; justify-content: center !important; }
 
-/* Rasio 16:9 dengan Ukuran 80% Layar (Menyisakan margin aman yang luas di semua sisi) */
-.ar-container { position: relative; width: 80%; aspect-ratio: 16 / 9; height: auto; background: #000; border: 0.6cqw solid #111; border-radius: 1.5cqw; overflow: hidden; display: flex; align-items: center; justify-content: center; margin: auto; box-shadow: 0 0 0 100vw rgba(0,0,0,0.7), inset 0 0 3cqw rgba(0,0,0,0.8), 1cqw 1cqw 0 rgba(0,0,0,0.8); }
+/* Ukuran Layar Penuh 100% Tanpa Jendela / Bingkai */
+.ar-container { position: relative; width: 100%; aspect-ratio: 16 / 9; height: auto; background: #000; border: none; border-radius: 0; overflow: hidden; display: flex; align-items: center; justify-content: center; margin: 0; box-shadow: none; }
 #m1-map-area {
     width: 100%;
     max-width: none;

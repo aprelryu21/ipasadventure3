@@ -9,6 +9,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Generator Misi 2: Menyulap isi kotak secara dinamis (Edisi Deep Learning Wasit Lapangan)
 function buildMission2() {
+    // Reset memori status kuis bertahap jika misi diulang
+    window.m2ActiveIndex = {};
+    window.m2FailSafe = {};
+
     document.getElementById('mission-title').innerText = "MISI 2: WASIT LAPANGAN TAMBI";
     const contentArea = document.getElementById('mission-content-area');
     const floatingNext = document.getElementById('floating-next-container');
@@ -818,6 +822,13 @@ function buildMission2() {
 
 // Generator Misi 3: DOKTER CILIK SLG (Deep Learning & Kearifan Lokal)
 function buildMission3() {
+    // Reset memori status detektif QR jika misi diulang
+    window.m3QRScannedCount = 0;
+    window.m3ScannedCodes = [];
+    window.m3CurrentItem = null;
+    if (window.m3InspectedSenses) window.m3InspectedSenses.clear();
+    else window.m3InspectedSenses = new Set();
+
     document.getElementById('mission-title').innerText = "MISI 3: DOKTER CILIK SLG";
     const contentArea = document.getElementById('mission-content-area');
     const floatingNext = document.getElementById('floating-next-container');
@@ -1163,6 +1174,12 @@ function getRejectionDialog(missionId, title1, title2) {
 
 // ================= GENERATOR MISI 1 (KEBANGKITAN SENSORI PASAR KANDANGAN) =================
 function buildMission1() {
+    // Reset memori status mini game jika misi diulang
+    window.m1SacksCleared = [false, false, false, false, false];
+    window.currentActiveSackIndex = null;
+    window.m1SackInspectedSenses = new Set();
+    window.sampahM1Found = 0;
+
     document.getElementById('mission-title').innerText = "MISI 1: MISTERI PASAR KANDANGAN";
     const contentArea = document.getElementById('mission-content-area');
     const floatingNext = document.getElementById('floating-next-container');
@@ -3174,7 +3191,15 @@ window.startDetektifWarna = function() {
                 document.querySelector('.mission-wrapper').classList.remove('fullscreen-mode');
                 document.querySelector('.mission-full-box').classList.remove('fullscreen-mode');
                 document.querySelector('.mission-header').style.display = 'flex';
-                exitMissionScreen();
+                
+                // Memanggil Jurnal Petualang sebelum menutup layar misi
+                if (typeof startJurnal === 'function') {
+                    startJurnal(5, () => {
+                        exitMissionScreen();
+                    });
+                } else {
+                    exitMissionScreen();
+                }
             });
         } else {
             // BERHASIL 1 WARNA, LANJUTKAN KE WARNA BERIKUTNYA
@@ -4093,6 +4118,10 @@ function startM4Intro(divId, textsArray) {
 
 // Generator Misi 4: Merawat Pancaindra (7 TAHAP FULL)
 function buildMission4() {
+    // Reset memori status detektif QR jika misi diulang
+    window.m4QRScannedCount = 0;
+    window.m4ScannedCodes = [];
+
     const contentArea = document.getElementById('mission-content-area');
     const floatingNext = document.getElementById('floating-next-container');
     
