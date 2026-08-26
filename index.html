@@ -18,18 +18,9 @@
     <script src="js/GLTFLoader.js"></script>
     <script src="js/OrbitControls.js"></script>
 
-    <!-- PWA Manifest & Pendaftaran Service Worker untuk Mode Offline -->
-    <link rel="manifest" href="manifest.json">
-    <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          // Karena file ada di folder js/, kita atur scope ke root ('./') agar bisa membaca seluruh folder
-          navigator.serviceWorker.register('./service-worker.js')
-            .then(reg => console.log('Service Worker berhasil didaftarkan dengan scope:', reg.scope))
-            .catch(err => console.log('Pendaftaran Service Worker gagal:', err));
-        });
-      }
-    </script>
+    <!-- Library jsQR untuk Fitur Kamera AR Luring -->
+    <script src="js/jsQR.js"></script>
+
 </head>
 <body>
     <!-- ================= CUSTOM WEB SPLASH SCREEN (VOXEL STYLE) ================= -->
@@ -74,26 +65,35 @@
                 MULAI
                 <div class="shine"></div>
             </button>
-            <div class="menu-buttons animate-slide-up-delay-2">
-                <button class="btn btn-menu" id="btn-pengaturan">
-                    <!-- Ikon Gear/Pengaturan Voxel -->
+            <div class="menu-buttons animate-slide-up-delay-2" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5cqw; width: 75cqw; justify-content: center; margin: 0 auto;">
+                <button class="btn btn-menu" id="btn-pengaturan" style="background-color: #ffa502; width: 100%;">
                     <svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M6 2h4v2h2v2h2v4h-2v2h-2v2H6v-2H4v-2H2V6h2V4h2V2zm0 4v4h4V6H6z"/></svg>
                     PENGATURAN
                 </button>
-                <button class="btn btn-menu" id="btn-skor">
-                    <!-- Ikon Piala/Skor Voxel -->
+                <button class="btn btn-menu" id="btn-skor" style="background-color: #e67e22; width: 100%;">
                     <svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M4 2h8v2h2v4h-2v2h-2v2H6v-2H4V8H2V4h2V2zm2 2v4h4V4H6zm-2 2H3v2h1V6zm9 0h-1v2h1V6z"/></svg>
                     SKOR
                 </button>
-                <button class="btn btn-menu" id="btn-informasi">
-                    <!-- Ikon Info Voxel -->
-                    <svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M8 2a6 6 0 100 12A6 6 0 008 2zM7 5h2v2H7V5zm0 3h2v3H7V8z"/></svg>
-                    INFORMASI
+                <button class="btn btn-menu" id="btn-kredit" style="background-color: #e84393; width: 100%;">
+                    <svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M7 2h2v2H7V2zm-1 4h4v8H6v-2h2V8H6V6z"/></svg>
+                    KREDIT
+                </button>
+                <button class="btn btn-menu" id="btn-jurnal" style="background-color: #9b59b6; width: 100%;">
+                    <svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M13 2H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM3 12V4h2v8H3zm4 0V4h6v8H7z"/></svg>
+                    JURNAL
+                </button>
+                <button class="btn btn-menu" id="btn-materi" style="background-color: #3498db; width: 100%;">
+                    <svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M4 2h8v2h2v10H2V4h2V2zm2 2v2h4V4H6zm-2 4v4h8V8H4z"/></svg>
+                    MATERI
+                </button>
+                <button class="btn btn-menu" id="btn-minigame" style="background-color: #00b894; width: 100%;">
+                    <svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M2 4h12v8H2V4zm2 2v4h2V6H4zm6 0v2h2V6h-2zm-1 3v-1h2v1h-2z"/></svg>
+                    MINI GAME
                 </button>
             </div>
         </div>
 
-        <!-- ================= HALAMAN 3: PENGATURAN ================= -->
+        <!-- ================= HALAMAN PENGATURAN ================= -->
         <div id="settings-screen" class="screen">
             <div class="settings-panel">
                 <h2 class="settings-title">
@@ -101,6 +101,25 @@
                     PENGATURAN
                 </h2>
                 
+                <!-- PENGATURAN AKUN -->
+                <h3 style="color: #3498db; font-size: 1.6cqw; margin-bottom: 0; border-bottom: 0.2cqw dashed #3498db; padding-bottom: 0.5cqw; margin-top: 0;">AKUN PAHLAWAN</h3>
+                <div class="setting-item" style="flex-direction: column; align-items: flex-start; gap: 1cqw;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                        <span style="color: #FFEA00; font-weight: 900;">Nama:</span>
+                        <div style="display: flex; align-items: center; gap: 1cqw;">
+                            <span id="display-player-name" style="font-weight: bold; color: #fff;">-</span>
+                            <!-- Tombol Edit Akun -->
+                            <button class="btn btn-menu" id="btn-edit-account" style="padding: 0.3cqw 0.8cqw; font-size: 1.2cqw; background-color: #3498db;">EDIT</button>
+                        </div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; width: 100%;">
+                        <span style="color: #FFEA00; font-weight: 900;">Gender:</span>
+                        <span id="display-player-gender" style="font-weight: bold; color: #fff;">-</span>
+                    </div>
+                </div>
+
+                <!-- PENGATURAN AUDIO & SISTEM -->
+                <h3 style="color: #e67e22; font-size: 1.6cqw; margin-bottom: 0; border-bottom: 0.2cqw dashed #e67e22; padding-bottom: 0.5cqw; margin-top: 0.5cqw;">AUDIO & SISTEM</h3>
                 <div class="setting-item">
                     <span>Musik Latar</span>
                     <button class="btn btn-toggle on" id="toggle-bgm">ON</button>
@@ -128,59 +147,212 @@
             </div>
         </div>
 
-        <!-- ================= HALAMAN INFORMASI ================= -->
-        <div id="info-screen" class="screen">
+        <!-- ================= HALAMAN KREDIT & CARA MAIN ================= -->
+        <div id="kredit-screen" class="screen">
             <div class="settings-panel">
                 <h2 class="settings-title">
-                    <svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M8 2a6 6 0 100 12A6 6 0 008 2zM7 5h2v2H7V5zm0 3h2v3H7V8z"/></svg>
-                    INFORMASI
+                    <svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M7 2h2v2H7V2zm-1 4h4v8H6v-2h2V8H6V6z"/></svg>
+                    KREDIT & CARA MAIN
                 </h2>
-                
-                <div class="setting-actions" style="flex-direction: column; gap: 2cqw; align-items: center;">
-                    <button class="btn btn-menu" id="btn-credit" style="width: 100%;">
-                        <svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M7 2h2v2H7V2zm-1 4h4v8H6v-2h2V8H6V6z"/></svg> KREDIT
-                    </button>
-                    <button class="btn btn-menu" id="btn-install-apk" style="width: 100%; background-color: #2ed573;">
-                        <svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M8 12l-4-4h2V2h4v6h2L8 12zM2 14h12v2H2v-2z"/></svg> INSTALL APK
-                    </button>
-                    <button class="btn btn-menu" id="btn-install-exe" style="width: 100%; background-color: #9b59b6;">
-                        <svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M8 12l-4-4h2V2h4v6h2L8 12zM2 14h12v2H2v-2z"/></svg> INSTALL EXE
-                    </button>
-                    <button class="btn btn-menu" id="btn-play-online" style="width: 100%; background-color: #3498db;">
-                        <svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M14 8L4 2v12l10-6z"/></svg> PLAY ONLINE
-                    </button>
-                </div>
+                <div style="text-align: center;">
+                    
+                    <!-- 1. HEADER CARA MAIN -->
+                    <h3 style="color: #e67e22; font-size: 1.8cqw; margin-bottom: 1cqw; border-bottom: 0.3cqw dashed #e67e22; padding-bottom: 0.5cqw; margin-top: 0;">CARA MAIN</h3>
+                    <p style="color: #fff; font-size: 1.4cqw; text-align: justify; background: rgba(0,0,0,0.5); padding: 1.5cqw 2cqw; border-radius: 0.5cqw; line-height: 1.6; margin-bottom: 2cqw; border: 0.2cqw solid #111;">
+                        Pemain akan bertualang menjelajahi peta Kabupaten Kediri. Buka setiap kecamatan dan selesaikan rangkaian misi secara berurutan untuk membuka kunci tahapan selanjutnya. Gunakan logika dan pemahaman materi IPAS untuk menjawab setiap tantangan permainan. Hindari memilih jawaban yang salah agar kristal nyawa tidak berkurang. Jika nyawa habis, pemain akan dibawa ke ruang UKS untuk proses pemulihan medis. Permainan dinyatakan tamat dan selesai apabila pemain berhasil menaklukkan Ujian Evaluasi Akhir pada penghujung bab dan mencatatkan namanya di Papan Skor.
+                    </p>
 
-                <button class="btn btn-play" id="btn-back-info" style="margin-top: 3cqw; font-size: 2cqw; padding: 1cqw 3cqw; width: 100%;">
-                    <svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M6 2h2v2H6V2zM4 4h2v2H4V4zM2 6h12v4H2V6zM4 10h2v2H4v-2zM6 12h2v2H6v-2z"/></svg> KEMBALI
-                </button>
-            </div>
-
-            <!-- ================= POPUP KREDIT ================= -->
-            <div id="credit-popup" class="popup-overlay">
-                <div class="popup-box">
-                    <h2 style="color: #FFFF55; margin-top: 0; text-shadow: 0.2cqw 0.2cqw 0px #111;">IPAS ADVENTURE 3</h2>
-                    <img src="assets/item/aprel.webp" alt="Apriliyanto Ratih Sukarno" class="creator-img">
+                    <!-- 2. HEADER PENGEMBANG -->
+                    <h3 style="color: #3498db; font-size: 1.8cqw; margin-bottom: 1cqw; border-bottom: 0.3cqw dashed #3498db; padding-bottom: 0.5cqw;">PENGEMBANG</h3>
+                    <h2 style="color: #FFFF55; margin-top: 1cqw; text-shadow: 0.2cqw 0.2cqw 0px #111;">IPAS ADVENTURE 3</h2>
+                    <img src="assets/item/aprel.webp" alt="Apriliyanto Ratih Sukarno" class="creator-img" style="margin: 1cqw auto;">
                     <h3 style="color: white; margin: 1cqw 0; font-size: 1.8cqw; text-shadow: 0.1cqw 0.1cqw 0px #000;">APRILIYANTO RATIH SUKARNO, S.Pd</h3>
                     <p style="color: #E0E0E0; font-size: 1.3cqw; margin-bottom: 2cqw; line-height: 1.5;">Seorang Tech Enthusiast, Developer, dan Guru Kelas 3 di SD Negeri Medowo 1<br>Kecamatan Kandangan, Kabupaten Kediri.</p>
                     
-                    <div class="social-links">
-                        <a href="https://instagram.com/aprelryu" target="_blank" class="btn btn-social" style="background-color: #e1306c;">
-                            <svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M4 2h8v2h2v8h-2v2H4v-2H2V4h2V2zm2 2v8h4V4H6zm1 2h2v4H7V6z"/></svg> Instagram
-                        </a>
-                        <a href="https://facebook.com/aprel.baka" target="_blank" class="btn btn-social" style="background-color: #3b5998;">
-                            <svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M10 2h2v4h-2v8H6v-8H4V2h2v2h4V2z"/></svg> Facebook
-                        </a>
-                        <a href="https://tiktok.com/@aprelryu" target="_blank" class="btn btn-social" style="background-color: #000000;">
-                            <svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M10 0h2v4h2v2h-2v2h-2V6H8v6H4V6h2v4h2V0z"/></svg> TikTok
-                        </a>
+                    <div class="social-links" style="margin-bottom: 2cqw;">
+                        <a href="https://instagram.com/aprelryu" target="_blank" class="btn btn-social" style="background-color: #e1306c;">Instagram</a>
+                        <a href="https://facebook.com/aprel.baka" target="_blank" class="btn btn-social" style="background-color: #3b5998;">Facebook</a>
+                        <a href="https://tiktok.com/@aprelryu" target="_blank" class="btn btn-social" style="background-color: #000000;">TikTok</a>
                     </div>
                     
-                    <button class="btn btn-menu" id="btn-close-credit" style="margin: 2cqw auto 0 auto; font-size: 1.5cqw; background-color: #ff4757;">TUTUP</button>
-                </div>
-            </div>
+                    <!-- 3. HEADER ASET -->
+                    <h3 style="color: #2ed573; font-size: 1.8cqw; margin-bottom: 1cqw; border-bottom: 0.3cqw dashed #2ed573; padding-bottom: 0.5cqw;">ASET & TEKNOLOGI</h3>
+                    <ul style="color: #fff; font-size: 1.3cqw; text-align: left; background: rgba(0,0,0,0.5); padding: 1.5cqw 3cqw; border-radius: 0.5cqw; line-height: 1.6; list-style-type: square; border: 0.2cqw solid #111; margin-bottom: 2cqw;">
+                        <li><b>Musik Latar:</b> Generate AI dengan <a href="https://suno.com" target="_blank" style="color: #f1c40f;">SUNO AI</a></li>
+                        <li><b>Suara NPC:</b> Generate AI dengan <a href="https://elevenlabs.io" target="_blank" style="color: #f1c40f;">ElevenLabs</a></li>
+                        <li><b>Ilustrasi:</b> Generate AI dengan <a href="https://gemini.google.com" target="_blank" style="color: #f1c40f;">Gemini</a> dan <a href="https://chatgpt.com" target="_blank" style="color: #f1c40f;">ChatGPT</a></li>
+                        <li><b>Efek Suara:</b> Diambil dari <a href="https://www.myinstants.com" target="_blank" style="color: #f1c40f;">MyInstant</a></li>
+                    </ul>
 
-            <!-- POPUP INFO GAMBAR (16:9, 80% Safe Zone) -->
+                    <!-- 4. MENU APLIKASI LAINNYA (DIPINDAHKAN DARI BERANDA) -->
+                    <h3 style="color: #ff4757; font-size: 1.8cqw; margin-bottom: 1cqw; border-bottom: 0.3cqw dashed #ff4757; padding-bottom: 0.5cqw;">APLIKASI LAINNYA</h3>
+                    <div class="setting-actions" style="flex-direction: row; gap: 1cqw; align-items: center; justify-content: center; margin-bottom: 0;">
+                        <button class="btn btn-menu" id="btn-install-apk" style="width: 100%; background-color: #2ed573; font-size: 1.2cqw; padding: 0.5cqw;">
+                            <svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M8 12l-4-4h2V2h4v6h2L8 12zM2 14h12v2H2v-2z"/></svg> APK
+                        </button>
+                        <button class="btn btn-menu" id="btn-install-exe" style="width: 100%; background-color: #9b59b6; font-size: 1.2cqw; padding: 0.5cqw;">
+                            <svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M8 12l-4-4h2V2h4v6h2L8 12zM2 14h12v2H2v-2z"/></svg> EXE
+                        </button>
+                        <button class="btn btn-menu" id="btn-play-online" style="width: 100%; background-color: #3498db; font-size: 1.2cqw; padding: 0.5cqw;">
+                            <svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M14 8L4 2v12l10-6z"/></svg> WEB
+                        </button>
+                    </div>
+                </div>
+                <button class="btn btn-play" id="btn-back-kredit" style="margin-top: 2cqw; font-size: 2cqw; padding: 1cqw 3cqw; width: 100%;">
+                    <svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M6 2h2v2H6V2zM4 4h2v2H4V4zM2 6h12v4H2V6zM4 10h2v2H4v-2zM6 12h2v2H6v-2z"/></svg> KEMBALI
+                </button>
+            </div>
+        </div>
+
+        <!-- ================= HALAMAN JURNAL GLOBAL ================= -->
+        <div id="jurnal-list-screen" class="screen">
+            <div class="settings-panel">
+                <h2 class="settings-title">
+                    <svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M13 2H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM3 12V4h2v8H3zm4 0V4h6v8H7z"/></svg>
+                    KOLEKSI JURNAL
+                </h2>
+                <div id="jurnal-collection-board" style="display: flex; flex-wrap: wrap; gap: 2cqw; justify-content: center; margin-top: 1cqw;">
+                    <!-- Diisi via Javascript berdasarkan memori LocalStorage -->
+                </div>
+                <button class="btn btn-play" id="btn-back-jurnal-list" style="margin-top: 2cqw; font-size: 2cqw; padding: 1cqw 3cqw; width: 100%;">
+                    <svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M6 2h2v2H6V2zM4 4h2v2H4V4zM2 6h12v4H2V6zM4 10h2v2H4v-2zM6 12h2v2H6v-2z"/></svg> KEMBALI
+                </button>
+            </div>
+        </div>
+
+        <!-- ================= HALAMAN KUMPULAN MATERI ================= -->
+        <div id="materi-screen" class="screen">
+            <div class="settings-panel">
+                <h2 class="settings-title">
+                    <svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M4 2h8v2h2v10H2V4h2V2zm2 2v2h4V4H6zm-2 4v4h8V8H4z"/></svg>
+                    MATERI KELAS 3
+                </h2>
+                <p style="text-align: center; color: white; font-size: 1.4cqw; margin-bottom: 2cqw; text-shadow: 0.1cqw 0.1cqw 0 #000;">Klik catatan mading di bawah untuk membaca rangkuman materi dari setiap Bab IPAS.</p>
+                
+                <div class="mading-board" style="width: 100%; max-width: 100%; margin-bottom: 0;">
+                    <div class="sticky-note" style="background: #ff7675; transform: rotate(-2deg);" onclick="showMateriPopup(1)">
+                        <img src="assets/item/anatomi-mata.webp"><span>BAB 1:<br>Pancaindra</span>
+                    </div>
+                    <div class="sticky-note" style="background: #74b9ff; transform: rotate(3deg);" onclick="showMateriPopup(2)">
+                        <img src="assets/item/anak.webp"><span>BAB 2:<br>Sejarah</span>
+                    </div>
+                    <div class="sticky-note" style="background: #00b894; transform: rotate(-1deg); color: white;" onclick="showMateriPopup(3)">
+                        <img src="assets/item/aprel.webp"><span>BAB 3:<br>Keluarga</span>
+                    </div>
+                    <div class="sticky-note" style="background: #fd79a8; transform: rotate(4deg); color: white;" onclick="showMateriPopup(4)">
+                        <img src="assets/item/elang.webp"><span>BAB 4:<br>Siklus Hidup</span>
+                    </div>
+                    <div class="sticky-note" style="background: #e17055; transform: rotate(-3deg); color: white;" onclick="showMateriPopup(5)">
+                        <img src="assets/item/pedagang-buah.webp"><span>BAB 5:<br>Uang & Barter</span>
+                    </div>
+                    <div class="sticky-note" style="background: #f1c40f; transform: rotate(2deg);" onclick="showMateriPopup(6)">
+                        <img src="assets/item/paku.webp"><span>BAB 6:<br>Energi</span>
+                    </div>
+                    <div class="sticky-note" style="background: #a29bfe; transform: rotate(-4deg); color: white;" onclick="showMateriPopup(7)">
+                        <img src="assets/item/peta-tunanetra.webp"><span>BAB 7:<br>Arah & Denah</span>
+                    </div>
+                    <div class="sticky-note" style="background: #81ecec; transform: rotate(1deg);" onclick="showMateriPopup(8)">
+                        <img src="assets/item/mobil.webp"><span>BAB 8:<br>Wujud Zat</span>
+                    </div>
+                </div>
+                
+                <button class="btn btn-play" id="btn-back-materi" style="margin-top: 2cqw; font-size: 2cqw; padding: 1cqw 3cqw; width: 100%;">
+                    <svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M6 2h2v2H6V2zM4 4h2v2H4V4zM2 6h12v4H2V6zM4 10h2v2H4v-2zM6 12h2v2H6v-2z"/></svg> KEMBALI
+                </button>
+            </div>
+        </div>
+
+        <!-- ================= HALAMAN 4: KATALOG MINI GAME ================= -->
+        <div id="minigame-screen" class="screen">
+            <div class="settings-panel" style="width: 75cqw; max-height: 90vh;">
+                <h2 class="settings-title" style="color: #00b894;">
+                    <svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M2 4h12v8H2V4zm2 2v4h2V6H4zm6 0v2h2V6h-2zm-1 3v-1h2v1h-2z"/></svg>
+                    KATALOG MINI GAME
+                </h2>
+                <p style="text-align: center; color: white; font-size: 1.4cqw; margin-bottom: 2cqw; text-shadow: 0.1cqw 0.1cqw 0 #000;">Mainkan game favoritmu secara langsung untuk melatih refleks dan ketangkasan!</p>
+                
+                <!-- Grid Gaya Roblox -->
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: max-content; align-content: start; gap: 2cqw; overflow-y: auto; padding-right: 1cqw; padding-bottom: 2cqw; flex-grow: 1; min-height: 0;">
+                    
+                    <!-- 1. Panen Buah AR -->
+                    <div class="minigame-card" onclick="launchMiniGame('buah')">
+                        <img src="assets/item/apel.webp" alt="Panen Buah">
+                        <h4>Panen Buah AR</h4><span class="mg-badge ar">Kamera AR</span>
+                    </div>
+                    <!-- 2. Detektif Warna AR -->
+                    <div class="minigame-card" onclick="launchMiniGame('warna')">
+                        <div style="width: 100%; height: 10cqw; display:flex; justify-content:center; align-items:center; font-size:4cqw;">🎨</div>
+                        <h4>Detektif Warna AR</h4><span class="mg-badge ar">Kamera AR</span>
+                    </div>
+                    <!-- 3. Inspeksi Barang QR -->
+                    <div class="minigame-card" onclick="launchMiniGame('qr-barang')">
+                        <div style="width: 100%; height: 10cqw; display:flex; justify-content:center; align-items:center; font-size:4cqw;">📦</div>
+                        <h4>Inspeksi Barang QR</h4><span class="mg-badge qr">Scanner QR</span>
+                    </div>
+                    <!-- 4. Detektif Bau QR -->
+                    <div class="minigame-card" onclick="launchMiniGame('bau')">
+                        <div style="width: 100%; height: 10cqw; display:flex; justify-content:center; align-items:center; font-size:4cqw;">📷</div>
+                        <h4>Detektif Bau QR</h4><span class="mg-badge qr">Scanner QR</span>
+                    </div>
+                    <!-- 5. Uji Refleks Wasit -->
+                    <div class="minigame-card" onclick="launchMiniGame('wasit')">
+                        <img src="assets/item/alat-mata.webp" alt="Wasit">
+                        <h4>Uji Refleks Wasit</h4><span class="mg-badge action">Ketangkasan</span>
+                    </div>
+                    <!-- 6. Detektif Suara -->
+                    <div class="minigame-card" onclick="launchMiniGame('suara')">
+                        <img src="assets/item/alat-telinga.webp" alt="Suara">
+                        <h4>Detektif Suara</h4><span class="mg-badge audio">Audio</span>
+                    </div>
+                    <!-- 7. Operasi Bersih Pasar -->
+                    <div class="minigame-card" onclick="launchMiniGame('sampah')">
+                        <img src="assets/item/sampah-botol.webp" alt="Sampah">
+                        <h4>Operasi Bersih Pasar</h4><span class="mg-badge find">Pencarian</span>
+                    </div>
+                    <!-- 8. Senter Pasar Kandangan -->
+                    <div class="minigame-card" onclick="launchMiniGame('senter-pasar')">
+                        <div style="width: 100%; height: 10cqw; display:flex; justify-content:center; align-items:center; font-size:4cqw;">🔦</div>
+                        <h4>Senter Pasar Kandangan</h4><span class="mg-badge find">Eksplorasi</span>
+                    </div>
+                    <!-- 9. Detektif Alam Banyu Bening -->
+                    <div class="minigame-card" onclick="launchMiniGame('senter-alam')">
+                        <img src="assets/item/elang.webp" alt="Alam">
+                        <h4>Detektif Alam</h4><span class="mg-badge find">Eksplorasi</span>
+                    </div>
+                    <!-- 10. Detektif Malam Gandrung -->
+                    <div class="minigame-card" onclick="launchMiniGame('senter-malam')">
+                        <div style="width: 100%; height: 10cqw; display:flex; justify-content:center; align-items:center; font-size:4cqw;">⛺</div>
+                        <h4>Detektif Malam</h4><span class="mg-badge find">Eksplorasi</span>
+                    </div>
+                    <!-- 11. Simulasi Tunanetra -->
+                    <div class="minigame-card" onclick="launchMiniGame('sim-netra')">
+                        <img src="assets/item/peta-tunanetra.webp" alt="Tunanetra">
+                        <h4>Simulasi Tunanetra</h4><span class="mg-badge action">Adaptasi</span>
+                    </div>
+                    <!-- 12. Simulasi Tunarungu -->
+                    <div class="minigame-card" onclick="launchMiniGame('sim-rungu')">
+                        <img src="assets/item/mobil.webp" alt="Tunarungu">
+                        <h4>Simulasi Tunarungu</h4><span class="mg-badge action">Ketangkasan</span>
+                    </div>
+                    <!-- 13. Simulasi Buta Warna -->
+                    <div class="minigame-card" onclick="launchMiniGame('sim-butawarna')">
+                        <img src="assets/item/anggur.webp" alt="Buta Warna">
+                        <h4>Simulasi Buta Warna</h4><span class="mg-badge find">Visual</span>
+                    </div>
+                    <!-- 14. Simulasi Mati Rasa -->
+                    <div class="minigame-card" onclick="launchMiniGame('sim-matirasa')">
+                        <img src="assets/item/paku.webp" alt="Mati Rasa">
+                        <h4>Simulasi Mati Rasa</h4><span class="mg-badge action">Ketangkasan</span>
+                    </div>
+
+                </div>
+
+                <button class="btn btn-play" id="btn-back-minigame" style="margin-top: 2cqw; font-size: 2cqw; padding: 1cqw 3cqw; width: 100%;">
+                    <svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M6 2h2v2H6V2zM4 4h2v2H4V4zM2 6h12v4H2V6zM4 10h2v2H4v-2zM6 12h2v2H6v-2z"/></svg> KEMBALI
+                </button>
+            </div>
+            
+            <!-- POPUP INFO GAMBAR TETAP DISINI -->
             <div id="info-image-popup" class="popup-overlay" style="z-index: 1000;">
                 <div class="popup-box" style="width: 80cqw; height: 45cqw; padding: 0; background: transparent; border: none; box-shadow: none; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative;">
                     <button class="btn-close-img" id="btn-close-info-img" style="top: -2cqw; right: -2cqw; z-index: 10;">X</button>
@@ -189,13 +361,12 @@
             </div>
         </div>
 
-        <!-- ================= HALAMAN 4: PAPAN SKOR ================= -->
+        <!-- ================= HALAMAN PAPAN SKOR ================= -->
         <div id="score-screen" class="screen">
-            <div class="settings-panel" style="width: 50cqw;">
-                <h2 class="settings-title" style="color: #FFEA00;">
+            <div class="settings-panel">
+                <h2 class="settings-title">
                     <svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M4 2h8v2h2v4h-2v2h-2v2H6v-2H4V8H2V4h2V2zm2 2v4h4V4H6zm-2 2H3v2h1V6zm9 0h-1v2h1V6z"/></svg>
                     PAPAN SKOR
-                    <svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M4 2h8v2h2v4h-2v2h-2v2H6v-2H4V8H2V4h2V2zm2 2v4h4V4H6zm-2 2H3v2h1V6zm9 0h-1v2h1V6z"/></svg>
                 </h2>
                 
                 <div class="score-board">
@@ -415,6 +586,30 @@
             </div>
         </div>
 
+        <!-- ================= QUEST BOARD (TUJUAN PEMBELAJARAN) ================= -->
+        <div id="quest-board-overlay" class="popup-overlay" style="z-index: 9999;">
+            <div class="quest-board-box">
+                <button class="btn-close-img" id="btn-close-quest" style="top: -1.5cqw; right: -1.5cqw; z-index: 10;">X</button>
+                <div class="quest-header">
+                    <h2 id="quest-chapter-title">BAB X: JUDUL</h2>
+                    <h3 id="quest-district-title">LOKASI: KECAMATAN Y</h3>
+                </div>
+                <div class="quest-content">
+                    <div class="quest-section">
+                        <h4>🎯 TARGET MISI (TUJUAN PEMBELAJARAN)</h4>
+                        <p id="quest-tp-text">Teks memuat...</p>
+                    </div>
+                    <div class="quest-section">
+                        <h4>📝 DAFTAR PENYELIDIKAN (INDIKATOR)</h4>
+                        <ul id="quest-indikator-list">
+                            <!-- List akan disuntik dari Javascript -->
+                        </ul>
+                    </div>
+                </div>
+                <button class="btn btn-play quest-start-btn" id="btn-start-quest">MULAI PETUALANGAN</button>
+            </div>
+        </div>
+
         <!-- ================= OVERLAY RUANG UKS (HUKUMAN) ================= -->
         <div id="uks-overlay" class="uks-overlay" style="display: none;"></div>
 
@@ -567,17 +762,88 @@
             </div>
         </div>
 
-        <!-- ================= INPUT NAMA (TAMAT BAB 1) ================= -->
-        <div id="name-modal" class="popup-overlay" style="z-index: 999;">
+        <!-- ================= INPUT NAMA & GENDER (AWAL PERMAINAN) ================= -->
+        <style>
+            /* Gaya Interaktif untuk Kartu Pemilihan Gender SVG */
+            .gender-card input[type="radio"]:checked + .gender-icon-box {
+                border-color: #FFEA00 !important;
+                box-shadow: 0 0 1.5cqw #FFEA00;
+                transform: scale(1.1);
+            }
+            .gender-card input[type="radio"]:not(:checked) + .gender-icon-box {
+                opacity: 0.5;
+                border-color: #111 !important;
+            }
+        </style>
+        <div id="name-modal" class="popup-overlay" style="z-index: 9999;">
             <div class="popup-box" style="width: 45cqw; background-color: #2f3542;">
                 <h2 class="settings-title" style="color: #FFEA00;">
                     <svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M4 2h8v2h2v4h-2v2h-2v2H6v-2H4V8H2V4h2V2zm2 2v4h4V4H6zm-2 2H3v2h1V6zm9 0h-1v2h1V6z"/></svg>
-                    TAMAT BAB 1!
+                    PENDAFTARAN PAHLAWAN
                 </h2>
-                <p style="color: white; font-size: 1.8cqw; margin: 3cqw 0; text-shadow: 0.1cqw 0.1cqw 0px #000; line-height: 1.5;">Selamat! Kamu resmi lulus dari materi Pancaindra. Masukkan namamu untuk dicatat dalam Papan Peringkat:</p>
-                <input type="text" id="player-name-input" maxlength="15" placeholder="Nama Pahlawan..." style="width: 80%; padding: 1cqw; font-size: 2cqw; text-align: center; font-weight: bold; font-family: inherit; margin-bottom: 3cqw; border: 0.3cqw solid #111; border-radius: 0.5cqw; outline: none; background: #dfe6e9;">
+                <p style="color: white; font-size: 1.5cqw; margin: 2cqw 0; text-shadow: 0.1cqw 0.1cqw 0px #000; line-height: 1.5;">Katakan padaku, siapa namamu dan apa jenis kelaminmu?</p>
+                <input type="text" id="player-name-input" maxlength="15" placeholder="Nama Pahlawan..." style="width: 80%; padding: 1cqw; font-size: 2cqw; text-align: center; font-weight: bold; font-family: inherit; margin-bottom: 2cqw; border: 0.3cqw solid #111; border-radius: 0.5cqw; outline: none; background: #dfe6e9;">
+                
+                <div style="display: flex; justify-content: center; gap: 4cqw; margin-bottom: 3cqw;">
+                    <!-- Kartu SVG Laki-laki Voxel -->
+                    <label class="gender-card" style="cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 0.8cqw;">
+                        <input type="radio" name="player-gender" value="Laki-laki" checked style="display: none;">
+                        <div class="gender-icon-box" style="width: 8cqw; height: 8cqw; background: #3498db; border: 0.4cqw solid #fff; border-radius: 1cqw; display: flex; align-items: center; justify-content: center; transition: all 0.2s;">
+                            <!-- SVG Anak Laki-Laki (Voxel Art) -->
+                            <svg viewBox="0 0 16 16" style="width: 5cqw; height: 5cqw; fill: white;">
+                                <rect x="4" y="0" width="8" height="8" />
+                                <rect x="5" y="8" width="6" height="5" />
+                                <rect x="3" y="8" width="2" height="4" />
+                                <rect x="11" y="8" width="2" height="4" />
+                                <rect x="5" y="13" width="2" height="3" />
+                                <rect x="9" y="13" width="2" height="3" />
+                            </svg>
+                        </div>
+                        <span style="color: white; font-size: 1.5cqw; font-weight: bold; text-shadow: 0.1cqw 0.1cqw 0px #000;">Laki-laki</span>
+                    </label>
+                    
+                    <!-- Kartu SVG Perempuan Voxel -->
+                    <label class="gender-card" style="cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 0.8cqw;">
+                        <input type="radio" name="player-gender" value="Perempuan" style="display: none;">
+                        <div class="gender-icon-box" style="width: 8cqw; height: 8cqw; background: #e84393; border: 0.4cqw solid #fff; border-radius: 1cqw; display: flex; align-items: center; justify-content: center; transition: all 0.2s;">
+                            <!-- SVG Anak Perempuan (Voxel Rok/Dress) -->
+                            <svg viewBox="0 0 16 16" style="width: 5cqw; height: 5cqw; fill: white;">
+                                <rect x="4" y="0" width="8" height="7" />
+                                <rect x="3" y="2" width="10" height="6" />
+                                <rect x="5" y="8" width="6" height="2" />
+                                <rect x="4" y="10" width="8" height="2" />
+                                <rect x="3" y="12" width="10" height="2" />
+                                <rect x="2" y="8" width="2" height="3" />
+                                <rect x="12" y="8" width="2" height="3" />
+                                <rect x="5" y="14" width="2" height="2" />
+                                <rect x="9" y="14" width="2" height="2" />
+                            </svg>
+                        </div>
+                        <span style="color: white; font-size: 1.5cqw; font-weight: bold; text-shadow: 0.1cqw 0.1cqw 0px #000;">Perempuan</span>
+                    </label>
+                </div>
+
                 <div class="setting-actions" style="justify-content: center; gap: 2cqw;">
-                    <button class="btn btn-play" id="btn-save-score" style="margin-bottom: 0; font-size: 1.8cqw; padding: 1cqw 3cqw;">SIMPAN SKOR</button>
+                    <button class="btn btn-play" id="btn-save-score" style="margin-bottom: 0; font-size: 1.8cqw; padding: 1cqw 3cqw;">SIMPAN & LANJUT</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= POPUP BACA MATERI (PAGINATION) ================= -->
+        <div id="materi-reader-overlay" class="popup-overlay" style="z-index: 9998;">
+            <div class="popup-box" style="width: 65cqw; height: 45cqw; display: flex; flex-direction: column; background-color: #2c3e50; padding: 2cqw; position: relative;">
+                <button class="btn-close-img" onclick="document.getElementById('materi-reader-overlay').classList.remove('active')" style="position: absolute; top: -1.5cqw; right: -1.5cqw; z-index: 10; background: #ff4757; color: white; border: 0.4cqw solid #111; width: 3.5cqw; height: 3.5cqw; border-radius: 50%; font-weight: bold; font-size: 2cqw; display: flex; justify-content: center; align-items: center; cursor: pointer; box-shadow: 0.3cqw 0.3cqw 0px #111; padding: 0;">X</button>
+                
+                <h2 id="materi-reader-title" class="settings-title" style="color: #2ed573; margin: 0 0 1cqw 0;">BAB X</h2>
+                
+                <div id="materi-reader-content" style="flex-grow: 1; overflow-y: auto; background: rgba(255,255,255,0.95); padding: 1.5cqw 2cqw; border-radius: 0.5cqw; color: #111; font-size: 1.4cqw; text-align: left; line-height: 1.6; border: 0.3cqw dashed #27ae60; box-shadow: inset 0.2cqw 0.2cqw 5px rgba(0,0,0,0.2);">
+                    <!-- Konten akan disuntikkan dari JS -->
+                </div>
+                
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.5cqw;">
+                    <button class="btn btn-menu" id="btn-materi-prev" style="background-color: #e67e22; padding: 0.8cqw 2cqw; font-size: 1.5cqw;">&laquo; SEBELUMNYA</button>
+                    <span id="materi-page-indicator" style="color: #FFEA00; font-size: 1.8cqw; font-weight: bold; text-shadow: 0.1cqw 0.1cqw 0 #000;">Hal 1 / 5</span>
+                    <button class="btn btn-play" id="btn-materi-next" style="margin-bottom: 0; padding: 0.8cqw 2cqw; font-size: 1.5cqw;">SELANJUTNYA &raquo;</button>
                 </div>
             </div>
         </div>

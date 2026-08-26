@@ -7,387 +7,869 @@ document.addEventListener('DOMContentLoaded', () => {
     originalFloatingNextHTML = document.getElementById('floating-next-container').innerHTML;
 });
 
-// Generator Misi 2: Menyulap isi kotak secara dinamis!
+// Generator Misi 2: Menyulap isi kotak secara dinamis (Edisi Deep Learning Wasit Lapangan)
 function buildMission2() {
-    document.getElementById('mission-title').innerText = "MISI 2: FUNGSI UTAMA PANCAINDRA";
+    document.getElementById('mission-title').innerText = "MISI 2: WASIT LAPANGAN TAMBI";
     const contentArea = document.getElementById('mission-content-area');
     const floatingNext = document.getElementById('floating-next-container');
     
-    // Injeksi HTML Raksasa Misi 2 (Tarik Garis & 3D Lengkap)
     contentArea.innerHTML = `
         <div id="stage-1" class="mission-stage active-stage">
-            <h3 class="stage-title">TAHAP 1: PENGANTAR FUNGSI</h3>
+            <h3 class="stage-title">TAHAP 1: MEJA INSPEKSI WASIT</h3>
             
-            <!-- Tambahan Penjelasan Sebelum Tantangan (Misi 2) -->
             <div id="m2-s1-intro" style="display:flex; flex-direction:column; align-items:center; width: 100%;">
                 <div class="mission-text-box" style="font-size: 1.4cqw; text-align: center; margin-bottom: 2cqw;">
-                    <p>Selamat datang di <b>Lapangan Tambi</b>! Di sini banyak orang sedang berolahraga.</p>
-                    <p>Sekarang, kita akan belajar tentang <b>Fungsi Utama</b> dari kelima pancaindra kita.</p>
-                    <p>Cara memainkannya sangat mudah! Kamu hanya perlu menarik garis (sentuh dan geser) dari nama organ di sebelah kiri, menuju ke fungsi kegiatannya yang tepat di sebelah kanan.</p>
+                    <p>Selamat datang di <b>Markas Wasit Lapangan Tambi</b>!</p>
+                    <p>Sebelum turun ke lapangan, seorang wasit harus mengkalibrasi logika otaknya dalam menyelesaikan insiden. Di mejamu terdapat 5 berkas laporan insiden.</p>
+                    <p>Tarik lencana pancaindra yang paling tepat untuk menangani setiap insiden tersebut!</p>
                 </div>
-                <button class="btn btn-play" style="font-size: 1.5cqw; padding: 1cqw 3cqw;" onclick="document.getElementById('m2-s1-intro').style.display='none'; document.getElementById('m2-s1-game').style.display='flex';">LANJUT MEMAINKAN TANTANGAN</button>
+                <button class="btn btn-play" style="font-size: 1.5cqw; padding: 1cqw 3cqw;" onclick="document.getElementById('m2-s1-intro').style.display='none'; document.getElementById('m2-s1-game').style.display='flex';">MULAI INSPEKSI BERKAS</button>
             </div>
             
             <div id="m2-s1-game" style="display:none; flex-direction:column; align-items:center; width:100%;">
-                <p class="mission-text-box" style="margin-bottom: 0.5cqw;">Tarik garis untuk mencocokkan nama organ dengan kegiatannya!</p>
-                <div class="match-container">
-                    <svg class="match-svg"></svg>
-                    <div class="match-col match-left">
-                        <div class="match-item" data-match="f_mata" style="order: ${Math.floor(Math.random()*5)}">Mata</div>
-                        <div class="match-item" data-match="f_telinga" style="order: ${Math.floor(Math.random()*5)}">Telinga</div>
-                        <div class="match-item" data-match="f_hidung" style="order: ${Math.floor(Math.random()*5)}">Hidung</div>
-                        <div class="match-item" data-match="f_lidah" style="order: ${Math.floor(Math.random()*5)}">Lidah</div>
-                        <div class="match-item" data-match="f_kulit" style="order: ${Math.floor(Math.random()*5)}">Kulit</div>
-                    </div>
-                    <div class="match-col match-right">
-                        <div class="match-target" data-id="f_hidung" style="order: ${Math.floor(Math.random()*5)}">Membau</div>
-                        <div class="match-target" data-id="f_mata" style="order: ${Math.floor(Math.random()*5)}">Melihat</div>
-                        <div class="match-target" data-id="f_lidah" style="order: ${Math.floor(Math.random()*5)}">Mengecap</div>
-                        <div class="match-target" data-id="f_telinga" style="order: ${Math.floor(Math.random()*5)}">Mendengar</div>
-                        <div class="match-target" data-id="f_kulit" style="order: ${Math.floor(Math.random()*5)}">Meraba</div>
-                    </div>
-                </div>
-            </div> <!-- INI DIA PENUTUP YANG HILANG! -->
-        </div>
+                <p class="mission-text-box" style="margin-bottom: 1cqw; text-align: center; padding: 0.6cqw 1.5cqw !important;">Tarik Lencana Sensor di bawah dan tempelkan ke Kotak Insiden yang membutuhkan fungsinya!</p>
+                
+                <div class="dnd-game-area" style="flex-direction: column !important; gap: 0.8cqw !important; width: 100%;">
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1cqw; width: 100%; box-sizing: border-box;">
+                        <!-- Insiden 1 -->
+                        <div style="background: rgba(255,255,255,0.9); border: 0.3cqw solid #2c3e50; border-radius: 0.5cqw; padding: 0.8cqw 1cqw; width: 100%; display: flex; align-items: center; justify-content: space-between; box-shadow: 0.2cqw 0.2cqw 0 #111; box-sizing: border-box;">
+                            <span style="font-size: 1.2cqw; font-weight: bold; color: #111; width: 70%; text-align: left; line-height: 1.2;">"Cek video ulangan (VAR) apakah bola melewati garis gawang."</span>
+                            <div class="dnd-drop-zone" data-match="l_mata" style="position: relative !important; transform: none !important; width: 7cqw; height: 2.5cqw; border: 0.2cqw dashed #111;"></div>
+                        </div>
+                        
+                        <!-- Insiden 2 -->
+                        <div style="background: rgba(255,255,255,0.9); border: 0.3cqw solid #2c3e50; border-radius: 0.5cqw; padding: 0.8cqw 1cqw; width: 100%; display: flex; align-items: center; justify-content: space-between; box-shadow: 0.2cqw 0.2cqw 0 #111; box-sizing: border-box;">
+                            <span style="font-size: 1.2cqw; font-weight: bold; color: #111; width: 70%; text-align: left; line-height: 1.2;">"Pastikan bunyi peluit tersebut asli dari wasit utama."</span>
+                            <div class="dnd-drop-zone" data-match="l_telinga" style="position: relative !important; transform: none !important; width: 7cqw; height: 2.5cqw; border: 0.2cqw dashed #111;"></div>
+                        </div>
 
-        <div id="stage-2" class="mission-stage">
-            <h3 class="stage-title" style="color: #2980b9;">TAHAP 2: FUNGSI MATA</h3>
-            <div id="stage-2-intro" class="stage-layout">
-                <div class="stage-img-box" onclick="open3DViewer('assets/3d/mata.glb', 'MATA (INDRA PENGLIHAT)')" title="Klik untuk Memutar 3D">
-                    <img src="assets/item/anatomi-mata.webp" alt="Mata" style="width: 100%; height: 12cqw; object-fit: cover; background: #dfe6e9;">
-                    <div style="position: absolute; top: 0; left: 0; background: #ff4757; color: white; padding: 0.2cqw 1cqw; font-size: 1.2cqw; font-weight: bold;">3D INTERAKTIF</div>
-                </div>
-                <div class="stage-content-right">
-                    <p class="mission-text-box" style="width: auto; font-size: 1.3cqw;">Fungsi utama <b>MATA</b> adalah untuk mengenali cahaya, warna, dan bentuk benda di sekitar kita.<br><br>Klik kotak 3D di samping untuk melihat bagian-bagian mata!</p>
-                    <button class="btn btn-play" style="font-size: 1.5cqw;" onclick="proceedToQuiz(2)">MULAI TANTANGAN MATA</button>
+                        <!-- Insiden 3 -->
+                        <div style="background: rgba(255,255,255,0.9); border: 0.3cqw solid #2c3e50; border-radius: 0.5cqw; padding: 0.8cqw 1cqw; width: 100%; display: flex; align-items: center; justify-content: space-between; box-shadow: 0.2cqw 0.2cqw 0 #111; box-sizing: border-box;">
+                            <span style="font-size: 1.2cqw; font-weight: bold; color: #111; width: 70%; text-align: left; line-height: 1.2;">"Periksa apakah bekal makanan atlet ini sudah basi."</span>
+                            <div class="dnd-drop-zone" data-match="l_hidung" style="position: relative !important; transform: none !important; width: 7cqw; height: 2.5cqw; border: 0.2cqw dashed #111;"></div>
+                        </div>
+
+                        <!-- Insiden 4 -->
+                        <div style="background: rgba(255,255,255,0.9); border: 0.3cqw solid #2c3e50; border-radius: 0.5cqw; padding: 0.8cqw 1cqw; width: 100%; display: flex; align-items: center; justify-content: space-between; box-shadow: 0.2cqw 0.2cqw 0 #111; box-sizing: border-box;">
+                            <span style="font-size: 1.2cqw; font-weight: bold; color: #111; width: 70%; text-align: left; line-height: 1.2;">"Cicipi minuman atlet agar tak tertukar air garam."</span>
+                            <div class="dnd-drop-zone" data-match="l_lidah" style="position: relative !important; transform: none !important; width: 7cqw; height: 2.5cqw; border: 0.2cqw dashed #111;"></div>
+                        </div>
+
+                        <!-- Insiden 5 (Ditengah Bawah) -->
+                        <div style="background: rgba(255,255,255,0.9); border: 0.3cqw solid #2c3e50; border-radius: 0.5cqw; padding: 0.8cqw 1cqw; display: flex; align-items: center; justify-content: space-between; box-shadow: 0.2cqw 0.2cqw 0 #111; box-sizing: border-box; grid-column: 1 / -1; justify-self: center; width: 60%;">
+                            <span style="font-size: 1.2cqw; font-weight: bold; color: #111; width: 70%; text-align: left; line-height: 1.2;">"Cek rumput lapangan, apakah terlalu licin sehabis hujan."</span>
+                            <div class="dnd-drop-zone" data-match="l_kulit" style="position: relative !important; transform: none !important; width: 7cqw; height: 2.5cqw; border: 0.2cqw dashed #111;"></div>
+                        </div>
+                    </div>
+
+                    <div class="dnd-bank" style="width: 100% !important; flex-direction: row !important; margin-top: 1cqw; min-height: auto !important;">
+                        <div class="dnd-item" style="background: #e74c3c;" data-id="l_mata">Sensor Mata</div>
+                        <div class="dnd-item" style="background: #e67e22;" data-id="l_hidung">Sensor Hidung</div>
+                        <div class="dnd-item" style="background: #27ae60;" data-id="l_kulit">Sensor Kulit</div>
+                        <div class="dnd-item" style="background: #8e44ad;" data-id="l_telinga">Sensor Telinga</div>
+                        <div class="dnd-item" style="background: #2980b9;" data-id="l_lidah">Sensor Lidah</div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div id="stage-2-quiz" class="stage-layout" style="display: none;">
+
+            <style>
+                .btn-arcade {
+                    background: #fff; border: 0.4cqw solid #111; border-radius: 1cqw; padding: 1cqw;
+                    box-shadow: 0.4cqw 0.4cqw 0 #111; cursor: pointer; transition: all 0.1s;
+                }
+                .btn-arcade:active { transform: translate(0.3cqw, 0.3cqw); box-shadow: 0 0 0 #111; }
+                .btn-arcade:hover { background: #f1c40f; }
+            </style>
+
+            <!-- STAGE ARCADE (SELINGAN UJI REFLEKS FULLSCREEN) -->
+            <div id="stage-arcade" class="mission-stage" style="width: 100%; height: 100%;">
+                <div class="ar-container" style="background-image: url('assets/background/mission2.webp'); background-size: cover; background-position: center; position: relative; width: 100%; height: 100%; border: none; border-radius: 0; box-shadow: none;">
+                    
+                    <div id="arcade-intro" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 30; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                        <h2 style="color: #f1c40f; font-size: 3.5cqw; text-shadow: 0.2cqw 0.2cqw 0 #111; margin-bottom: 1cqw;">UJI REFLEKS SENSORI WASIT</h2>
+                        <p style="color: white; font-size: 1.8cqw; text-align: center; margin-bottom: 2cqw; padding: 0 5cqw;">10 Kartu Kejadian Lapangan akan muncul di layar secara bergantian!<br>Serang dan hancurkan kartu kejadian tersebut dengan <b>melemparkan Tombol Pancaindra</b> yang paling tepat.</p>
+                        <button class="btn btn-play" style="font-size: 2cqw; padding: 1cqw 3cqw;" onclick="startArcadeM2()">MULAI UJIAN!</button>
+                    </div>
+
+                    <button class="btn-close-mission" style="position: absolute; top: 1.5cqw; right: 1.5cqw; z-index: 35;" onclick="exitMissionScreen()">X</button>
+
+                    <!-- Area Pertarungan Tengah -->
+                    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;" id="arcade-battle-area">
+                        <!-- Kartu Target -->
+                        <div id="arcade-target-card" style="background: white; color: #111; border: 0.5cqw solid #111; border-radius: 1cqw; padding: 3cqw 5cqw; font-size: 2.5cqw; font-weight: 900; text-align: center; box-shadow: 0.5cqw 0.5cqw 0 #111; z-index: 10; display: none; text-transform: uppercase; max-width: 70%;">
+                            MEMUAT KEJADIAN...
+                        </div>
+                    </div>
+
+                    <!-- Tombol Lencana Bawah (Menempel di Dasar Layar Penuh) -->
+                    <div style="position: absolute; bottom: 5%; left: 50%; transform: translateX(-50%); display: flex; gap: 2cqw; z-index: 20; justify-content: center; width: 100%;">
+                        <button class="btn-arcade" id="btn-arc-mata" onclick="throwOrganM2('mata')"><img src="assets/item/alat-mata.webp" style="width:6cqw; display:block;"></button>
+                        <button class="btn-arcade" id="btn-arc-telinga" onclick="throwOrganM2('telinga')"><img src="assets/item/alat-telinga.webp" style="width:6cqw; display:block;"></button>
+                        <button class="btn-arcade" id="btn-arc-hidung" onclick="throwOrganM2('hidung')"><img src="assets/item/alat-hidung.webp" style="width:6cqw; display:block;"></button>
+                        <button class="btn-arcade" id="btn-arc-lidah" onclick="throwOrganM2('lidah')"><img src="assets/item/alat-lidah.webp" style="width:6cqw; display:block;"></button>
+                        <button class="btn-arcade" id="btn-arc-kulit" onclick="throwOrganM2('kulit')"><img src="assets/item/alat-kulit.webp" style="width:6cqw; display:block;"></button>
+                    </div>
+
+                </div>
+            </div>
+
+        <div id="stage-2" class="mission-stage">
+            <h3 class="stage-title" style="color: #2980b9;">TAHAP 2: 3 INSIDEN PENGLIHATAN (MATA)</h3>
+            <div id="stage-2-intro" class="stage-layout">
+                <div class="stage-img-box" onclick="open3DViewer('assets/3d/mata.glb', 'MATA (INDRA PENGLIHAT)')">
+                    <img src="assets/item/anatomi-mata.webp" alt="Mata" style="width: 100%; height: 12cqw; object-fit: cover; background: #dfe6e9;">
+                </div>
                 <div class="stage-content-right">
-                    <p class="mission-text-box" style="width: auto;">Saat berolahraga di Lapangan Tambi, kamu melihat temanmu berlari memakai baju olahraga berwarna merah cerah. Apa fungsi matamu pada kejadian tersebut?</p>
-                    <div class="explore-grid" id="grid-m2-s2" style="width: auto;"></div>
+                    <p class="mission-text-box" style="width: auto; font-size: 1.3cqw;">Fungsi utama <b>MATA</b> di lapangan bukan sekadar melihat, melainkan menganalisis situasi kritis, menguji fakta medis, dan mengambil urutan keputusan darurat.</p>
+                    <button class="btn btn-play" style="font-size: 1.5cqw;" onclick="proceedToQuiz(2)">MULAI 3 KASUS MATA</button>
+                </div>
+            </div>
+            <div id="stage-2-quiz" class="stage-layout" style="display: none; width: 100%; flex-direction: column; align-items: center;">
+                <div id="m2-s2-content-box" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+                    <!-- Soal dinamis akan disuntikkan oleh Javascript -->
                 </div>
             </div>
         </div>
 
         <div id="stage-3" class="mission-stage">
-            <h3 class="stage-title" style="color: #8e44ad;">TAHAP 3: FUNGSI TELINGA</h3>
+            <h3 class="stage-title" style="color: #8e44ad;">TAHAP 3: INSIDEN PENDENGARAN</h3>
             <div id="stage-3-intro" class="stage-layout">
-                <div class="stage-img-box" onclick="open3DViewer('assets/3d/telinga.glb', 'TELINGA (INDRA PENDENGAR)')" title="Klik untuk Memutar 3D">
+                <div class="stage-img-box" onclick="open3DViewer('assets/3d/telinga.glb', 'TELINGA (INDRA PENDENGAR)')">
                     <img src="assets/item/anatomi-telinga.webp" alt="Telinga" style="width: 100%; height: 12cqw; object-fit: cover; background: #dfe6e9;">
-                    <div style="position: absolute; top: 0; left: 0; background: #ff4757; color: white; padding: 0.2cqw 1cqw; font-size: 1.2cqw; font-weight: bold;">3D INTERAKTIF</div>
                 </div>
                 <div class="stage-content-right">
-                    <p class="mission-text-box" style="width: auto; font-size: 1.3cqw;">Fungsi utama <b>TELINGA</b> adalah menangkap gelombang dan getaran suara di udara.<br><br>Klik kotak 3D di samping untuk melihat bentuknya!</p>
-                    <button class="btn btn-play" style="font-size: 1.5cqw;" onclick="proceedToQuiz(3)">MULAI TANTANGAN TELINGA</button>
+                    <p class="mission-text-box" style="width: auto; font-size: 1.3cqw;">Fungsi <b>TELINGA</b> sangat vital sebagai sistem peringatan dini. Ia dapat mendeteksi arah dan jenis bahaya meskipun mata terhalang oleh keramaian.</p>
+                    <button class="btn btn-play" style="font-size: 1.5cqw;" onclick="proceedToQuiz(3)">SELESAIKAN INSIDEN</button>
                 </div>
             </div>
-            <div id="stage-3-quiz" class="stage-layout" style="display: none;">
-                <div class="stage-content-right">
-                    <p class="mission-text-box" style="width: auto;">Tiba-tiba kamu mendengar tiupan peluit yang keras dari wasit di tengah lapangan. Indra apa yang bertugas menangkap suara itu?</p>
-                    <div class="explore-grid" id="grid-m2-s3" style="width: auto;"></div>
+            <div id="stage-3-quiz" style="display: none; width: 100%; flex-direction: column; align-items: center;">
+                <div id="m2-s3-content-box" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+                    <!-- Soal dinamis Tahap 3 disuntikkan oleh JS -->
                 </div>
             </div>
         </div>
 
+        <!-- STAGE SELINGAN: DETEKTIF SUARA (FULLSCREEN) -->
+        <div id="stage-audio-detektif" class="mission-stage" style="width: 100%; height: 100%;">
+            <div class="ar-container" style="background: linear-gradient(135deg, #2c3e50, #1a252f); position: relative; width: 100%; height: 100%; border: none; border-radius: 0; box-shadow: none; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 3cqw;">
+                
+                <button class="btn-close-mission" style="position: absolute; top: 1.5cqw; right: 1.5cqw; z-index: 35;" onclick="exitMissionScreen()">X</button>
+
+                <div id="audio-detektif-intro" style="text-align: center; display: flex; flex-direction: column; align-items: center; max-width: 80%;">
+                    <h2 style="color: #f1c40f; font-size: 3.2cqw; margin-bottom: 1cqw; text-shadow: 0.2cqw 0.2cqw 0 #111;">MINI GAME: DETEKTIF SUARA</h2>
+                    <p style="color: white; font-size: 1.6cqw; margin-bottom: 2cqw; line-height: 1.5;">Kabut tebal menutup pandangan di Lapangan Tambi! Gunakan <b>Indra Pendengaranmu</b> untuk menebak 5 sumber suara misterius yang diputar secara berulang.<br>Dengarkan baik-baik suaranya, lalu pilih jawaban yang paling tepat!</p>
+                    <button class="btn btn-play" style="font-size: 1.8cqw; padding: 1cqw 3cqw;" onclick="startAudioDetektifM2()">MULAI INVESTIGASI SUARA</button>
+                </div>
+
+                <div id="audio-detektif-game" style="display: none; flex-direction: column; align-items: center; width: 100%; max-width: 70%; text-align: center;">
+                    <div style="background: rgba(255,255,255,0.1); border: 0.3cqw dashed #f1c40f; border-radius: 1cqw; padding: 1.5cqw 3cqw; margin-bottom: 2cqw; width: 100%;">
+                        <div style="font-size: 1.4cqw; color: #f1c40f; margin-bottom: 0.5cqw; font-weight: bold;" id="audio-progress-text">PERTANYAAN 1 DARI 5</div>
+                        <div style="font-size: 2.2cqw; color: white; font-weight: bold;">🔊 SUARA APAKAH INI?</div>
+                        <p style="color: #bdc3c7; font-size: 1.1cqw; margin-top: 0.5cqw;">(Audio berputar otomatis dan berulang sampai kamu menjawab benar)</p>
+                    </div>
+
+                    <!-- 3 Pilihan Tombol Jawaban -->
+                    <div style="display: grid; grid-template-columns: 1fr; gap: 1.5cqw; width: 100%;" id="audio-options-grid">
+                        <!-- Disuntikkan via JS -->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
         <div id="stage-4" class="mission-stage">
-            <h3 class="stage-title" style="color: #d35400;">TAHAP 4: FUNGSI HIDUNG</h3>
+            <h3 class="stage-title" style="color: #d35400;">TAHAP 4: INSIDEN LOGISTIK</h3>
             <div id="stage-4-intro" class="stage-layout">
-                <div class="stage-img-box" onclick="open3DViewer('assets/3d/hidung.glb', 'HIDUNG (INDRA PEMBAU)')" title="Klik untuk Memutar 3D">
+                <div class="stage-img-box" onclick="open3DViewer('assets/3d/hidung.glb', 'HIDUNG (INDRA PEMBAU)')">
                     <img src="assets/item/anatomi-hidung.webp" alt="Hidung" style="width: 100%; height: 12cqw; object-fit: cover; background: #dfe6e9;">
-                    <div style="position: absolute; top: 0; left: 0; background: #ff4757; color: white; padding: 0.2cqw 1cqw; font-size: 1.2cqw; font-weight: bold;">3D INTERAKTIF</div>
                 </div>
                 <div class="stage-content-right">
-                    <p class="mission-text-box" style="width: auto; font-size: 1.3cqw;">Fungsi utama <b>HIDUNG</b> adalah mendeteksi partikel wangi atau bau di udara yang masuk ke rongga hidung.<br><br>Klik kotak 3D di samping untuk membedah rongga hidung!</p>
-                    <button class="btn btn-play" style="font-size: 1.5cqw;" onclick="proceedToQuiz(4)">MULAI TANTANGAN HIDUNG</button>
+                    <p class="mission-text-box" style="width: auto; font-size: 1.3cqw;"><b>HIDUNG</b> dan <b>LIDAH</b> bekerja sama sebagai sensor pertahanan kimiawi tubuh. Mereka mencegah kita menelan zat yang beracun atau sudah rusak.</p>
+                    <button class="btn btn-play" style="font-size: 1.5cqw;" onclick="proceedToQuiz(4)">MULAI 3 KASUS HIDUNG & LIDAH</button>
                 </div>
             </div>
-            <div id="stage-4-quiz" style="display: none; width: 100%;">
-                <p class="mission-text-box" style="width: auto;">Tarik garis untuk mencocokkan sumber bau dengan aromanya yang terbang di area Lapangan Tambi!</p>
-                <div class="match-container">
-                    <svg class="match-svg"></svg>
-                    <div class="match-col match-left">
-                        <div class="match-item" data-match="b_melati" style="order: ${Math.floor(Math.random()*3)}">Pohon Bunga</div>
-                        <div class="match-item" data-match="b_sampah" style="order: ${Math.floor(Math.random()*3)}">Selokan Kotor</div>
-                        <div class="match-item" data-match="b_roti" style="order: ${Math.floor(Math.random()*3)}">Gerobak Jajanan</div>
-                    </div>
-                    <div class="match-col match-right">
-                        <div class="match-target" data-id="b_sampah" style="order: ${Math.floor(Math.random()*3)}">Bau Busuk</div>
-                        <div class="match-target" data-id="b_melati" style="order: ${Math.floor(Math.random()*3)}">Harum Semerbak</div>
-                        <div class="match-target" data-id="b_roti" style="order: ${Math.floor(Math.random()*3)}">Wangi Sedap Makanan</div>
-                    </div>
+            <div id="stage-4-quiz" style="display: none; width: 100%; flex-direction: column; align-items: center;">
+                <div id="m2-s4-content-box" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+                    <!-- Soal dinamis Tahap 4 disuntikkan JS -->
                 </div>
             </div>
         </div>
 
         <div id="stage-5" class="mission-stage">
-            <h3 class="stage-title" style="color: #e84393;">TAHAP 5: FUNGSI LIDAH</h3>
+            <h3 class="stage-title" style="color: #27ae60;">TAHAP 5: INSIDEN CUACA KELUD</h3>
             <div id="stage-5-intro" class="stage-layout">
-                <div class="stage-img-box" onclick="open3DViewer('assets/3d/lidah.glb', 'LIDAH (INDRA PENGECAP)')" title="Klik untuk Memutar 3D">
-                    <img src="assets/item/anatomi-lidah.webp" alt="Lidah" style="width: 100%; height: 12cqw; object-fit: cover; background: #dfe6e9;">
-                    <div style="position: absolute; top: 0; left: 0; background: #ff4757; color: white; padding: 0.2cqw 1cqw; font-size: 1.2cqw; font-weight: bold;">3D INTERAKTIF</div>
+                <div class="stage-img-box" onclick="open3DViewer('assets/3d/kulit.glb', 'KULIT (INDRA PERABA)')">
+                    <img src="assets/item/anatomi-kulit1.webp" alt="Kulit" style="width: 100%; height: 12cqw; object-fit: cover; background: #dfe6e9;">
                 </div>
                 <div class="stage-content-right">
-                    <p class="mission-text-box" style="width: auto; font-size: 1.3cqw;">Fungsi utama <b>LIDAH</b> adalah sebagai Indra Pengecap untuk membedakan rasa manis, asam, asin, dan pahit.<br><br>Klik kotak 3D di samping untuk melihat lidah lebih dekat!</p>
-                    <button class="btn btn-play" style="font-size: 1.5cqw;" onclick="proceedToQuiz(5)">MULAI TANTANGAN LIDAH</button>
+                    <p class="mission-text-box" style="width: auto; font-size: 1.3cqw;"><b>KULIT</b> adalah sensor suhu yang menyelubungi tubuh. Kulit mendeteksi perubahan lingkungan secara kilat agar tubuh bisa segera berlindung.</p>
+                    <button class="btn btn-play" style="font-size: 1.5cqw;" onclick="proceedToQuiz(5)">MULAI 3 KASUS KULIT</button>
                 </div>
             </div>
-            <div id="stage-5-quiz" class="stage-layout" style="display: none;">
-                <div class="stage-content-right">
-                    <p class="mission-text-box" style="width: auto;">Setelah lelah berolahraga, kamu memakan es krim rasa cokelat yang dijual di pinggir Lapangan Tambi. Apa fungsi lidah saat kamu memakannya?</p>
-                    <div class="explore-grid" id="grid-m2-s5" style="width: auto;"></div>
+            <div id="stage-5-quiz" style="display: none; width: 100%; flex-direction: column; align-items: center;">
+                <div id="m2-s5-content-box" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+                    <!-- Soal dinamis Tahap 5 disuntikkan JS -->
                 </div>
             </div>
         </div>
 
         <div id="stage-6" class="mission-stage">
-            <h3 class="stage-title" style="color: #27ae60;">TAHAP 6: FUNGSI KULIT</h3>
-            <div id="stage-6-intro" class="stage-layout">
-                <div class="stage-img-box" onclick="open3DViewer('assets/3d/kulit.glb', 'KULIT (INDRA PERABA)')" title="Klik untuk Memutar 3D">
-                    <img src="assets/item/anatomi-kulit1.webp" alt="Kulit" style="width: 100%; height: 12cqw; object-fit: cover; background: #dfe6e9;">
-                    <div style="position: absolute; top: 0; left: 0; background: #ff4757; color: white; padding: 0.2cqw 1cqw; font-size: 1.2cqw; font-weight: bold;">3D INTERAKTIF</div>
-                </div>
-                <div class="stage-content-right">
-                    <p class="mission-text-box" style="width: auto; font-size: 1.3cqw;">Fungsi utama <b>KULIT</b> adalah sebagai Indra Peraba untuk merasakan tekstur (kasar/halus) dan suhu (panas/dingin).<br><br>Klik kotak 3D untuk melihat potongan lapisan kulit!</p>
-                    <button class="btn btn-play" style="font-size: 1.5cqw;" onclick="proceedToQuiz(6)">MULAI TANTANGAN KULIT</button>
-                </div>
-            </div>
-            <div id="stage-6-quiz" class="stage-layout" style="display: none;">
-                <div class="stage-content-right">
-                    <p class="mission-text-box" style="width: auto;">Kamu duduk beristirahat di atas rumput lapangan dan merasa permukaannya cukup tajam dan kasar. Indra apa yang bekerja?</p>
-                    <div class="explore-grid" id="grid-m2-s6" style="width: auto;"></div>
-                </div>
-            </div>
-        </div>
-
-        <div id="stage-7" class="mission-stage">
-            <h3 class="stage-title" style="color: #ff4757;">TAHAP 7: UJIAN FUNGSI (BOSS)</h3>
-            <p class="mission-text-box">Lina sedang meminum teh manis yang dingin setelah berolahraga, melihat teman-temannya berlari, mendengarkan peluit wasit, dan menyentuh rumput lapangan yang tajam.<br><br>Tarik garis untuk mencocokkan kejadian dengan indra yang bekerja!</p>
+            <h3 class="stage-title" style="color: #ff4757;">TAHAP 6: LAPORAN AKHIR WASIT (BOSS)</h3>
+            <p class="mission-text-box">Sebagai laporan akhir kepada Kepala Wasit, kamu harus menggabungkan analisis dua sensor tubuh sekaligus pada insiden di bawah ini!</p>
             <div class="match-container">
                 <svg class="match-svg"></svg>
                 <div class="match-col match-left">
-                    <div class="match-item" data-match="u_mata" style="order: ${Math.floor(Math.random()*4)}">Melihat Orang Berlari</div>
-                    <div class="match-item" data-match="u_telinga" style="order: ${Math.floor(Math.random()*4)}">Mendengar Peluit</div>
-                    <div class="match-item" data-match="u_kulit" style="order: ${Math.floor(Math.random()*4)}">Menyentuh Rumput</div>
-                    <div class="match-item" data-match="u_lidah" style="order: ${Math.floor(Math.random()*4)}">Minum Teh Manis</div>
+                    <div class="match-item" data-match="u_1" style="order: ${Math.floor(Math.random()*4)}">Melihat bola melayang ke wajah lalu tanganmu merasakan sakit saat menangkis.</div>
+                    <div class="match-item" data-match="u_2" style="order: ${Math.floor(Math.random()*4)}">Mendengar suara gemuruh lalu melihat awan hitam pekat mendekat.</div>
+                    <div class="match-item" data-match="u_3" style="order: ${Math.floor(Math.random()*4)}">Mencium bau gosong dari kios lalu mengecap rasa pahit pada makanan.</div>
+                    <div class="match-item" data-match="u_4" style="order: ${Math.floor(Math.random()*4)}">Merasakan lantai bergetar lalu telinga mendengar suara ledakan.</div>
                 </div>
                 <div class="match-col match-right">
-                    <div class="match-target" data-id="u_kulit" style="order: ${Math.floor(Math.random()*4)}">Indra Peraba</div>
-                    <div class="match-target" data-id="u_lidah" style="order: ${Math.floor(Math.random()*4)}">Indra Pengecap</div>
-                    <div class="match-target" data-id="u_mata" style="order: ${Math.floor(Math.random()*4)}">Indra Penglihat</div>
-                    <div class="match-target" data-id="u_telinga" style="order: ${Math.floor(Math.random()*4)}">Indra Pendengar</div>
+                    <div class="match-target" data-id="u_2" style="order: ${Math.floor(Math.random()*4)}">Telinga & Mata</div>
+                    <div class="match-target" data-id="u_4" style="order: ${Math.floor(Math.random()*4)}">Kulit & Telinga</div>
+                    <div class="match-target" data-id="u_1" style="order: ${Math.floor(Math.random()*4)}">Mata & Kulit</div>
+                    <div class="match-target" data-id="u_3" style="order: ${Math.floor(Math.random()*4)}">Hidung & Lidah</div>
                 </div>
             </div>
         </div>
     `;
 
-    // Pasang tombol Tab Lanjutkan untuk 6 Tahap
-    let floatingHTML = '';
-    for(let i=1; i<=6; i++) {
+    // Pasang tombol Tab Lanjutkan dengan transisi ke Arcade (M2) dan Detektif Suara (M2)
+    let floatingHTML = `<button class="btn btn-play btn-floating-next" id="btn-next-1" style="display: none;" onclick="nextMissionStage('arcade')">LANJUTKAN</button>`;
+    floatingHTML += `<button class="btn btn-play btn-floating-next" id="btn-next-2" style="display: none;" onclick="nextMissionStage(3)">LANJUTKAN</button>`;
+    floatingHTML += `<button class="btn btn-play btn-floating-next" id="btn-next-3" style="display: none;" onclick="nextMissionStage('audio-detektif')">LANJUTKAN</button>`;
+    for(let i=4; i<=5; i++) {
         floatingHTML += `<button class="btn btn-play btn-floating-next" id="btn-next-${i}" style="display: none;" onclick="nextMissionStage(${i+1})">LANJUTKAN</button>`;
     }
     floatingNext.innerHTML = floatingHTML;
 
-    // Suntik Soal Pilihan Ganda Bertingkat (2 Soal Per Tahap)
-    const m2QuizBank = {
-        2: [
-            {
-                q: "Saat berolahraga di Lapangan Tambi, kamu melihat temanmu berlari memakai baju olahraga berwarna merah cerah. Apa fungsi matamu pada kejadian tersebut?",
-                opts: [
-                    { text: "Mendengar suara sepatu", isCorrect: false, msg: "Mata tidak bisa mendengar suara langkah kaki." },
-                    { text: "Melihat warna baju", isCorrect: true, msg: "Tepat sekali! Mata menangkap pantulan cahaya." },
-                    { text: "Mencium bau keringat", isCorrect: false, msg: "Mencium bau adalah tugas indra pembau (hidung)." },
-                    { text: "Merasakan hembusan angin", isCorrect: false, msg: "Merasakan sesuatu adalah tugas indra peraba (kulit)." }
-                ]
-            },
-            {
-                q: "Selain melihat warna, matamu juga sangat penting saat di lapangan olahraga untuk...",
-                opts: [
-                    { text: "Mengetahui arah bola terbang", isCorrect: true, msg: "Sempurna! Matamu memandu agar kamu bisa menangkap bola." },
-                    { text: "Mendengar aba-aba pelatih", isCorrect: false, msg: "Mendengar adalah tugas telinga." },
-                    { text: "Mengetahui teh terasa manis", isCorrect: false, msg: "Mengecap adalah tugas lidah." },
-                    { text: "Merasakan teriknya matahari", isCorrect: false, msg: "Merasakan suhu adalah tugas kulit." }
-                ]
-            }
-        ],
-        3: [
-            {
-                q: "Tiba-tiba kamu mendengar tiupan peluit yang keras dari wasit di tengah lapangan. Indra apa yang bertugas menangkap suara itu?",
-                opts: [
-                    { text: "Indra Pendengar", isCorrect: true, msg: "Benar sekali! Telingamu berhasil menangkap getaran suara peluit wasit." },
-                    { text: "Indra Penglihat", isCorrect: false, msg: "Mata digunakan untuk melihat, bukan untuk menangkap suara." },
-                    { text: "Indra Pembau", isCorrect: false, msg: "Hidung digunakan untuk mendeteksi bau." },
-                    { text: "Indra Peraba", isCorrect: false, msg: "Kulit digunakan untuk merasakan sentuhan fisik." }
-                ]
-            },
-            {
-                q: "Selain mendengar peluit wasit, fungsi telingamu saat bermain di lapangan sangat penting untuk...",
-                opts: [
-                    { text: "Mendengar panggilan teman", isCorrect: true, msg: "Sempurna! Kamu bisa berkomunikasi karena telinga menangkap suara." },
-                    { text: "Melihat garis batas lapangan", isCorrect: false, msg: "Melihat garis lapangan adalah fungsi mata." },
-                    { text: "Mengecap rasa air minum", isCorrect: false, msg: "Mengecap rasa adalah fungsi lidah." },
-                    { text: "Mencium bau rumput", isCorrect: false, msg: "Mencium bau adalah fungsi hidung." }
-                ]
-            }
-        ],
-        5: [
-            {
-                q: "Setelah lelah berolahraga, kamu memakan es krim rasa cokelat yang dijual di pinggir lapangan. Apa fungsi lidah saat kamu memakannya?",
-                opts: [
-                    { text: "Mengecap rasa manis", isCorrect: true, msg: "Tepat! Lidah bertugas mengecap rasa manis dari es krim cokelat." },
-                    { text: "Melihat es krim mencair", isCorrect: false, msg: "Melihat benda mencair adalah tugas mata." },
-                    { text: "Merasakan dinginnya es", isCorrect: false, msg: "Merasakan suhu dingin (es) adalah tugas kulit." },
-                    { text: "Mencium aroma susu", isCorrect: false, msg: "Mencium aroma adalah tugas hidung." }
-                ]
-            },
-            {
-                q: "Kamu kemudian meminum es jeruk peras murni tanpa gula. Saat airnya masuk ke mulut, lidahmu akan mengecap rasa...",
-                opts: [
-                    { text: "Asam", isCorrect: true, msg: "Benar! Bagian samping lidahmu sangat peka terhadap rasa asam." },
-                    { text: "Pedas", isCorrect: false, msg: "Jeruk peras tidak mengandung cabai yang memicu rasa pedas." },
-                    { text: "Asin", isCorrect: false, msg: "Jeruk tidak mengandung garam laut." },
-                    { text: "Pahit", isCorrect: false, msg: "Jeruk murni rasanya lebih dominan ke asam." }
-                ]
-            }
-        ],
-        6: [
-            {
-                q: "Kamu duduk beristirahat di atas rumput lapangan dan merasa permukaannya cukup tajam dan kasar. Indra apa yang bekerja?",
-                opts: [
-                    { text: "Indra Peraba", isCorrect: true, msg: "Benar! Saraf di kulitmu langsung mendeteksi tekstur tajam dari rumput." },
-                    { text: "Indra Penglihat", isCorrect: false, msg: "Mata bisa melihat rumput, tapi tidak bisa merasakan kasarnya." },
-                    { text: "Indra Pengecap", isCorrect: false, msg: "Lidah hanya untuk mengecap rasa makanan." },
-                    { text: "Indra Pendengar", isCorrect: false, msg: "Telinga untuk mendengarkan suara." }
-                ]
-            },
-            {
-                q: "Cuaca siang itu sangat terik. Kulitmu tiba-tiba merasakan kepanasan dan akhirnya memicu tubuhmu untuk mengeluarkan...",
-                opts: [
-                    { text: "Keringat", isCorrect: true, msg: "Sempurna! Kelenjar kulit akan mengeluarkan keringat untuk mendinginkan tubuhmu." },
-                    { text: "Air mata", isCorrect: false, msg: "Air mata dikeluarkan oleh mata, bukan dari seluruh kulit." },
-                    { text: "Bulu kuduk berdiri", isCorrect: false, msg: "Bulu kuduk berdiri terjadi saat cuaca sangat dingin, bukan panas." },
-                    { text: "Liur", isCorrect: false, msg: "Air liur dihasilkan di dalam rongga mulut." }
-                ]
-            }
-        ]
+    // Logika Uji Refleks Sensori (Arcade Mode)
+    const arcadeData = [
+        { text: "Warna Kartu Merah!", ans: "mata" },
+        { text: "Suara Peluit Wasit!", ans: "telinga" },
+        { text: "Angin Dingin Kelud!", ans: "kulit" },
+        { text: "Bau Asap Bakaran!", ans: "hidung" },
+        { text: "Rasa Air Minum Asin!", ans: "lidah" },
+        { text: "Pemain Jatuh Keras!", ans: "mata" },
+        { text: "Teriakan Minta Tolong!", ans: "telinga" },
+        { text: "Minuman Basi Asam!", ans: "lidah" },
+        { text: "Rumput Licin Basah!", ans: "kulit" },
+        { text: "Aroma Baju Keringat!", ans: "hidung" }
+    ];
+    let currentArcadeIndex = 0;
+    let isArcadeAnimating = false;
+
+    window.startArcadeM2 = function() {
+        document.getElementById('arcade-intro').style.display = 'none';
+        document.getElementById('arcade-target-card').style.display = 'block';
+        currentArcadeIndex = 0;
+        
+        // Acak urutan ke-10 kartu kejadian agar tidak bisa dihafal
+        arcadeData.sort(() => Math.random() - 0.5); 
+        loadArcadeCard();
     };
 
-    // Mesin Penggerak Kuis Beruntun Misi 2
-    let currentM2QuizIndex = { 2: 0, 3: 0, 5: 0, 6: 0 };
+    window.loadArcadeCard = function() {
+        if(currentArcadeIndex >= 10) {
+            const checkIcon = `<svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M14 2h2v2h-2V2zm-2 2h2v2h-2V4zm-2 2h2v2H8V6zm-2 2h2v2H8V8zm-2 2h2v2H6v-2zm-2 2h2v2H4v-2zm-2-2h2v2H2v-2zm-2-2h2v2H0v-2z"/></svg>`;
+            showCustomModal("REFLEKS SUPER!", "Luar biasa! Kamu berhasil menghancurkan semua kartu kejadian dengan sensor yang tepat. Kamu sudah siap menjadi Wasit Utama!", checkIcon, "alert", () => {
+                // Kembalikan ukuran kotak misi normal sebelum masuk Tahap 2
+                document.querySelector('.mission-wrapper').classList.remove('fullscreen-mode');
+                document.querySelector('.mission-full-box').classList.remove('fullscreen-mode');
+                document.querySelector('.mission-header').style.display = 'flex';
+                
+                nextMissionStage(2); // Lanjut ke Tahap 2 setelah memenangkan Arcade
+            });
+            return;
+        }
+        
+        // Munculkan Kartu dengan Efek "Pop In"
+        const card = document.getElementById('arcade-target-card');
+        card.innerText = arcadeData[currentArcadeIndex].text;
+        card.style.transform = 'scale(0)';
+        card.style.opacity = '0';
+        card.style.backgroundColor = '#fff';
+        card.style.color = '#111';
+        
+        setTimeout(() => {
+            card.style.transition = 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+            card.style.transform = 'scale(1)';
+            card.style.opacity = '1';
+        }, 50);
+    };
 
-    window.loadM2Quiz = function(stage) {
-        const data = m2QuizBank[stage];
-        const currentIndex = currentM2QuizIndex[stage];
-        const grid = document.getElementById(`grid-m2-s${stage}`);
-        const qBox = grid.previousElementSibling; // Trik ajaib untuk mengambil teks paragraf tepat di atas tombol
+    // Fungsi Melempar Proyektil Alat Indra
+    window.throwOrganM2 = function(organ) {
+        if(isArcadeAnimating) return; // Kunci tombol saat ada proyektil yang sedang terbang
+        isArcadeAnimating = true;
 
-        if (currentIndex >= data.length) {
-            // Jika kedua soal sudah berhasil dijawab
-            const checkIcon = `<svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M14 2h2v2h-2V2zm-2 2h2v2h-2V4zm-2 2h2v2h-2V6zm-2 2h2v2H8V8zm-2 2h2v2H6v-2zm-2 2h2v2H4v-2zm-2-2h2v2H2v-2zm-2-2h2v2H0v-2z"/></svg>`;
-            showCustomModal("TANTANGAN SELESAI!", "Hebat! Kamu berhasil menjawab semua soal tantangan fungsi ini dengan sempurna.", checkIcon, "alert", () => {
-                // Panggil dialog NPC (jika ada), lalu sistem akan otomatis memunculkan tombol 'LANJUTKAN'
-                if (typeof triggerPostDialog === 'function') {
-                    triggerPostDialog(stage);
-                } else {
-                    const nextBtn = document.getElementById(`btn-next-${stage}`);
-                    if(nextBtn) nextBtn.style.display = 'inline-flex';
-                }
+        const btn = document.getElementById('btn-arc-' + organ);
+        const card = document.getElementById('arcade-target-card');
+
+        // Dapatkan titik koordinat awal (tombol) dan akhir (kartu target) secara akurat dari layarmu
+        const btnRect = btn.getBoundingClientRect();
+        const cardRect = card.getBoundingClientRect();
+
+        // Buat kloningan gambar untuk efek melayang (Projectile)
+        const proj = document.createElement('img');
+        proj.src = `assets/item/alat-${organ}.webp`;
+        proj.style.position = 'fixed';
+        proj.style.left = (btnRect.left + btnRect.width / 4) + 'px';
+        proj.style.top = btnRect.top + 'px';
+        proj.style.width = '6cqw';
+        proj.style.zIndex = '9999';
+        proj.style.transition = 'all 0.3s ease-in'; // Durasi terbang
+        proj.style.filter = 'drop-shadow(0.3cqw 0.3cqw 0px rgba(0,0,0,0.6))';
+        document.body.appendChild(proj);
+
+        if(typeof sfxTangkap !== 'undefined') { sfxTangkap.currentTime = 0; sfxTangkap.play().catch(()=>{}); }
+
+        // Eksekusi pergerakan terbang ke arah kartu
+        setTimeout(() => {
+            proj.style.left = (cardRect.left + cardRect.width / 2 - btnRect.width / 2) + 'px';
+            proj.style.top = (cardRect.top + cardRect.height / 2 - btnRect.height / 2) + 'px';
+            proj.style.transform = 'scale(1.5) rotate(360deg)';
+        }, 20);
+
+        // Efek Benturan (Impact) setelah 320ms (sedikit lebih lama dari durasi terbang)
+        setTimeout(() => {
+            proj.remove(); // Hapus projektil dari layar
+
+            const isCorrect = (organ === arcadeData[currentArcadeIndex].ans);
+
+            if(isCorrect) {
+                // JIKA BENAR (HANCURKAN KARTU)
+                if(typeof sfxBenar !== 'undefined') { sfxBenar.currentTime = 0; sfxBenar.play().catch(()=>{}); }
+                addScore(15);
+                
+                // Efek Kartu Hancur (Warna Kuning menyala lalu menghilang)
+                card.style.backgroundColor = '#f1c40f';
+                card.style.color = '#fff';
+                card.style.transform = 'scale(1.2)';
+                
+                setTimeout(() => {
+                    card.style.transform = 'scale(0) rotate(-15deg)';
+                    card.style.opacity = '0';
+                    
+                    setTimeout(() => {
+                        currentArcadeIndex++;
+                        isArcadeAnimating = false; // Buka kunci tombol kembali
+                        loadArcadeCard(); // Muat kartu selanjutnya
+                    }, 300);
+                }, 200);
+
+            } else {
+                // JIKA SALAH (KARTU MENANGKIS DAN BERTARUNG KEMBALI)
+                if(typeof sfxSalah !== 'undefined') { sfxSalah.currentTime = 0; sfxSalah.play().catch(()=>{}); }
+                reduceLife();
+                
+                // Efek Layar Bergetar Parah
+                const missionBox = document.querySelector('.mission-full-box');
+                missionBox.classList.remove('shake-screen'); 
+                void missionBox.offsetWidth; 
+                missionBox.classList.add('shake-screen');
+                
+                // Efek Kartu Bertahan (Warna Merah menyala lalu kembali normal)
+                card.style.backgroundColor = '#ff4757';
+                card.style.color = '#fff';
+                card.style.animation = 'shakeWrong 0.4s ease forwards';
+                
+                setTimeout(() => {
+                    card.style.animation = 'none';
+                    card.style.backgroundColor = '#fff'; // Kartu kembali putih
+                    card.style.color = '#111';
+                    isArcadeAnimating = false; // BUKA KUNCI AGAR PEMAIN BISA MELEMPAR ORGAN LAIN!
+                }, 400);
+            }
+        }, 320); 
+    };
+
+    // Logika Mini Game Detektif Suara Misi 2
+    let audioDetektifList = [
+        { file: "kucing.mp3", name: "Suara Kucing Meow" },
+        { file: "jangkrik.mp3", name: "Suara Jangkrik Malam" },
+        { file: "burung.mp3", name: "Suara Kicau Burung" },
+        { file: "hujan.mp3", name: "Suara Rintik Hujan" },
+        { file: "ayam.mp3", name: "Suara Ayam Berkokok" },
+        { file: "lari.mp3", name: "Suara Langkah Kaki Lari" },
+        { file: "peluit.mp3", name: "Suara Peluit Wasit" },
+        { file: "jam.mp3", name: "Suara Detik Jam Dinding" },
+        { file: "mesin.mp3", name: "Suara Mesin Mobil" },
+        { file: "kereta.mp3", name: "Suara Kereta Api" }
+    ];
+    let activeAudioGame = null;
+    let currentAudioIndex = 0;
+    let activeAudioQuestions = [];
+
+    window.startAudioDetektifM2 = function() {
+        // Aktifkan mode fullscreen khusus mini game
+        document.querySelector('.mission-wrapper').classList.add('fullscreen-mode');
+        document.querySelector('.mission-full-box').classList.add('fullscreen-mode');
+        document.querySelector('.mission-header').style.display = 'none';
+
+        document.getElementById('audio-detektif-intro').style.display = 'none';
+        document.getElementById('audio-detektif-game').style.display = 'flex';
+
+        currentAudioIndex = 0;
+        // Acak dan ambil 5 soal saja dari 10 total suara
+        activeAudioQuestions = [...audioDetektifList].sort(() => Math.random() - 0.5).slice(0, 5);
+        
+        loadAudioQuestion();
+    };
+
+    window.loadAudioQuestion = function() {
+        activeAudioanganStop(); // Hentikan audio sebelumnya jika ada
+        if (currentAudioIndex >= 5) {
+            // Selesai 5 soal!
+            if (activeAudioGame) { activeAudioGame.pause(); activeAudioGame = null; }
+            
+            const checkIcon = `<svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M14 2h2v2h-2V2zm-2 2h2v2h-2V4zm-2 2h2v2H8V8zm-2 2h2v2H6v-2zm-2 2h2v2H4v-2zm-2-2h2v2H2v-2zm-2-2h2v2H0v-2z"/></svg>`;
+            showCustomModal("PENDENGARAN TAJAM!", "Luar biasa! Kamu berhasil menebak seluruh sumber suara dengan sangat akurat menggunakan telingamu.", checkIcon, "alert", () => {
+                // Kembalikan kotak misi ke ukuran normal sebelum masuk Tahap 4
+                document.querySelector('.mission-wrapper').classList.remove('fullscreen-mode');
+                document.querySelector('.mission-full-box').classList.remove('fullscreen-mode');
+                document.querySelector('.mission-header').style.display = 'flex';
+
+                nextMissionStage(4); // Lanjut ke Tahap 4
             });
             return;
         }
 
-        const currentQ = data[currentIndex];
-        
-        // Animasi transisi teks agar tidak kaku saat soal berganti
-        qBox.style.opacity = 0;
-        setTimeout(() => {
-            qBox.innerText = `Tantangan ${currentIndex + 1} / 2:\n\n${currentQ.q}`;
-            qBox.style.opacity = 1;
-        }, 200);
-        
-        grid.innerHTML = ''; // Kosongkan tombol lama
+        document.getElementById('audio-progress-text').innerText = `PERTANYAAN ${currentAudioIndex + 1} DARI 5`;
 
-        const shuffledOpts = [...currentQ.opts].sort(() => Math.random() - 0.5);
-        
-        shuffledOpts.forEach(opt => {
-            const btn = document.createElement('button');
-            btn.className = 'btn-explore';
-            btn.innerText = opt.text;
-            
+        let currentQ = activeAudioQuestions[currentAudioIndex];
+
+        // Putar audio otomatis dan loop
+        if (activeAudioGame) { activeAudioGame.pause(); }
+        activeAudioGame = new Audio(`assets/sound/${currentQ.file}`);
+        activeAudioGame.loop = true;
+        activeAudioGame.play().catch(e => console.log("Audio play error: ", e));
+
+        // Siapkan 3 pilihan (1 benar, 2 pengecoh acak dari sisa list)
+        let choices = [currentQ.name];
+        let distractors = audioDetektifList.filter(item => item.name !== currentQ.name).sort(() => Math.random() - 0.5);
+        choices.push(distractors[0].name);
+        choices.push(distractors[1].name);
+        choices.sort(() => Math.random() - 0.5); // Acak posisi tombol
+
+        // Render tombol opsi
+        let grid = document.getElementById('audio-options-grid');
+        grid.innerHTML = '';
+
+        choices.forEach(optName => {
+            let btn = document.createElement('button');
+            btn.className = 'btn btn-play';
+            btn.style.cssText = 'background: #3498db; font-size: 1.5cqw; padding: 1.2cqw; margin: 0; border: 0.3cqw solid #111; border-radius: 0.8cqw; box-shadow: 0.3cqw 0.3cqw 0 #111; cursor: pointer; transition: 0.1s;';
+            btn.innerText = optName;
+
             btn.onclick = () => {
-                if (btn.classList.contains('btn-correct') || btn.classList.contains('btn-wrong')) return;
-                
-                if (opt.isCorrect) {
+                if (optName === currentQ.name) {
                     // JAWABAN BENAR
-                    sfxBenar.currentTime = 0; sfxBenar.play().catch(e=>console.warn(e));
-                    btn.classList.add('btn-correct');
-                    addScore(10); // +10 Poin per soal
-                    
-                    // Beri jeda 0.8 detik sebelum soal kedua masuk
-                    setTimeout(() => {
-                        currentM2QuizIndex[stage]++;
-                        loadM2Quiz(stage);
-                    }, 800);
+                    if (typeof sfxBenar !== 'undefined') { sfxBenar.currentTime = 0; sfxBenar.play(); }
+                    if (activeAudioGame) { activeAudioGame.pause(); }
+                    addScore(20);
+
+                    showCustomModal("BENAR SEKALI!", `Itu adalah suara ${currentQ.name}! Pendengaranmu sangat peka.`, "", "alert", () => {
+                        currentAudioIndex++;
+                        loadAudioQuestion();
+                    });
                 } else {
                     // JAWABAN SALAH
-                    sfxSalah.currentTime = 0; sfxSalah.play().catch(e=>console.warn(e));
-                    btn.classList.add('btn-wrong');
+                    if (typeof sfxSalah !== 'undefined') { sfxSalah.currentTime = 0; sfxSalah.play(); }
                     reduceLife();
-                    
-                    const lockIcon = `<svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M4 2h8v2h2v10H2V4h2V2zm2 2v2h4V4H6zm-2 4v4h8V8H4z"/></svg>`;
-                    showCustomModal("SALAH!", `${opt.msg}\n(Nyawa Berkurang 1)`, lockIcon, "error");
+                    showCustomModal("KURANG TEPAT!", "Bukannya suara itu. Coba dengarkan lagi baik-baik ulangannya! (Nyawa -1)", "", "error");
                 }
             };
             grid.appendChild(btn);
         });
     };
 
-    // Panggil mesin pemuat kuis ini untuk tahap 2, 3, 5, dan 6
-    [2, 3, 5, 6].forEach(stage => loadM2Quiz(stage));
+    function activeAudioanganStop() {
+        if (activeAudioGame) {
+            activeAudioGame.pause();
+            activeAudioGame = null;
+        }
+    }
 
-    // Pasang Naskah Dialog Pascagame
+    // Database 3 Kasus Bervariasi untuk Tahap 2 (Mata)
+    const m2QuizBank = {
+        2: [
+            // Permasalahan 1: Pilihan Ganda Analisis Situasi
+            {
+                type: "choice",
+                title: "Kasus 1: Pelanggaran Garis Batas (Analisis Visual)",
+                q: "Saat lomba balap karung berlangsung, banyak debu beterbangan. Kamu harus mengawasi kaki pemain. Informasi visual apa yang membantumu memutuskan bahwa seorang pemain telah melanggar aturan?",
+                opts: [
+                    { text: "Posisi kakinya melewati garis putih batas jalur.", isCorrect: true, msg: "Tepat! Mata memberikan data spasial akurat tentang posisi objek terhadap garis." },
+                    { text: "Mendengar suara lompatannya yang terlalu keras.", isCorrect: false, msg: "Suara ditangkap oleh telinga, bukan informasi visual." },
+                    { text: "Melihat bajunya yang berwarna merah.", isCorrect: false, msg: "Warna baju tidak menentukan apakah pemain tersebut melanggar batas lintasan." },
+                    { text: "Merasakan getaran saat ia melompat.", isCorrect: false, msg: "Getaran dirasakan oleh kulit peraba, bukan mata." }
+                ]
+            },
+            // Permasalahan 2: Mode Detektif Cek Fakta (Benar / Salah)
+            {
+                type: "truesfalse",
+                title: "Kasus 2: Mitos atau Fakta P3K Mata",
+                q: "Pernyataan Medis: 'Jika mata penari kelilipan abu vulkanik Gunung Kelud, tindakan paling benar adalah langsung menguceknya sekuat tenaga dengan tangan.'",
+                isTrue: false,
+                msg: "Salah Besar! Mengucek mata berdebu justru akan membuat partikel tajam menggores kornea matamu."
+            },
+            // Permasalahan 3: Urutan Aksi Tanggap Darurat (Sequencing)
+            {
+                type: "sequence",
+                title: "Kasus 3: Urutan Aksi Tanggap Darurat Mata",
+                q: "Susunlah 3 urutan tindakan yang benar saat ada debu yang masuk ke dalam mata atlet:",
+                steps: [
+                    "Jangan panik dan dilarang keras mengucek mata",
+                    "Buka kelopak mata perlahan di bawah air mengalir bersih",
+                    "Kedipkan mata beberapa kali hingga air mata alami membilas debunya"
+                ],
+                msg: "Luar biasa! Prosedur medis darurat matamu sudah sangat profesional."
+            }
+        ],
+        3: [
+            // Permasalahan 1: Pilihan Ganda Analisis Telinga
+            {
+                type: "choice",
+                title: "Kasus 1: Sinyal Darurat Telinga",
+                q: "Lapangan Tambi sangat riuh oleh teriakan suporter sehingga pandanganmu terhalang. Tiba-tiba, dari ujung lapangan terdengar dua kali tiupan peluit melengking. Apa aksi logis yang harus kamu ambil?",
+                opts: [
+                    { text: "Mempercayai telinga dan segera menghentikan pertandingan sementara.", isCorrect: true, msg: "Benar! Telinga berfungsi sebagai alarm bahaya yang menembus halangan visual." },
+                    { text: "Abaikan saja karena matamu tidak melihat kejadiannya langsung.", isCorrect: false, msg: "Bahaya! Menolak informasi dari telinga bisa menyebabkan jatuhnya korban jika ada insiden serius." },
+                    { text: "Ikut bersorak bersama kerumunan penonton.", isCorrect: false, msg: "Sebagai wasit, kamu harus menganalisis setiap bunyi yang aneh." },
+                    { text: "Mencari sumber cahaya dari arah peluit.", isCorrect: false, msg: "Peluit menghasilkan suara, bukan cahaya terang." }
+                ]
+            },
+            // Permasalahan 2: Detektif Fakta / Mitos Telinga
+            {
+                type: "truesfalse",
+                title: "Kasus 2: Mitos atau Fakta P3K Telinga",
+                q: "Pernyataan Medis: 'Jika telinga terasa gatal atau kemasukan air kotor usai berenang, tindakan yang paling aman adalah mengoreknya menggunakan lidi kayu tajam.'",
+                isTrue: false,
+                msg: "Salah! Benda keras atau tajam sangat berbahaya dan dapat merobek selaput gendang telingamu."
+            },
+            // Permasalahan 3: Urutan Tindakan Darurat Telinga (Sequencing)
+            {
+                type: "sequence",
+                title: "Kasus 3: Urutan Penanganan Telinga Berdengung",
+                q: "Susunlah 3 urutan tindakan yang benar jika kamu mendengar suara ledakan keras di dekatmu:",
+                steps: [
+                    "1. Segera tutup kedua telinga menggunakan kedua tangan rapat-rapat",
+                    "2. Buka sedikit mulutmu untuk menyeimbangkan tekanan udara di gendang",
+                    "3. Jauhi sumber suara keras dan cari tempat yang lebih tenang"
+                ],
+                msg: "Luar biasa! Prosedur perlindungan gendang telingamu sudah sangat tepat."
+            }
+        ],
+        4: [
+            // Kasus 1: Pilihan Ganda Logistik
+            {
+                type: "choice",
+                title: "Kasus 1: Inspeksi Makanan Atlet",
+                q: "Waktu istirahat tiba. Panitia membagikan jajanan lokal Tahu Takwa untuk atlet. Sebelum memakannya, kamu mencium aroma asam yang menyengat dari tahu tersebut. Analisis apa yang paling tepat?",
+                opts: [
+                    { text: "Tahu tersebut sudah rusak/basi, segera buang agar atlet tidak keracunan.", isCorrect: true, msg: "Tepat! Hidung bekerja sebagai pos satpam yang menyeleksi udara dan makanan." },
+                    { text: "Tahu itu sangat lezat, langsung makan tanpa ragu.", isCorrect: false, msg: "Aroma asam menyengat adalah peringatan alami dari hidung." },
+                    { text: "Aroma tidak masalah asalkan bentuk tahunya masih kotak.", isCorrect: false, msg: "Bakteri pembusuk mengubah zat kimia sebelum merusak bentuk." },
+                    { text: "Mencuci tahu dengan air lalu memakannya.", isCorrect: false, msg: "Racun bakteri pembusuk sudah meresap ke dalam makanan." }
+                ]
+            },
+            // Kasus 2: Detektif Fakta / Mitos Hidung & Lidah
+            {
+                type: "truesfalse",
+                title: "Kasus 2: Mitos atau Fakta Indra Kimiawi",
+                q: "Pernyataan Medis: 'Hidung dan lidah manusia bekerja secara terpisah dan tidak saling mempengaruhi saat kita menikmati kelezatan makanan.'",
+                isTrue: false,
+                msg: "Salah! 80% rasa lezat makanan yang kita kecap sebenarnya berasal dari aroma yang dicium oleh hidung."
+            },
+            // Kasus 3: Urutan Aksi (Sequencing)
+            {
+                type: "sequence",
+                title: "Kasus 3: Urutan Cek Kelayakan Makanan",
+                q: "Susunlah 3 urutan yang benar saat kamu ingin memastikan suatu makanan aman dikonsumsi:",
+                steps: [
+                    "1. Amati bentuk fisik makanan secara visual dari dekat",
+                    "2. Cium aromanya menggunakan hidung untuk mendeteksi bau asam/busuk",
+                    "3. Cicipi sedikit menggunakan ujung lidah untuk memastikan rasanya normal"
+                ],
+                msg: "Luar biasa! Urutan sensor kimiawi tubuhmu sudah sangat sempurna."
+            }
+        ],
+        5: [
+            // Kasus 1: Pilihan Ganda Cuaca
+            {
+                type: "choice",
+                title: "Kasus 1: Sensor Cuaca Ekstrem",
+                q: "Pertandingan final sedang seru. Namun tiba-tiba dari arah pegunungan berhembus angin kencang. Kulitmu seketika merinding merasakan suhu yang sangat dingin dan rintik tajam menerpa wajah. Apa keputusanmu?",
+                opts: [
+                    { text: "Menunda pertandingan karena suhu menandakan badai akan segera tiba.", isCorrect: true, msg: "Luar biasa! Kulit mendeteksi perubahan cuaca ekstrem untuk melindungi tubuh." },
+                    { text: "Tetap melanjutkan lomba karena cuaca dingin menyegarkan.", isCorrect: false, msg: "Rintik tajam dan dingin ekstrem adalah tanda ancaman badai alam." },
+                    { text: "Hanya menyuruh panitia memakai jaket tanpa peduli atlet.", isCorrect: false, msg: "Keselamatan seluruh peserta di lapangan terbuka adalah prioritas." },
+                    { text: "Mengelap keringat karena udara terasa panas terik.", isCorrect: false, msg: "Kondisi kulit merasakan suhu dingin, bukan panas." }
+                ]
+            },
+            // Kasus 2: Detektif Fakta / Mitos Kulit
+            {
+                type: "truesfalse",
+                title: "Kasus 2: Mitos atau Fakta Kulit",
+                q: "Pernyataan Medis: 'Kulit manusia hanya berfungsi sebagai penutup tubuh luar dan tidak memiliki kemampuan mendeteksi bahaya suhu panas atau dingin.'",
+                isTrue: false,
+                msg: "Salah! Jaringan ujung saraf di kulit bertindak sebagai termometer canggih pengirim sinyal darurat ke otak."
+            },
+            // Kasus 3: Urutan Aksi Darurat Kulit (Sequencing)
+            {
+                type: "sequence",
+                title: "Kasus 3: Urutan Tindakan Saat Kulit Terbakar Matahari",
+                q: "Susunlah 3 urutan pertolongan pertama yang benar jika kulitmu tersengat terik matahari:",
+                steps: [
+                    "1. Segera bernaung di tempat yang teduh dan sejuk",
+                    "2. Kompres bagian kulit yang panas menggunakan air dingin bersih",
+                    "3. Oleskan pelembap/lotion penenang kulit untuk meredakan perih"
+                ],
+                msg: "Hebat! Penanganan medis darurat kulitmu sudah sangat tepat."
+            }
+        ],
+    };
+
+    // Mekanisme Fail-Safe (Pendeteksi Kegagalan)
+    if (!window.m2FailSafe) window.m2FailSafe = {};
+
+    // Mesin Pemuat Multi-Permasalahan (Mendukung Pilihan Ganda, Benar/Salah, dan Urutan)
+    if (!window.m2ActiveIndex) window.m2ActiveIndex = {};
+
+    window.loadM2Quiz = function(stage) {
+        const questions = m2QuizBank[stage];
+        if (!window.m2ActiveIndex[stage]) window.m2ActiveIndex[stage] = 0;
+        let qIndex = window.m2ActiveIndex[stage];
+
+        const container = document.getElementById(`m2-s${stage}-content-box`) || document.getElementById(`grid-m2-s${stage}`);
+        if (!container) return;
+
+        if (qIndex >= questions.length) {
+            // Semua permasalahan di tahap ini selesai!
+            window.m2ActiveIndex[stage] = 0;
+            const checkIcon = `<svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M14 2h2v2h-2V2zm-2 2h2v2h-2V4zm-2 2h2v2h-2V6zm-2 2h2v2H8V8zm-2 2h2v2H6v-2zm-2 2h2v2H4v-2zm-2-2h2v2H2v-2zm-2-2h2v2H0v-2z"/></svg>`;
+            showCustomModal("TAHAP SELESAI!", "Luar biasa! Kamu berhasil menuntaskan seluruh analisis insiden dengan sempurna.", checkIcon, "alert", () => {
+                const nextBtn = document.getElementById(`btn-next-${stage}`);
+                if(nextBtn) nextBtn.style.display = 'inline-flex';
+            });
+            return;
+        }
+
+        const currentQ = questions[qIndex];
+        container.innerHTML = '';
+
+        // Judul Kasus
+        let titleEl = document.createElement('h4');
+        titleEl.style.cssText = 'color: #f1c40f; font-size: 1.5cqw; margin: 0 0 0.8cqw 0; text-shadow: 0.1cqw 0.1cqw 0 #111;';
+        titleEl.innerText = `${currentQ.title} (Soal ${qIndex + 1} dari ${questions.length})`;
+        container.appendChild(titleEl);
+
+        let qBox = document.createElement('div');
+        qBox.className = 'mission-text-box';
+        qBox.style.cssText = 'width: 100%; font-size: 1.3cqw; text-align: left; margin-bottom: 1.2cqw;';
+        qBox.innerText = currentQ.q;
+        container.appendChild(qBox);
+
+        if (!window.m2FailSafe[stage]) window.m2FailSafe[stage] = 0;
+
+        // RENDER BERDASARKAN TIPE SOAL
+        if (currentQ.type === 'choice') {
+            let grid = document.createElement('div');
+            grid.className = 'explore-grid';
+            grid.style.width = '100%';
+
+            const shuffledOpts = [...currentQ.opts].sort(() => Math.random() - 0.5);
+            shuffledOpts.forEach(opt => {
+                let btn = document.createElement('button');
+                btn.className = 'btn-explore btn-option-m2';
+                btn.innerText = opt.text;
+                btn.onclick = () => {
+                    if (btn.classList.contains('btn-correct') || btn.classList.contains('btn-wrong')) return;
+                    if (opt.isCorrect) {
+                        if (typeof sfxBenar !== 'undefined') { sfxBenar.currentTime = 0; sfxBenar.play(); }
+                        btn.classList.add('btn-correct');
+                        addScore(15);
+                        showCustomModal("ANALISIS TEPAT!", opt.msg, "", "alert", () => {
+                            window.m2FailSafe[stage] = 0;
+                            window.m2ActiveIndex[stage]++;
+                            loadM2Quiz(stage);
+                        });
+                    } else {
+                        if (typeof sfxSalah !== 'undefined') { sfxSalah.currentTime = 0; sfxSalah.play(); }
+                        btn.classList.add('btn-wrong');
+                        reduceLife();
+                        window.m2FailSafe[stage]++;
+                        
+                        if (window.m2FailSafe[stage] >= 2) {
+                            showCustomModal("BANTUAN WASIT", "Dua pilihan salah telah disingkirkan untuk membantumu fokus!", "", "alert", () => {
+                                let wrongBtns = Array.from(grid.querySelectorAll('.btn-option-m2:not(.btn-wrong)')).filter(b => b.innerText !== currentQ.opts.find(o => o.isCorrect).text);
+                                if(wrongBtns.length >= 2) { wrongBtns[0].style.visibility = 'hidden'; wrongBtns[1].style.visibility = 'hidden'; }
+                            });
+                        } else {
+                            showCustomModal("KELIRU!", opt.msg + " (Nyawa -1)", "", "error");
+                        }
+                    }
+                };
+                grid.appendChild(btn);
+            });
+            container.appendChild(grid);
+
+        } else if (currentQ.type === 'truesfalse') {
+            let tfGroup = document.createElement('div');
+            tfGroup.style.cssText = 'display: flex; gap: 2cqw; width: 100%; justify-content: center;';
+            
+            let btnB = document.createElement('button');
+            btnB.className = 'btn btn-play';
+            btnB.style.cssText = 'background: #2ed573; font-size: 1.5cqw; padding: 1cqw 3cqw; margin: 0;';
+            btnB.innerText = 'FAKTA (BENAR)';
+            
+            let btnS = document.createElement('button');
+            btnS.className = 'btn btn-play';
+            btnS.style.cssText = 'background: #ff4757; font-size: 1.5cqw; padding: 1cqw 3cqw; margin: 0;';
+            btnS.innerText = 'MITOS (SALAH)';
+
+            const evalTF = (userAns) => {
+                if (userAns === currentQ.isTrue) {
+                    if (typeof sfxBenar !== 'undefined') { sfxBenar.currentTime = 0; sfxBenar.play(); }
+                    addScore(15);
+                    showCustomModal("JAWABAN BENAR!", currentQ.msg, "", "alert", () => {
+                        window.m2FailSafe[stage] = 0;
+                        window.m2ActiveIndex[stage]++;
+                        loadM2Quiz(stage);
+                    });
+                } else {
+                    if (typeof sfxSalah !== 'undefined') { sfxSalah.currentTime = 0; sfxSalah.play(); }
+                    reduceLife();
+                    showCustomModal("KELIRU!", currentQ.msg + " (Nyawa -1)", "", "error");
+                }
+            };
+
+            btnB.onclick = () => evalTF(true);
+            btnS.onclick = () => evalTF(false);
+            
+            tfGroup.appendChild(btnB);
+            tfGroup.appendChild(btnS);
+            container.appendChild(tfGroup);
+
+        } else if (currentQ.type === 'sequence') {
+            let seqBox = document.createElement('div');
+            seqBox.style.cssText = 'display: flex; flex-direction: column; gap: 0.8cqw; width: 100%;';
+            
+            let shuffledSteps = [...currentQ.steps].sort(() => Math.random() - 0.5);
+            
+            shuffledSteps.forEach((stepText) => {
+                let stepCard = document.createElement('div');
+                stepCard.style.cssText = 'background: #3498db; color: white; padding: 1cqw 1.5cqw; border: 0.3cqw solid #111; border-radius: 0.5cqw; font-size: 1.2cqw; font-weight: bold; cursor: pointer; box-shadow: 0.3cqw 0.3cqw 0 #111; text-align: left;';
+                stepCard.innerText = stepText;
+                
+                stepCard.onclick = () => {
+                    // Validasi apakah diklik sesuai urutan teks aslinya
+                    if (stepText === currentQ.steps[window.m2SubSeqIdx || 0]) {
+                        stepCard.style.background = '#2ed573';
+                        stepCard.style.pointerEvents = 'none';
+                        window.m2SubSeqIdx = (window.m2SubSeqIdx || 0) + 1;
+                        
+                        if (window.m2SubSeqIdx >= currentQ.steps.length) {
+                            window.m2SubSeqIdx = 0;
+                            if (typeof sfxBenar !== 'undefined') { sfxBenar.currentTime = 0; sfxBenar.play(); }
+                            addScore(20);
+                            showCustomModal(" URUTAN TEPAT!", currentQ.msg, "", "alert", () => {
+                                window.m2FailSafe[stage] = 0;
+                                window.m2ActiveIndex[stage]++;
+                                loadM2Quiz(stage);
+                            });
+                        }
+                    } else {
+                        if (typeof sfxSalah !== 'undefined') { sfxSalah.currentTime = 0; sfxSalah.play(); }
+                        reduceLife();
+                        showCustomModal("URUTAN SALAH!", "Langkah tersebut belum tepat urutannya. Coba pikirkan prioritas pertolongan pertamanya! (Nyawa -1)", "", "error");
+                    }
+                };
+                seqBox.appendChild(stepCard);
+            });
+            container.appendChild(seqBox);
+        }
+    };
+
+    // Eksekusi Pemuat Kuis untuk Tahap 2, 3, 4, 5
+    [2, 3, 4, 5].forEach(stage => loadM2Quiz(stage));
+
+    // Naskah NPC Kelulusan Akhir
     currentMissionDialogs = {
-        1: { dialog: [
-            { text: "Kerja bagus! Mari kita ingat nama-nama ilmiahnya.", mood: "happy" },
-            { text: "Mata adalah Indra Penglihat yang bertugas untuk melihat benda. Telinga adalah Indra Pendengar yang berfungsi mendengar suara.", mood: "neutral" },
-            { text: "Hidung adalah Indra Pembau untuk mencium aroma. Lidah adalah Indra Pengecap untuk merasakan makanan.", mood: "neutral" },
-            { text: "Dan terakhir, Kulit adalah Indra Peraba untuk merasakan sentuhan. Ayo kita selidiki contohnya satu per satu!", mood: "happy" }
-        ]},
-        4: { dialog: [
-            { text: "Luar biasa! Hidung kita bisa mendeteksi berbagai jenis bau yang terbawa oleh angin.", mood: "happy" },
-            { text: "Di dalam hidung, terdapat rambut-rambut halus yang menyaring debu lapangan agar udara yang masuk tetap bersih.", mood: "neutral" },
-            { text: "Saraf pembau di atas rongga hidunglah yang mengirimkan pesan ke otak, sehingga kita tahu itu bau wangi makanan atau bau selokan!", mood: "neutral" }
-        ]},
-        7: { 
+        1: { 
+            dialog: [
+                { text: "Kalibrasi yang sangat sempurna! Kamu sudah memahami fungsi dasar setiap sensor dengan logis.", mood: "happy" },
+                { text: "Sekarang saatnya kita terjun langsung ke Lapangan Tambi untuk mengatasi insiden nyata secara langsung. Bersiaplah!", mood: "neutral" }
+            ]
+        },
+        6: { 
             isBoss: true,
             dialog: [
-                { text: "Detektif yang hebat! Kamu berhasil mencocokkan semua kejadian di Lapangan Tambi dengan indra yang tepat.", mood: "happy" },
-                { text: "Kamu telah menguasai Fungsi Utama Pancaindra dengan sempurna dan berhak mendapatkan 100 Koin Emas!", mood: "happy" },
-                { text: "Segel ajaib Misi 3 telah terbuka. Petualangan kita makin seru, ayo kembali ke peta!", mood: "neutral" }
+                { text: "Luar biasa! Pemikiran logismu menyelamatkan Festival Lapangan Tambi dari kekacauan.", mood: "happy" },
+                { text: "Ternyata, fungsi alat indra sangat vital untuk mengambil keputusan di dunia nyata. Kamu berhak atas Lencana Wasit dan 100 Koin Emas!", mood: "happy" },
+                { text: "Buku Jurnal Misi 2 telah diisi. Ayo kembali ke peta dan bersiap masuk ke Misi 3!", mood: "neutral" }
             ]
         }
     };
 }
 
-// Generator Misi 3: Bentuk & Bagian Pancaindra
+// Generator Misi 3: DOKTER CILIK SLG (Deep Learning & Kearifan Lokal)
 function buildMission3() {
-    document.getElementById('mission-title').innerText = "MISI 3: BAGIAN PANCAINDRA";
+    document.getElementById('mission-title').innerText = "MISI 3: DOKTER CILIK SLG";
     const contentArea = document.getElementById('mission-content-area');
     const floatingNext = document.getElementById('floating-next-container');
     
     contentArea.innerHTML = `
-        <div id="stage-1" class="mission-stage active-stage">
-            <h3 class="stage-title">TAHAP 1: KUNJUNGAN KE PUSKESMAS</h3>
-            <div class="mission-text-box" style="font-size: 1.4cqw; text-align: left;">
-                <p>Selamat datang di <b>Puskesmas Kandangan</b>! Suasananya sangat bersih, tenang, dan banyak poster kesehatan di dinding.</p>
-                <p>Setiap pancaindra kita memiliki bagian-bagian penyusun yang kompleks. Bagian inilah yang bekerja sama agar organ kita berfungsi maksimal.</p>
-                <p>Sambil menunggu antrean dokter, mari kita lihat poster-poster di Puskesmas ini untuk mengenal bentuk dan bagian pancaindra kita!</p>
+        <div id="stage-1" class="mission-stage active-stage" style="width: 100%; height: 100%;">
+            <!-- INTRO -->
+            <div id="m3-s1-intro" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 30; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                <button class="btn-close-mission" style="position: absolute; top: 1.5cqw; right: 1.5cqw; z-index: 35;" onclick="abortM3QRScanner()">X</button>
+                <h2 style="color: #f1c40f; font-size: 3.5cqw; text-shadow: 0.2cqw 0.2cqw 0 #000; margin-bottom: 1cqw;">INSPEKSI BARANG RAHASIA</h2>
+                <p style="color: white; font-size: 1.8cqw; margin-bottom: 2cqw; text-align: center; padding: 0 5cqw;">Arahkan kameramu dan pindai Kartu QR rahasia.<br>Gunakan kelima alat indra untuk menyelidiki barang rahasia yang muncul dan tebak isinya!</p>
+                <button class="btn btn-play" style="font-size: 2cqw; padding: 1cqw 3cqw;" onclick="startM3QRScanner()">MULAI PEMINDAIAN</button>
             </div>
-            <button class="btn btn-play" style="margin-top: 2cqw;" onclick="nextMissionStage(2)">LIHAT POSTER ANATOMI</button>
+            
+            <!-- KAMERA PEMINDAI QR -->
+            <div id="m3-s1-camera-area" class="ar-container" style="display: none; background: #000; position: relative;">
+                <div class="ar-hud">
+                    <div class="ar-score-box">Barang Ditemukan: <span id="m3-qr-score-txt">0 / 5</span></div>
+                    <button class="btn-close-mission" style="position: static; margin-left: auto;" onclick="abortM3QRScanner()">X</button>
+                </div>
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 20cqw; height: 20cqw; border: 0.6cqw dashed #2ed573; z-index: 5; box-shadow: 0 0 0 100vw rgba(0,0,0,0.5);">
+                    <div style="position: absolute; bottom: -3cqw; width: 100%; text-align: center; color: #2ed573; font-weight: bold; font-size: 1.5cqw; text-shadow: 0.1cqw 0.1cqw 0 #000;">SCAN DI SINI</div>
+                </div>
+                <video id="m3-qr-video" class="ar-video" playsinline></video>
+                <canvas id="m3-qr-canvas" style="display: none;"></canvas>
+            </div>
+
+            <!-- AREA INVESTIGASI BARANG -->
+            <div id="m3-s1-investigate-area" class="ar-container" style="display: none; background-image: url('assets/background/kios-tahu.webp'); background-size: cover; background-position: center; position: relative; flex-direction: column;">
+                <div class="m1-modal-box" style="width: 85%; max-height: 95%; background: rgba(47, 53, 66, 0.95);">
+                    <h3 style="color: #fbc531; margin-top: 0; font-size: 1.8cqw; margin-bottom: 0.5cqw;">INVESTIGASI BARANG <span id="m3-inv-count">1</span>/5</h3>
+                    <div style="width: 12cqw; height: 12cqw; background: #111; border: 0.3cqw solid #fff; border-radius: 1cqw; display: flex; justify-content: center; align-items: center; margin-bottom: 1cqw;">
+                        <span style="font-size: 5cqw; color: #fff; font-family: monospace;">?</span>
+                    </div>
+                    <p style="color: #dfe6e9; font-size: 1.3cqw; margin-bottom: 1cqw; text-align: center;">Sentuh alat pancaindra untuk menyelidiki barang ini!</p>
+                    <div class="m1-inspect-tools" id="m3-inspect-tools-container" style="margin-bottom: 1cqw;">
+                        <img src="assets/item/alat-mata.webp" class="m1-tool-btn" data-sense="mata" onclick="inspectM3Item('mata', this)">
+                        <img src="assets/item/alat-telinga.webp" class="m1-tool-btn" data-sense="telinga" onclick="inspectM3Item('telinga', this)">
+                        <img src="assets/item/alat-hidung.webp" class="m1-tool-btn" data-sense="hidung" onclick="inspectM3Item('hidung', this)">
+                        <img src="assets/item/alat-lidah.webp" class="m1-tool-btn" data-sense="lidah" onclick="inspectM3Item('lidah', this)">
+                        <img src="assets/item/alat-kulit.webp" class="m1-tool-btn" data-sense="kulit" onclick="inspectM3Item('kulit', this)">
+                    </div>
+                    <div id="m3-inspect-quiz" style="width: 100%; display: none; flex-direction: column; align-items: center;">
+                        <p style="font-weight: bold; margin-bottom: 1cqw; font-size: 1.4cqw; text-align: center; color: #fff;">Berdasarkan penyelidikan pancaindra, barang apakah ini?</p>
+                        <div class="explore-grid" id="m3-inspect-opts" style="width: 100%;"></div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div id="stage-2" class="mission-stage">
-            <h3 class="stage-title" style="color: #2980b9;">TAHAP 2: ANATOMI MATA</h3>
+            <h3 class="stage-title" style="color: #2980b9;">TAHAP 2: BENTUK PELINDUNG MATA</h3>
             <div id="stage-2-intro" style="width: 100%;">
                 <div class="anatomy-layout">
                     <div class="anatomy-img-col" onclick="showImagePopup('assets/item/anatomi-mata.webp')" title="Perbesar Gambar">
@@ -395,23 +877,22 @@ function buildMission3() {
                         <div id="highlight-2" class="anatomy-highlight"></div> 
                     </div>
                     <div class="anatomy-text-col" id="anat-col-2" data-step="0">
-                        <div class="anatomy-part-box anat-step" style="display:block; border-color:#2980b9;"><span>Mata (Indra Penglihat)</span>Mata kita berfungsi sebagai jendela dunia. Dengan mata, kita bisa menangkap pantulan cahaya sehingga mampu melihat indahnya warna dan bentuk benda di sekeliling kita.</div>
-                        <div class="anatomy-part-box anat-step" style="display:none; border-color:#e67e22;"><span>Fakta Anatomi</span>Kita memiliki dua buah bola mata yang letaknya aman di bagian wajah. Tahukah kamu? Otot mata adalah otot yang paling cepat bergerak di seluruh tubuh!</div>
-                        <div class="anatomy-part-box anat-step" data-target="d_alis" style="display:none;"><span>Alis Mata</span>Coba raba bagian atas matamu, itu adalah Alis! Alis berfungsi bertugas menahan keringat yang menetes dari dahi agar tidak mengalir masuk ke dalam mata.</div>
-                        <div class="anatomy-part-box anat-step" data-target="d_kelopak" style="display:none;"><span>Kelopak Mata</span>Ini adalah lipatan kulit tipis yang bisa membuka dan menutup. Ia bertugas melindungi bola mata dari benturan dan debu kasar.</div>
-                        <div class="anatomy-part-box anat-step" data-target="d_bulu" style="display:none;"><span>Bulu Mata</span>Rambut halus di ujung kelopak ini adalah Bulu Mata. Fungsinya menahan debu atau serangga kecil agar tidak merusak bola mata.</div>
-                        <div class="anatomy-part-box anat-step" data-target="d_iris" style="display:none;"><span>Iris</span>Lapisan melingkar yang memberikan warna pada matamu disebut Iris. Ada yang cokelat, hitam, biru, atau hijau!</div>
-                        <div class="anatomy-part-box anat-step" data-target="d_pupil" style="display:none;"><span>Pupil</span>Titik hitam pekat tepat di tengah matamu bernama Pupil. Ia bekerja mengatur cahaya yang masuk.</div>
+                        <div class="anatomy-part-box anat-step" style="display:block; border-color:#2980b9;"><span>Mata (Indra Penglihat)</span>Bentuk mata membulat agar bisa bebas melirik. Namun, mata sangat rentan terhadap kotoran dari luar.</div>
+                        <div class="anatomy-part-box anat-step" style="display:none; border-color:#e67e22;"><span>Analisis Bentuk & Fungsi</span>Tahukah kamu mengapa kita memiliki <b>Bulu Mata</b> yang melengkung ke atas? Bentuk ini diciptakan khusus seperti jaring untuk menjebak debu (seperti debu vulkanik Gunung Kelud) agar tidak langsung jatuh melukai bola mata!</div>
+                        <div class="anatomy-part-box anat-step" data-target="d_alis" style="display:none;"><span>Alis Mata</span>Bentuk melengkungnya bertugas menahan tetesan keringat dari dahi.</div>
+                        <div class="anatomy-part-box anat-step" data-target="d_kelopak" style="display:none;"><span>Kelopak Mata</span>Bentuk kulit lipatan tipis yang refleks menutup kilat untuk menangkis benturan.</div>
+                        <div class="anatomy-part-box anat-step" data-target="d_bulu" style="display:none;"><span>Bulu Mata</span>Jaring penahan debu dan serangga kecil.</div>
+                        <div class="anatomy-part-box anat-step" data-target="d_iris" style="display:none;"><span>Iris</span>Otot pelindung berwarna yang mengatur besar/kecilnya lubang pupil.</div>
+                        <div class="anatomy-part-box anat-step" data-target="d_pupil" style="display:none;"><span>Pupil</span>Celah masuknya cahaya ke dalam mata.</div>
                     </div>
                 </div>
-                <button id="btn-anat-2" class="btn btn-play" style="width: 100%; font-size: 1.5cqw;" onclick="advanceAnatomy(2)">BACA SELANJUTNYA 🔽</button>
+                <button id="btn-anat-2" class="btn btn-play" style="width: 100%; font-size: 1.5cqw;" onclick="advanceAnatomy(2)">BACA ANALISIS 🔽</button>
             </div>
             <div id="stage-2-quiz" style="display: none; width: 100%; flex-direction: column; align-items: center;">
-                <p class="mission-text-box" style="width: 100%; margin: 0; text-align: center;">Tarik Label Jawaban ke kotak kosong yang tepat di gambar Mata!</p>
+                <p class="mission-text-box" style="width: 100%; margin: 0; text-align: center;">Tarik label ke tempatnya! <br><span style="color: #ff4757; font-size: 1.2cqw;">💡 TIPS DOKTER: Jika kesulitan, cocokkan warna garis kotak target dengan imajinasimu!</span></p>
                 <div class="dnd-game-area">
                     <div class="dnd-image-wrapper">
                         <img src="assets/item/anatomi-mata.webp" alt="Papan Mata">
-                        <!-- Kordinat Tengah Akurat Baru -->
                         <div class="dnd-drop-zone" data-match="d_alis" style="top: 15%; left: 50%; width: 22%; height: 10%;"></div>
                         <div class="dnd-drop-zone" data-match="d_kelopak" style="top: 35%; left: 50%; width: 25%; height: 12%;"></div>
                         <div class="dnd-drop-zone" data-match="d_pupil" style="top: 55%; left: 50%; width: 15%; height: 15%;"></div>
@@ -430,7 +911,7 @@ function buildMission3() {
         </div>
 
         <div id="stage-3" class="mission-stage">
-            <h3 class="stage-title" style="color: #8e44ad;">TAHAP 3: ANATOMI TELINGA</h3>
+            <h3 class="stage-title" style="color: #8e44ad;">TAHAP 3: LORONG PENANGKAP SUARA</h3>
             <div id="stage-3-intro" style="width: 100%;">
                 <div class="anatomy-layout">
                     <div class="anatomy-img-col" onclick="showImagePopup('assets/item/anatomi-telinga.webp')" title="Perbesar Gambar">
@@ -438,21 +919,20 @@ function buildMission3() {
                         <div id="highlight-3" class="anatomy-highlight"></div>
                     </div>
                     <div class="anatomy-text-col" id="anat-col-3" data-step="0">
-                        <div class="anatomy-part-box anat-step" style="display:block; border-color:#8e44ad;"><span>Telinga (Indra Pendengar)</span>Telinga kita bertugas menangkap gelombang dan getaran suara di udara.</div>
-                        <div class="anatomy-part-box anat-step" style="display:none; border-color:#e67e22;"><span>Fakta Anatomi</span>Tahukah kamu? Tulang terkecil di seluruh tubuh manusia ada tersembunyi jauh di dalam telingamu!</div>
-                        <div class="anatomy-part-box anat-step" data-target="d_daun" style="display:none;"><span>Daun Telinga</span>Daun telinga adalah tulang rawan bagian luar. Berfungsi layaknya corong besar untuk menangkap dan mengumpulkan suara.</div>
-                        <div class="anatomy-part-box anat-step" data-target="d_lubang" style="display:none;"><span>Lubang Telinga</span>Lubang telinga adalah saluran tempat masuknya gelombang suara untuk diarahkan menuju ke bagian dalam.</div>
-                        <div class="anatomy-part-box anat-step" data-target="d_gendang" style="display:none;"><span>Gendang Telinga</span>Gendang telinga adalah selaput sangat tipis yang bergetar saat terkena suara. Jangan korek telinga terlalu dalam agar selaput ini tidak robek!</div>
+                        <div class="anatomy-part-box anat-step" style="display:block; border-color:#8e44ad;"><span>Telinga (Indra Pendengar)</span>Telinga tidak berbentuk bulat rata, melainkan memiliki banyak lorong bergelombang.</div>
+                        <div class="anatomy-part-box anat-step" style="display:none; border-color:#e67e22;"><span>Analisis Bentuk & Fungsi</span>Mengapa Daun Telinga kita berlekuk-lekuk? Lekukan ini berfungsi seperti corong raksasa Gua Selomangleng yang menjebak dan memantulkan suara Gamelan Jaranan agar masuk tepat sasaran ke dalam lubang telingamu!</div>
+                        <div class="anatomy-part-box anat-step" data-target="d_daun" style="display:none;"><span>Daun Telinga</span>Bentuk corong berlekuk luar penjebak getaran suara.</div>
+                        <div class="anatomy-part-box anat-step" data-target="d_lubang" style="display:none;"><span>Lubang Telinga</span>Lorong sempit untuk menyalurkan gelombang suara ke dalam.</div>
+                        <div class="anatomy-part-box anat-step" data-target="d_gendang" style="display:none;"><span>Gendang Telinga</span>Selaput sangat tipis yang dirancang khusus untuk bergetar saat tertabrak suara.</div>
                     </div>
                 </div>
-                <button id="btn-anat-3" class="btn btn-play" style="width: 100%; font-size: 1.5cqw;" onclick="advanceAnatomy(3)">BACA SELANJUTNYA 🔽</button>
+                <button id="btn-anat-3" class="btn btn-play" style="width: 100%; font-size: 1.5cqw;" onclick="advanceAnatomy(3)">BACA ANALISIS 🔽</button>
             </div>
             <div id="stage-3-quiz" style="display: none; width: 100%; flex-direction: column; align-items: center;">
-                <p class="mission-text-box" style="width: 100%; margin: 0; text-align: center;">Tarik Label Jawaban ke kotak kosong yang tepat di gambar Telinga!</p>
+                <p class="mission-text-box" style="width: 100%; margin: 0; text-align: center;">Tarik label ke tempatnya! <br><span style="color: #ff4757; font-size: 1.2cqw;">💡 TIPS DOKTER: Ingat urutan jalurnya: Ditangkap luar -> Masuk lorong -> Menabrak gendang.</span></p>
                 <div class="dnd-game-area">
                     <div class="dnd-image-wrapper">
                         <img src="assets/item/anatomi-telinga.webp" alt="Papan Telinga">
-                        <!-- Kordinat Tengah Akurat Baru -->
                         <div class="dnd-drop-zone" data-match="d_gendang" style="top: 55%; left: 25%; width: 18%; height: 25%;"></div>
                         <div class="dnd-drop-zone" data-match="d_lubang" style="top: 55%; left: 52%; width: 20%; height: 20%;"></div>
                         <div class="dnd-drop-zone" data-match="d_daun" style="top: 45%; left: 85%; width: 25%; height: 30%;"></div>
@@ -466,8 +946,27 @@ function buildMission3() {
             </div>
         </div>
 
+        <!-- STAGE M3 AR: TANGKAP BUAH (INTERMEZZO) -->
+        <div id="stage-m3-ar" class="mission-stage" style="width: 100%; height: 100%;">
+            <div id="m3-ar-game-area" class="ar-container" style="display: none;">
+                <div id="m3-ar-target-overlay-wrapper" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: none; align-items: center; justify-content: center; z-index: 50; pointer-events: none;">
+                    <div id="m3-ar-target-overlay" style="background: #2f3542; border: 0.6cqw solid #fbc531; padding: 2cqw 4cqw; color: #fff; font-size: 3cqw; font-weight: 900; text-align: center; border-radius: 1cqw; box-shadow: inset -0.3cqw -0.3cqw 0px rgba(0,0,0,0.5), inset 0.3cqw 0.3cqw 0px rgba(255,255,255,0.2), 1cqw 1cqw 0 rgba(0,0,0,0.8); text-shadow: 0.2cqw 0.2cqw 0 #111; max-width: 80%; word-wrap: break-word;">TANGKAP BUAH!</div>
+                </div>
+                <div class="ar-hud">
+                    <div class="ar-score-box">Buah Terkumpul: <span id="m3-ar-score-txt">0 / 30</span></div>
+                    <button class="btn-close-mission" style="position: static; margin-left: auto;" onclick="abortM3AR()">X</button>
+                </div>
+                <div class="ar-frame"></div>
+                <div id="m3-ar-face-guide" class="ar-face-guide">
+                    <div class="face-guide-box">AREA AMAN<br>(JANGAN ADA TANGAN)</div>
+                </div>
+                <video id="m3-ar-video" class="ar-video" autoplay playsinline></video>
+                <canvas id="m3-ar-hidden-canvas" style="display: none;"></canvas>
+            </div>
+        </div>
+
         <div id="stage-4" class="mission-stage">
-            <h3 class="stage-title" style="color: #d35400;">TAHAP 4: ANATOMI HIDUNG</h3>
+            <h3 class="stage-title" style="color: #d35400;">TAHAP 4: RONGGA PENYARING DEBU</h3>
             <div id="stage-4-intro" style="width: 100%;">
                 <div class="anatomy-layout">
                     <div class="anatomy-img-col" onclick="showImagePopup('assets/item/anatomi-hidung.webp')" title="Perbesar Gambar">
@@ -475,21 +974,20 @@ function buildMission3() {
                         <div id="highlight-4" class="anatomy-highlight"></div>
                     </div>
                     <div class="anatomy-text-col" id="anat-col-4" data-step="0">
-                        <div class="anatomy-part-box anat-step" style="display:block; border-color:#d35400;"><span>Hidung (Indra Pembau)</span>Hidung bertugas mendeteksi partikel aroma di udara, sekaligus gerbang pernapasan tempat oksigen masuk.</div>
-                        <div class="anatomy-part-box anat-step" style="display:none; border-color:#e67e22;"><span>Fakta Anatomi</span>Hidung manusia adalah sensor yang sangat kuat karena terbukti mampu mengingat puluhan ribu jenis bau berbeda!</div>
-                        <div class="anatomy-part-box anat-step" data-target="d_lubang_hidung" style="display:none;"><span>Lubang Hidung</span>Ini adalah dua pintu utama di wajah kita tempat keluar masuknya udara.</div>
-                        <div class="anatomy-part-box anat-step" data-target="d_rambut" style="display:none;"><span>Rambut Hidung</span>Rambut hidung adalah bulu-bulu halus di dalam rongga. Mereka bertugas menyaring debu agar udara ke paru-paru tetap bersih.</div>
-                        <div class="anatomy-part-box anat-step" data-target="d_saraf" style="display:none;"><span>Saraf Pembau</span>Kumpulan sel sensor khusus di rongga atas. Mereka yang mendeteksi jenis aroma dan langsung mengirimkan pesan ke otak.</div>
+                        <div class="anatomy-part-box anat-step" style="display:block; border-color:#d35400;"><span>Hidung (Indra Pembau)</span>Lubang hidung menghadap ke bawah, bukan ke atas, agar kotoran dan air hujan tidak mudah masuk.</div>
+                        <div class="anatomy-part-box anat-step" style="display:none; border-color:#e67e22;"><span>Analisis Bentuk & Fungsi</span>Di dalam rongga, Saraf Pembau terletak sangat tersembunyi di bagian <b>paling atas</b>. Itulah sebabnya saat kita ingin mencium lezatnya sate di pasar, kita refleks menarik napas kuat-kuat agar uap bau naik ke atap rongga hidung!</div>
+                        <div class="anatomy-part-box anat-step" data-target="d_lubang_hidung" style="display:none;"><span>Lubang Hidung</span>Dua pintu utama masuknya udara.</div>
+                        <div class="anatomy-part-box anat-step" data-target="d_rambut" style="display:none;"><span>Rambut Hidung</span>Jaring bulu lebat penyaring debu kotoran di depan pintu masuk.</div>
+                        <div class="anatomy-part-box anat-step" data-target="d_saraf" style="display:none;"><span>Saraf Pembau</span>Sensor pendeteksi jenis bau yang aman bertengger di atap rongga hidung.</div>
                     </div>
                 </div>
-                <button id="btn-anat-4" class="btn btn-play" style="width: 100%; font-size: 1.5cqw;" onclick="advanceAnatomy(4)">BACA SELANJUTNYA 🔽</button>
+                <button id="btn-anat-4" class="btn btn-play" style="width: 100%; font-size: 1.5cqw;" onclick="advanceAnatomy(4)">BACA ANALISIS 🔽</button>
             </div>
             <div id="stage-4-quiz" style="display: none; width: 100%; flex-direction: column; align-items: center;">
-                <p class="mission-text-box" style="width: 100%; margin: 0; text-align: center;">Tarik Label Jawaban ke kotak kosong yang tepat di gambar Hidung!</p>
+                <p class="mission-text-box" style="width: 100%; margin: 0; text-align: center;">Tarik label ke tempatnya! <br><span style="color: #ff4757; font-size: 1.2cqw;">💡 TIPS DOKTER: Urutkan dari lubang paling luar hingga ke atap atas!</span></p>
                 <div class="dnd-game-area">
                     <div class="dnd-image-wrapper">
                         <img src="assets/item/anatomi-hidung.webp" alt="Papan Hidung">
-                        <!-- Kordinat Tengah Akurat Baru -->
                         <div class="dnd-drop-zone" data-match="d_saraf" style="top: 25%; left: 50%; width: 28%; height: 16%;"></div>
                         <div class="dnd-drop-zone" data-match="d_rambut" style="top: 60%; left: 50%; width: 30%; height: 18%;"></div>
                         <div class="dnd-drop-zone" data-match="d_lubang_hidung" style="top: 85%; left: 50%; width: 30%; height: 12%;"></div>
@@ -504,7 +1002,7 @@ function buildMission3() {
         </div>
 
         <div id="stage-5" class="mission-stage">
-            <h3 class="stage-title" style="color: #e84393;">TAHAP 5: ANATOMI LIDAH</h3>
+            <h3 class="stage-title" style="color: #e84393;">TAHAP 5: OTOT KASAR PENGECAP</h3>
             <div id="stage-5-intro" style="width: 100%;">
                 <div class="anatomy-layout">
                     <div class="anatomy-img-col" onclick="showImagePopup('assets/item/anatomi-lidah.webp')" title="Perbesar Gambar">
@@ -512,21 +1010,20 @@ function buildMission3() {
                         <div id="highlight-5" class="anatomy-highlight"></div>
                     </div>
                     <div class="anatomy-text-col" id="anat-col-5" data-step="0">
-                        <div class="anatomy-part-box anat-step" style="display:block; border-color:#e84393;"><span>Lidah (Indra Pengecap)</span>Lidah adalah otot lentur yang peka, membantumu merasakan berbagai kelezatan, membolak-balik makanan, dan berbicara!</div>
-                        <div class="anatomy-part-box anat-step" style="display:none; border-color:#e67e22;"><span>Fakta Anatomi</span>Di permukaan lidahmu terdapat bintik kasar bernama Papila. Uniknya, sama seperti sidik jari, cetakan lidah setiap manusia berbeda lho!</div>
-                        <div class="anatomy-part-box anat-step" data-target="d_ujung" style="display:none;"><span>Rasa Manis</span>Bagian paling depan lidahmu ini sangat ahli mendeteksi rasa manis gulali atau cokelat kesukaanmu.</div>
-                        <div class="anatomy-part-box anat-step" data-target="d_samping" style="display:none;"><span>Rasa Asam & Asin</span>Sisi kiri dan kanan lidahmu memiliki tugas berlapis. Mengecap rasa Asin dan rasa Asam seperti jeruk nipis.</div>
-                        <div class="anatomy-part-box anat-step" data-target="d_pangkal" style="display:none;"><span>Rasa Pahit</span>Bagian lidah yang paling belakang adalah sensor utama untuk mendeteksi rasa Pahit dari obat atau jamu.</div>
+                        <div class="anatomy-part-box anat-step" style="display:block; border-color:#e84393;"><span>Lidah (Indra Pengecap)</span>Lidah adalah otot terkuat yang bisa membolak-balikkan makanan dan membantu manusia berbicara.</div>
+                        <div class="anatomy-part-box anat-step" style="display:none; border-color:#e67e22;"><span>Analisis Bentuk & Fungsi</span>Permukaan lidahmu terasa kasar karena dipenuhi <b>Papila</b>. Kekasaran ini sangat penting untuk menahan agar makanan (seperti Gethuk Pisang) tidak langsung tergelincir masuk ke tenggorokan sebelum dikunyah hancur!</div>
+                        <div class="anatomy-part-box anat-step" data-target="d_ujung" style="display:none;"><span>Ujung Lidah</span>Bentuk melancip di depan yang ahli mendeteksi rasa manis gula.</div>
+                        <div class="anatomy-part-box anat-step" data-target="d_samping" style="display:none;"><span>Samping Lidah</span>Sisi ganda kiri-kanan yang peka mengecap rasa asam dan asin.</div>
+                        <div class="anatomy-part-box anat-step" data-target="d_pangkal" style="display:none;"><span>Pangkal Lidah</span>Benteng pertahanan terakhir di paling belakang lidah pendeteksi rasa pahit (jamu / racun).</div>
                     </div>
                 </div>
-                <button id="btn-anat-5" class="btn btn-play" style="width: 100%; font-size: 1.5cqw;" onclick="advanceAnatomy(5)">BACA SELANJUTNYA 🔽</button>
+                <button id="btn-anat-5" class="btn btn-play" style="width: 100%; font-size: 1.5cqw;" onclick="advanceAnatomy(5)">BACA ANALISIS 🔽</button>
             </div>
             <div id="stage-5-quiz" style="display: none; width: 100%; flex-direction: column; align-items: center;">
-                <p class="mission-text-box" style="width: 100%; margin: 0; text-align: center;">Tarik Label Jawaban ke area pengecap rasa di gambar Lidah!</p>
+                <p class="mission-text-box" style="width: 100%; margin: 0; text-align: center;">Pindai dan letakkan label sensor rasa pada lidah! <br><span style="color: #ff4757; font-size: 1.2cqw;">💡 TIPS DOKTER: Rasa pahit selalu berjaga di gerbang paling belakang.</span></p>
                 <div class="dnd-game-area">
                     <div class="dnd-image-wrapper">
                         <img src="assets/item/anatomi-lidah.webp" alt="Papan Lidah">
-                        <!-- Kordinat Tengah Akurat Baru -->
                         <div class="dnd-drop-zone" data-match="d_pangkal" style="top: 25%; left: 50%; width: 32%; height: 18%;"></div>
                         <div class="dnd-drop-zone" data-match="d_samping" style="top: 55%; left: 20%; width: 20%; height: 28%;"></div>
                         <div class="dnd-drop-zone" data-match="d_ujung" style="top: 85%; left: 50%; width: 32%; height: 18%;"></div>
@@ -541,7 +1038,7 @@ function buildMission3() {
         </div>
 
         <div id="stage-6" class="mission-stage">
-            <h3 class="stage-title" style="color: #27ae60;">TAHAP 6: ANATOMI KULIT</h3>
+            <h3 class="stage-title" style="color: #27ae60;">TAHAP 6: PABRIK PENDINGIN TUBUH</h3>
             <div id="stage-6-intro" style="width: 100%;">
                 <div class="anatomy-layout">
                     <div class="anatomy-img-col" onclick="showImagePopup('assets/item/anatomi-kulit1.webp')" title="Perbesar Gambar">
@@ -549,18 +1046,18 @@ function buildMission3() {
                         <div id="highlight-6" class="anatomy-highlight"></div>
                     </div>
                     <div class="anatomy-text-col" id="anat-col-6" data-step="0">
-                        <div class="anatomy-part-box anat-step" style="display:block; border-color:#27ae60;"><span>Kulit (Indra Peraba)</span>Meski tipis, kulit membantumu merasakan sentuhan teman, tekstur benda, rasa sakit, serta membedakan suhu panas dan dingin.</div>
-                        <div class="anatomy-part-box anat-step" style="display:none; border-color:#e67e22;"><span>Fakta Anatomi</span>Kulit adalah pelindung berlapis yang menyelimuti seluruh tubuh luar kita, menjadikannya organ terbesar pada manusia!</div>
-                        <div class="anatomy-part-box anat-step" data-target="d_permukaan" style="display:none;"><span>Permukaan Kulit (Epidermis)</span>Permukaan kulit adalah lapisan keras teratas. Ini tameng pelindung tubuh dari kuman dan debu.</div>
-                        <div class="anatomy-part-box anat-step" data-target="d_rambut" style="display:none;"><span>Batang Rambut</span>Struktur memanjang yang akar sarafnya menembus kulit. Jika kedinginan, rambut ini akan berdiri menjaga kehangatan!</div>
-                        <div class="anatomy-part-box anat-step" data-target="d_keringat" style="display:none;"><span>Kelenjar Keringat</span>Struktur melingkar biru itu adalah pabrik yang akan mengeluarkan air keringat saat kepanasan untuk mendinginkan tubuh.</div>
-                        <div class="anatomy-part-box anat-step" data-target="d_saraf" style="display:none;"><span>Ujung Saraf</span>Ranting kuning itu adalah Ujung Saraf. Merekalah saklar ajaib pengirim sinyal ke otak begitu kulitmu menyentuh benda panas atau tajam.</div>
+                        <div class="anatomy-part-box anat-step" style="display:block; border-color:#27ae60;"><span>Kulit (Indra Peraba)</span>Meski terlihat tipis di permukaan, kulit menyimpan banyak struktur pelindung canggih di bawahnya.</div>
+                        <div class="anatomy-part-box anat-step" style="display:none; border-color:#e67e22;"><span>Analisis Bentuk & Fungsi</span>Di bawah kulit terdapat <b>Kelenjar Keringat</b> berbentuk seperti selang spiral mesin pendingin. Saat penari Barong kepanasan memakai topeng kayu yang berat, kelenjar ini menyemprotkan cairan keringat ke luar untuk menurunkan suhu mesin tubuhnya!</div>
+                        <div class="anatomy-part-box anat-step" data-target="d_permukaan" style="display:none;"><span>Permukaan Kulit</span>Lapisan tebal teratas (Epidermis). Ini tameng tubuh dari luka dan kuman.</div>
+                        <div class="anatomy-part-box anat-step" data-target="d_rambut" style="display:none;"><span>Batang Rambut</span>Struktur memanjang. Jika kedinginan, akar ototnya menarik rambut agar berdiri menjaga panas tubuh.</div>
+                        <div class="anatomy-part-box anat-step" data-target="d_keringat" style="display:none;"><span>Kelenjar Keringat</span>Struktur melingkar spiral biru (Pabrik Pendingin Tubuh).</div>
+                        <div class="anatomy-part-box anat-step" data-target="d_saraf" style="display:none;"><span>Ujung Saraf</span>Ranting akar sensor pendeteksi sentuhan, tekanan, dan nyeri.</div>
                     </div>
                 </div>
-                <button id="btn-anat-6" class="btn btn-play" style="width: 100%; font-size: 1.5cqw;" onclick="advanceAnatomy(6)">BACA SELANJUTNYA 🔽</button>
+                <button id="btn-anat-6" class="btn btn-play" style="width: 100%; font-size: 1.5cqw;" onclick="advanceAnatomy(6)">BACA ANALISIS 🔽</button>
             </div>
             <div id="stage-6-quiz" style="display: none; width: 100%; flex-direction: column; align-items: center;">
-                <p class="mission-text-box" style="width: 100%; margin: 0; text-align: center;">Tarik Label Jawaban ke kotak kosong yang tepat di blok Kulit Voxel!</p>
+                <p class="mission-text-box" style="width: 100%; margin: 0; text-align: center;">Letakkan struktur kulit sesuai posisinya! <br><span style="color: #ff4757; font-size: 1.2cqw;">💡 TIPS DOKTER: Kelenjar Keringat melingkar di bawah, Permukaan Kulit membentang di atas.</span></p>
                 <div class="dnd-game-area">
                     <div class="dnd-image-wrapper">
                         <img src="assets/item/anatomi-kulit1.webp" alt="Papan Kulit Voxel">
@@ -581,59 +1078,67 @@ function buildMission3() {
         </div>
 
         <div id="stage-7" class="mission-stage">
-            <h3 class="stage-title" style="color: #ff4757;">TAHAP 7: UJIAN ANATOMI (BOSS)</h3>
-            <p class="mission-text-box">Soal Bonus! Tarik garis untuk mencocokkan nama bagian tubuh ini dengan organ utamanya!</p>
+            <h3 class="stage-title" style="color: #ff4757;">TAHAP 7: DIAGNOSIS PASIEN (BOSS)</h3>
+            <p class="mission-text-box">Waktunya membuktikan analisismu, Dokter Cilik! Para Penari Jaranan di luar butuh pertolonganmu. Tarik garis untuk mencocokkan keluhan medis mereka dengan bagian organ yang mengalami kelelahan/bekerja keras.</p>
             <div class="match-container">
                 <svg class="match-svg"></svg>
                 <div class="match-col match-left">
-                    <div class="match-item" data-match="u_mata" style="order: ${Math.floor(Math.random()*4)}">Pupil & Kelopak</div>
-                    <div class="match-item" data-match="u_telinga" style="order: ${Math.floor(Math.random()*4)}">Gendang & Daun</div>
-                    <div class="match-item" data-match="u_hidung" style="order: ${Math.floor(Math.random()*4)}">Rambut & Saraf</div>
-                    <div class="match-item" data-match="u_lidah" style="order: ${Math.floor(Math.random()*4)}">Papila Pengecap</div>
+                    <div class="match-item" data-match="u_mata" style="order: ${Math.floor(Math.random()*4)}">"Mata saya pedih kelilipan debu abu vulkanik dari angin Gunung Kelud."</div>
+                    <div class="match-item" data-match="u_telinga" style="order: ${Math.floor(Math.random()*4)}">"Telinga saya sakit menahan suara pecut (cambuk) Jaranan yang keras."</div>
+                    <div class="match-item" data-match="u_kulit" style="order: ${Math.floor(Math.random()*4)}">"Saya sangat kepanasan memakai kostum topeng Barong raksasa ini."</div>
+                    <div class="match-item" data-match="u_lidah" style="order: ${Math.floor(Math.random()*4)}">"Saya merasa sangat pahit sehabis meminum jamu beras kencur ini."</div>
                 </div>
                 <div class="match-col match-right">
-                    <div class="match-target" data-id="u_hidung" style="order: ${Math.floor(Math.random()*4)}">Hidung</div>
-                    <div class="match-target" data-id="u_mata" style="order: ${Math.floor(Math.random()*4)}">Mata</div>
-                    <div class="match-target" data-id="u_lidah" style="order: ${Math.floor(Math.random()*4)}">Lidah</div>
-                    <div class="match-target" data-id="u_telinga" style="order: ${Math.floor(Math.random()*4)}">Telinga</div>
+                    <div class="match-target" data-id="u_kulit" style="order: ${Math.floor(Math.random()*4)}">Kelenjar Keringat Kulit</div>
+                    <div class="match-target" data-id="u_lidah" style="order: ${Math.floor(Math.random()*4)}">Pangkal Lidah</div>
+                    <div class="match-target" data-id="u_mata" style="order: ${Math.floor(Math.random()*4)}">Kelopak & Bulu Mata</div>
+                    <div class="match-target" data-id="u_telinga" style="order: ${Math.floor(Math.random()*4)}">Gendang Telinga</div>
                 </div>
             </div>
         </div>
     `;
 
     let floatingHTML = '';
-    for(let i=1; i<=6; i++) {
-        floatingHTML += `<button class="btn btn-play btn-floating-next" id="btn-next-${i}" style="display: none;" onclick="nextMissionStage(${i+1})">LANJUTKAN</button>`;
-    }
+    floatingHTML += `<button class="btn btn-play btn-floating-next" id="btn-next-1" style="display: none;" onclick="nextMissionStage(2)">LANJUTKAN</button>`;
+    floatingHTML += `<button class="btn btn-play btn-floating-next" id="btn-next-2" style="display: none;" onclick="nextMissionStage(3)">LANJUTKAN</button>`;
+    floatingHTML += `<button class="btn btn-play btn-floating-next" id="btn-next-3" style="display: none;" onclick="mulaiM3AR()">LANJUTKAN</button>`;
+    floatingHTML += `<button class="btn btn-play btn-floating-next" id="btn-next-4" style="display: none;" onclick="nextMissionStage(5)">LANJUTKAN</button>`;
+    floatingHTML += `<button class="btn btn-play btn-floating-next" id="btn-next-5" style="display: none;" onclick="nextMissionStage(6)">LANJUTKAN</button>`;
+    floatingHTML += `<button class="btn btn-play btn-floating-next" id="btn-next-6" style="display: none;" onclick="nextMissionStage(7)">LANJUTKAN</button>`;
     floatingNext.innerHTML = floatingHTML;
+
+    // Aktifkan mode layar penuh (Fullscreen) untuk arena kamera AR
+    document.querySelector('.mission-header').style.display = 'none';
+    document.querySelector('.mission-wrapper').classList.add('fullscreen-mode');
+    document.querySelector('.mission-full-box').classList.add('fullscreen-mode');
 
     currentMissionDialogs = {
         2: { dialog: [
-            { text: "Luar biasa! Kini kamu tahu nama bagian-bagian pelindung di luar matamu.", mood: "happy" },
-            { text: "Selain bagian luar ini, di dalam bola matamu juga ada Kornea dan Lensa yang bekerja seperti kamera lho!", mood: "neutral" }
+            { text: "Bentuk pelindung matamu sangat hebat, bukan? Bulu mata menjebak debu tebal, kelopak mata berkedip seperti tameng.", mood: "happy" },
+            { text: "Berkat desain khusus ini, bola matamu tetap aman bekerja menangkap cahaya. Ayo periksa anatomi selanjutnya!", mood: "neutral" }
         ]},
         3: { dialog: [
-            { text: "Bagus! Gendang telinga itu sangat tipis dan sensitif.", mood: "neutral" },
-            { text: "Oleh karena itu, jangan pernah mengorek telinga sembarangan dengan benda keras ya!", mood: "warning" }
+            { text: "Bagus! Kamu berhasil menyusun kembali lorong telinga.", mood: "neutral" },
+            { text: "Desain berlekuk dan bentuk corong daun telinga memang dirancang Sang Pencipta agar tidak ada satu pun suara yang terlewat! Mengagumkan!", mood: "happy" }
         ]},
         4: { dialog: [
-            { text: "Pintar! Rambut hidung adalah pahlawan kecil kita.", mood: "happy" },
-            { text: "Mereka menyaring debu kotoran sebelum udara bersih masuk ke paru-parumu.", mood: "neutral" }
+            { text: "Pintar! Menempatkan rambut hidung di depan terbukti sangat efektif menahan debu jalanan agar tidak terhirup masuk.", mood: "happy" },
+            { text: "Sementara saraf pembau yang berharga diletakkan aman tinggi di atas rongga. Desain yang sempurna!", mood: "neutral" }
         ]},
         5: { dialog: [
-            { text: "Tepat sekali! Bintik-bintik kasar pada lidah itu disebut papila.", mood: "happy" },
-            { text: "Di dalam papila terdapat banyak sekali ujung saraf yang memberitahu otakmu rasa lezat makanan.", mood: "neutral" }
+            { text: "Tepat sekali! Desain jalan berbatu papila membuat lidah mampu menahan licinnya makanan.", mood: "happy" },
+            { text: "Lalu saraf rasa dipisah dengan cerdas: manis di depan untuk nikmatnya gula, pahit dijaga di gerbang belakang sebagai alarm anti-racun!", mood: "neutral" }
         ]},
         6: { dialog: [
-            { text: "Wah, kamu berhasil menyusun lapisan kulit dengan sempurna!", mood: "happy" },
-            { text: "Kelenjar keringat biru sangat penting untuk membuang racun dan mendinginkan suhu tubuhmu saat sedang panas.", mood: "neutral" }
+            { text: "Wah, kamu berhasil menyusun lapisan pelindung kulit dengan sangat tepat!", mood: "happy" },
+            { text: "Desain Kelenjar Keringat yang berbentuk spiral terbukti bekerja seperti AC alami pendingin tubuh saat cuaca ekstrem melanda.", mood: "neutral" }
         ]},
         7: { 
             isBoss: true,
             dialog: [
-                { text: "Ujian Anatomi berhasil dilewati! Kamu hebat sekali seperti seorang dokter sungguhan.", mood: "happy" },
-                { text: "Kamu berhak mendapatkan 100 Koin Emas. Segel ajaib Misi 4 telah terbuka!", mood: "happy" },
-                { text: "Mari kita keluar dari Puskesmas dan kembali ke Peta Utama untuk melanjutkan petualangan kita!", mood: "neutral" }
+                { text: "Diagnosis yang sangat brilian! Kamu berhasil mengenali kelemahan dan kekuatan struktur setiap organ para penari.", mood: "happy" },
+                { text: "Para penari Jaranan kini bisa beristirahat dengan tenang berkat penangananmu. Kamu berhak atas 100 Koin Emas sebagai hadiah!", mood: "happy" },
+                { text: "Segel ajaib Misi 4 telah terbuka! Mari kita kembali ke Peta Utama untuk misi edukasi selanjutnya!", mood: "neutral" }
             ]
         }
     };
@@ -648,263 +1153,1313 @@ function getRejectionDialog(missionId, title1, title2) {
         return { 
             text: "Eits, tidak bisa lari! Misi ini sangat penting untuk kelulusanmu. Ayo kita selesaikan bersama!", 
             mood: "sad", isChoice: true, hideNo: true, 
-            onYes: () => enterMissionScreen(title1, title2, missionId) 
+            onYes: () => {
+                    document.getElementById('vn-overlay').style.display = 'none';
+                    showMissionQuestBoard(missionId, title1, title2, () => enterMissionScreen(title1, title2, missionId));
+                } 
         };
     }
 }
 
-// ================= GENERATOR MISI 1 (MENGENAL PANCAINDRA) =================
+// ================= GENERATOR MISI 1 (KEBANGKITAN SENSORI PASAR KANDANGAN) =================
 function buildMission1() {
-    document.getElementById('mission-title').innerText = "MISI 1: MENGENAL PANCAINDRA";
+    document.getElementById('mission-title').innerText = "MISI 1: MISTERI PASAR KANDANGAN";
     const contentArea = document.getElementById('mission-content-area');
     const floatingNext = document.getElementById('floating-next-container');
     
+    // Matikan BGM misi biasa untuk menciptakan keheningan
+    bgmMission.pause();
+    if(typeof window.bgmPasarM1 === 'undefined') {
+        window.bgmPasarM1 = new Audio('assets/sound/bgm-pasar.mp3');
+        window.bgmPasarM1.loop = true;
+        window.bgmPasarM1.volume = 0.4;
+    } else {
+        window.bgmPasarM1.pause();
+        window.bgmPasarM1.currentTime = 0;
+    }
+
+    // Aktifkan mode layar penuh (Fullscreen) untuk eksplorasi map
+    document.querySelector('.mission-header').style.display = 'none';
+    document.querySelector('.mission-wrapper').classList.add('fullscreen-mode');
+    document.querySelector('.mission-full-box').classList.add('fullscreen-mode');
+
     contentArea.innerHTML = `
-        <!-- TAHAP 1: PENGANTAR -->
-        <div id="stage-1" class="mission-stage active-stage">
-            <h3 class="stage-title">TAHAP 1: PENGANTAR</h3>
-            <div class="mission-text-box" style="font-size: 1.4cqw; text-align: center; min-height: 6cqw; display: flex; align-items: center; justify-content: center;">
-                <p id="stage-1-text" style="margin: 0; line-height: 1.5;">Pernahkah kamu berpikir bagaimana cara kita mengetahui warna langit atau merdu-nya musik? Ternyata, tubuh kita dilengkapi dengan 'jendela-jendela' ajaib untuk Menjelajahi dunia.</p>
-            </div>
-            <button class="btn btn-play" id="btn-stage-1-next" onclick="nextStage1Text()">LANJUT</button>
-            <div id="stage-1-quiz" style="display: none; width: 100%; align-items: center; flex-direction: column;">
-                <p class="mission-text-box" id="text-m1-s1" style="width: auto; margin-bottom: 1.5cqw;">Memuat Pertanyaan...</p>
-                <div class="explore-grid" id="grid-m1-s1" style="width: 100%; margin-bottom: 0;"></div>
+        <!-- TAHAP 1: KEBANGKITAN SENSORI (HIDDEN OBJECT MAP) -->
+        <div id="stage-1" class="mission-stage active-stage" style="width: 100%; height: 100%;">
+            <div id="m1-map-area" class="ar-container" style="background-image: url('assets/background/mission1.webp'); background-size: cover; background-position: center; position: relative;">
+                
+                <div id="m1-target-overlay-wrapper" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: none; align-items: center; justify-content: center; z-index: 50; pointer-events: none;">
+                    <div id="m1-target-overlay" style="background: #2f3542; border: 0.6cqw solid #fbc531; padding: 2cqw 4cqw; color: #fff; font-size: 3cqw; font-weight: 900; text-align: center; border-radius: 1cqw; box-shadow: inset -0.3cqw -0.3cqw 0px rgba(0,0,0,0.5), inset 0.3cqw 0.3cqw 0px rgba(255,255,255,0.2), 1cqw 1cqw 0 rgba(0,0,0,0.8); text-shadow: 0.2cqw 0.2cqw 0 #111; max-width: 80%; word-wrap: break-word;">CARI MATA!</div>
+                </div>
+
+                <div id="m1-dark-layer" class="m1-dark-bg"></div>
+                
+                <img src="assets/item/alat-mata.webp" class="m1-hidden-obj" id="ho-mata" style="top:25%; left:35%;" onclick="hoClickM1('mata')">
+                <img src="assets/item/alat-telinga.webp" class="m1-hidden-obj" id="ho-telinga" style="top:55%; left:75%;" onclick="hoClickM1('telinga')">
+                <img src="assets/item/alat-hidung.webp" class="m1-hidden-obj" id="ho-hidung" style="top:75%; left:20%;" onclick="hoClickM1('hidung')">
+                <img src="assets/item/alat-lidah.webp" class="m1-hidden-obj" id="ho-lidah" style="top:45%; left:50%;" onclick="hoClickM1('lidah')">
+                <img src="assets/item/alat-kulit.webp" class="m1-hidden-obj" id="ho-kulit" style="top:80%; left:85%;" onclick="hoClickM1('kulit')">
             </div>
         </div>
 
-        <!-- TAHAP 2: MATA -->
-        <div id="stage-2" class="mission-stage">
-            <h3 class="stage-title" style="color: #2980b9;">TAHAP 2: INDRA PENGLIHAT</h3>
-            <div id="stage-2-intro" class="stage-layout">
-                <div class="stage-img-box" onclick="open3DViewer('assets/3d/mata.glb', 'MATA (INDRA PENGLIHAT)')" title="Klik untuk Memutar 3D">
-                    <img src="assets/item/anatomi-mata.webp" alt="Mata" style="width: 100%; height: 15cqw; object-fit: cover; background: #dfe6e9;">
-                    <div style="position: absolute; top: 0; left: 0; background: #ff4757; color: white; padding: 0.2cqw 1cqw; font-size: 1.2cqw; font-weight: bold;">3D INTERAKTIF</div>
-                </div>
-                <div class="stage-content-right">
-                    <p class="mission-text-box" style="width: auto; font-size: 1.3cqw;">Ini adalah <b>Mata</b>, alat sensor tubuh untuk melihat cahaya, warna, dan bentuk di sekelilingmu.<br><br>Klik kotak 3D di samping untuk memutar bola matamu!</p>
-                    <button class="btn btn-play" style="font-size: 1.5cqw;" onclick="proceedToQuiz(2)">MULAI TANTANGAN MATA</button>
-                </div>
-            </div>
-            <div id="stage-2-quiz" style="display: none; width: 100%; align-items: center; flex-direction: column;">
-                <p class="mission-text-box" id="text-m1-s2" style="width: auto; margin-bottom: 1.5cqw;">Memuat Pertanyaan...</p>
-                <div class="explore-grid" id="grid-m1-s2" style="width: 100%;"></div>
+        <!-- STAGE MATA (KUIS PILIHAN GANDA) -->
+        <div id="stage-m1mata" class="mission-stage">
+            <h3 class="stage-title" style="color: #2980b9;">KUIS FUNGSI MATA</h3>
+            <div id="m1-quiz-mata-container" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+                <p id="m1-mata-q" class="quiz-text"></p>
+                <div class="explore-grid" id="m1-mata-opts"></div>
             </div>
         </div>
 
-        <!-- TAHAP 3: TELINGA -->
-        <div id="stage-3" class="mission-stage">
-            <h3 class="stage-title" style="color: #8e44ad;">TAHAP 3: INDRA PENDENGAR</h3>
-            <div id="stage-3-intro" class="stage-layout">
-                <div class="stage-img-box" onclick="open3DViewer('assets/3d/telinga.glb', 'TELINGA (INDRA PENDENGAR)')" title="Klik untuk Memutar 3D">
-                    <img src="assets/item/anatomi-telinga.webp" alt="Telinga" style="width: 100%; height: 15cqw; object-fit: cover; background: #dfe6e9;">
-                    <div style="position: absolute; top: 0; left: 0; background: #ff4757; color: white; padding: 0.2cqw 1cqw; font-size: 1.2cqw; font-weight: bold;">3D INTERAKTIF</div>
+        <!-- STAGE TELINGA (TARIK GARIS) -->
+        <div id="stage-m1telinga" class="mission-stage">
+            <h3 class="stage-title" style="color: #8e44ad;">COCOKKAN SUARA</h3>
+            <p class="mission-text-box">Tarik garis untuk mencocokkan kejadian suara di pasar dengan makna/fungsinya!</p>
+            <div class="match-container">
+                <svg class="match-svg"></svg>
+                <div class="match-col match-left">
+                    <div class="match-item" data-match="m1t_1" style="order: ${Math.floor(Math.random()*3)}">Klakson dari belakang</div>
+                    <div class="match-item" data-match="m1t_2" style="order: ${Math.floor(Math.random()*3)}">Suara lonceng makin keras</div>
+                    <div class="match-item" data-match="m1t_3" style="order: ${Math.floor(Math.random()*3)}">Menutup lubang telinga</div>
                 </div>
-                <div class="stage-content-right">
-                    <p class="mission-text-box" style="width: auto; font-size: 1.3cqw;">Ini adalah <b>Telinga</b>, alat sensor untuk menangkap getaran suara dari luar.<br><br>Klik kotak 3D di samping untuk melihat bentuknya!</p>
-                    <button class="btn btn-play" style="font-size: 1.5cqw;" onclick="proceedToQuiz(3)">MULAI TANTANGAN TELINGA</button>
+                <div class="match-col match-right">
+                    <div class="match-target" data-id="m1t_2" style="order: ${Math.floor(Math.random()*3)}">Sumber suara mendekat</div>
+                    <div class="match-target" data-id="m1t_3" style="order: ${Math.floor(Math.random()*3)}">Menghalangi gelombang suara</div>
+                    <div class="match-target" data-id="m1t_1" style="order: ${Math.floor(Math.random()*3)}">Peringatan bahaya arah buta</div>
                 </div>
-            </div>
-            <div id="stage-3-quiz" style="display: none; width: 100%; align-items: center; flex-direction: column;">
-                <p class="mission-text-box" id="text-m1-s3" style="width: auto; margin-bottom: 1.5cqw;">Memuat Pertanyaan...</p>
-                <div class="explore-grid" id="grid-m1-s3" style="width: 100%;"></div>
             </div>
         </div>
 
-        <!-- TAHAP 4: HIDUNG -->
+        <!-- STAGE HIDUNG (KUIS PILIHAN GANDA) -->
+        <div id="stage-m1hidung" class="mission-stage">
+            <h3 class="stage-title" style="color: #d35400;">KUIS FUNGSI HIDUNG</h3>
+            <div id="m1-quiz-hidung-container" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+                <p id="m1-hidung-q" class="quiz-text"></p>
+                <div class="explore-grid" id="m1-hidung-opts"></div>
+            </div>
+        </div>
+
+        <!-- STAGE LIDAH (BENAR/SALAH) -->
+        <div id="stage-m1lidah" class="mission-stage">
+            <h3 class="stage-title" style="color: #e84393;">KUIS FUNGSI LIDAH</h3>
+            <div id="m1-quiz-lidah-container" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+                <p id="m1-lidah-q" class="quiz-text"></p>
+                <div class="ta-btn-group" style="width: 90%; margin-top: 1cqw;">
+                    <button class="btn-ta benar" onclick="jawabM1Lidah(true)">BENAR</button>
+                    <button class="btn-ta salah" onclick="jawabM1Lidah(false)">SALAH</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- STAGE KULIT (TARIK GARIS) -->
+        <div id="stage-m1kulit" class="mission-stage">
+            <h3 class="stage-title" style="color: #27ae60;">COCOKKAN SENTUHAN</h3>
+            <p class="mission-text-box">Tarik garis untuk mencocokkan kejadian sentuhan dengan refleks pelindung kulit!</p>
+            <div class="match-container">
+                <svg class="match-svg"></svg>
+                <div class="match-col match-left">
+                    <div class="match-item" data-match="m1k_1" style="order: ${Math.floor(Math.random()*3)}">Tangan menyentuh wajan panas</div>
+                    <div class="match-item" data-match="m1k_2" style="order: ${Math.floor(Math.random()*3)}">Memegang dan meraba buah salak</div>
+                    <div class="match-item" data-match="m1k_3" style="order: ${Math.floor(Math.random()*3)}">Berdiri di pasar saat siang terik</div>
+                </div>
+                <div class="match-col match-right">
+                    <div class="match-target" data-id="m1k_2" style="order: ${Math.floor(Math.random()*3)}">Terasa tajam dan kasar</div>
+                    <div class="match-target" data-id="m1k_1" style="order: ${Math.floor(Math.random()*3)}">Menarik tangan dengan kilat</div>
+                    <div class="match-target" data-id="m1k_3" style="order: ${Math.floor(Math.random()*3)}">Mengeluarkan air keringat</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- STAGE AR INTERMEZZO (TANGKAP BUAH) -->
+        <div id="stage-m1-ar" class="mission-stage" style="width: 100%; height: 100%;">
+            <div id="m1-ar-game-area" class="ar-container" style="display: none;">
+                <div id="m1-ar-target-overlay-wrapper" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: none; align-items: center; justify-content: center; z-index: 50; pointer-events: none;">
+                    <div id="m1-ar-target-overlay" style="background: #2f3542; border: 0.6cqw solid #fbc531; padding: 2cqw 4cqw; color: #fff; font-size: 3cqw; font-weight: 900; text-align: center; border-radius: 1cqw; box-shadow: inset -0.3cqw -0.3cqw 0px rgba(0,0,0,0.5), inset 0.3cqw 0.3cqw 0px rgba(255,255,255,0.2), 1cqw 1cqw 0 rgba(0,0,0,0.8); text-shadow: 0.2cqw 0.2cqw 0 #111; max-width: 80%; word-wrap: break-word;">TANGKAP BUAH!</div>
+                </div>
+                <div class="ar-hud">
+                    <div class="ar-score-box">Buah Terkumpul: <span id="m1-ar-score-txt">0 / 20</span></div>
+                    <button class="btn-close-mission" style="position: static; margin-left: auto;" onclick="abortMisi1AR()">X</button>
+                </div>
+                <div class="ar-frame"></div>
+                <div id="m1-ar-face-guide" class="ar-face-guide">
+                    <div class="face-guide-box">AREA AMAN<br>(JANGAN ADA TANGAN)</div>
+                </div>
+                <video id="m1-ar-video" class="ar-video" autoplay playsinline></video>
+                <canvas id="m1-ar-hidden-canvas" style="display: none;"></canvas>
+            </div>
+        </div>
+
+        <!-- STAGE 2: GUDANG MISTERI PAK KUMIS (5 KARUNG FULLSCREEN) -->
+        <div id="stage-2" class="mission-stage" style="width: 100%; height: 100%;">
+            <div class="ar-container" style="background-image: url('assets/background/kios-tahu.webp'); background-size: cover; background-position: center; position: relative;">
+                
+                <!-- Layar Pengantar Gudang -->
+                <div id="intro-gudang" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 30; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                    <h2 style="color: #f1c40f; font-size: 3.5cqw; text-shadow: 0.2cqw 0.2cqw 0 #000; margin-bottom: 1cqw;">GUDANG MISTERI PAK KUMIS</h2>
+                    <p style="color: white; font-size: 1.8cqw; margin-bottom: 2cqw; text-align: center; padding: 0 5cqw;">Listrik padam membuat barang-barang Pak Kumis tercampur di dalam 5 karung!<br>Pilih karung di bawah, gunakan kelima alat indra untuk menyelidikinya, lalu tebak isinya!</p>
+                    <button class="btn btn-play" style="font-size: 2cqw; padding: 1cqw 3cqw;" onclick="document.getElementById('intro-gudang').style.display='none';">MULAI PENYELIDIKAN</button>
+                </div>
+
+                <button class="btn-close-mission" style="position: absolute; top: 1.5cqw; right: 1.5cqw; z-index: 35;" onclick="abortMisi1AR()">X</button>
+
+                <!-- Wadah Karung di Bawah Layar -->
+                <div style="position: absolute; bottom: 5%; width: 90%; display: flex; justify-content: space-around; align-items: flex-end; z-index: 20;">
+                    <div class="m1-sack-wrapper" id="sack-wrap-0" onclick="openM1Sack(0)">
+                        <svg class="m1-sack-svg" id="sack-0" viewBox="0 0 100 100">
+                            <path fill="#b33900" d="M 30 15 h 40 v 10 h -10 v 10 h 20 v 60 h -60 v -60 h 20 v -10 h -10 z"/>
+                            <path fill="#e67e22" d="M 35 15 h 30 v 10 h -10 v 10 h 15 v 55 h -50 v -55 h 15 v -10 h -10 z"/>
+                            <rect x="35" y="30" width="30" height="5" fill="#f1c40f"/>
+                            <text x="50" y="72" fill="#fff" font-family="monospace" font-size="25" font-weight="900" text-anchor="middle">1</text>
+                        </svg>
+                    </div>
+                    <div class="m1-sack-wrapper" id="sack-wrap-1" onclick="openM1Sack(1)">
+                        <svg class="m1-sack-svg" id="sack-1" viewBox="0 0 100 100">
+                            <path fill="#b33900" d="M 30 15 h 40 v 10 h -10 v 10 h 20 v 60 h -60 v -60 h 20 v -10 h -10 z"/>
+                            <path fill="#e67e22" d="M 35 15 h 30 v 10 h -10 v 10 h 15 v 55 h -50 v -55 h 15 v -10 h -10 z"/>
+                            <rect x="35" y="30" width="30" height="5" fill="#f1c40f"/>
+                            <text x="50" y="72" fill="#fff" font-family="monospace" font-size="25" font-weight="900" text-anchor="middle">2</text>
+                        </svg>
+                    </div>
+                    <div class="m1-sack-wrapper" id="sack-wrap-2" onclick="openM1Sack(2)">
+                        <svg class="m1-sack-svg" id="sack-2" viewBox="0 0 100 100">
+                            <path fill="#b33900" d="M 30 15 h 40 v 10 h -10 v 10 h 20 v 60 h -60 v -60 h 20 v -10 h -10 z"/>
+                            <path fill="#e67e22" d="M 35 15 h 30 v 10 h -10 v 10 h 15 v 55 h -50 v -55 h 15 v -10 h -10 z"/>
+                            <rect x="35" y="30" width="30" height="5" fill="#f1c40f"/>
+                            <text x="50" y="72" fill="#fff" font-family="monospace" font-size="25" font-weight="900" text-anchor="middle">3</text>
+                        </svg>
+                    </div>
+                    <div class="m1-sack-wrapper" id="sack-wrap-3" onclick="openM1Sack(3)">
+                        <svg class="m1-sack-svg" id="sack-3" viewBox="0 0 100 100">
+                            <path fill="#b33900" d="M 30 15 h 40 v 10 h -10 v 10 h 20 v 60 h -60 v -60 h 20 v -10 h -10 z"/>
+                            <path fill="#e67e22" d="M 35 15 h 30 v 10 h -10 v 10 h 15 v 55 h -50 v -55 h 15 v -10 h -10 z"/>
+                            <rect x="35" y="30" width="30" height="5" fill="#f1c40f"/>
+                            <text x="50" y="72" fill="#fff" font-family="monospace" font-size="25" font-weight="900" text-anchor="middle">4</text>
+                        </svg>
+                    </div>
+                    <div class="m1-sack-wrapper" id="sack-wrap-4" onclick="openM1Sack(4)">
+                        <svg class="m1-sack-svg" id="sack-4" viewBox="0 0 100 100">
+                            <path fill="#b33900" d="M 30 15 h 40 v 10 h -10 v 10 h 20 v 60 h -60 v -60 h 20 v -10 h -10 z"/>
+                            <path fill="#e67e22" d="M 35 15 h 30 v 10 h -10 v 10 h 15 v 55 h -50 v -55 h 15 v -10 h -10 z"/>
+                            <rect x="35" y="30" width="30" height="5" fill="#f1c40f"/>
+                            <text x="50" y="72" fill="#fff" font-family="monospace" font-size="25" font-weight="900" text-anchor="middle">5</text>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Pop-up Investigasi Karung -->
+            <div id="m1-inspect-modal" class="m1-modal-overlay">
+                <div class="m1-modal-box">
+                    <h3 id="m1-inspect-title" style="color: #fbc531; margin-top: 0; font-size: 1.8cqw; margin-bottom: 1cqw;">INVESTIGASI KARUNG</h3>
+                    
+                    <div class="m1-modal-sack-target" id="m1-sack-drop-target">
+                        <svg style="width: 100%; height: 100%; filter: drop-shadow(0.4cqw 0.4cqw 0 rgba(0,0,0,0.7));" viewBox="0 0 100 100">
+                            <path fill="#b33900" d="M 30 15 h 40 v 10 h -10 v 10 h 20 v 60 h -60 v -60 h 20 v -10 h -10 z"/>
+                            <path fill="#e67e22" d="M 35 15 h 30 v 10 h -10 v 10 h 15 v 55 h -50 v -55 h 15 v -10 h -10 z"/>
+                            <rect x="35" y="30" width="30" height="5" fill="#f1c40f"/>
+                            <text x="50" y="72" fill="#fff" font-family="monospace" font-size="30" font-weight="900" text-anchor="middle">?</text>
+                        </svg>
+                    </div>
+
+                    <p style="color: #dfe6e9; font-size: 1.3cqw; margin-bottom: 1.5cqw; text-align: center;">Geser alat pancaindra ke arah karung di atas untuk menyelidikinya!</p>
+
+                    <div class="m1-inspect-tools" id="m1-inspect-tools-container">
+                        <img src="assets/item/alat-mata.webp" class="m1-tool-btn" data-sense="mata" onclick="triggerSackInspectionClick('mata', this)">
+                        <img src="assets/item/alat-telinga.webp" class="m1-tool-btn" data-sense="telinga" onclick="triggerSackInspectionClick('telinga', this)">
+                        <img src="assets/item/alat-hidung.webp" class="m1-tool-btn" data-sense="hidung" onclick="triggerSackInspectionClick('hidung', this)">
+                        <img src="assets/item/alat-lidah.webp" class="m1-tool-btn" data-sense="lidah" onclick="triggerSackInspectionClick('lidah', this)">
+                        <img src="assets/item/alat-kulit.webp" class="m1-tool-btn" data-sense="kulit" onclick="triggerSackInspectionClick('kulit', this)">
+                    </div>
+
+                    <div id="m1-inspect-quiz" style="width: 100%; display: none; flex-direction: column; align-items: center;">
+                        <p style="font-weight: bold; margin-bottom: 1cqw; font-size: 1.4cqw; text-align: center;">Berdasarkan penyelidikan panca indra, apa benda di dalam karung ini?</p>
+                        <div class="explore-grid" id="m1-inspect-opts" style="width: 100%;"></div>
+                    </div>
+                    <button class="btn btn-menu" style="margin-top: 1.5cqw; padding: 0.8cqw 2cqw;" onclick="closeM1Modal()">TUTUP</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- STAGE M1 COLOR DETECTIVE (DETEKTIF WARNA PENUTUP) -->
+        <div id="stage-m1-color" class="mission-stage" style="width: 100%; height: 100%;">
+            <div id="m1-ar-color-area" class="ar-container" style="display: none;">
+                <div id="m1-ar-color-overlay-wrapper" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: none; align-items: center; justify-content: center; z-index: 50; pointer-events: none;">
+                    <div id="m1-ar-color-overlay" style="background: #2f3542; border: 0.6cqw solid #fbc531; padding: 2cqw 4cqw; color: #fff; font-size: 3cqw; font-weight: 900; text-align: center; border-radius: 1cqw; box-shadow: inset -0.3cqw -0.3cqw 0px rgba(0,0,0,0.5), inset 0.3cqw 0.3cqw 0px rgba(255,255,255,0.2), 1cqw 1cqw 0 rgba(0,0,0,0.8); text-shadow: 0.2cqw 0.2cqw 0 #111; max-width: 80%; word-wrap: break-word;">CARI WARNA!</div>
+                </div>
+                <div class="ar-hud">
+                    <div class="ar-score-box">Target: <span id="m1-ar-color-target-txt">MEMUAT...</span></div>
+                    <button class="btn-close-mission" style="position: static; margin-left: auto;" onclick="abortMisi1Color()">X</button>
+                </div>
+                <div class="ar-color-target"></div>
+                <div id="m1-ar-detected-color" style="position: absolute; top: 66%; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.8); color: #fff; padding: 0.5cqw 1.5cqw; border-radius: 0.5cqw; font-size: 1.5cqw; font-weight: bold; z-index: 10; border: 0.2cqw solid #fff; pointer-events: none; text-shadow: 0.1cqw 0.1cqw 0 #000; white-space: nowrap;">Terdeteksi: -</div>
+                <div class="ar-color-timer-container">
+                    <div id="m1-ar-color-timer-fill" class="ar-color-timer-fill"></div>
+                </div>
+                <video id="m1-ar-color-video" class="ar-video" autoplay playsinline></video>
+                <canvas id="m1-ar-color-hidden-canvas" style="display: none;"></canvas>
+            </div>
+        </div>
+
+        <!-- STAGE 3: MEMBERSIHKAN LORONG PASAR (CARI SAMPAH & MENGHINDARI BUAH) -->
+        <div id="stage-3" class="mission-stage" style="width: 100%; height: 100%;">
+            <div class="ar-container" style="background-image: url('assets/background/lorong-pasar.webp'); background-size: cover; background-position: center; position: relative;">
+                
+                <div id="intro-sampah" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 30; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                    <h2 style="color: #2ed573; font-size: 3.5cqw; text-shadow: 0.2cqw 0.2cqw 0 #000; margin-bottom: 1cqw;">OPERASI BERSIH PASAR</h2>
+                    <p style="color: white; font-size: 1.8cqw; margin-bottom: 2cqw; text-align: center; padding: 0 5cqw;">Lorong pasar terlihat kotor! Gunakan ketajaman MATAMU untuk mencari 10 kantong sampah kecil yang tersembunyi.<br>Abaikan buah-buahan segar yang terjatuh, fokus temukan sampahnya!</p>
+                    <button class="btn btn-play" style="font-size: 2cqw; padding: 1cqw 3cqw;" onclick="startCariSampah()">MULAI MENCARI</button>
+                </div>
+
+                <div class="ar-hud">
+                    <div class="ar-score-box">Sampah Ditemukan: <span id="m1-sampah-score">0 / 10</span></div>
+                    <button class="btn-close-mission" style="position: static; margin-left: auto;" onclick="abortMisi1CariSampah()">X</button>
+                </div>
+
+                <div id="sampah-game-area" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 10;">
+                    <!-- Sampah dan pengecoh akan di-generate otomatis secara acak oleh Javascript di sini -->
+                </div>
+            </div>
+        </div>
+
+        <!-- STAGE 4: UJIAN AKHIR PASAR KANDANGAN (BOSS) -->
         <div id="stage-4" class="mission-stage">
-            <h3 class="stage-title" style="color: #d35400;">TAHAP 4: INDRA PEMBAU</h3>
-            <div id="stage-4-intro" class="stage-layout">
-                <div class="stage-img-box" onclick="open3DViewer('assets/3d/hidung.glb', 'HIDUNG (INDRA PEMBAU)')" title="Klik untuk Memutar 3D">
-                    <img src="assets/item/anatomi-hidung.webp" alt="Hidung" style="width: 100%; height: 15cqw; object-fit: cover; background: #dfe6e9;">
-                    <div style="position: absolute; top: 0; left: 0; background: #ff4757; color: white; padding: 0.2cqw 1cqw; font-size: 1.2cqw; font-weight: bold;">3D INTERAKTIF</div>
-                </div>
-                <div class="stage-content-right">
-                    <p class="mission-text-box" style="width: auto; font-size: 1.3cqw;">Ini adalah <b>Hidung</b>. Rongga saraf di dalamnya bertugas mendeteksi bau di udara.<br><br>Klik kotak 3D di samping untuk melihat rongga hidung!</p>
-                    <button class="btn btn-play" style="font-size: 1.5cqw;" onclick="proceedToQuiz(4)">MULAI TANTANGAN HIDUNG</button>
-                </div>
+            <h3 class="stage-title" style="color: #ff4757;">TAHAP 4: UJIAN PASAR KANDANGAN</h3>
+            <div id="boss-m1-intro" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+                <p class="mission-text-box" style="font-size: 1.6cqw; margin-top: 2cqw;">Sebagai penghargaan karena telah membantu membersihkan pasar, Pak Kumis memberikan tantangan terakhir!<br><br>Jawab 10 pertanyaan dasar tentang Pancaindra ini untuk mendapatkan hadiah Koin Emas dan menyelesaikan Misi 1 secara resmi.</p>
+                <button class="btn btn-play" style="font-size: 2cqw; padding: 1cqw 3cqw; background: #ff4757; margin-top: 2cqw; box-shadow: 0.4cqw 0.4cqw 0 #111;" onclick="document.getElementById('boss-m1-intro').style.display='none'; document.getElementById('boss-m1-container').style.display='flex'; currentMisi1BossIndex = 0; loadMisi1BossQuestion();">MULAI UJIAN AKHIR!</button>
             </div>
-            <div id="stage-4-quiz" style="display: none; width: 100%; align-items: center; flex-direction: column;">
-                <p class="mission-text-box" id="text-m1-s4" style="width: auto; margin-bottom: 1.5cqw;">Memuat Pertanyaan...</p>
-                <div class="explore-grid" id="grid-m1-s4" style="width: 100%;"></div>
+            <div id="boss-m1-container" style="display: none; flex-direction: column; align-items: center; width: 100%; margin-top: 2cqw;">
+                <div id="quiz-question" class="ta-card" style="width: 90%; font-size: 1.5cqw; margin-bottom: 2cqw;">Memuat Pertanyaan...</div>
+                <div id="quiz-options" class="explore-grid" style="width: 90%;"></div>
             </div>
-        </div>
-
-        <!-- TAHAP 5: LIDAH -->
-        <div id="stage-5" class="mission-stage">
-            <h3 class="stage-title" style="color: #e84393;">TAHAP 5: INDRA PENGECAP</h3>
-            <div id="stage-5-intro" class="stage-layout">
-                <div class="stage-img-box" onclick="open3DViewer('assets/3d/lidah.glb', 'LIDAH (INDRA PENGECAP)')" title="Klik untuk Memutar 3D">
-                    <img src="assets/item/anatomi-lidah.webp" alt="Lidah" style="width: 100%; height: 15cqw; object-fit: cover; background: #dfe6e9;">
-                    <div style="position: absolute; top: 0; left: 0; background: #ff4757; color: white; padding: 0.2cqw 1cqw; font-size: 1.2cqw; font-weight: bold;">3D INTERAKTIF</div>
-                </div>
-                <div class="stage-content-right">
-                    <p class="mission-text-box" style="width: auto; font-size: 1.3cqw;">Ini adalah <b>Lidah</b>. Permukaannya kasar untuk merasakan manis, asam, asin, dan pahit.<br><br>Klik kotak 3D di samping untuk melihat lidah lebih dekat!</p>
-                    <button class="btn btn-play" style="font-size: 1.5cqw;" onclick="proceedToQuiz(5)">MULAI TANTANGAN LIDAH</button>
-                </div>
-            </div>
-            <div id="stage-5-quiz" style="display: none; width: 100%; align-items: center; flex-direction: column;">
-                <p class="mission-text-box" id="text-m1-s5" style="width: auto; margin-bottom: 1.5cqw;">Memuat Pertanyaan...</p>
-                <div class="explore-grid" id="grid-m1-s5" style="width: 100%;"></div>
-            </div>
-        </div>
-
-        <!-- TAHAP 6: KULIT -->
-        <div id="stage-6" class="mission-stage">
-            <h3 class="stage-title" style="color: #27ae60;">TAHAP 6: INDRA PERABA</h3>
-            <div id="stage-6-intro" class="stage-layout">
-                <div class="stage-img-box" onclick="open3DViewer('assets/3d/kulit.glb', 'KULIT (INDRA PERABA)')" title="Klik untuk Memutar 3D">
-                    <img src="assets/item/anatomi-kulit1.webp" alt="Kulit" style="width: 100%; height: 15cqw; object-fit: cover; background: #dfe6e9;">
-                    <div style="position: absolute; top: 0; left: 0; background: #ff4757; color: white; padding: 0.2cqw 1cqw; font-size: 1.2cqw; font-weight: bold;">3D INTERAKTIF</div>
-                </div>
-                <div class="stage-content-right">
-                    <p class="mission-text-box" style="width: auto; font-size: 1.3cqw;">Ini adalah <b>Kulit</b>. Saraf peraba yang tersebar membantumu merasakan sentuhan, tekstur, dan suhu.<br><br>Klik kotak 3D untuk melihat potongan kulit!</p>
-                    <button class="btn btn-play" style="font-size: 1.5cqw;" onclick="proceedToQuiz(6)">MULAI TANTANGAN KULIT</button>
-                </div>
-            </div>
-            <div id="stage-6-quiz" style="display: none; width: 100%; align-items: center; flex-direction: column;">
-                <p class="mission-text-box" id="text-m1-s6" style="width: auto; margin-bottom: 1.5cqw;">Memuat Pertanyaan...</p>
-                <div class="explore-grid" id="grid-m1-s6" style="width: 100%;"></div>
-            </div>
-        </div>
-
-        <!-- TAHAP 7: UJIAN NYAWA (BOSS) -->
-        <div id="stage-7" class="mission-stage">
-            <h3 class="stage-title" style="color: #ff4757;">TAHAP 7: UJIAN NYAWA</h3>
-            <div class="learning-card" style="margin-top: 1cqw;"><p>Kerja bagus! Kelima alat sensor tubuh yang baru saja kita tes secara bersamaan disebut sebagai <b>PANCAINDRA</b>.</p></div>
-            <p id="quiz-question" class="quiz-text">Pertanyaan memuat...</p>
-            <div class="quiz-options" id="quiz-options"></div>
         </div>
     `;
 
-    // Pasang tombol Tab Lanjutkan untuk transisi tahap
-    let floatingHTML = '';
-    for(let i=1; i<=6; i++) {
-        floatingHTML += `<button class="btn btn-play btn-floating-next" id="btn-next-${i}" style="display: none;" onclick="nextMissionStage(${i+1})">LANJUTKAN</button>`;
-    }
-    floatingNext.innerHTML = floatingHTML;
+    // Pasang tombol Tab Melayang untuk semua sub-misi
+    floatingNext.innerHTML = `
+        <button class="btn btn-play btn-floating-next" id="btn-next-m1mata" style="display: none;" onclick="kembaliKeMapM1()">KEMBALI KE PASAR</button>
+        <button class="btn btn-play btn-floating-next" id="btn-next-m1telinga" style="display: none;" onclick="kembaliKeMapM1()">KEMBALI KE PASAR</button>
+        <button class="btn btn-play btn-floating-next" id="btn-next-m1hidung" style="display: none;" onclick="kembaliKeMapM1()">KEMBALI KE PASAR</button>
+        <button class="btn btn-play btn-floating-next" id="btn-next-m1lidah" style="display: none;" onclick="kembaliKeMapM1()">KEMBALI KE PASAR</button>
+        <button class="btn btn-play btn-floating-next" id="btn-next-m1kulit" style="display: none;" onclick="kembaliKeMapM1()">KEMBALI KE PASAR</button>
+        <button class="btn btn-play btn-floating-next" id="btn-next-2" style="display: none;" onclick="exitMissionScreen()">SELESAI</button>
+    `;
 
-    // --- DATABASE KUIS MISI 1 (Letak, Bentuk, & Nama) ---
-    const m1QuizBank = {
-        1: [
-            { q: "Berdasarkan informasi tadi, ada berapa pancaindra yang dimiliki oleh manusia?", opts: [{t: "3 Indra", c: false, m: "Panca berarti lima, bukan tiga!"}, {t: "4 Indra", c: false, m: "Panca berarti lima, bukan empat!"}, {t: "5 Indra", c: true, m: "Tepat sekali! Manusia punya 5 indra."}, {t: "6 Indra", c: false, m: "Panca berarti lima, bukan enam!"}] },
-            { q: "Kumpulan sistem sensor yang bekerja siang dan malam untuk menjelajahi dunia ini dinamakan...", opts: [{t: "Pancakes", c: false, m: "Itu nama makanan!"}, {t: "Pancaindra", c: true, m: "Benar sekali!"}, {t: "Pancasila", c: false, m: "Itu dasar negara kita."}, {t: "Pancawarna", c: false, m: "Itu berarti lima warna."}] },
-            { q: "Pancaindra kita terdiri dari 5 organ utama, yaitu...", opts: [{t: "Mata, Telinga, Hidung, Lidah, Kulit", c: true, m: "Hebat! Lengkap dan benar."}, {t: "Kepala, Pundak, Lutut, Kaki", c: false, m: "Itu lagu anak-anak!"}, {t: "Jantung, Paru, Lambung, Usus", c: false, m: "Itu organ pencernaan dan pernapasan dalam."}, {t: "Tangan, Kaki, Perut, Punggung", c: false, m: "Itu bagian anggota tubuh biasa."}] }
-        ],
-        2: [
-            { q: "Di manakah letak organ Mata pada tubuh kita?", opts: [{t: "Di bagian dada", c: false, m: "Dada adalah tempat jantung dan paru-paru."}, {t: "Di samping kepala", c: false, m: "Samping kepala adalah letak telinga."}, {t: "Di bagian depan wajah", c: true, m: "Tepat! Mata berada di wajah untuk melihat ke depan."}, {t: "Di telapak tangan", c: false, m: "Tidak ada mata di telapak tangan."}] },
-            { q: "Coba perhatikan model 3D tadi, bagaimana bentuk dasar dari organ mata kita?", opts: [{t: "Kotak seperti dadu", c: false, m: "Bentuk mata tidak bersudut."}, {t: "Bulat seperti bola", c: true, m: "Benar! Makanya sering disebut 'Bola Mata'."}, {t: "Pipih seperti kertas", c: false, m: "Mata memiliki ruang dan isi di dalamnya."}, {t: "Segitiga", c: false, m: "Mata tidak berbentuk segitiga."}] },
-            { q: "Nama pancaindra yang menggunakan Mata untuk menangkap cahaya dan warna disebut...", opts: [{t: "Indra Penglihat", c: true, m: "Sempurna!"}, {t: "Indra Peraba", c: false, m: "Itu tugas kulit."}, {t: "Indra Pembau", c: false, m: "Itu tugas hidung."}, {t: "Indra Pengecap", c: false, m: "Itu tugas lidah."}] }
-        ],
-        3: [
-            { q: "Berdasarkan posisinya, di manakah letak Telinga pada tubuh kita?", opts: [{t: "Di atas dahi", c: false, m: "Bukan di situ letaknya."}, {t: "Di bagian wajah depan", c: false, m: "Wajah depan untuk mata dan hidung."}, {t: "Di samping kanan dan kiri kepala", c: true, m: "Tepat! Untuk menangkap suara dari berbagai arah."}, {t: "Di belakang leher", c: false, m: "Tidak ada telinga di leher."}] },
-            { q: "Bentuk bagian luar daun telinga manusia agak melebar yang fungsinya mirip seperti...", opts: [{t: "Corong penangkap suara", c: true, m: "Benar! Bentuk melengkungnya sangat pas untuk mengumpulkan gelombang suara."}, {t: "Pipa lurus", c: false, m: "Bentuk telinga memiliki banyak lipatan."}, {t: "Kotak persegi", c: false, m: "Telinga tidak memiliki sudut."}, {t: "Jaring saringan", c: false, m: "Telinga tidak berlubang-lubang seperti jaring."}] },
-            { q: "Apa nama indra yang bertugas untuk menangkap getaran suara melalui Telinga?", opts: [{t: "Indra Penglihat", c: false, m: "Ini untuk mata."}, {t: "Indra Pendengar", c: true, m: "Hebat! Kamu benar."}, {t: "Indra Pengecap", c: false, m: "Ini untuk lidah."}, {t: "Indra Peraba", c: false, m: "Ini untuk kulit."}] }
-        ],
-        4: [
-            { q: "Coba sentuh hidungmu! Di manakah letak organ Hidung pada manusia?", opts: [{t: "Di atas kepala", c: false, m: "Itu tempat tumbuhnya rambut."}, {t: "Tepat di tengah wajah", c: true, m: "Benar sekali! Posisinya pas di antara mata dan mulut."}, {t: "Di dagu bagian bawah", c: false, m: "Bukan di situ."}, {t: "Di bawah leher", c: false, m: "Itu adalah leher dan dada."}] },
-            { q: "Bagaimana ciri khas bentuk Hidung manusia untuk menghirup udara?", opts: [{t: "Memiliki dua lubang rongga", c: true, m: "Tepat! Lubang ini adalah jalan masuknya udara dan bau."}, {t: "Berbentuk pipih tak berlubang", c: false, m: "Hidung pasti memiliki lubang."}, {t: "Berbentuk bulat sempurna", c: false, m: "Itu lebih mirip bola mata."}, {t: "Menjulur panjang ke bawah", c: false, m: "Itu belalai gajah, bukan hidung manusia."}] },
-            { q: "Nama pancaindra yang bertugas mengenali wangi atau bau tak sedap disebut...", opts: [{t: "Indra Pendengar", c: false, m: "Itu untuk suara."}, {t: "Indra Peraba", c: false, m: "Itu untuk sentuhan kulit."}, {t: "Indra Pengecap", c: false, m: "Itu untuk rasa di lidah."}, {t: "Indra Pembau", c: true, m: "Sempurna! Hidung adalah indra pembau."}] }
-        ],
-        5: [
-            { q: "Di manakah letak organ Lidah yang aman pada tubuh kita?", opts: [{t: "Terlindungi di dalam rongga mulut", c: true, m: "Tepat sekali! Bersembunyi di balik gigi dan bibir."}, {t: "Menempel di luar pipi", c: false, m: "Lidah berada di dalam mulut."}, {t: "Di atap kepala", c: false, m: "Tentu saja bukan."}, {t: "Di bawah dagu", c: false, m: "Itu bagian luar wajah."}] },
-            { q: "Jika diperhatikan, bagaimana bentuk dari permukaan lidah manusia?", opts: [{t: "Keras dan terbuat dari tulang", c: false, m: "Lidah adalah otot yang lentur."}, {t: "Halus licin seperti kaca", c: false, m: "Lidah memiliki tekstur."}, {t: "Berotot lentur dan memiliki bintik-bintik perasa", c: true, m: "Benar! Bintik itu disebut papila."}, {t: "Berbentuk tajam bergerigi", c: false, m: "Itu lebih mirip gigi hiu."}] },
-            { q: "Nama pancaindra yang menggunakan lidah untuk merasakan manis, asam, dan pahit adalah...", opts: [{t: "Indra Penglihat", c: false, m: "Untuk melihat (mata)."}, {t: "Indra Pengecap", c: true, m: "Luar biasa! Kamu memahaminya."}, {t: "Indra Pendengar", c: false, m: "Untuk mendengar (telinga)."}, {t: "Indra Pembau", c: false, m: "Untuk mencium bau (hidung)."}] }
-        ],
-        6: [
-            { q: "Di manakah letak organ Kulit pada tubuh kita?", opts: [{t: "Hanya ada di telapak tangan", c: false, m: "Saraf peraba ada di mana-mana."}, {t: "Berada di dalam perut", c: false, m: "Itu organ pencernaan dalam."}, {t: "Melapisi seluruh permukaan luar tubuh kita", c: true, m: "Sempurna! Kulit adalah organ terluas pelindung tubuh."}, {t: "Hanya di bagian wajah", c: false, m: "Seluruh tubuh memiliki kulit."}] },
-            { q: "Bagaimana bentuk dari organ kulit manusia?", opts: [{t: "Menjulur seperti kabel", c: false, m: "Bentuk kulit bukan seperti itu."}, {t: "Bulat kecil-kecil", c: false, m: "Bukan bulat."}, {t: "Berbentuk lapisan jaringan tipis yang lebar", c: true, m: "Benar! Kulit memiliki banyak lapisan pelindung."}, {t: "Bongkahan keras seperti batu", c: false, m: "Kulit sangat lentur."}] },
-            { q: "Nama pancaindra yang bertugas merasakan sentuhan, kasar, halus, dan suhu pada kulit adalah...", opts: [{t: "Indra Peraba", c: true, m: "Tepat sekali!"}, {t: "Indra Pengecap", c: false, m: "Itu untuk lidah."}, {t: "Indra Pembau", c: false, m: "Itu untuk hidung."}, {t: "Indra Pendengar", c: false, m: "Itu untuk telinga."}] }
-        ]
+    window.showM1TargetOverlay = function(text) {
+        const wrapper = document.getElementById('m1-target-overlay-wrapper');
+        const overlay = document.getElementById('m1-target-overlay');
+        if(!wrapper || !overlay) return;
+        
+        overlay.innerText = text;
+        wrapper.style.display = 'flex';
+        overlay.classList.remove('animate-pop');
+        void overlay.offsetWidth;
+        overlay.classList.add('animate-pop');
+        
+        setTimeout(() => { wrapper.style.display = 'none'; }, 2500);
     };
 
-    // --- MESIN PEMUTAR KUIS MISI 1 ---
-    let currentM1QuizIndex = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0 };
+    // Fungsi ini disimpan dan baru akan dipanggil nanti setelah pemain menekan tombol mulai petualangan
+    window.triggerMataPopup = function() {
+        if (window.m1Progress && window.m1Progress.mata) return; // Pengaman ekstra agar tidak muncul dua kali
 
-    window.loadM1Quiz = function(stage) {
-        const data = m1QuizBank[stage];
-        const currentIndex = currentM1QuizIndex[stage];
-        const grid = document.getElementById(`grid-m1-s${stage}`);
-        const qBox = document.getElementById(`text-m1-s${stage}`);
+        const warnIcon = `<svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M6 0h4v2h2v2h2v8h-2v2H6v-2H4V4h2V2zm2 2H6v10h4V2zm0 8h2v2H8v-2zm0-6h2v4H8V4z"/></svg>`;
+        showCustomModal("GELAP GULITA!", "Cari dan sentuh pancaindra yang digunakan manusia untuk melihat agar layar tidak gelap!", warnIcon, "alert", () => {
+            window.showM1TargetOverlay("CARI ALAT PENGLIHAT!");
+        });
+    };
 
-        if (currentIndex >= data.length) {
+    // --- LOGIKA FLASHLIGHT (SENTER) ---
+
+    // --- LOGIKA FLASHLIGHT (SENTER) ---
+    window.m1Progress = { mata: false, telinga: false, hidung: false, lidah: false, kulit: false };
+    const mapArea = document.getElementById('m1-map-area');
+    const darkLayer = document.getElementById('m1-dark-layer');
+
+    const updateFlashlightM1 = (e) => {
+        if (!darkLayer || darkLayer.style.display === 'none') return;
+        const rect = mapArea.getBoundingClientRect();
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+        const x = ((clientX - rect.left) / rect.width) * 100;
+        const y = ((clientY - rect.top) / rect.height) * 100;
+        darkLayer.style.setProperty('--x', x + '%');
+        darkLayer.style.setProperty('--y', y + '%');
+    };
+    mapArea.addEventListener('mousemove', updateFlashlightM1);
+    mapArea.addEventListener('touchmove', updateFlashlightM1, {passive: true});
+
+    // --- DATABASE KUIS HOTS ---
+    const qsMata = [
+        { q: "Ibu menyuruhmu membeli pisang yang sudah matang. Bagaimana caramu membedakan pisang matang dan mentah dari kejauhan tanpa menyentuhnya?", opts: [{t:"Mencium aromanya", c:false}, {t:"Melihat perbedaan warna kuning dan hijau", c:true}, {t:"Mendengarkan suaranya", c:false}, {t:"Merasakan suhu kulit pisang", c:false}] },
+        { q: "Kamu sedang berjalan dan melihat ada genangan air licin di depanmu. Pesan kilat apa yang dikirimkan mata ke otakmu?", opts: [{t:"Segera menghindar agar tidak terpeleset", c:true}, {t:"Langsung meminumnya", c:false}, {t:"Tutup mata rapat-rapat", c:false}, {t:"Menginjaknya dengan kuat", c:false}] },
+        { q: "Mengapa di tempat yang sangat gelap gulita seperti tadi, matamu tidak bisa melihat benda dengan jelas?", opts: [{t:"Karena mata sedang tidur", c:false}, {t:"Karena mata butuh cahaya untuk memantulkan bayangan", c:true}, {t:"Karena mata kita rusak", c:false}, {t:"Karena benda tersebut transparan", c:false}] }
+    ];
+    let qMataIdx = 0;
+
+    window.loadQMata = function() {
+        if (qMataIdx >= qsMata.length) {
             const checkIcon = `<svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M14 2h2v2h-2V2zm-2 2h2v2h-2V4zm-2 2h2v2h-2V6zm-2 2h2v2H8V8zm-2 2h2v2H6v-2zm-2 2h2v2H4v-2zm-2-2h2v2H2v-2zm-2-2h2v2H0v-2z"/></svg>`;
-            showCustomModal("TANTANGAN SELESAI!", "Hebat! Kamu berhasil menjawab semua pertanyaan di tahap ini.", checkIcon, "alert", () => {
-                // Cek dialog Nagata Pascagame, lalu munculkan tombol lanjut
-                if (typeof triggerPostDialog === 'function') {
-                    triggerPostDialog(stage);
-                } else {
-                    const nextBtn = document.getElementById(`btn-next-${stage}`);
-                    if(nextBtn) nextBtn.style.display = 'inline-flex';
-                }
-            });
+            showCustomModal("LULUS KUIS MATA!", "Hebat! Kamu menguasai fungsi mata dengan baik.", checkIcon, "alert", () => triggerPostDialog('m1mata'));
             return;
         }
-
-        const currentQ = data[currentIndex];
+        let item = qsMata[qMataIdx];
+        document.getElementById('m1-mata-q').innerText = `Kasus ${qMataIdx+1}/3:\n\n${item.q}`;
+        let grid = document.getElementById('m1-mata-opts');
+        grid.innerHTML = '';
+        let shuffled = [...item.opts].sort(() => Math.random() - 0.5);
         
-        qBox.style.opacity = 0;
-        setTimeout(() => {
-            qBox.innerText = `Pertanyaan ${currentIndex + 1} / 3:\n\n${currentQ.q}`;
-            qBox.style.opacity = 1;
-        }, 200);
-        
-        grid.innerHTML = ''; 
-
-        const shuffledOpts = [...currentQ.opts].sort(() => Math.random() - 0.5);
-        
-        shuffledOpts.forEach(opt => {
-            const btn = document.createElement('button');
+        shuffled.forEach(opt => {
+            let btn = document.createElement('button');
             btn.className = 'btn-explore';
             btn.innerText = opt.t;
-            
-            btn.onclick = () => {
-                if (btn.classList.contains('btn-correct') || btn.classList.contains('btn-wrong')) return;
-                
-                if (opt.c) {
-                    sfxBenar.currentTime = 0; sfxBenar.play().catch(e=>console.warn(e));
+            btn.onclick = function() {
+                if(btn.classList.contains('btn-correct') || btn.classList.contains('btn-wrong')) return;
+                if(opt.c) {
                     btn.classList.add('btn-correct');
+                    if(typeof sfxBenar !== 'undefined') { sfxBenar.currentTime=0; sfxBenar.play(); }
                     addScore(10);
-                    
-                    setTimeout(() => {
-                        currentM1QuizIndex[stage]++;
-                        loadM1Quiz(stage);
-                    }, 800);
+                    setTimeout(() => { qMataIdx++; loadQMata(); }, 600);
                 } else {
-                    sfxSalah.currentTime = 0; sfxSalah.play().catch(e=>console.warn(e));
                     btn.classList.add('btn-wrong');
+                    if(typeof sfxSalah !== 'undefined') { sfxSalah.currentTime=0; sfxSalah.play(); }
                     reduceLife();
-                    
                     const lockIcon = `<svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M4 2h8v2h2v10H2V4h2V2zm2 2v2h4V4H6zm-2 4v4h8V8H4z"/></svg>`;
-                    showCustomModal("KURANG TEPAT!", `${opt.m}\n(Nyawa Berkurang 1)`, lockIcon, "error");
+                    showCustomModal("SALAH!", "Coba analisis lagi situasinya! (Nyawa -1)", lockIcon, "error");
                 }
             };
             grid.appendChild(btn);
         });
     };
 
-    // Eksekusi Pemuat Kuis untuk Tahap 1 s/d 6
-    [1, 2, 3, 4, 5, 6].forEach(stage => loadM1Quiz(stage));
+    const qsHidung = [
+        { q: "Kamu mencium bau asap yang sangat menyengat dari kios sebelah. Apa arti bau tersebut bagimu?", opts: [{t:"Ada orang sedang mandi", c:false}, {t:"Tanda bahaya, mungkin ada api atau kebakaran", c:true}] },
+        { q: "Bagaimana caramu mengetahui bahwa tahu di keranjang Pak Kumis sudah basi tanpa harus memakannya?", opts: [{t:"Mencium aroma asam dan busuk dari tahu", c:true}, {t:"Mendengarkan suara tahu", c:false}] },
+        { q: "Saat kamu sedang sakit pilek berat, mengapa wangi masakan Ibu jadi tidak tercium?", opts: [{t:"Karena lendir menutupi saraf pembau di dalam hidung", c:true}, {t:"Karena hidung kita sedang libur", c:false}] }
+    ];
+    let qHidungIdx = 0;
 
-    // Eksekusi Ulang Pemuat Boss Tahap 7
-    currentMisi1BossIndex = 0;
-    loadMisi1BossQuestion();
+    window.loadQHidung = function() {
+        if (qHidungIdx >= qsHidung.length) {
+            const checkIcon = `<svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M14 2h2v2h-2V2zm-2 2h2v2h-2V4zm-2 2h2v2h-2V6zm-2 2h2v2H8V8zm-2 2h2v2H6v-2zm-2 2h2v2H4v-2zm-2-2h2v2H2v-2zm-2-2h2v2H0v-2z"/></svg>`;
+            showCustomModal("LULUS KUIS HIDUNG!", "Penciuman analisis yang tajam!", checkIcon, "alert", () => triggerPostDialog('m1hidung'));
+            return;
+        }
+        let item = qsHidung[qHidungIdx];
+        document.getElementById('m1-hidung-q').innerText = `Kasus ${qHidungIdx+1}/3:\n\n${item.q}`;
+        let grid = document.getElementById('m1-hidung-opts');
+        grid.innerHTML = '';
+        let shuffled = [...item.opts].sort(() => Math.random() - 0.5);
+        
+        shuffled.forEach(opt => {
+            let btn = document.createElement('button');
+            btn.className = 'btn-explore';
+            btn.innerText = opt.t;
+            btn.onclick = function() {
+                if(btn.classList.contains('btn-correct') || btn.classList.contains('btn-wrong')) return;
+                if(opt.c) {
+                    btn.classList.add('btn-correct');
+                    if(typeof sfxBenar !== 'undefined') { sfxBenar.currentTime=0; sfxBenar.play(); }
+                    addScore(10);
+                    setTimeout(() => { qHidungIdx++; loadQHidung(); }, 600);
+                } else {
+                    btn.classList.add('btn-wrong');
+                    if(typeof sfxSalah !== 'undefined') { sfxSalah.currentTime=0; sfxSalah.play(); }
+                    reduceLife();
+                    const lockIcon = `<svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M4 2h8v2h2v10H2V4h2V2zm2 2v2h4V4H6zm-2 4v4h8V8H4z"/></svg>`;
+                    showCustomModal("SALAH!", "Coba analisis lagi situasinya! (Nyawa -1)", lockIcon, "error");
+                }
+            };
+            grid.appendChild(btn);
+        });
+    };
 
-    // Siapkan Dialog Nagata untuk Akhir Setiap Tahap (Misi 1)
+    const qsLidah = [
+        { q: "Jika kamu meminum perasan jeruk nipis murni tanpa gula, lidahmu akan mengecap rasa manis yang lezat.", c: false },
+        { q: "Meminum teh yang baru saja mendidih sangat berbahaya karena bisa membuat saraf lidah melepuh dan mati rasa sementara.", c: true },
+        { q: "Lidah manusia hanya berfungsi untuk mengecap makanan, dan tidak ada hubungannya sama sekali dengan suara saat kita berbicara.", c: false }
+    ];
+    let qLidahIdx = 0;
+
+    window.loadQLidah = function() {
+        if (qLidahIdx >= qsLidah.length) {
+            const checkIcon = `<svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M14 2h2v2h-2V2zm-2 2h2v2h-2V4zm-2 2h2v2h-2V6zm-2 2h2v2H8V8zm-2 2h2v2H6v-2zm-2 2h2v2H4v-2zm-2-2h2v2H2v-2zm-2-2h2v2H0v-2z"/></svg>`;
+            showCustomModal("LULUS KUIS LIDAH!", "Lidahmu sangat peka terhadap informasi!", checkIcon, "alert", () => triggerPostDialog('m1lidah'));
+            return;
+        }
+        document.getElementById('m1-lidah-q').innerText = `Pernyataan ${qLidahIdx+1}/3:\n\n${qsLidah[qLidahIdx].q}`;
+    };
+
+    window.jawabM1Lidah = function(ans) {
+        let item = qsLidah[qLidahIdx];
+        if (ans === item.c) {
+            if(typeof sfxBenar !== 'undefined') { sfxBenar.currentTime=0; sfxBenar.play(); }
+            addScore(10);
+            qLidahIdx++; loadQLidah();
+        } else {
+            if(typeof sfxSalah !== 'undefined') { sfxSalah.currentTime=0; sfxSalah.play(); }
+            reduceLife();
+            const lockIcon = `<svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M4 2h8v2h2v10H2V4h2V2zm2 2v2h4V4H6zm-2 4v4h8V8H4z"/></svg>`;
+            showCustomModal("SALAH!", "Pernyataan itu " + (item.c ? "BENAR" : "SALAH") + "! (Nyawa -1)", lockIcon, "error");
+        }
+    };
+
+    // --- LOGIKA KLIK OBJEK & PINDAH LAYAR ---
+    window.hoClickM1 = function(type) {
+        if (m1Progress[type]) return; 
+
+        if (type !== 'mata' && !m1Progress.mata) {
+            showCustomModal("TERLALU GELAP!", "Itu bukan Mata! Temukan alat-mata terlebih dahulu agar kita bisa melihat sekitar!", mapIcon, "alert");
+            return;
+        }
+        if (type !== 'mata' && type !== 'telinga' && !m1Progress.telinga) {
+            showCustomModal("TERLALU SEPI!", "Itu bukan Telinga! Temukan alat-telinga terlebih dahulu agar kita bisa mendengar suara kehidupan pasar!", mapIcon, "alert");
+            return;
+        }
+
+        m1Progress[type] = true;
+        document.getElementById('ho-' + type).classList.add('found');
+        if(typeof sfxTangkap !== 'undefined') { sfxTangkap.currentTime=0; sfxTangkap.play(); }
+        
+        const removeFullscreen = () => {
+            document.querySelector('.mission-wrapper').classList.remove('fullscreen-mode');
+            document.querySelector('.mission-full-box').classList.remove('fullscreen-mode');
+            document.querySelector('.mission-header').style.display = 'flex';
+        };
+
+        if (type === 'mata') {
+            document.getElementById('m1-dark-layer').style.opacity = '0';
+            setTimeout(() => document.getElementById('m1-dark-layer').style.display = 'none', 500);
+            
+            const dialogMata = [
+                { text: "Kerja bagus! Cahaya sudah kembali. Matamu menangkap pantulan cahaya sehingga kamu bisa mengenali bentuk dan warna benda.", mood: "happy", name: "Petualang Nagata", npc: "npc1" },
+                { text: "Sekarang, buktikan kehebatan analisismu dalam kuis kasus mata ini!", mood: "neutral", name: "Petualang Nagata", npc: "npc1" }
+            ];
+            startVnDialog(dialogMata, "Petualang Nagata", "npc1", () => {
+                removeFullscreen(); nextMissionStage('m1mata'); qMataIdx = 0; loadQMata();
+            });
+        }
+        else if (type === 'telinga') {
+            window.bgmPasarM1.play().catch(e=>console.log(e));
+            bgmMission.play().catch(e=>console.log(e));
+            const dialogTelinga = [
+                { text: "Wah, ramai sekali! Telingamu menangkap gelombang suara yang merambat di udara dari segala arah.", mood: "happy", name: "Petualang Nagata", npc: "npc1" },
+                { text: "Berkat telinga, kamu tahu apa yang terjadi di sekitarmu bahkan dari arah belakang yang buta! Ayo hubungkan kejadian suara ini!", mood: "neutral", name: "Petualang Nagata", npc: "npc1" }
+            ];
+            startVnDialog(dialogTelinga, "Petualang Nagata", "npc1", () => {
+                removeFullscreen(); nextMissionStage('m1telinga');
+            });
+        }
+        else if (type === 'hidung') {
+            const dialogHidung = [
+                { text: "Ini dia Hidung! Sensor penyaring udara ini memiliki saraf khusus di bagian atas rongganya.", mood: "happy", name: "Petualang Nagata", npc: "npc1" },
+                { text: "Ia bertugas mendeteksi partikel wangi atau bau busuk di udara. Mari kita uji ketajaman penciumanmu!", mood: "neutral", name: "Petualang Nagata", npc: "npc1" }
+            ];
+            startVnDialog(dialogHidung, "Petualang Nagata", "npc1", () => {
+                removeFullscreen(); nextMissionStage('m1hidung'); qHidungIdx = 0; loadQHidung();
+            });
+        }
+        else if (type === 'lidah') {
+            const dialogLidah = [
+                { text: "Nyam! Lidahmu dipenuhi bintik-bintik pengecap bernama papila.", mood: "happy", name: "Petualang Nagata", npc: "npc1" },
+                { text: "Ia membantumu membedakan makanan enak dan berbahaya, sekaligus membantumu berbicara dengan jelas. Buktikan logikamu!", mood: "neutral", name: "Petualang Nagata", npc: "npc1" }
+            ];
+            startVnDialog(dialogLidah, "Petualang Nagata", "npc1", () => {
+                removeFullscreen(); nextMissionStage('m1lidah'); qLidahIdx = 0; loadQLidah();
+            });
+        }
+        else if (type === 'kulit') {
+            const dialogKulit = [
+                { text: "Berhasil! Kulit adalah selimut pelindung yang peka untuk seluruh tubuhmu.", mood: "happy", name: "Petualang Nagata", npc: "npc1" },
+                { text: "Ujung saraf di bawahnya adalah alarm super cepat untuk merasakan sentuhan, tekstur, serta suhu. Cocokkan situasi berikut!", mood: "neutral", name: "Petualang Nagata", npc: "npc1" }
+            ];
+            startVnDialog(dialogKulit, "Petualang Nagata", "npc1", () => {
+                removeFullscreen(); nextMissionStage('m1kulit');
+            });
+        }
+    };
+
+    window.kembaliKeMapM1 = function() {
+        if (m1Progress.mata && m1Progress.telinga && m1Progress.hidung && m1Progress.lidah && m1Progress.kulit) {
+            // AKTIFKAN KEMBALI MODE FULLSCREEN UNTUK GAME AR
+            document.querySelector('.mission-header').style.display = 'none';
+            document.querySelector('.mission-wrapper').classList.add('fullscreen-mode');
+            document.querySelector('.mission-full-box').classList.add('fullscreen-mode');
+
+            // Pindah ke stage layar AR
+            nextMissionStage('m1-ar');
+            
+            // Jeda sejenak, lalu munculkan dialog pengantar dari Nagata
+            setTimeout(() => {
+                const dialogIntroAR = [
+                    { text: "Luar biasa! Kamu berhasil menemukan dan menguasai kelima alat pancaindra.", mood: "happy", name: "Petualang Nagata", npc: "npc1" },
+                    { text: "Sebelum kita membantu Pak Kumis, ayo kita lakukan pemanasan refleks mata dan otot tanganmu terlebih dahulu!", mood: "happy", name: "Petualang Nagata", npc: "npc1" },
+                    { text: "Sapu tanganmu di udara di depan kamera untuk menangkap buah. Hindari buah jebakannya! Kumpulkan 20 buah saja ya.", mood: "warning", name: "Petualang Nagata", npc: "npc1" }
+                ];
+                startVnDialog(dialogIntroAR, "Petualang Nagata", "npc1", () => {
+                    startMisi1AR(); // Nyalakan kamera setelah obrolan selesai
+                });
+            }, 500);
+        } else {
+            document.querySelector('.mission-header').style.display = 'none';
+            document.querySelector('.mission-wrapper').classList.add('fullscreen-mode');
+            document.querySelector('.mission-full-box').classList.add('fullscreen-mode');
+            nextMissionStage(1);
+
+            if (m1Progress.mata && !m1Progress.telinga) {
+                setTimeout(() => { 
+                    const warnIcon = `<svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M6 0h4v2h2v2h2v8h-2v2H6v-2H4V4h2V2zm2 2H6v10h4V2zm0 8h2v2H8v-2zm0-6h2v4H8V4z"/></svg>`;
+                    showCustomModal("SUNYI SENYAP!", "Cari dan sentuh pancaindra yang digunakan manusia untuk mendengar agar pasar kembali bersuara!", warnIcon, "alert", () => {
+                        window.showM1TargetOverlay("CARI ALAT PENDENGAR!");
+                    });
+                }, 500);
+            } else if (m1Progress.mata && m1Progress.telinga) {
+                setTimeout(() => { window.showM1TargetOverlay("CARI SISA ALAT SENSOR!"); }, 500);
+            }
+        }
+    };
+
+    // --- LOGIKA MINI GAME AR (INTERMEZZO M1) ---
+    window.abortMisi1AR = function() {
+        bgmBoss.pause();
+        bgmBoss.currentTime = 0;
+        if (typeof window.bgmPasarM1 !== 'undefined' && window.bgmPasarM1) { window.bgmPasarM1.pause(); window.bgmPasarM1.currentTime = 0; }
+        if (window.arStream) {
+            window.arStream.getTracks().forEach(track => track.stop());
+            window.arStream = null;
+        }
+        window.arActive = false;
+        clearInterval(window.arLoop);
+        clearInterval(window.arSpawner);
+        
+        document.querySelector('.mission-wrapper').classList.remove('fullscreen-mode');
+        document.querySelector('.mission-full-box').classList.remove('fullscreen-mode');
+        document.querySelector('.mission-header').style.display = 'flex';
+        exitMissionScreen();
+    };
+
+    window.startMisi1AR = function() {
+        document.getElementById('m1-ar-game-area').style.display = 'flex';
+        
+        bgmMission.pause();
+        if (typeof window.bgmPasarM1 !== 'undefined' && window.bgmPasarM1) window.bgmPasarM1.pause();
+        bgmBoss.currentTime = 0;
+        bgmBoss.play().catch(e => console.log(e));
+
+        const video = document.getElementById('m1-ar-video');
+        const canvas = document.getElementById('m1-ar-hidden-canvas');
+        if (!video || !canvas) return;
+        
+        const ctx = canvas.getContext('2d', { willReadFrequently: true });
+        canvas.width = 160; 
+        canvas.height = 90;
+
+        let previousImg = null;
+        let arBoxesData = [];
+        let arScore = 0;
+        window.arActive = false; 
+
+        // Target buah acak, dengan jebakan
+        let targetPhases = [
+            { fruits: ['apel'], text: 'HINDARI BUAH APEL!' },
+            { fruits: ['mangga'], text: 'HINDARI BUAH MANGGA!' },
+            { fruits: ['pisang'], text: 'HINDARI BUAH PISANG!' },
+            { fruits: ['jeruk'], text: 'HINDARI BUAH JERUK!' },
+            { fruits: ['semangka'], text: 'HINDARI BUAH SEMANGKA!' }
+        ].sort(() => Math.random() - 0.5);
+        
+        let currentPhaseIndex = 0;
+
+        function showPhaseOverlay(phase) {
+            window.arActive = false; 
+            const wrapper = document.getElementById('m1-ar-target-overlay-wrapper');
+            const overlay = document.getElementById('m1-ar-target-overlay');
+            overlay.innerText = phase.text;
+            wrapper.style.display = 'flex';
+            overlay.classList.remove('animate-pop');
+            void overlay.offsetWidth; 
+            overlay.classList.add('animate-pop');
+
+            try {
+                if(typeof audioArCmd !== 'undefined' && audioArCmd[phase.text]) {
+                    audioArCmd[phase.text].currentTime = 0;
+                    audioArCmd[phase.text].play().catch(() => {});
+                }
+            } catch (e) {}
+
+            setTimeout(() => {
+                wrapper.style.display = 'none';
+                window.arActive = true; 
+            }, 2500); 
+        }
+
+        navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" } })
+        .then(stream => {
+            window.arStream = stream;
+            video.srcObject = stream;
+            video.play();
+            
+            const faceGuide = document.getElementById('m1-ar-face-guide');
+            if (faceGuide) {
+                faceGuide.style.opacity = '1';
+                setTimeout(() => { faceGuide.style.opacity = '0'; }, 4000);
+            }
+            
+            setTimeout(() => { showPhaseOverlay(targetPhases[currentPhaseIndex]); }, 500);
+            
+            let lastLane = -1;
+
+            window.arSpawner = setInterval(() => {
+                if (!window.arActive) return;
+                const fruits = ['apel', 'pisang', 'jeruk', 'anggur', 'mangga', 'semangka', 'stroberi'];
+                let type = fruits[Math.floor(Math.random() * fruits.length)];
+                
+                let boxEl = document.createElement('div');
+                boxEl.className = 'ar-fruit ' + type;
+                
+                let lane;
+                do { lane = Math.floor(Math.random() * 6); } while (lane === lastLane);
+                lastLane = lane;
+                
+                let startX = 10 + (lane * 14); 
+                boxEl.style.left = startX + '%';
+                boxEl.style.top = '-15%';
+                document.getElementById('m1-ar-game-area').appendChild(boxEl);
+                
+                arBoxesData.push({
+                    el: boxEl, x: startX, y: -15, type: type, isHit: false,
+                    speed: Math.random() * 0.6 + 0.8 
+                });
+            }, 1200);
+
+            window.arLoop = setInterval(() => {
+                if (!window.arActive) return;
+
+                for (let i = arBoxesData.length - 1; i >= 0; i--) {
+                    const box = arBoxesData[i];
+
+                    box.y += box.speed;
+                    box.el.style.top = box.y + '%';
+
+                    if (box.y > 110) {
+                        box.el.remove();
+                        arBoxesData.splice(i, 1);
+                    }
+                }
+                
+                try {
+                    ctx.drawImage(video, 0, 0, 160, 90);
+                    let currentImg = ctx.getImageData(0, 0, 160, 90);
+                    
+                    if (previousImg) {
+                        arBoxesData.forEach(box => {
+                            if (box.isHit || box.y < 0 || box.y > 90) return;
+                            
+                            let canvasX = Math.floor((1 - (box.x/100) - 0.08) * 160); 
+                            let canvasY = Math.floor((box.y/100) * 90);
+                            
+                            let motionPx = 0, totalPx = 0;
+                            for (let y = canvasY-5; y < canvasY + 25; y++) {
+                                for (let x = canvasX-5; x < canvasX + 25; x++) {
+                                    if (x >= 0 && x < 160 && y >= 0 && y < 90) {
+                                        let idx = (y * 160 + x) * 4;
+                                        let r = currentImg.data[idx];
+                                        let g = currentImg.data[idx+1];
+                                        let b = currentImg.data[idx+2];
+                                        
+                                        let rDiff = Math.abs(r - previousImg.data[idx]);
+                                        let gDiff = Math.abs(g - previousImg.data[idx+1]);
+                                        let bDiff = Math.abs(b - previousImg.data[idx+2]);
+                                        
+                                        if (rDiff + gDiff + bDiff > 90) { 
+                                            let isSkin = (r > 60 && g > 35 && b > 15 && r > g && r > b && Math.abs(r - g) > 10);
+                                            if (isSkin) {
+                                                let isHead = (x > 60 && x < 100 && y > 15 && y < 55);
+                                                let isBody = (x > 40 && x < 120 && y >= 55);
+                                                if (!(isHead || isBody)) motionPx++;
+                                            }
+                                        }
+                                        totalPx++;
+                                    }
+                                }
+                            }
+                            
+                            if (totalPx > 0 && (motionPx / totalPx) > 0.05) {
+                                box.isHit = true;
+                                handleARHit(box);
+                            }
+                        });
+                    }
+                    previousImg = currentImg;
+                } catch(e) {}
+            }, 50);
+        })
+        .catch(err => {
+            const warnIcon = `<svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M6 0h4v2h2v2h2v8h-2v2H6v-2H4V4h2V2zm2 2H6v10h4V2zm0 8h2v2H8v-2zm0-6h2v4H8V4z"/></svg>`;
+            showCustomModal("KAMERA DIBLOKIR!", "Tantangan ini butuh akses kamera. Izinkan akses kamera lalu ulangi!", warnIcon, "error", () => window.abortMisi1AR());
+        });
+
+        function handleARHit(box) {
+            const currentTarget = targetPhases[currentPhaseIndex];
+            const lockIcon = `<svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M4 2h8v2h2v10H2V4h2V2zm2 2v2h4V4H6zm-2 4v4h8V8H4z"/></svg>`;
+            const checkIcon = `<svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M14 2h2v2h-2V2zm-2 2h2v2h-2V4zm-2 2h2v2h-2V6zm-2 2h2v2H8V8zm-2 2h2v2H6v-2zm-2 2h2v2H4v-2zm-2-2h2v2H2v-2zm-2-2h2v2H0v-2z"/></svg>`;
+
+            if (!currentTarget.fruits.includes(box.type)) {
+                box.el.classList.add('ar-effect');
+                setTimeout(() => box.el.remove(), 200);
+                
+                arScore++;
+                document.getElementById('m1-ar-score-txt').innerText = `${arScore} / 20`;
+                addScore(10, true); 
+
+                if (arScore >= 20) {
+                    bgmBoss.pause();
+                    bgmBoss.currentTime = 0;
+                    window.arActive = false;
+                    
+                    if (window.arStream) {
+                        window.arStream.getTracks().forEach(track => track.stop());
+                        window.arStream = null;
+                    }
+                    clearInterval(window.arLoop);
+                    clearInterval(window.arSpawner);
+
+                    showCustomModal("PEMANASAN SELESAI!", "Hebat! Refleks motorik dan penglihatanmu sudah sinkron. Saatnya menuju ke Fase 2 untuk membantu Pak Kumis!", checkIcon, "alert", () => {
+                        // KITA TETAP PERTAHANKAN FULLSCREEN UNTUK STAGE 2
+                        
+                        // Matikan AR view, munculkan Stage 2
+                        document.getElementById('m1-ar-game-area').style.display = 'none';
+                        
+                        // Nyalakan kembali musik misi (music-mission) dan suara pasar secara berdampingan
+                        if (typeof window.bgmPasarM1 !== 'undefined' && window.bgmPasarM1) window.bgmPasarM1.play().catch(e => console.log(e));
+                        bgmMission.currentTime = 0;
+                        bgmMission.play().catch(e => console.log(e));
+                        
+                        nextMissionStage(2); 
+                    });
+
+                } else if (arScore % 5 === 0 && currentPhaseIndex < targetPhases.length - 1) {
+                    currentPhaseIndex++;
+                    showPhaseOverlay(targetPhases[currentPhaseIndex]);
+                }
+            } else {
+                reduceLife(true); 
+                window.arActive = false; 
+                const expected = currentTarget.text.replace('HINDARI ', '').replace('!', '');
+                
+                showCustomModal("AWAS JEBAKAN!", `Fokuskan matamu! Kamu harus menghindari: ${expected}\\n(Nyawa Berkurang 1)`, lockIcon, "error", () => {
+                    if (chapterLives[currentChapter] > 0) {
+                        setTimeout(() => { window.arActive = true; }, 1500);
+                    } else {
+                        window.abortMisi1AR(); 
+                    }
+                });
+            }
+        }
+    };
+
+    // --- DATABASE & LOGIKA FASE 2 (GUDANG MISTERI 5 KARUNG) ---
+    window.m1SacksData = [
+        { id: 'tahu_segar', img: 'assets/item/tahu-taqwa.webp', name: 'Tahu Takwa', 
+          desc: { mata: "Warnanya kuning pekat khas Kediri dan berbentuk kotak rapi.", hidung: "Tercium aroma gurih kunyit segar yang khas.", kulit: "Teksturnya padat, kenyal, dan kokoh saat dipegang.", lidah: "Rasanya gurih dan lezat, sangat cocok untuk lauk.", telinga: "Tidak mengeluarkan suara apapun." },
+          correctAnswer: "Tahu Takwa Segar", options: ["Tahu Takwa Segar", "Tahu Basi / Asam", "Buah Mangga", "Buah Jeruk"] },
+        { id: 'tahu_busuk', img: 'assets/item/tahu-busuk.webp', name: 'Tahu Basi', 
+          desc: { mata: "Warnanya pucat agak kehitaman dan bentuknya mulai hancur.", hidung: "Ugh! Tercium aroma asam dan bau busuk yang sangat menyengat.", kulit: "Teksturnya lembek, berlendir, dan mudah hancur saat diraba.", lidah: "Jangan dicicipi! Ini sudah basi dan berbahaya.", telinga: "Tidak mengeluarkan suara." },
+          correctAnswer: "Tahu Basi / Asam", options: ["Tahu Takwa Segar", "Tahu Basi / Asam", "Buah Pisang", "Buah Jeruk"] },
+        { id: 'mangga', img: 'assets/item/mangga.webp', name: 'Buah Mangga', 
+          desc: { mata: "Kulit buahnya berwarna hijau kekuningan dengan bentuk lonjong.", hidung: "Tercium aroma buah harum yang manis.", kulit: "Kulitnya halus licin, daging buahnya terasa empuk saat matang.", lidah: "Mengecap rasa manis keasaman yang menyegarkan.", telinga: "Tidak ada suara." },
+          correctAnswer: "Buah Mangga", options: ["Buah Mangga", "Buah Jeruk", "Buah Pisang", "Tahu Takwa Segar"] },
+        { id: 'jeruk', img: 'assets/item/jeruk.webp', name: 'Buah Jeruk', 
+          desc: { mata: "Bentuknya bulat dengan kulit berpori-pori kecil berwarna oranye.", hidung: "Tercium aroma segar khas buah jeruk.", kulit: "Permukaannya sedikit berpori dan agak melengkung bulat.", lidah: "Mengecap rasa asam manis yang segar di lidah.", telinga: "Tidak ada suara." },
+          correctAnswer: "Buah Jeruk", options: ["Buah Mangga", "Buah Jeruk", "Tahu Basi / Asam", "Buah Pisang"] },
+        { id: 'pisang', img: 'assets/item/pisang.webp', name: 'Buah Pisang', 
+          desc: { mata: "Bentuknya panjang melengkung dengan warna kulit kuning cerah.", hidung: "Tercium aroma manis khas buah pisang matang.", kulit: "Tekstur kulitnya lembut saat dikupas, buahnya empuk.", lidah: "Mengecap rasa manis yang lembut.", telinga: "Tidak ada suara." },
+          correctAnswer: "Buah Pisang", options: ["Buah Pisang", "Buah Mangga", "Buah Jeruk", "Tahu Takwa Segar"] }
+    ];
+
+    window.m1SacksCleared = [false, false, false, false, false];
+    window.currentActiveSackIndex = null;
+    window.m1SackInspectedSenses = new Set();
+
+    window.openM1Sack = function(index) {
+        if (window.m1SacksCleared[index]) return;
+        window.currentActiveSackIndex = index;
+        window.m1SackInspectedSenses.clear();
+
+        document.getElementById('m1-inspect-title').innerText = `INVESTIGASI KARUNG ${index + 1}`;
+        document.getElementById('m1-inspect-quiz').style.display = 'none';
+        document.getElementById('m1-inspect-tools-container').style.display = 'flex';
+        
+        // Reset status tombol alat indra (hapus kelas hitam putih)
+        document.querySelectorAll('.m1-tool-btn').forEach(btn => btn.classList.remove('used'));
+        
+        document.getElementById('m1-inspect-modal').style.display = 'flex';
+    };
+
+    // --- LOGIKA KLIK ALAT INDRA UNTUK INVESTIGASI KARUNG ---
+    window.triggerSackInspectionClick = function(sense, toolElem) {
+        if (toolElem.classList.contains('used')) return;
+        toolElem.classList.add('used'); // Ubah ikon alat indra menjadi hitam putih
+
+        let sackObj = window.m1SacksData[window.currentActiveSackIndex];
+        let descText = sackObj.desc[sense];
+
+        if (typeof sfxTangkap !== 'undefined') { sfxTangkap.currentTime = 0; sfxTangkap.play(); }
+
+        window.m1SackInspectedSenses.add(sense);
+
+        // Munculkan pernyataan dalam bentuk pop-up kustom game
+        const senseIconSvg = `<svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M8 2a6 6 0 100 12A6 6 0 008 2zM7 5h2v2H7V5zm0 3h2v3H7V8z"/></svg>`;
+        showCustomModal(`HASIL INDRA ${sense.toUpperCase()}`, descText, senseIconSvg, "alert", () => {
+            // Setelah pop-up pernyataan ditutup, cek apakah kelima indra sudah digunakan
+            if (window.m1SackInspectedSenses.size >= 5) {
+                document.getElementById('m1-inspect-tools-container').style.display = 'none';
+                document.getElementById('m1-inspect-quiz').style.display = 'flex';
+                
+                let optsBox = document.getElementById('m1-inspect-opts');
+                optsBox.innerHTML = '';
+                let shuffled = [...sackObj.options].sort(() => Math.random() - 0.5);
+                
+                shuffled.forEach(opt => {
+                    let btn = document.createElement('button');
+                    btn.className = 'btn-explore';
+                    btn.innerText = opt;
+                    btn.onclick = function() {
+                        if (btn.classList.contains('btn-correct') || btn.classList.contains('btn-wrong')) return;
+                        if (opt === sackObj.correctAnswer) {
+                            btn.classList.add('btn-correct');
+                            if (typeof sfxBenar !== 'undefined') { sfxBenar.currentTime = 0; sfxBenar.play(); }
+                            addScore(20);
+                            
+                            window.m1SacksCleared[window.currentActiveSackIndex] = true;
+                            
+                            // Ganti gambar karung menjadi gambar barang aslinya dengan efek animasi
+                            let sackWrap = document.getElementById('sack-wrap-' + window.currentActiveSackIndex);
+                            if (sackWrap) {
+                                sackWrap.innerHTML = `<img src="${sackObj.img}" style="width: 12cqw; height: 12cqw; object-fit: contain; filter: drop-shadow(0.4cqw 0.4cqw 0px rgba(0,0,0,0.7)); animation: popIn 0.5s ease-out forwards;">`;
+                            }
+
+                            setTimeout(() => {
+                                document.getElementById('m1-inspect-modal').style.display = 'none';
+                                
+                                // Cek apakah kelima karung sudah bersih semua
+                                if (window.m1SacksCleared.every(val => val === true)) {
+                                    const checkIcon = `<svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M14 2h2v2h-2V2zm-2 2h2v2H8V4zm-2 2h2v2H8V8zm-2 2h2v2H6v-2zm-2 2h2v2H4v-2zm-2-2h2v2H2v-2zm-2-2h2v2H0v-2z"/></svg>`;
+                                    showCustomModal("GUDANG BERSIH!", "Luar biasa! Gudang Pak Kumis sudah rapi. Sekarang saatnya uji ketajaman mata terakhir!", checkIcon, "alert", () => {
+                                        // Aktifkan mode layar penuh
+                                        document.querySelector('.mission-wrapper').classList.add('fullscreen-mode');
+                                        document.querySelector('.mission-full-box').classList.add('fullscreen-mode');
+                                        document.querySelector('.mission-header').style.display = 'none';
+
+                                        nextMissionStage('m1-color');
+                                        
+                                        setTimeout(() => {
+                                            const dialogColorM1 = [
+                                                { text: "Hebat! Semua karung berhasil diidentifikasi dengan benar.", mood: "happy", name: "Petualang Nagata", npc: "npc1" },
+                                                { text: "Sebagai penutup Misi 1, mari uji ketajaman MATAMU untuk mencari warna-warna benda di sekitar menggunakan pemindai kamera!", mood: "neutral", name: "Petualang Nagata", npc: "npc1" },
+                                                { text: "Temukan 3 warna yang diminta dengan mengarahkan kamera ke benda nyata di sekitarmu!", mood: "warning", name: "Petualang Nagata", npc: "npc1" }
+                                            ];
+                                            startVnDialog(dialogColorM1, "Petualang Nagata", "npc1", () => {
+                                                startM1ColorGame();
+                                            });
+                                        }, 500);
+                                    });
+                                }
+                            }, 800);
+                        } else {
+                            btn.classList.add('btn-wrong');
+                            if (typeof sfxSalah !== 'undefined') { sfxSalah.currentTime = 0; sfxSalah.play(); }
+                            reduceLife();
+                            const lockIcon = `<svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M4 2h8v2h2v10H2V4h2V2zm2 2v2h4V4H6zm-2 4v4h8V8H4z"/></svg>`;
+                            showCustomModal("SALAH TEBAKAN!", "Bukan itu isinya! Analisis lagi catatan indramu. (Nyawa -1)", lockIcon, "error");
+                        }
+                    };
+                    optsBox.appendChild(btn);
+                });
+            }
+        });
+    };
+
+    window.closeM1Modal = function() {
+        document.getElementById('m1-inspect-modal').style.display = 'none';
+    };
+
+    // --- LOGIKA GAME DETEKTIF WARNA (PENUTUP MISI 1) ---
+    window.abortMisi1Color = function() {
+        bgmBoss.pause();
+        bgmBoss.currentTime = 0;
+        if (window.arStream) {
+            window.arStream.getTracks().forEach(track => track.stop());
+            window.arStream = null;
+        }
+        window.arColorActive = false;
+        clearInterval(window.arColorLoop);
+        clearInterval(window.arColorTimer);
+        
+        document.querySelector('.mission-wrapper').classList.remove('fullscreen-mode');
+        document.querySelector('.mission-full-box').classList.remove('fullscreen-mode');
+        document.querySelector('.mission-header').style.display = 'flex';
+        exitMissionScreen();
+    };
+
+    window.startM1ColorGame = function() {
+        document.getElementById('m1-ar-color-area').style.display = 'flex';
+        
+        bgmBoss.currentTime = 0;
+        bgmBoss.play().catch(e => console.log(e));
+
+        const video = document.getElementById('m1-ar-color-video');
+        const canvas = document.getElementById('m1-ar-color-hidden-canvas');
+        if (!video || !canvas) return;
+        
+        const ctx = canvas.getContext('2d', { willReadFrequently: true });
+        canvas.width = 160; 
+        canvas.height = 90;
+
+        window.arColorActive = false;
+        let timeRemaining = 30;
+        let colorsFound = 0; 
+        const targetWin = 3; // Cari 3 warna untuk menyelesaikan Misi 1
+        
+        const colors = [
+            { name: 'KUNING', text: 'CARI BENDA WARNA KUNING (SEPERTI TAHU TAKWA)!', rgbMatch: (r,g,b) => isColorMatchHSL(r,g,b, 'KUNING') },
+            { name: 'MERAH', text: 'CARI BENDA WARNA MERAH!', rgbMatch: (r,g,b) => isColorMatchHSL(r,g,b, 'MERAH') },
+            { name: 'HIJAU', text: 'CARI BENDA WARNA HIJAU!', rgbMatch: (r,g,b) => isColorMatchHSL(r,g,b, 'HIJAU') },
+            { name: 'BIRU', text: 'CARI BENDA WARNA BIRU!', rgbMatch: (r,g,b) => isColorMatchHSL(r,g,b, 'BIRU') },
+            { name: 'PUTIH', text: 'CARI BENDA WARNA PUTIH!', rgbMatch: (r,g,b) => isColorMatchHSL(r,g,b, 'PUTIH') },
+            { name: 'ORANYE', text: 'CARI BENDA WARNA ORANYE!', rgbMatch: (r,g,b) => isColorMatchHSL(r,g,b, 'ORANYE') },
+            { name: 'COKELAT', text: 'CARI BENDA WARNA COKELAT!', rgbMatch: (r,g,b) => isColorMatchHSL(r,g,b, 'COKELAT') }
+        ];
+        
+        let currentColor = colors[Math.floor(Math.random() * colors.length)];
+        document.getElementById('m1-ar-color-target-txt').innerText = `${colorsFound}/${targetWin} - ${currentColor.name}`;
+    
+        function showColorOverlay(phaseText) {
+            window.arColorActive = false;
+            const overlayWrapper = document.getElementById('m1-ar-color-overlay-wrapper');
+            const overlay = document.getElementById('m1-ar-color-overlay');
+            
+            overlay.innerText = phaseText;
+            overlayWrapper.style.display = 'flex';
+            overlay.classList.remove('animate-pop');
+            void overlay.offsetWidth; 
+            overlay.classList.add('animate-pop');
+
+            setTimeout(() => {
+                overlayWrapper.style.display = 'none';
+                window.arColorActive = true; 
+                startColorTimer();
+            }, 2500);
+        }
+
+        function startColorTimer() {
+            timeRemaining = 30;
+            const bar = document.getElementById('m1-ar-color-timer-fill');
+            bar.style.width = '100%';
+            bar.style.backgroundColor = '#2ed573';
+            
+            window.arColorTimer = setInterval(() => {
+                if (!window.arColorActive) return;
+                timeRemaining--;
+                let pct = (timeRemaining / 30) * 100;
+                bar.style.width = pct + '%';
+                
+                if (pct <= 50) bar.style.backgroundColor = '#ffa502';
+                if (pct <= 20) bar.style.backgroundColor = '#ff4757';
+                
+                if (timeRemaining <= 0) {
+                    window.arColorActive = false;
+                    clearInterval(window.arColorTimer);
+                    handleColorTimeout();
+                }
+            }, 1000);
+        }
+
+        navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: "environment" } } })
+        .then(stream => {
+            window.arStream = stream;
+            video.srcObject = stream;
+            video.play();
+            
+            setTimeout(() => { showColorOverlay(currentColor.text); }, 500);
+            
+            let holdTime = 0;
+            
+            window.arColorLoop = setInterval(() => {
+                if (!window.arColorActive) return;
+                
+                try {
+                    ctx.drawImage(video, 0, 0, 160, 90);
+                    let currentImg = ctx.getImageData(0, 0, 160, 90);
+                    
+                    let matchCount = 0;
+                    let totalCount = 0;
+                    let colorCounts = {};
+                    colors.forEach(c => colorCounts[c.name] = 0);
+                    
+                    for (let y = 30; y < 60; y+=2) { 
+                        for (let x = 50; x < 110; x+=2) {
+                            let idx = (y * 160 + x) * 4;
+                            let r = currentImg.data[idx];
+                            let g = currentImg.data[idx+1];
+                            let b = currentImg.data[idx+2];
+                            
+                            if (currentColor.rgbMatch(r,g,b)) {
+                                matchCount++;
+                            }
+                            
+                            for (let i = 0; i < colors.length; i++) {
+                                if (colors[i].rgbMatch(r,g,b)) {
+                                    colorCounts[colors[i].name]++;
+                                    break;
+                                }
+                            }
+                            totalCount++;
+                        }
+                    }
+                    
+                    let dominantColor = "-";
+                    let maxCount = 0;
+                    for (let cName in colorCounts) {
+                        if (colorCounts[cName] > maxCount) {
+                            maxCount = colorCounts[cName];
+                            dominantColor = cName;
+                        }
+                    }
+                    
+                    let detectedTextEl = document.getElementById('m1-ar-detected-color');
+                    
+                    if (matchCount / totalCount > 0.05) {
+                        holdTime += 200;
+                        if (detectedTextEl) {
+                            let sisaDetik = Math.ceil((3000 - holdTime) / 1000);
+                            detectedTextEl.innerText = `TAHAN POSISI... ${sisaDetik}`;
+                            detectedTextEl.style.color = "#2ed573";
+                        }
+                        
+                        if (holdTime >= 3000) {
+                            window.arColorActive = false; 
+                            clearInterval(window.arColorTimer);
+                            holdTime = 0;
+                            handleColorSuccess();
+                        }
+                    } else {
+                        holdTime = 0;
+                        if (detectedTextEl) {
+                            if (maxCount / totalCount > 0.05) { 
+                                detectedTextEl.innerText = "Terdeteksi: " + dominantColor;
+                                detectedTextEl.style.color = "#FFEA00"; 
+                            } else {
+                                detectedTextEl.innerText = "Terdeteksi: - (Terlalu Gelap/Pudar)";
+                                detectedTextEl.style.color = "#ff4757"; 
+                            }
+                        }
+                    }
+                } catch(e) {}
+            }, 200);
+        })
+        .catch(err => {
+            const warnIcon = `<svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M6 0h4v2h2v2h2v8h-2v2H6v-2H4V4h2V2zm2 2H6v10h4V2zm0 8h2v2H8v-2zm0-6h2v4H8V4z"/></svg>`;
+            showCustomModal("KAMERA DIBLOKIR!", "Tantangan ini butuh akses kamera.", warnIcon, "error", () => window.abortMisi1Color());
+        });
+        
+        function handleColorSuccess() {
+            colorsFound++;
+            const checkIcon = `<svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M14 2h2v2h-2V2zm-2 2h2v2h-2V4zm-2 2h2v2H8V8zm-2 2h2v2H6v-2zm-2 2h2v2H4v-2zm-2-2h2v2H2v-2zm-2-2h2v2H0v-2z"/></svg>`;
+            
+            if (colorsFound >= targetWin) {
+                bgmBoss.pause();
+                bgmBoss.currentTime = 0;
+                
+                // Matikan mesin kamera dan interval pemindai warna
+                window.arColorActive = false;
+                clearInterval(window.arColorLoop);
+                clearInterval(window.arColorTimer);
+                if (window.arStream) {
+                    window.arStream.getTracks().forEach(track => track.stop());
+                    window.arStream = null;
+                }
+                document.getElementById('m1-ar-color-area').style.display = 'none';
+
+                addScore(50);
+                showCustomModal("WARNA TERDETEKSI!", "BINGO! Matamu berhasil mendeteksi warna dengan sempurna. Mari kita ke lorong pasar untuk tugas selanjutnya!", checkIcon, "alert", () => {
+                    document.getElementById('m1-ar-color-area').style.display = 'none';
+                    nextMissionStage(3);
+                    
+                    setTimeout(() => {
+                        const dialogSampahM1 = [
+                            { text: "Luar biasa! Penyelidikan warnamu selesai dengan gemilang.", mood: "happy", name: "Petualang Nagata", npc: "npc1" },
+                            { text: "Tetapi tunggu... lorong pasar terlihat sangat kotor karena banyak yang membuang sampah sembarangan.", mood: "sad", name: "Petualang Nagata", npc: "npc1" },
+                            { text: "Gunakan ketelitian penglihatanmu untuk mencari 10 sampah kecil yang tersembunyi, lalu buang ke tempatnya. Abaikan buah-buahan yang masih segar ya!", mood: "warning", name: "Petualang Nagata", npc: "npc1" }
+                        ];
+                        startVnDialog(dialogSampahM1, "Petualang Nagata", "npc1", () => {
+                            // Dialog selesai, pemain harus menekan "MULAI MENCARI" di layar
+                        });
+                    }, 500);
+                });
+            } else {
+                addScore(20);
+                showCustomModal("WARNA DITEMUKAN!", `Hebat! Benda warna ${currentColor.name} cocok. Lanjut ke target warna berikutnya!`, checkIcon, "alert", () => {
+                    currentColor = colors[Math.floor(Math.random() * colors.length)];
+                    document.getElementById('m1-ar-color-target-txt').innerText = `${colorsFound}/${targetWin} - ${currentColor.name}`;
+                    showColorOverlay(currentColor.text);
+                });
+            }
+        }
+        
+        function handleColorTimeout() {
+            reduceLife();
+            const lockIcon = `<svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M4 2h8v2h2v10H2V4h2V2zm2 2v2h4V4H6zm-2 4v4h8V8H4z"/></svg>`;
+            showCustomModal("WAKTU HABIS!", "Waktumu habis mencari warna! (Nyawa Berkurang 1)", lockIcon, "error", () => {
+                if (chapterLives[currentChapter] > 0) {
+                    currentColor = colors[Math.floor(Math.random() * colors.length)];
+                    document.getElementById('m1-ar-color-target-txt').innerText = `${colorsFound}/${targetWin} - ${currentColor.name}`;
+                    showColorOverlay(currentColor.text);
+                } else {
+                    window.abortMisi1Color();
+                }
+            });
+        }
+    };
+
+    // --- LOGIKA GAME CARI SAMPAH (TAHAP 3 - PENUTUP) ---
+    window.sampahM1Found = 0;
+    
+    // Kumpulan Aset Gambar Sampah (Gambar Acak Berulang)
+    const asetSampah = [
+        { img: 'sampah-botol.webp', msg: 'Kulit jarimu bisa merasakan permukaan botol plastik yang licin dan sedikit penyok saat mengambilnya.', title: 'RESPONS KULIT' },
+        { img: 'sampah-jajan.webp', msg: 'Kresek! Telingamu mendengar suara nyaring saat bungkus jajan ringan ini diremas.', title: 'RESPONS TELINGA' },
+        { img: 'sampah-kaleng.webp', msg: 'Terdengar denting logam yang cukup keras saat kaleng kosong ini berbenturan.', title: 'RESPONS TELINGA' },
+        { img: 'sampah-kantong.webp', msg: 'Bau pengap seketika tercium oleh hidungmu saat menyentuh kantong ini.', title: 'RESPONS HIDUNG' },
+        { img: 'sampah-koran.webp', msg: 'Ujung jarimu merasakan tekstur kasar dan rapuh dari kertas koran bekas ini.', title: 'RESPONS KULIT' },
+        { img: 'sampah-kresek.webp', msg: 'Warnanya sangat kotor dan terlihat menjijikkan oleh matamu.', title: 'RESPONS MATA' },
+        { img: 'paku.webp', msg: 'Awas! Matamu menemukan benda berkarat tajam yang sangat berbahaya jika sampai terinjak.', title: 'RESPONS MATA' }
+    ];
+
+    // Kumpulan Aset Gambar Pengecoh (Decoy)
+    const asetPengecoh = [
+        { img: 'apel.webp', name: 'Buah Apel' },
+        { img: 'kucing.webp', name: 'Kucing Lucu' },
+        { img: 'mawar.webp', name: 'Bunga Mawar' },
+        { img: 'jeruk.webp', name: 'Buah Jeruk' },
+        { img: 'tahu-taqwa.webp', name: 'Tahu Takwa' },
+        { img: 'mobil.webp', name: 'Mainan Mobil' }
+    ];
+    
+    window.startCariSampah = function() {
+        document.getElementById('intro-sampah').style.display = 'none';
+        
+        const gameArea = document.getElementById('sampah-game-area');
+        gameArea.style.pointerEvents = 'auto'; // Mengizinkan klik
+        gameArea.innerHTML = ''; // Pastikan arena bersih sebelum membuat barang
+        
+        // 1. Munculkan 10 Sampah Acak
+        for (let i = 0; i < 10; i++) {
+            let acakSampah = asetSampah[Math.floor(Math.random() * asetSampah.length)];
+            
+            // Atur posisi lantai agar logis (Top antara 45% s/d 90%, Left antara 5% s/d 90%)
+            let posTop = Math.floor(Math.random() * 45) + 45;
+            let posLeft = Math.floor(Math.random() * 85) + 5;
+            let ukuran = Math.random() * 1.5 + 3.5; // Ukuran kecil antara 3.5cqw s/d 5cqw
+            
+            let imgElem = document.createElement('img');
+            imgElem.src = `assets/item/${acakSampah.img}`;
+            imgElem.className = 'm1-sampah-item';
+            imgElem.style = `position: absolute; top: ${posTop}%; left: ${posLeft}%; width: ${ukuran}cqw; cursor: pointer; filter: drop-shadow(0.2cqw 0.2cqw 0 #111); transition: transform 0.2s; z-index: 10;`;
+            
+            imgElem.onmouseover = function() { this.style.transform = 'scale(1.2)'; };
+            imgElem.onmouseout = function() { this.style.transform = 'scale(1)'; };
+            
+            // Ketika diklik, jalankan fungsi utama dengan pesan edukasinya
+            imgElem.onclick = function() { clickSampahM1(this, acakSampah.msg, acakSampah.title); };
+            
+            gameArea.appendChild(imgElem);
+        }
+        
+        // 2. Munculkan 8 Benda Pengecoh Acak
+        for (let i = 0; i < 8; i++) {
+            let acakDecoy = asetPengecoh[Math.floor(Math.random() * asetPengecoh.length)];
+            
+            let posTop = Math.floor(Math.random() * 45) + 45;
+            let posLeft = Math.floor(Math.random() * 85) + 5;
+            let ukuran = Math.random() * 2 + 5; // Ukuran pengecoh agak sedikit lebih besar (5cqw - 7cqw)
+            
+            let imgElem = document.createElement('img');
+            imgElem.src = `assets/item/${acakDecoy.img}`;
+            imgElem.style = `position: absolute; top: ${posTop}%; left: ${posLeft}%; width: ${ukuran}cqw; cursor: pointer; filter: drop-shadow(0.3cqw 0.3cqw 0 rgba(0,0,0,0.6)); transition: transform 0.2s; z-index: 5;`;
+            
+            imgElem.onmouseover = function() { this.style.transform = 'scale(1.2)'; };
+            imgElem.onmouseout = function() { this.style.transform = 'scale(1)'; };
+            
+            imgElem.onclick = function() { clickDecoyM1(acakDecoy.name); };
+            
+            gameArea.appendChild(imgElem);
+        }
+    };
+
+    window.clickSampahM1 = function(elem, msg, title) {
+        if (elem.classList.contains('found')) return;
+        
+        elem.classList.add('found');
+        elem.style.display = 'none'; // Hilangkan sampah dari layar
+        
+        if (typeof sfxTangkap !== 'undefined') { sfxTangkap.currentTime = 0; sfxTangkap.play(); }
+        
+        window.sampahM1Found++;
+        document.getElementById('m1-sampah-score').innerText = `${window.sampahM1Found} / 10`;
+        addScore(15);
+        
+        const checkIcon = `<svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M14 2h2v2h-2V2zm-2 2h2v2h-2V4zm-2 2h2v2h-2V6zm-2 2h2v2H8V8zm-2 2h2v2H6v-2zm-2 2h2v2H4v-2zm-2-2h2v2H2v-2zm-2-2h2v2H0v-2z"/></svg>`;
+        
+        if (window.sampahM1Found >= 10) {
+            showCustomModal("PASAR BERSIH!", msg + "\n\nLuar biasa! Kamu menggunakan seluruh indramu untuk membersihkan pasar dari semua sampah dengan sangat bersih. Mari temui Pak Kumis!", checkIcon, "alert", () => {
+                
+                // Kembalikan Mode Layar Normal untuk Kuis
+                document.querySelector('.mission-wrapper').classList.remove('fullscreen-mode');
+                document.querySelector('.mission-full-box').classList.remove('fullscreen-mode');
+                document.querySelector('.mission-header').style.display = 'flex';
+                
+                // Pindah ke Tahap 4
+                nextMissionStage(4);
+                
+                // Matikan musik pasar, nyalakan musik Boss
+                if (typeof window.bgmPasarM1 !== 'undefined' && window.bgmPasarM1) window.bgmPasarM1.pause();
+                bgmMission.pause();
+                bgmBoss.currentTime = 0;
+                bgmBoss.play().catch(e => console.log(e));
+            });
+        } else {
+            // Tampilkan pop-up penjelasan indra
+            showCustomModal(title, msg, checkIcon, "alert");
+        }
+    };
+
+    window.clickDecoyM1 = function(nama) {
+        reduceLife();
+        const lockIcon = `<svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M4 2h8v2h2v10H2V4h2V2zm2 2v2h4V4H6zm-2 4v4h8V8H4z"/></svg>`;
+        showCustomModal("BUKAN SAMPAH!", `Itu adalah ${nama} segar yang terjatuh, bukan sampah kotor! Fokus gunakan matamu.\n(Nyawa Berkurang 1)`, lockIcon, "error");
+    };
+
+    window.abortMisi1CariSampah = function() {
+        document.querySelector('.mission-wrapper').classList.remove('fullscreen-mode');
+        document.querySelector('.mission-full-box').classList.remove('fullscreen-mode');
+        document.querySelector('.mission-header').style.display = 'flex';
+        exitMissionScreen();
+    };
+
+    // --- DIALOG SETELAH MINI GAME SELESAI ---
     currentMissionDialogs = {
-        1: { dialog: [{ text: "Bagus sekali! Sekarang kamu tahu gambaran umum tentang 5 jendela ajaibmu. Ayo selidiki satu per satu!", mood: "happy" }] },
-        2: { dialog: [{ text: "Matamu mengenali bentuk dan letaknya dengan baik! Ayo lanjut ke indra berikutnya.", mood: "happy" }] },
-        3: { dialog: [{ text: "Telingamu pendengar yang hebat! Ayo kita selidiki indra yang lain.", mood: "happy" }] },
-        4: { dialog: [{ text: "Hidung yang peka! Bau sate memang sangat lezat.", mood: "happy" }] },
-        5: { dialog: [{ text: "Lidahmu berhasil mengecap rasa manis! Sempurna.", mood: "happy" }] },
-        6: { dialog: [{ text: "Kulitmu bisa membedakan tekstur kasar dan tajam dengan sangat baik!", mood: "happy" }] },
-        7: { 
-            isBoss: true,
+        'm1mata': { dialog: [{ text: "Hebat! Kamu telah menyelesaikan evaluasi Mata. Ayo kembali ke pasar dan cari sisa alat sensor lainnya!", mood: "happy", name: "Petualang Nagata", npc: "npc1" }] },
+        'm1telinga': { dialog: [{ text: "Luar biasa! Telingamu bekerja dengan baik. Jangan lupa, masih ada 3 sensor lain yang tersebar di pasar! Bebas pilih yang mana saja.", mood: "happy", name: "Petualang Nagata", npc: "npc1" }] },
+        'm1hidung': { dialog: [{ text: "Penciumanmu sangat tajam! Fungsi hidung berhasil dikuasai. Mari kita lanjutkan pencarian!", mood: "happy", name: "Petualang Nagata", npc: "npc1" }] },
+        'm1lidah': { dialog: [{ text: "Jawaban yang sangat cerdas! Lidahmu dalam kondisi sempurna. Kembali ke pencarian yuk!", mood: "happy", name: "Petualang Nagata", npc: "npc1" }] },
+        'm1kulit': { dialog: [{ text: "Sempurna! Kamu memahami refleks dan fungsi kulit dengan sangat baik. Mari kembali ke pasar!", mood: "happy", name: "Petualang Nagata", npc: "npc1" }] },
+        2: { 
+            isBoss: true, 
             dialog: [
-                { text: "Luar Biasa! Kamu berhasil menyelesaikan semua ujian pengenalan di Misi 1.", mood: "happy" },
-                { text: "Kamu mendapatkan 100 Koin Emas. Segel ajaib Misi 2 telah terbuka!", mood: "happy" },
-                { text: "Mari kita keluar dan kembali ke Peta Utama!", mood: "neutral" }
-            ]
+                { text: "Luar biasa! Kamu berhasil menemukan kelima pancaindra dan menguasai fungsi utamanya dalam kehidupan nyata.", mood: "happy", name: "Petualang Nagata", npc: "npc1" }, 
+                { text: "Kini tubuhmu sudah berfungsi sempurna. Misteri lanjutan di kios Pak Kumis akan kita buka pada pertemuan selanjutnya! Kamu berhak mendapat 100 Koin Emas.", mood: "happy", name: "Petualang Nagata", npc: "npc1" }
+            ] 
         }
     };
 }
@@ -921,32 +2476,42 @@ if (btnMisi1) {
         // Cek apakah Misi 1 sudah pernah diselesaikan
         const isCompleted = localStorage.getItem('misi_1_completed') === 'true';
 
+        let pahlawanName = localStorage.getItem('playerName') || "Pahlawan";
         let dramaMisi1 = [
-            { text: "Hai! Mau mengulang kembali petualangan kita di Pasar Kandangan?", mood: "happy" },
+            { text: "Pahlawan, gawat! Pasar Kandangan mendadak gelap gulita dan sunyi senyap. Alat sensor tubuh kita nonaktif!", mood: "sad", name: "Petualang Nagata", npc: "npc1" },
+            { text: "Kamu harus segera masuk ke pasar. Geser sentermu dan temukan ikon MATA terlebih dahulu agar kita bisa memulihkan cahaya di dunia ini!", mood: "warning", name: "Petualang Nagata", npc: "npc1" },
             { 
-                text: "Ayo kita ingat-ingat lagi letak, bentuk, dan nama 5 alat sensor ajaib pada tubuh kita. Kamu siap?", 
-                mood: "neutral", isChoice: true,
-                onYes: () => enterMissionScreen("MISI 1", "MENGENAL PANCAINDRA", 1),
-                onNo: () => {
-                    activeScript.push(getRejectionDialog(1, "MISI 1", "MENGENAL PANCAINDRA"));
-                    currentVnIndex++; updateVnDialog();
+                text: "Kamu siap memulai pencarian sensori ini?", 
+                mood: "neutral", isChoice: true, name: "Petualang Nagata", npc: "npc1",
+                onYes: () => {
+                    document.getElementById('vn-overlay').style.display = 'none';
+                    showMissionQuestBoard(1, "MISI 1", "MISTERI PASAR KANDANGAN", () => {
+                        // Cukup panggil masuk misi. Sisanya diurus otomatis oleh engine.js
+                        enterMissionScreen("MISI 1", "MISTERI PASAR KANDANGAN", 1);
+                    });
                 }
             }
         ];
 
         // Jika sudah selesai, ubah dialog untuk memunculkan Opsi Ke-3 (Lihat Jurnal)
         if (isCompleted) {
-            dramaMisi1[1].text = "Kamu sudah menyelesaikan misi ini. Ingin mengulangnya, atau melihat jurnal petualanganmu?";
-            dramaMisi1[1].btn1Text = "ULANGI MISI";
-            dramaMisi1[1].btn2Text = "TUTUP";
-            dramaMisi1[1].btn3Text = "LIHAT JURNAL";
+            dramaMisi1[2].text = `Kamu sudah menyelesaikan misi ini. Ingin mengulangnya, atau melihat jurnal petualanganmu, ${pahlawanName}?`;
+            dramaMisi1[2].btn1Text = "ULANGI MISI";
+            dramaMisi1[2].btn2Text = "TUTUP";
+            dramaMisi1[2].btn3Text = "LIHAT JURNAL";
             
-            dramaMisi1[1].onBtn3 = () => {
-                showJurnalRecap(1); // Tampilkan Pop-Up Rekap Jurnal
+            dramaMisi1[2].onBtn3 = () => {
+                showJurnalRecap(1); 
             };
-            dramaMisi1[1].onNo = () => {
-                document.getElementById('vn-overlay').style.display = 'none'; // Tutup obrolan
+            dramaMisi1[2].onNo = () => {
+                document.getElementById('vn-overlay').style.display = 'none'; 
             };
+            dramaMisi1[2].onYes = () => {
+                document.getElementById('vn-overlay').style.display = 'none';
+                showMissionQuestBoard(1, "MISI 1", "MISTERI PASAR KANDANGAN", () => {
+                    enterMissionScreen("MISI 1", "MISTERI PASAR KANDANGAN", 1);
+                });
+            }
         }
 
         startVnDialog(dramaMisi1, "Petualang Nagata", "npc1", null);
@@ -964,12 +2529,16 @@ if (btnMisi2) {
         // Cek apakah Misi 2 sudah pernah diselesaikan
         const isCompleted = localStorage.getItem('misi_2_completed') === 'true';
 
+        let pahlawanName = localStorage.getItem('playerName') || "Pahlawan";
         let dramaMisi2 = [
-            { text: "Wah, kamu kembali lagi ke Lapangan Tambi yang luas dan ramai ini.", mood: "happy" },
+            { text: `Wah, kamu kembali lagi ke Lapangan Tambi yang luas dan ramai ini, ${pahlawanName}!`, mood: "happy" },
             { 
-                text: "Apakah kamu ingin kembali membedah fungsi utama dari masing-masing pancaindra?", 
+                text: `Apakah kamu ingin kembali membedah fungsi utama dari masing-masing pancaindra, ${pahlawanName}?`, 
                 mood: "neutral", isChoice: true,
-                onYes: () => enterMissionScreen("MISI 2", "FUNGSI UTAMA", 2),
+                onYes: () => {
+                    document.getElementById('vn-overlay').style.display = 'none';
+                    showMissionQuestBoard(2, "MISI 2", "FUNGSI UTAMA", () => enterMissionScreen("MISI 2", "FUNGSI UTAMA", 2));
+                },
                 onNo: () => {
                     activeScript.push(getRejectionDialog(2, "MISI 2", "FUNGSI UTAMA"));
                     currentVnIndex++; updateVnDialog();
@@ -979,7 +2548,7 @@ if (btnMisi2) {
 
         // Jika sudah selesai, ubah dialog untuk memunculkan Opsi Ke-3 (Lihat Jurnal)
         if (isCompleted) {
-            dramaMisi2[1].text = "Kamu sudah menyelesaikan misi ini. Ingin mengulangnya, atau melihat jurnal petualanganmu?";
+            dramaMisi2[1].text = `Kamu sudah menyelesaikan misi ini. Ingin mengulangnya, atau melihat jurnal petualanganmu, ${pahlawanName}?`;
             dramaMisi2[1].btn1Text = "ULANGI MISI";
             dramaMisi2[1].btn2Text = "TUTUP";
             dramaMisi2[1].btn3Text = "LIHAT JURNAL";
@@ -1007,12 +2576,16 @@ if (btnMisi3) {
         // Cek apakah Misi 3 sudah pernah diselesaikan
         const isCompleted = localStorage.getItem('misi_3_completed') === 'true';
 
+        let pahlawanName = localStorage.getItem('playerName') || "Pahlawan";
         let dramaMisi3 = [
-            { text: "Selamat! Segel Misi 3 telah terbuka. Kali ini kita akan berkunjung ke tempat yang sangat bersih dan tenang.", mood: "happy" },
+            { text: `Selamat! Segel Misi 3 telah terbuka. Kali ini kita akan berkunjung ke tempat yang sangat bersih dan tenang, ${pahlawanName}.`, mood: "happy" },
             { 
-                text: "Kita sedang berada di Puskesmas Kandangan! Di sini kita akan belajar mengenali bagian-bagian penyusun pancaindra. Sudah siap bertemu dokter?", 
+                text: `Kita sedang berada di Puskesmas Kandangan! Di sini kita akan belajar mengenali bagian-bagian penyusun pancaindra. Sudah siap bertemu dokter, ${pahlawanName}?`, 
                 mood: "neutral", isChoice: true,
-                onYes: () => enterMissionScreen("MISI 3", "BENTUK & BAGIAN", 3),
+                onYes: () => {
+                    document.getElementById('vn-overlay').style.display = 'none';
+                    showMissionQuestBoard(3, "MISI 3", "BENTUK & BAGIAN", () => enterMissionScreen("MISI 3", "BENTUK & BAGIAN", 3));
+                },
                 onNo: () => {
                     activeScript.push(getRejectionDialog(3, "MISI 3", "BENTUK & BAGIAN"));
                     currentVnIndex++; updateVnDialog();
@@ -1022,7 +2595,7 @@ if (btnMisi3) {
 
         // Jika sudah selesai, ubah dialog untuk memunculkan Opsi Ke-3 (Lihat Jurnal)
         if (isCompleted) {
-            dramaMisi3[1].text = "Kamu sudah menyelesaikan kunjungan ke Puskesmas. Ingin mengulangnya, atau melihat jurnal petualanganmu?";
+            dramaMisi3[1].text = `Kamu sudah menyelesaikan kunjungan ke Puskesmas. Ingin mengulangnya, atau melihat jurnal petualanganmu, ${pahlawanName}?`;
             dramaMisi3[1].btn1Text = "ULANGI MISI";
             dramaMisi3[1].btn2Text = "TUTUP";
             dramaMisi3[1].btn3Text = "LIHAT JURNAL";
@@ -1050,12 +2623,16 @@ if (btnMisi4) {
         // Cek apakah Misi 4 sudah pernah diselesaikan
         const isCompleted = localStorage.getItem('misi_4_completed') === 'true';
 
+        let pahlawanName = localStorage.getItem('playerName') || "Pahlawan";
         let dramaMisi4 = [
-            { text: "Hore! Segel Misi 4 telah terbuka. Kita akan pergi ke markas utama petualang hari ini.", mood: "happy" },
+            { text: `Hore! Segel Misi 4 telah terbuka. Kita akan pergi ke markas utama petualang hari ini, ${pahlawanName}.`, mood: "happy" },
             { 
-                text: "Kita sudah sampai di SD Negeri Medowo 1! Siapkah kamu menghadapi Ujian Dadakan tentang Merawat Pancaindra?", 
+                text: `Kita sudah sampai di SD Negeri Medowo 1! Siapkah kamu menghadapi Ujian Dadakan tentang Merawat Pancaindra, ${pahlawanName}?`, 
                 mood: "neutral", isChoice: true,
-                onYes: () => enterMissionScreen("MISI 4", "MERAWAT TUBUHKU", 4),
+                onYes: () => {
+                    document.getElementById('vn-overlay').style.display = 'none';
+                    showMissionQuestBoard(4, "MISI 4", "MERAWAT TUBUHKU", () => enterMissionScreen("MISI 4", "MERAWAT TUBUHKU", 4, 'm4-qr'));
+                },
                 onNo: () => {
                     activeScript.push(getRejectionDialog(4, "MISI 4", "MERAWAT TUBUHKU"));
                     currentVnIndex++; updateVnDialog();
@@ -1065,7 +2642,7 @@ if (btnMisi4) {
 
         // Jika sudah selesai, ubah dialog untuk memunculkan Opsi Ke-3 (Lihat Jurnal)
         if (isCompleted) {
-            dramaMisi4[1].text = "Kamu sudah menaklukkan Ujian Dadakan di SD Negeri Medowo 1. Ingin mengulangnya, atau melihat jurnal?";
+            dramaMisi4[1].text = `Kamu sudah menaklukkan Ujian Dadakan di SD Negeri Medowo 1. Ingin mengulangnya, atau melihat jurnal, ${pahlawanName}?`;
             dramaMisi4[1].btn1Text = "ULANGI MISI";
             dramaMisi4[1].btn2Text = "TUTUP";
             dramaMisi4[1].btn3Text = "LIHAT JURNAL";
@@ -1369,16 +2946,11 @@ window.handleDetektifAnswer = function(chosen, correct) {
     }
 };
 
-// Musik Latar Khusus Tantangan Kamera AR (Misi 5)
-const bgmBossMisi5 = new Audio('assets/music/music-boss.mp3');
-bgmBossMisi5.loop = true;
-bgmBossMisi5.volume = 0.4; // Atur volume agar tidak menutupi efek suara
-
 // Fungsi Pembatalan / Kabur dari Layar Kamera
 window.abortMission5 = function() {
     // Matikan musik boss
-    bgmBossMisi5.pause();
-    bgmBossMisi5.currentTime = 0;
+    bgmBoss.pause();
+    bgmBoss.currentTime = 0;
 
     if (window.arStream) {
         window.arStream.getTracks().forEach(track => track.stop());
@@ -1403,8 +2975,8 @@ window.startDetektifWarna = function() {
         document.getElementById('ar-color-area').style.display = 'flex';
         
         // Putar Musik Boss
-        bgmBossMisi5.currentTime = 0;
-        bgmBossMisi5.play().catch(e => console.log("BGM Boss diblokir browser: ", e));
+        bgmBoss.currentTime = 0;
+        bgmBoss.play().catch(e => console.log("BGM Boss diblokir browser: ", e));
 
         const video = document.getElementById('ar-color-video');
         const canvas = document.getElementById('ar-color-hidden-canvas');
@@ -1590,15 +3162,11 @@ window.startDetektifWarna = function() {
         
         if (colorsFound >= targetWin) {
             // MENANG TOTAL
-            bgmBossMisi5.pause();
-            bgmBossMisi5.currentTime = 0;
+            bgmBoss.pause();
+            bgmBoss.currentTime = 0;
 
             addScore(50);
             showCustomModal("MISI 5 SELESAI!", "BINGO! Matamu berhasil mendeteksi dan membedakan spektrum warna dengan sempurna. Kamu resmi menjadi Ahli Detektif Banyu Bening!", checkIcon, "alert", () => {
-                if (window.arStream) {
-                    window.arStream.getTracks().forEach(track => track.stop());
-                    window.arStream = null;
-                }
                 localStorage.setItem('misi_5_completed', 'true');
                 localStorage.setItem('kandangan_misi_6', 'unlocked');
                 loadKandanganProgress();
@@ -1655,8 +3223,8 @@ window.startBanyuBeningAR = function() {
     document.getElementById('ar-game-area').style.display = 'flex';
     
     // Putar Musik Boss
-    bgmBossMisi5.currentTime = 0;
-    bgmBossMisi5.play().catch(e => console.log("BGM Boss diblokir browser: ", e));
+    bgmBoss.currentTime = 0;
+    bgmBoss.play().catch(e => console.log("BGM Boss diblokir browser: ", e));
 
     const video = document.getElementById('ar-video');
     const canvas = document.getElementById('ar-hidden-canvas');
@@ -1776,14 +3344,17 @@ window.startBanyuBeningAR = function() {
         window.arLoop = setInterval(() => {
             if (!window.arActive) return;
 
-            arBoxesData.forEach((box, i) => {
+            for (let i = arBoxesData.length - 1; i >= 0; i--) {
+                const box = arBoxesData[i];
+
                 box.y += box.speed;
                 box.el.style.top = box.y + '%';
+
                 if (box.y > 110) {
                     box.el.remove();
                     arBoxesData.splice(i, 1);
                 }
-            });
+            }
             
             try {
                 ctx.drawImage(video, 0, 0, 160, 90);
@@ -1875,8 +3446,8 @@ window.startBanyuBeningAR = function() {
 
             if (arScore >= 50) {
                 // MENANG TOTAL
-                bgmBossMisi5.pause();
-                bgmBossMisi5.currentTime = 0;
+                bgmBoss.pause();
+                bgmBoss.currentTime = 0;
                 
                 window.arActive = false;
                 
@@ -1933,34 +3504,25 @@ if (btnMisi5) {
 
         // Fungsi untuk melanjutkan masuk ke Misi 5
         const proceedToMisi5 = () => {
-            // 1. Minta konfirmasi sederhana dulu sebelum masuk (Standar Peta)
-            showCustomModal(
-                "BAB 5: WISATA BANYU BENING", 
-                "Materi: Tantangan Rahasia. Ayo uji kehebatan pancaindramu di alam terbuka!", 
-                mapIcon, 
-                "confirm", 
-                () => {
-                    // 2. Buka Layar Misi dan ubah latar belakang
-                    enterMissionScreen("MISI 5", "TANTANGAN RAHASIA", 5);
+            // Memanggil Papan Quest, menggantikan Pop-up Confirm bawaan
+            showMissionQuestBoard(5, "MISI 5", "TANTANGAN RAHASIA", () => {
+                enterMissionScreen("MISI 5", "TANTANGAN RAHASIA", 5);
+                
+                // Tunggu animasi pisau transisi Persona selesai (sekitar 2.8 detik)
+                setTimeout(() => {
+                    const dramaMisi5 = [
+                        { text: "Wah, akhirnya kita sampai di Wisata Banyu Bening Medowo! Sungainya sangat jernih dan udaranya segar.", mood: "happy" },
+                        { text: "Untuk membuka segel wilayah ini, aku punya permainan khusus untukmu. Kita akan panen buah-buahan segar!", mood: "happy" },
+                        { text: "Tantangan ini akan menguji kejelian MATAMU (fokus bentuk & warna) dan kecepatan refleks OTOT SENDIMU (keseimbangan tubuh).", mood: "neutral" },
+                        { text: "Akan ada instruksi target buah di layarmu. Arahkan dan sapu tanganmu di udara HANYA ke arah buah yang diperintahkan ya!", mood: "warning" },
+                        { text: "Tekan tombol LANJUT, izinkan akses kamera di browsermu jika diminta, dan mari kita mulai panennya!", mood: "happy" }
+                    ];
                     
-                    // 3. Tunggu animasi pisau transisi Persona selesai (sekitar 2.8 detik)
-                    setTimeout(() => {
-                        // 4. Mulai Percakapan NPC dengan latar belakang Banyu Bening yang sudah terbuka!
-                        const dramaMisi5 = [
-                            { text: "Wah, akhirnya kita sampai di Wisata Banyu Bening Medowo! Sungainya sangat jernih dan udaranya segar.", mood: "happy" },
-                            { text: "Untuk membuka segel wilayah ini, aku punya permainan khusus untukmu. Kita akan panen buah-buahan segar!", mood: "happy" },
-                            { text: "Tantangan ini akan menguji kejelian MATAMU (fokus bentuk & warna) dan kecepatan refleks OTOT SENDIMU (keseimbangan tubuh).", mood: "neutral" },
-                            { text: "Akan ada instruksi target buah di layarmu. Arahkan dan sapu tanganmu di udara HANYA ke arah buah yang diperintahkan ya!", mood: "warning" },
-                            { text: "Tekan tombol LANJUT, izinkan akses kamera di browsermu jika diminta, dan mari kita mulai panennya!", mood: "happy" }
-                        ];
-                        
-                        startVnDialog(dramaMisi5, "Petualang Nagata", "npc1", () => {
-                            // 5. Begitu dialog selesai, Kamera langsung MENYALA!
-                            startBanyuBeningAR();
-                        });
-                    }, 2800);
-                }
-            );
+                    startVnDialog(dramaMisi5, "Petualang Nagata", "npc1", () => {
+                        startBanyuBeningAR();
+                    });
+                }, 2800);
+            });
         };
 
         // Jika sudah selesai, cegat dengan dialog NPC pilihan jurnal
@@ -1999,7 +3561,10 @@ if (btnMisi6) {
             { 
                 text: "Apakah kamu sudah siap menghadapi Ujian Akhir?", 
                 mood: "neutral", isChoice: true,
-                onYes: () => enterMissionScreen("MISI 6", "UJIAN BUKIT GANDRUNG", 6),
+                onYes: () => {
+                    document.getElementById('vn-overlay').style.display = 'none';
+                    showMissionQuestBoard(6, "MISI 6", "UJIAN BUKIT GANDRUNG", () => enterMissionScreen("MISI 6", "UJIAN AKHIR", 6));
+                },
                 onNo: () => {
                     activeScript.push(getRejectionDialog(6, "MISI 6", "UJIAN AKHIR"));
                     currentVnIndex++; updateVnDialog();
@@ -2015,7 +3580,10 @@ if (btnMisi6) {
                     text: "Kamu sudah lulus dari Ujian Akhir ini! Ingin mengulangnya, atau melihat jurnal kelulusanmu?", 
                     mood: "happy", isChoice: true,
                     btn1Text: "ULANGI MISI", btn2Text: "TUTUP", btn3Text: "LIHAT JURNAL",
-                    onYes: () => enterMissionScreen("MISI 6", "UJIAN BUKIT GANDRUNG", 6),
+                    onYes: () => {
+                        document.getElementById('vn-overlay').style.display = 'none';
+                        showMissionQuestBoard(6, "MISI 6", "UJIAN BUKIT GANDRUNG", () => enterMissionScreen("MISI 6", "UJIAN AKHIR", 6));
+                    },
                     onNo: () => { document.getElementById('vn-overlay').style.display = 'none'; },
                     onBtn3: () => { showJurnalRecap(6); }
                 }
@@ -2201,7 +3769,7 @@ function buildMission6() {
             dialog: [
                 { text: "LUAR BIASA! Kamu menjawab semua ujian akhir dengan nilai sempurna!", mood: "happy" },
                 { text: "Selamat! Kamu resmi menamatkan materi Bab 1 (Pancaindra) dan berhasil menaklukkan seluruh pos di Kecamatan Kandangan!", mood: "happy" },
-                { text: "Petualangan kita di sini telah selesai. Teruslah belajar, dan nantikan pembaruan game ini untuk membuka wilayah Kepung. Sampai jumpa, Pahlawan Cilik!", mood: "happy" }
+                { text: `Petualangan kita di sini telah selesai. Teruslah belajar, dan nantikan pembaruan game ini untuk membuka wilayah Kepung. Sampai jumpa, ${localStorage.getItem('playerName') || 'Pahlawan'}!`, mood: "happy" }
             ]
         }
     };
@@ -2296,60 +3864,49 @@ let taTimerInterval;
 let taTimeLeft = 100;
 let taCurrentStage = 0;
 
-// Data Soal Ujian (BENAR / SALAH) Diperbarui untuk SD Kelas 3
+// Data Ujian (HOTS & Kearifan Lokal) untuk Pelatihan Siaga
 const taData = {
     2: [
-        { text: "Membaca buku komik sambil tiduran di tempat yang gelap gulita.", isTrue: false, msg: "Mata bisa cepat lelah dan rusak jika membaca di tempat gelap!" },
-        { text: "Menutup telinga dengan tangan saat mendengar suara petasan meledak.", isTrue: true, msg: "Tepat! Hal itu melindungi gendang telingamu." },
-        { text: "Makan sayur sup yang masih sangat panas langsung dari panci.", isTrue: false, msg: "Lidah bisa melepuh karena terlalu panas!" },
-        { text: "Mengucek mata kotor dengan keras menggunakan tangan yang belum dicuci.", isTrue: false, msg: "Tangan kotor bisa membuat matamu sakit merah! Cukup bilas dengan air bersih." },
-        { text: "Mengoleskan tabir surya (sunscreen) ke kulit saat cuaca sangat panas terik.", isTrue: true, msg: "Sinar matahari terik bisa membakar dan merusak kulit." },
-        { text: "Membersihkan telinga menggunakan batang korek api atau benda tajam.", isTrue: false, msg: "Sangat bahaya! Benda keras bisa merobek selaput tipis di dalam telingamu." },
-        { text: "Mencuci hidung menggunakan air garam saat sedang sakit pilek.", isTrue: true, msg: "Bagus! Itu membantu membuang kuman dan kotoran di hidung." },
-        { text: "Mandi secara teratur dua kali sehari menggunakan sabun.", isTrue: true, msg: "Mandi membuat kuman di kulit hilang dan tubuh sehat." },
-        { text: "Makan permen dan cokelat terlalu banyak tanpa menyikat lidah.", isTrue: false, msg: "Sisa gula bisa memicu sarang kuman di gigi dan lidah!" },
-        { text: "Mendengarkan musik pakai earphone dengan suara paling keras.", isTrue: false, msg: "Suara terlalu keras bisa merusak telinga dan membuat tuli." }
+        { text: "Saat ada abu vulkanik Gunung Kelud berterbangan, segera bilas matamu dengan air bersih jika kelilipan.", isTrue: true, msg: "Tepat! Jangan menguceknya, air bersih akan menghanyutkan debu tajam tersebut." },
+        { text: "Menutup telinga rapat-rapat saat mendengar suara ledakan mercon yang sangat keras di perayaan desa.", isTrue: true, msg: "Benar! Suara ledakan tajam bisa merobek selaput tipis gendang telinga." },
+        { text: "Makan Gethuk Pisang yang baru saja digoreng dan masih mendidih panas.", isTrue: false, msg: "Bahaya! Suhu yang terlalu panas bisa membuat papila (saraf pengecap) di lidahmu melepuh." },
+        { text: "Membaca buku panduan pramuka di bawah pohon dengan cahaya yang sangat redup dan gelap.", isTrue: false, msg: "Membaca di tempat gelap memaksa otot mata bekerja terlalu keras dan merusaknya." },
+        { text: "Memakai topi atau tabir surya (sunscreen) saat kemah di siang bolong yang sangat terik.", isTrue: true, msg: "Sempurna! Kulit harus dilindungi dari sengatan sinar ultraviolet matahari." },
+        { text: "Membersihkan telinga bagian dalam menggunakan batang lidi kayu atau peniti logam.", isTrue: false, msg: "Sangat dilarang! Benda keras dan tajam akan melukai saluran dan gendang telinga." },
+        { text: "Mencuci hidung menggunakan larutan air garam steril saat sedang pilek berat di musim hujan.", isTrue: true, msg: "Bagus! Ini membantu membersihkan lendir dan kuman yang bersarang di rongga hidung." },
+        { text: "Mandi secara teratur menggunakan sabun setelah selesai bermain tanah di lapangan olahraga.", isTrue: true, msg: "Mandi membasuh keringat dan kuman agar kulit terhindar dari penyakit menular." },
+        { text: "Hanya menyikat gigi saja, tanpa menyikat bagian lidah saat menggosok gigi sehari-hari.", isTrue: false, msg: "Sisa makanan di lidah bisa memicu tumbuhnya jamur putih dan menyebabkan bau mulut." },
+        { text: "Mendengarkan musik pakai earphone dengan volume paling keras agar tidak terdengar suara luar.", isTrue: false, msg: "Suara maksimal yang ditembakkan langsung ke dalam lubang telinga akan membuatmu tuli." }
     ],
     3: [
-        { text: "Sakit Mata Merah bisa menular hanya kalau kita menatap mata teman yang sakit.", isTrue: false, msg: "Salah! Mata merah menular melalui sentuhan tangan atau barang kotor." },
-        { text: "Telinga berair dan sakit biasanya terjadi karena kemasukan air kotor saat mandi/berenang.", isTrue: true, msg: "Tepat! Air kotor bisa membuat telinga infeksi." },
-        { text: "Sariawan di lidah bisa dicegah dengan rajin memakan buah bervitamin C seperti jeruk.", isTrue: true, msg: "Buah-buahan sangat bagus untuk menjaga lidah tetap sehat." },
-        { text: "Panu di kulit adalah penyakit gatal yang terjadi karena kita digigit oleh nyamuk.", isTrue: false, msg: "Salah! Panu disebabkan oleh jamur karena kita malas mandi." },
-        { text: "Saat sakit pilek berat, hidung kita kadang kehilangan kemampuan mencium bau makanan.", isTrue: true, msg: "Tepat! Lendir pilek menutupi saraf pembau hidung kita." }
+        { text: "Bermain air kotor di Sungai Brantas lalu mengucek mata bisa menularkan penyakit Mata Merah (Konjungtivitis).", isTrue: true, msg: "Tepat! Bakteri dari air kotor berpindah dari tangan ke matamu." },
+        { text: "Air kotor yang menggenang dan masuk ke dalam telinga saat berenang tidak akan menyebabkan infeksi.", isTrue: false, msg: "Salah! Air kotor yang masuk ke telinga dan tidak dibersihkan bisa memicu infeksi (Otitis)." },
+        { text: "Penyakit Sariawan di mulut disebabkan karena kita terlalu banyak makan buah jeruk.", isTrue: false, msg: "Salah! Justru jeruk sangat kaya Vitamin C dan ampuh mencegah sariawan." },
+        { text: "Bercak putih gatal di kulit punggung (Panu) muncul karena kita digigit nyamuk kebun.", isTrue: false, msg: "Salah! Panu disebabkan oleh infeksi jamur karena kita malas mandi saat berkeringat." },
+        { text: "Lendir tebal saat kita sakit flu akan menutupi saraf pembau sehingga kita kesulitan mencium aroma masakan.", isTrue: true, msg: "Benar! Saraf pembau di atap hidung terhalang oleh lendir tebal tersebut." }
     ],
     4: [
-        { text: "Teman yang tidak bisa melihat (Tunanetra) membaca buku menggunakan sentuhan jari pada huruf timbul.", isTrue: true, msg: "Tepat! Huruf timbul itu disebut Huruf Braille." },
-        { text: "Cara terbaik memanggil teman Tunarungu (tidak bisa mendengar) adalah dengan berteriak dari kejauhan.", isTrue: false, msg: "Temui dari depan agar ia bisa membaca bibirmu atau gunakan bahasa isyarat." },
-        { text: "Tongkat Putih digunakan oleh teman Tunanetra untuk meraba dan mencari jalan yang aman.", isTrue: true, msg: "Tongkat ini sangat membantu mereka berjalan mandiri." },
-        { text: "Orang yang buta warna melihat dunia berwarna hitam putih gelap gulita.", isTrue: false, msg: "Salah! Mereka masih bisa melihat benda jelas, hanya sulit membedakan warna seperti merah dan hijau." },
-        { text: "Orang yang kakinya mati rasa harus sering memakai alas kaki agar tidak terluka saat menginjak batu.", isTrue: true, msg: "Karena kulitnya tidak bisa merasakan sakit, ia harus berhati-hati." }
+        { text: "Teman Tunanetra (tidak bisa melihat) membaca buku cerita menggunakan rabaan jari pada Huruf Braille.", isTrue: true, msg: "Tepat! Huruf Braille memiliki pola timbul yang dirasakan oleh saraf peraba di kulit jari." },
+        { text: "Cara terbaik memanggil teman Tunarungu (tidak bisa mendengar) adalah dengan berteriak kencang dari belakang punggungnya.", isTrue: false, msg: "Salah! Tepuk pundaknya perlahan atau hampiri dari depan agar ia bisa melihat bibir/bahasa isyaratmu." },
+        { text: "Tongkat Putih digunakan oleh teman Tunanetra sebagai perpanjangan indra peraba untuk mendeteksi lubang di jalan.", isTrue: true, msg: "Benar! Tongkat ini menjaga mereka dari bahaya tersandung saat berjalan sendirian." },
+        { text: "Orang yang buta warna melihat dunia di sekitarnya hanya berwarna hitam dan putih gelap gulita.", isTrue: false, msg: "Salah! Mereka bisa melihat normal, hanya saja sel matanya tertukar dalam membedakan warna (misal: merah & hijau)." },
+        { text: "Orang dengan kulit mati rasa (tidak bisa merasakan sakit) harus selalu memakai alas kaki tebal agar aman.", isTrue: true, msg: "Tepat! Karena tanpa rasa sakit, kakinya bisa terluka parah menginjak paku tanpa ia sadari." }
     ],
     5: [
-        { text: "Kelelawar menggunakan matanya yang besar untuk melihat arah terbang di malam hari.", isTrue: false, msg: "Salah! Kelelawar buta di tempat gelap, mereka pakai telinga radar (pantulan suara)." },
-        { text: "Anjing sering membantu pak Polisi karena hidungnya punya penciuman super tajam.", isTrue: true, msg: "Tepat! Anjing bisa melacak jejak dari mencium bau baju." },
-        { text: "Burung Elang dapat melihat tikus kecil berlari dari atas langit berkat matanya yang tajam seperti teropong.", isTrue: true, msg: "Mata elang bisa melihat mangsa dari kejauhan." },
-        { text: "Ikan Lele menggunakan sisik di punggungnya untuk mengecap rasa air dan mencari makan.", isTrue: false, msg: "Ikan lele memakai seluruh kulit dan kumisnya untuk mengecap rasa di air keruh." },
-        { text: "Ular sering menjulurkan lidah cabangnya untuk menangkap bau mangsa di udara.", isTrue: true, msg: "Lidah ular bertindak seperti antena pembau!" }
+        { text: "Kelelawar di Gua Selomangleng terbang di kegelapan menggunakan matanya yang besar seperti senter.", isTrue: false, msg: "Salah! Kelelawar buta di kegelapan. Mereka memakai pantulan suara (Ekolokasi) dari telinganya." },
+        { text: "Anjing pelacak kepolisian Kediri menggunakan hidungnya yang super tajam untuk mencari jejak orang hilang.", isTrue: true, msg: "Benar! Hidung anjing bisa membedakan jutaan partikel bau kecil di udara." },
+        { text: "Burung Elang Jawa yang terbang di atas Gunung Wilis bisa melihat mangsa di tanah karena matanya seperti teropong.", isTrue: true, msg: "Benar! Mata elang sangat tajam dan bisa melakukan zoom objek dari kejauhan." },
+        { text: "Ikan Lele menggunakan sisik di ekornya untuk mengecap rasa makanan di air sungai yang keruh.", isTrue: false, msg: "Salah! Lele memakai seluruh kulit tubuh dan kumisnya untuk mengecap rasa (bukan cuma ekor)." },
+        { text: "Ular sering menjulurkan lidahnya ke udara untuk menangkap partikel bau dari mangsanya.", isTrue: true, msg: "Benar! Lidah ular bercabang berfungsi ganda sebagai penangkap aroma kimia di udara." }
     ],
     6: [
-        { text: "Ada alat canggih di dalam telingamu yang berfungsi membantumu menjaga keseimbangan tubuh.", isTrue: true, msg: "Tepat! Karena alat ini, kamu tidak gampang jatuh saat berlari." },
-        { text: "Jika matamu ditutup, kamu tidak akan tahu di mana letak tangan dan kakimu.", isTrue: false, msg: "Saraf di ototmu selalu memberi tahu letak anggota tubuhmu (Propriosepsi)." },
-        { text: "Saat kamu berada di tempat yang dingin, kulitmu akan mengeluarkan keringat yang banyak.", isTrue: false, msg: "Keringat dikeluarkan saat kepanasan, bukan saat kedinginan!" },
-        { text: "Kulit kita bertindak seperti termometer yang merasakan apakah ruangan itu panas atau dingin.", isTrue: true, msg: "Saraf kulit sangat peka terhadap perubahan suhu." },
-        { text: "Kamu bisa menyentuh hidungmu walau dengan mata tertutup berkat indra rahasia di otot.", isTrue: true, msg: "Tubuhmu sangat pintar mengetahui posisinya sendiri." }
+        { text: "Saat kamu berjalan menyeberangi jembatan gantung Sungai Brantas, cairan di dalam telingamu bekerja menjaga agar kamu tidak jatuh.", isTrue: true, msg: "Benar! Di dalam telinga terdalam terdapat organ penyeimbang tubuh." },
+        { text: "Jika matamu ditutup kain, kamu akan langsung lupa dan tidak tahu di mana letak tanganmu sendiri.", isTrue: false, msg: "Salah! Saraf ototmu (Propriosepsi) selalu mengirimkan koordinat posisi tubuh ke otak." },
+        { text: "Saat cuaca sangat panas terik, kelenjar di kulitmu otomatis mengeluarkan keringat untuk mendinginkan suhu tubuh.", isTrue: true, msg: "Tepat! Keringat adalah sistem pendingin alami (AC) milik tubuh kita." },
+        { text: "Kulit kita hanya bisa merasakan tekstur kasar dan halus, tidak bisa merasakan perubahan cuaca panas atau dingin.", isTrue: false, msg: "Salah! Ujung saraf di kulit sangat peka terhadap perubahan suhu ekstrem." },
+        { text: "Kamu bisa menyentuh ujung hidungmu sendiri dengan tepat meskipun di tempat yang sangat gelap gulita.", isTrue: true, msg: "Benar! Ini membuktikan bahwa ototmu memiliki Indra Posisi (GPS Alami) yang bekerja diam-diam." }
     ],
-    7: [
-        { text: "Makan sayuran seperti wortel sangat bagus untuk menjaga kesehatan matamu.", isTrue: true, msg: "Wortel mengandung banyak Vitamin A!" },
-        { text: "Kita boleh membersihkan kotoran telinga menggunakan batang lidi kayu.", isTrue: false, msg: "Sangat berbahaya! Telinga bisa luka." },
-        { text: "Hidung manusia sangat hebat karena bisa mengingat ribuan jenis bau yang berbeda.", isTrue: true, msg: "Memori bau manusia adalah yang paling kuat." },
-        { text: "Saat menggosok gigi, lidah tidak perlu dibersihkan karena bisa membersihkan dirinya sendiri.", isTrue: false, msg: "Lidah juga harus disikat pelan agar tidak ada jamur." },
-        { text: "Kita harus mandi supaya kulit bersih dari debu dan terhindar dari penyakit panu.", isTrue: true, msg: "Kulit yang kotor adalah sarang penyakit." },
-        { text: "Kelelawar punya kekuatan super pada matanya untuk terbang di malam hari.", isTrue: false, msg: "Kelelawar memakai telinganya (suara radar) untuk terbang di kegelapan." },
-        { text: "Telinga bagian dalam berfungsi untuk mengatur keseimbangan tubuhmu.", isTrue: true, msg: "Ini mencegahmu pusing dan jatuh saat berputar." },
-        { text: "Anjing sering dipakai untuk melacak orang hilang karena pendengarannya super tajam.", isTrue: false, msg: "Anjing melacak orang hilang menggunakan HIDUNG (penciuman)." },
-        { text: "Teman Tunanetra (tidak bisa melihat) membaca buku menggunakan sentuhan jari.", isTrue: true, msg: "Mereka menggunakan huruf khusus bernama Braille." },
-        { text: "Kelima pancaindra kita mengirim pesan ke Otak agar kita bisa mengenali lingkungan.", isTrue: true, msg: "Otak adalah mesin utama tubuh kita." }
-    ]
+    7: []
 };
 
 // Fungsi Animasi Balik Kartu Mading (3D Flip Card)
@@ -2615,65 +4172,98 @@ function buildMission4() {
     `;
 
     contentArea.innerHTML = flipModalHTML + `
+        <!-- TAHAP QR: DETEKTIF BAU -->
+        <div id="stage-m4-qr" class="mission-stage active-stage" style="width: 100%; height: 100%;">
+            <div id="m4-qr-intro" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 30; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                <button class="btn-close-mission" style="position: absolute; top: 1.5cqw; right: 1.5cqw; z-index: 35;" onclick="abortM4QRScanner()">X</button>
+                <h2 style="color: #2ed573; font-size: 3.5cqw; text-shadow: 0.2cqw 0.2cqw 0 #000; margin-bottom: 1cqw;">DETEKTIF BAU</h2>
+                <p style="color: white; font-size: 1.8cqw; margin-bottom: 2cqw; text-align: center; padding: 0 5cqw;">Arahkan kameramu dan pindai Kartu QR rahasia.<br>Buktikan ketajaman ingatan penciumanmu dengan menjawab pertanyaan aroma (bau) dari 5 benda tersebut dengan tepat!</p>
+                <button class="btn btn-play" style="font-size: 2cqw; padding: 1cqw 3cqw;" onclick="startM4QRScanner()">MULAI PEMINDAIAN</button>
+            </div>
+
+            <div id="m4-qr-camera-area" class="ar-container" style="display: none; background: #000; position: relative;">
+                <div class="ar-hud">
+                    <div class="ar-score-box">Barang Ditemukan: <span id="m4-qr-score-txt">0 / 5</span></div>
+                    <button class="btn-close-mission" style="position: static; margin-left: auto;" onclick="abortM4QRScanner()">X</button>
+                </div>
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 20cqw; height: 20cqw; border: 0.6cqw dashed #2ed573; z-index: 5; box-shadow: 0 0 0 100vw rgba(0,0,0,0.5);">
+                    <div style="position: absolute; bottom: -3cqw; width: 100%; text-align: center; color: #2ed573; font-weight: bold; font-size: 1.5cqw; text-shadow: 0.1cqw 0.1cqw 0 #000;">SCAN DI SINI</div>
+                </div>
+                <video id="m4-qr-video" class="ar-video" playsinline></video>
+                <canvas id="m4-qr-canvas" style="display: none;"></canvas>
+            </div>
+
+            <div id="m4-qr-quiz-area" class="ar-container" style="display: none; background-color: #2c3e50; position: relative; flex-direction: column;">
+                <div class="m1-modal-box" style="width: 85%; max-height: 95%; background: rgba(47, 53, 66, 0.95);">
+                    <h3 style="color: #2ed573; margin-top: 0; font-size: 1.8cqw; margin-bottom: 0.5cqw;">KUIS AROMA <span id="m4-qr-count">1</span>/5</h3>
+                    <div id="m4-qr-img-box" style="width: 12cqw; height: 12cqw; background: #fff; border: 0.3cqw solid #fff; border-radius: 1cqw; display: flex; justify-content: center; align-items: center; margin-bottom: 1cqw; overflow: hidden; animation: popIn 0.5s forwards;">
+                        <img id="m4-qr-item-img" src="" style="width: 100%; height: 100%; object-fit: contain;">
+                    </div>
+                    <p id="m4-qr-question" style="color: #fff; font-size: 1.4cqw; font-weight: bold; margin-bottom: 1.5cqw; text-align: center;"></p>
+                    <div class="explore-grid" id="m4-qr-opts" style="width: 100%;"></div>
+                </div>
+            </div>
+        </div>
+
         <!-- TAHAP 1: INTRO -->
-        <div id="stage-1" class="mission-stage active-stage">
-            <h3 class="stage-title">TAHAP 1: SD NEGERI MEDOWO 1</h3>
+        <div id="stage-1" class="mission-stage">
+            <h3 class="stage-title">TAHAP 1: MABIGUS SDN MEDOWO 1</h3>
             <div class="mission-text-box" style="text-align: center; min-height: 8cqw; display: flex; align-items: center; justify-content: center;">
                 <p id="m4-text-1" style="margin: 0; line-height: 1.5;"></p>
             </div>
             <button class="btn btn-play" style="margin-top: 2cqw;" onclick="nextM4Text('m4-text-1', 2)">LANJUT</button>
         </div>
 
-        <!-- TAHAP 2: CARA MERAWAT -->
+        <!-- TAHAP 2: CARA MERAWAT (P3K PRAMUKA) -->
         <div id="stage-2" class="mission-stage">
-            <h3 class="stage-title">TAHAP 2: MADING PERAWATAN</h3>
+            <h3 class="stage-title">TAHAP 2: MADING P3K SIAGA</h3>
             <div id="mading-intro-2" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
-                <p class="mission-text-box">Klik dan baca 5 catatan penting ini untuk membuka akses ujian dadakan!</p>
+                <p class="mission-text-box">Klik dan pelajari catatan Pertolongan Pertama (P3K) Pancaindra ini sebelum kemah!</p>
                 <div class="mading-board">
-                    <div class="sticky-note" style="background: #ff7675; transform: rotate(-3deg);" onclick="openFlipNote(this, 2, 1, '#ff7675', 'anatomi-mata.webp', 'MERAWAT MATA', 'Membaca di tempat dengan pencahayaan yang terang.\\nMenjaga jarak aman saat menonton TV atau main HP.\\nIstirahatkan mata setelah lama menatap layar.\\nMakan makanan bergizi bervitamin A (wortel).\\nGunakan kacamata hitam saat terik.\\nJangan kucek mata kotor saat kelilipan.')">
-                        <img src="assets/item/anatomi-mata.webp"><span>Mata</span>
+                    <div class="sticky-note" style="background: #ff7675; transform: rotate(-3deg);" onclick="openFlipNote(this, 2, 1, '#ff7675', 'anatomi-mata.webp', 'P3K MATA', 'Bahaya: Abu vulkanik letusan Gunung Kelud sangat tajam.\\n\\nSolusi:\\nBilas mata dengan air mengalir (jangan pernah menguceknya!). Gunakan kacamata bening/hitam saat berjalan di area berdebu atau saat matahari sedang terik membakar.')">
+                        <img src="assets/item/anatomi-mata.webp"><span>P3K Mata</span>
                     </div>
-                    <div class="sticky-note" style="background: #74b9ff; transform: rotate(4deg);" onclick="openFlipNote(this, 2, 2, '#74b9ff', 'anatomi-telinga.webp', 'MERAWAT TELINGA', 'Hindari mendengar musik pakai earphone terlalu keras.\\nBersihkan telinga bagian luar saja dengan lembut.\\nJangan masukkan benda keras ke dalam telinga.\\nTutup telinga jika ada suara ledakan keras.\\nKeringkan telinga setelah berenang/mandi.')">
-                        <img src="assets/item/anatomi-telinga.webp"><span>Telinga</span>
+                    <div class="sticky-note" style="background: #74b9ff; transform: rotate(4deg);" onclick="openFlipNote(this, 2, 2, '#74b9ff', 'anatomi-telinga.webp', 'P3K TELINGA', 'Bahaya: Suara ledakan petasan festival desa atau kemasukan air saat berenang di Sungai Brantas.\\n\\nSolusi:\\nTutup rapat telinga jika ada suara keras yang memekakkan. Keringkan telinga menggunakan handuk lembut (Bukan pakai benda tajam seperti peniti / lidi!).')">
+                        <img src="assets/item/anatomi-telinga.webp"><span>P3K Telinga</span>
                     </div>
-                    <div class="sticky-note" style="background: #00b894; transform: rotate(-2deg); color: white;" onclick="openFlipNote(this, 2, 3, '#00b894', 'anatomi-hidung.webp', 'MERAWAT HIDUNG', 'Hindari mencium asap atau bau kimia menyengat.\\nPakai masker di jalan raya yang berdebu.\\nCuci hidung dengan air garam saat pilek berat.\\nJangan mengorek kotoran hidung terlalu dalam (bisa mimisan).')">
-                        <img src="assets/item/anatomi-hidung.webp"><span>Hidung</span>
+                    <div class="sticky-note" style="background: #00b894; transform: rotate(-2deg); color: white;" onclick="openFlipNote(this, 2, 3, '#00b894', 'anatomi-hidung.webp', 'P3K HIDUNG', 'Bahaya: Udara dingin hutan pinus sering memicu pilek dan mampet.\\n\\nSolusi:\\nPakailah masker untuk menghangatkan area hidung. Jika sudah terlanjur mampet, kamu bisa mencuci rongga hidungmu dengan semprotan air garam (saline) steril khusus hidung.')">
+                        <img src="assets/item/anatomi-hidung.webp"><span>P3K Hidung</span>
                     </div>
-                    <div class="sticky-note" style="background: #fd79a8; transform: rotate(3deg); color: white;" onclick="openFlipNote(this, 2, 4, '#fd79a8', 'anatomi-lidah.webp', 'MERAWAT LIDAH', 'Jangan makan makanan mendidih agar lidah tidak melepuh.\\nRajin sikat gigi dan sikat permukaan lidah secara teratur.\\nPilih makanan rendah gula agar terhindar dari jamur.\\nPerbanyak makan buah vitamin C agar tidak sariawan.')">
-                        <img src="assets/item/anatomi-lidah.webp"><span>Lidah</span>
+                    <div class="sticky-note" style="background: #fd79a8; transform: rotate(3deg); color: white;" onclick="openFlipNote(this, 2, 4, '#fd79a8', 'anatomi-lidah.webp', 'P3K LIDAH', 'Bahaya: Lidah melepuh terkena kuah mendidih atau perih karena sariawan.\\n\\nSolusi:\\nTunggu makanan dingin sebelum dikunyah! Sariawan menandakan tubuhmu butuh asupan Buah bervitamin C. Jangan lupa sikat bagian lidahmu saat menggosok gigi agar jamur putih tidak bersarang.')">
+                        <img src="assets/item/anatomi-lidah.webp"><span>P3K Lidah</span>
                     </div>
-                    <div class="sticky-note" style="background: #e17055; transform: rotate(-4deg); color: white;" onclick="openFlipNote(this, 2, 5, '#e17055', 'anatomi-kulit1.webp', 'MERAWAT KULIT', 'Hindari menyentuh benda panas seperti setrika.\\nMandi teratur 2x sehari agar kuman kulit hilang.\\nMinum banyak air putih agar kulit lembap.\\nPakai sunscreen saat cuaca terik matahari.\\nObati luka gores agar tidak infeksi.')">
-                        <img src="assets/item/anatomi-kulit1.webp"><span>Kulit</span>
+                    <div class="sticky-note" style="background: #e17055; transform: rotate(-4deg); color: white;" onclick="openFlipNote(this, 2, 5, '#e17055', 'anatomi-kulit1.webp', 'P3K KULIT', 'Bahaya: Sengatan lebah kebun, luka lecet karena jatuh, dan infeksi jamur panu.\\n\\nSolusi:\\nCuci luka lecet dengan air bersih lalu berikan obat merah. Untuk menghindari jamur panu yang gatal, kamu wajib mandi dengan sabun setiap kali tubuhmu dipenuhi keringat kotor.')">
+                        <img src="assets/item/anatomi-kulit1.webp"><span>P3K Kulit</span>
                     </div>
                 </div>
-                <button id="btn-start-ta-2" class="btn btn-play" style="width: 80%; display: none; background: #ff4757; margin-top: 1cqw;" onclick="startTaGlobal(2)">MULAI UJIAN DADAKAN!</button>
+                <button id="btn-start-ta-2" class="btn btn-play" style="width: 80%; display: none; background: #ff4757; margin-top: 1cqw;" onclick="startTaGlobal(2)">MULAI UJIAN POS 1!</button>
             </div>
             ${generateTaUI(2)}
         </div>
 
         <!-- TAHAP 3: PENYAKIT PANCAINDRA -->
         <div id="stage-3" class="mission-stage">
-            <h3 class="stage-title">TAHAP 3: PENYAKIT PANCAINDRA</h3>
+            <h3 class="stage-title">TAHAP 3: KLINIK PENYAKIT ALAM</h3>
             <div id="mading-intro-3" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
-                <p class="mission-text-box">Waspadalah pada penyakit ini. Klik 5 gambar untuk membedah bahayanya!</p>
+                <p class="mission-text-box">Waspadai penyakit yang sering menyerang penjelajah! Klik 5 gambar ini.</p>
                 <div class="mading-board">
-                    <div class="sticky-note" style="background: #ff7675; transform: rotate(2deg);" onclick="openFlipNote(this, 3, 1, '#ff7675', 'anatomi-mata.webp', 'PENYAKIT MATA', 'Rabun Jauh/Dekat: Kesulitan melihat jarak tertentu.\\nKonjungtivitis: Mata merah dan gatal yang menular lewat sentuhan kotor.\\nKatarak: Lensa mata berawan (biasanya pada orang tua).')">
-                        <img src="assets/item/anatomi-mata.webp"><span>Mata</span>
+                    <div class="sticky-note" style="background: #ff7675; transform: rotate(2deg);" onclick="openFlipNote(this, 3, 1, '#ff7675', 'anatomi-mata.webp', 'PENYAKIT MATA', 'Mata Merah (Konjungtivitis):\\nSangat mudah menular! Penyakit ini terjadi karena bakteri dari air sungai yang kotor berpindah ke mata saat kamu menguceknya menggunakan tangan telanjang.')">
+                        <img src="assets/item/anatomi-mata.webp"><span>Sakit Mata</span>
                     </div>
-                    <div class="sticky-note" style="background: #74b9ff; transform: rotate(-3deg);" onclick="openFlipNote(this, 3, 2, '#74b9ff', 'anatomi-telinga.webp', 'PENYAKIT TELINGA', 'Tuli Sementara: Karena kotoran menumpuk atau suara ledakan.\\nOtitis: Infeksi telinga karena air kotor, menyebabkan dengung dan nyeri.')">
-                        <img src="assets/item/anatomi-telinga.webp"><span>Telinga</span>
+                    <div class="sticky-note" style="background: #74b9ff; transform: rotate(-3deg);" onclick="openFlipNote(this, 3, 2, '#74b9ff', 'anatomi-telinga.webp', 'PENYAKIT TELINGA', 'Infeksi Telinga (Otitis):\\nTerjadi saat air keruh terjebak lama di dalam saluran telinga, menjadikannya sarang kuman untuk berkembang biak dan memicu rasa nyeri berdengung.')">
+                        <img src="assets/item/anatomi-telinga.webp"><span>Sakit Telinga</span>
                     </div>
-                    <div class="sticky-note" style="background: #00b894; transform: rotate(4deg); color: white;" onclick="openFlipNote(this, 3, 3, '#00b894', 'anatomi-hidung.webp', 'PENYAKIT HIDUNG', 'Anosmia: Hilangnya kemampuan mencium bau sama sekali (akibat virus).\\nPolip: Daging tumbuh di hidung yang membuat sesak napas.')">
-                        <img src="assets/item/anatomi-hidung.webp"><span>Hidung</span>
+                    <div class="sticky-note" style="background: #00b894; transform: rotate(4deg); color: white;" onclick="openFlipNote(this, 3, 3, '#00b894', 'anatomi-hidung.webp', 'PENYAKIT HIDUNG', 'Kehilangan Penciuman (Anosmia):\\nSering terjadi saat flu/pilek berat. Lendir tebal akan menutupi "Atap Saraf Pembau", sehingga aroma wangi makanan seenak apa pun tidak akan bisa kamu cium baunya.')">
+                        <img src="assets/item/anatomi-hidung.webp"><span>Sakit Hidung</span>
                     </div>
-                    <div class="sticky-note" style="background: #fd79a8; transform: rotate(-1deg); color: white;" onclick="openFlipNote(this, 3, 4, '#fd79a8', 'anatomi-lidah.webp', 'PENYAKIT LIDAH', 'Sariawan: Luka putih perih karena kurang vitamin C.\\nKandidiasis (Jamur): Lidah putih berlapis karena jarang sikat gigi/lidah.')">
-                        <img src="assets/item/anatomi-lidah.webp"><span>Lidah</span>
+                    <div class="sticky-note" style="background: #fd79a8; transform: rotate(-1deg); color: white;" onclick="openFlipNote(this, 3, 4, '#fd79a8', 'anatomi-lidah.webp', 'PENYAKIT LIDAH', 'Jamur Putih (Kandidiasis):\\nBintik kasar lidah (papila) sangat mudah dihinggapi kuman sisa makanan jika kamu tidak menyikatnya.\\n\\nSariawan:\\nLuka sobek perih ini muncul karena imun melemah atau tubuh kekurangan asupan buah bervitamin C.')">
+                        <img src="assets/item/anatomi-lidah.webp"><span>Sakit Lidah</span>
                     </div>
-                    <div class="sticky-note" style="background: #e17055; transform: rotate(3deg); color: white;" onclick="openFlipNote(this, 3, 5, '#e17055', 'anatomi-kulit1.webp', 'PENYAKIT KULIT', 'Panu & Kadas: Bercak gatal yang disebabkan oleh infeksi jamur karena malas mandi.\\nJerawat & Biang Keringat: Pori-pori kulit tersumbat kotoran.')">
-                        <img src="assets/item/anatomi-kulit1.webp"><span>Kulit</span>
+                    <div class="sticky-note" style="background: #e17055; transform: rotate(3deg); color: white;" onclick="openFlipNote(this, 3, 5, '#e17055', 'anatomi-kulit1.webp', 'PENYAKIT KULIT', 'Panu & Kadas:\\nBercak putih di kulit yang sangat gatal dan menular. Penyakit ini disebabkan oleh JAMUR yang tumbuh karena anak malas mandi saat tubuhnya berkeringat lembap.')">
+                        <img src="assets/item/anatomi-kulit1.webp"><span>Sakit Kulit</span>
                     </div>
                 </div>
-                <button id="btn-start-ta-3" class="btn btn-play" style="width: 80%; display: none; background: #ff4757; margin-top: 1cqw;" onclick="startTaGlobal(3)">MULAI UJIAN TAHAP 3</button>
+                <button id="btn-start-ta-3" class="btn btn-play" style="width: 80%; display: none; background: #ff4757; margin-top: 1cqw;" onclick="startTaGlobal(3)">MULAI UJIAN POS 2</button>
             </div>
             ${generateTaUI(3)}
         </div>
@@ -2688,70 +4278,70 @@ function buildMission4() {
                 <button class="btn btn-play" id="btn-m4-adaptasi-lanjut" onclick="lanjutAdaptasi()" style="margin-bottom: 2cqw;">LANJUT</button>
                 <div id="board-adaptasi" class="mading-board" style="display: none;">
                     <div class="mission-text-box" style="width: 100%; text-align: center; margin: 0 0 1cqw 0; background: #f1c40f; color: #111; border: 0.3cqw dashed #111;">
-                        Berikut adalah contoh kondisi khusus yang berkaitan dengan Pancaindra:
+                        Simulasi Inklusif: Buka catatan dan tekan "COBA RASAKAN" untuk memulai simulasi!
                     </div>
-                    <div class="sticky-note" style="background: #f1c40f; transform: rotate(-3deg);" onclick="openFlipNote(this, 4, 1, '#f1c40f', 'anatomi-mata.webp', 'TUNANETRA', 'Kondisi kehilangan penglihatan karena cacat lahir, penyakit, atau kecelakaan.\\n\\nCara Beradaptasi:\\nMembaca menggunakan Huruf Braille (huruf timbul), berjalan menggunakan bantuan Tongkat Putih khusus atau anjing penuntun.')">
+                    <div class="sticky-note" style="background: #f1c40f; transform: rotate(-3deg);" onclick="openFlipNote(this, 4, 1, '#f1c40f', 'anatomi-mata.webp', 'TUNANETRA', 'Kehilangan fungsi penglihatan karena cacat lahir/kecelakaan.\\n\\nADAPTASI HEBAT:\\nMereka membaca buku menggunakan sentuhan ujung jari pada Huruf Braille (huruf timbul), serta berjalan mandiri meraba jalanan berlubang menggunakan Tongkat Putih khusus.')">
                         <img src="assets/item/anatomi-mata.webp"><span>Tunanetra</span>
                     </div>
-                    <div class="sticky-note" style="background: #f1c40f; transform: rotate(2deg);" onclick="openFlipNote(this, 4, 2, '#f1c40f', 'anatomi-telinga.webp', 'TUNARUNGU', 'Kondisi kehilangan fungsi pendengaran telinga sebagian atau total.\\n\\nCara Beradaptasi:\\nMenggunakan Alat Bantu Dengar medis, membaca gerak bibir lawan bicara, serta menggunakan komunikasi tangan (Bahasa Isyarat).')">
+                    <div class="sticky-note" style="background: #f1c40f; transform: rotate(2deg);" onclick="openFlipNote(this, 4, 2, '#f1c40f', 'anatomi-telinga.webp', 'TUNARUNGU', 'Kehilangan fungsi pendengaran telinga (Tuli).\\n\\nADAPTASI HEBAT:\\nMereka menajamkan visual mata untuk "mendengar" melalui bacaan gerak bibir. Jangan berteriak dari belakang mereka! Selalu panggil dari depan atau gunakan Bahasa Isyarat Tangan.')">
                         <img src="assets/item/anatomi-telinga.webp"><span>Tunarungu</span>
                     </div>
-                    <div class="sticky-note" style="background: #f1c40f; transform: rotate(-4deg);" onclick="openFlipNote(this, 4, 3, '#f1c40f', 'anatomi-mata.webp', 'BUTA WARNA', 'Kondisi keturunan di mana sel mata kesulitan membedakan perpaduan warna tertentu (bukan gelap gulita).\\n\\nCara Beradaptasi:\\nMenggunakan kacamata berlensa khusus, dan mengingat urutan posisi benda penting (seperti lampu merah lalu lintas di atas).')">
+                    <div class="sticky-note" style="background: #f1c40f; transform: rotate(-4deg);" onclick="openFlipNote(this, 4, 3, '#f1c40f', 'anatomi-mata.webp', 'BUTA WARNA', 'Kelainan genetik di mana sel mata kesulitan membedakan perpaduan warna tertentu (Misal: merah terlihat mirip hijau).\\n\\nADAPTASI HEBAT:\\nMereka tidak melihat gelap gulita! Mereka melihat dunia dengan normal, dan beradaptasi menggunakan kacamata lensa khusus.')">
                         <img src="assets/item/anatomi-mata.webp"><span>Buta Warna</span>
                     </div>
-                    <div class="sticky-note" style="background: #f1c40f; transform: rotate(3deg);" onclick="openFlipNote(this, 4, 4, '#f1c40f', 'anatomi-kulit1.webp', 'MATI RASA', 'Kehilangan kepekaan pada saraf peraba di kulit, sering terjadi karena komplikasi penyakit berat.\\n\\nCara Beradaptasi:\\nSelalu mengecek kondisi tubuh secara rutin dan selalu memakai alas kaki tebal yang aman setiap berjalan agar tidak terluka tanpa sadar.')">
+                    <div class="sticky-note" style="background: #f1c40f; transform: rotate(3deg);" onclick="openFlipNote(this, 4, 4, '#f1c40f', 'anatomi-kulit1.webp', 'MATI RASA', 'Kehilangan kepekaan pada saraf peraba di kulit telapak kaki, sering terjadi akibat penyakit saraf.\\n\\nADAPTASI HEBAT:\\nKarena kaki mereka kebal (tidak merasa sakit sama sekali saat menginjak paku), mereka harus selalu memakai alas kaki ekstra tebal agar tetap aman dan tidak infeksi.')">
                         <img src="assets/item/anatomi-kulit1.webp"><span>Mati Rasa</span>
                     </div>
                 </div>
-                <button id="btn-start-ta-4" class="btn btn-play" style="width: 80%; display: none; background: #ff4757; margin-top: 1cqw;" onclick="startTaGlobal(4)">MULAI UJIAN TAHAP 4</button>
+                <button id="btn-start-ta-4" class="btn btn-play" style="width: 80%; display: none; background: #ff4757; margin-top: 1cqw;" onclick="startTaGlobal(4)">MULAI UJIAN POS 3</button>
             </div>
             ${generateTaUI(4)}
         </div>
 
         <!-- TAHAP 5: MAKHLUK SUPER -->
         <div id="stage-5" class="mission-stage">
-            <h3 class="stage-title">TAHAP 5: MAKHLUK SUPER</h3>
+            <h3 class="stage-title">TAHAP 5: MAKHLUK SUPER LOKAL</h3>
             <div id="mading-intro-5" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
-                <p class="mission-text-box">Hewan-hewan ini punya kemampuan mistis pancaindra! Klik kertas untuk mengungkap rahasianya.</p>
+                <p class="mission-text-box">Hewan di sekitar kita punya kekuatan mistis! Klik untuk mengungkap rahasianya.</p>
                 <div class="mading-board">
-                    <div class="sticky-note" style="background: #a29bfe; transform: rotate(-2deg); color: white;" onclick="openFlipNote(this, 5, 1, '#a29bfe', 'anatomi-telinga.webp', 'RADAR MALAM', 'Kekuatan: KELELAWAR\\n\\nPenjelasan:\\nKelelawar sebenarnya buta di kegelapan! Mereka mengeluarkan suara melengking yang memantul di dinding goa, lalu ditangkap oleh telinganya yang besar.\\nTeknik pantulan suara ini disebut Ekolokasi.', 'kelelawar.webp')">
-                        <img src="assets/item/anatomi-telinga.webp"><span>Radar Malam</span>
+                    <div class="sticky-note" style="background: #a29bfe; transform: rotate(-2deg); color: white;" onclick="openFlipNote(this, 5, 1, '#a29bfe', 'anatomi-telinga.webp', 'RADAR GUA', 'Kekuatan: KELELAWAR GUA SELOMANGLENG\\n\\nPenjelasan:\\nKelelawar sebenarnya buta di kegelapan malam! Mereka berteriak melengking lalu telinga lebarnya menangkap "pantulan suara" dari dinding goa untuk mengetahui posisi dinding dan mangsa. Ini disebut Ekolokasi.', 'kelelawar.webp')">
+                        <img src="assets/item/anatomi-telinga.webp"><span>Radar Gua</span>
                     </div>
-                    <div class="sticky-note" style="background: #a29bfe; transform: rotate(3deg); color: white;" onclick="openFlipNote(this, 5, 2, '#a29bfe', 'anatomi-mata.webp', 'TEROPONG LANGIT', 'Kekuatan: BURUNG ELANG\\n\\nPenjelasan:\\nBurung elang memiliki struktur mata teleskopik yang tajamnya berkali-kali lipat dari manusia. Mereka bisa melihat tikus kecil bersembunyi di padang rumput meskipun sedang terbang di langit yang sangat tinggi!', 'elang.webp')">
+                    <div class="sticky-note" style="background: #a29bfe; transform: rotate(3deg); color: white;" onclick="openFlipNote(this, 5, 2, '#a29bfe', 'anatomi-mata.webp', 'TEROPONG WILIS', 'Kekuatan: ELANG JAWA\\n\\nPenjelasan:\\nMata burung elang yang terbang di atas Gunung Wilis dirancang seperti teropong canggih (teleskopik). Mereka sanggup melakukan "Zoom" visual untuk menerkam tikus kecil yang berlari di sawah jauh di bawah sana!', 'elang.webp')">
                         <img src="assets/item/anatomi-mata.webp"><span>Teropong Langit</span>
                     </div>
-                    <div class="sticky-note" style="background: #a29bfe; transform: rotate(-4deg); color: white;" onclick="openFlipNote(this, 5, 3, '#a29bfe', 'anatomi-hidung.webp', 'HIDUNG DETEKTIF', 'Kekuatan: ANJING PELACAK\\n\\nPenjelasan:\\nAnjing memiliki jutaan sel saraf pembau tambahan. Penciumannya yang super peka ini sering dimanfaatkan polisi untuk melacak jejak penjahat atau bom hanya dari sisa partikel bau di udara.', 'anjing.webp')">
+                    <div class="sticky-note" style="background: #a29bfe; transform: rotate(-4deg); color: white;" onclick="openFlipNote(this, 5, 3, '#a29bfe', 'anatomi-hidung.webp', 'HIDUNG KEPOLISIAN', 'Kekuatan: ANJING PELACAK (K-9)\\n\\nPenjelasan:\\nHidung anjing sangat tajam karena memiliki 300 juta sel pendeteksi aroma (manusia hanya punya 5 juta). Polisi memanfaatkannya untuk melacak bom atau orang hilang hanya dari bau jejak kakinya.', 'anjing.webp')">
                         <img src="assets/item/anatomi-hidung.webp"><span>Hidung Detektif</span>
                     </div>
-                    <div class="sticky-note" style="background: #a29bfe; transform: rotate(2deg); color: white;" onclick="openFlipNote(this, 5, 4, '#a29bfe', 'anatomi-lidah.webp', 'SENSOR PANAS & BAU', 'Kekuatan: ULAR\\n\\nPenjelasan:\\nUlar sering menjulurkan lidah cabangnya untuk menangkap partikel bau mangsa di udara. Beberapa ular juga punya titik sensor khusus di wajah untuk mendeteksi suhu panas mangsanya di dalam kegelapan pekat.', 'ular.webp')">
-                        <img src="assets/item/anatomi-lidah.webp"><span>Sensor Panas</span>
+                    <div class="sticky-note" style="background: #a29bfe; transform: rotate(2deg); color: white;" onclick="openFlipNote(this, 5, 4, '#a29bfe', 'anatomi-lidah.webp', 'LIDAH ANTENA', 'Kekuatan: ULAR SAWAH\\n\\nPenjelasan:\\nUlar sering menjulurkan lidahnya yang bercabang dua. Lidah itu bukanlah taring untuk menggigit, melainkan "antena sensor kimia" yang bertugas menangkap partikel aroma tubuh mangsa yang bersembunyi di rumput.', 'ular.webp')">
+                        <img src="assets/item/anatomi-lidah.webp"><span>Lidah Antena</span>
                     </div>
-                    <div class="sticky-note" style="background: #a29bfe; transform: rotate(-3deg); color: white;" onclick="openFlipNote(this, 5, 5, '#a29bfe', 'anatomi-kulit1.webp', 'TUBUH PERASA', 'Kekuatan: IKAN LELE\\n\\nPenjelasan:\\nJika manusia mengecap manis asin pakai lidah, seluruh kulit dan kumis Ikan Lele dipenuhi oleh saraf pengecap! Ia bisa mencicipi dan menemukan letak makanannya meski sungai sangat keruh.', 'lele.webp')">
-                        <img src="assets/item/anatomi-kulit1.webp"><span>Tubuh Perasa</span>
+                    <div class="sticky-note" style="background: #a29bfe; transform: rotate(-3deg); color: white;" onclick="openFlipNote(this, 5, 5, '#a29bfe', 'anatomi-kulit1.webp', 'KULIT PERASA', 'Kekuatan: IKAN LELE\\n\\nPenjelasan:\\nJika manusia mengecap manis asin hanya memakai lidah, Ikan Lele melapisi seluruh kulit tubuh dan kumisnya dengan sel saraf pengecap rasa! Ia tak butuh mata bersih untuk mencari makanan di sungai keruh.', 'lele.webp')">
+                        <img src="assets/item/anatomi-kulit1.webp"><span>Kulit Perasa</span>
                     </div>
                 </div>
-                <button id="btn-start-ta-5" class="btn btn-play" style="width: 80%; display: none; background: #ff4757; margin-top: 1cqw;" onclick="startTaGlobal(5)">MULAI UJIAN TAHAP 5</button>
+                <button id="btn-start-ta-5" class="btn btn-play" style="width: 80%; display: none; background: #ff4757; margin-top: 1cqw;" onclick="startTaGlobal(5)">MULAI UJIAN POS 4</button>
             </div>
             ${generateTaUI(5)}
         </div>
 
         <!-- TAHAP 6: INDRA RAHASIA (KEKUATAN TERSEMBUNYI) -->
         <div id="stage-6" class="mission-stage">
-            <h3 class="stage-title">TAHAP 6: KEKUATAN TERSEMBUNYI</h3>
+            <h3 class="stage-title">TAHAP 6: INDRA RAHASIA MANUSIA</h3>
             <div id="mading-intro-6" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
-                <p class="mission-text-box">Manusia ternyata punya indra tersembunyi yang bekerja tanpa kamu sadari lho!</p>
+                <p class="mission-text-box">Di balik 5 sensor utama, tubuhmu punya 3 indra rahasia yang mengawalmu!</p>
                 <div class="mading-board">
-                    <div class="sticky-note" style="background: #ffeaa7; transform: rotate(-2deg); border-color: #f1c40f;" onclick="openFlipNote(this, 6, 1, '#ffeaa7', 'anatomi-telinga.webp', 'INDRA KESEIMBANGAN', 'Posisi: Telinga Bagian Dalam\\n\\nPenjelasan:\\nDi bagian terdalam telingamu ada saluran melingkar berisi cairan khusus. Cairan inilah pelampung penyeimbangmu! Ia bertugas menjaga agar tubuhmu tegak dan tidak mudah jatuh saat melompat atau berlari zigzag.')">
+                    <div class="sticky-note" style="background: #ffeaa7; transform: rotate(-2deg); border-color: #f1c40f;" onclick="openFlipNote(this, 6, 1, '#ffeaa7', 'anatomi-telinga.webp', 'INDRA KESEIMBANGAN', 'Posisi: Telinga Bagian Dalam\\n\\nPenjelasan:\\nCairan ajaib di telinga terdalam adalah pelampung penyeimbang. Berkat organ inilah tubuhmu tidak mudah jatuh terhuyung saat meniti Jembatan Gantung Sungai Brantas yang bergoyang hebat!')">
                         <img src="assets/item/anatomi-telinga.webp"><span>Keseimbangan</span>
                     </div>
-                    <div class="sticky-note" style="background: #81ecec; transform: rotate(3deg); border-color: #00cec9;" onclick="openFlipNote(this, 6, 2, '#81ecec', 'anatomi-kulit1.webp', 'INDRA POSISI (PROPRIOSEPSI)', 'Posisi: Otot dan Sendi Tulang\\n\\nPenjelasan:\\nIndra rahasia ini memberi tahu otak di mana tepatnya letak posisi tangan dan kakimu berada saat ini. Berkat indra inilah, kamu bisa menggaruk ujung hidungmu dengan tepat meski matamu sedang ditutup rapat!')">
+                    <div class="sticky-note" style="background: #81ecec; transform: rotate(3deg); border-color: #00cec9;" onclick="openFlipNote(this, 6, 2, '#81ecec', 'anatomi-kulit1.webp', 'INDRA POSISI OTOT', 'Posisi: Otot dan Sendi Tulang (Propriosepsi)\\n\\nPenjelasan:\\nSaraf di otot dan tulangmu selalu mengirim koordinat "GPS" ke otak. Berkat indra rahasia inilah, kamu bisa menyentuh ujung hidungmu sendiri dengan tepat meskipun matamu sedang tertutup rapat tanpa perlu melihat cermin!')">
                         <img src="assets/item/anatomi-kulit1.webp"><span>Posisi Tubuh</span>
                     </div>
-                    <div class="sticky-note" style="background: #fab1a0; transform: rotate(-1deg); border-color: #e17055;" onclick="openFlipNote(this, 6, 3, '#fab1a0', 'anatomi-kulit1.webp', 'INDRA SUHU', 'Posisi: Jaringan Kulit\\n\\nPenjelasan:\\nSaraf di kulitmu juga bertindak sebagai pendeteksi suhu cuaca. Ia membuatmu menggigil saat kedinginan (agar cari selimut) dan memaksa mengeluarkan keringat saat kepanasan (untuk mendinginkan mesin dalam tubuhmu).')">
+                    <div class="sticky-note" style="background: #fab1a0; transform: rotate(-1deg); border-color: #e17055;" onclick="openFlipNote(this, 6, 3, '#fab1a0', 'anatomi-kulit1.webp', 'INDRA PENDETEKSI SUHU', 'Posisi: Jaringan Ujung Saraf Kulit\\n\\nPenjelasan:\\nSelain meraba tekstur kasar, saraf kulit juga menjadi termometer alami. Ia akan membuat tubuhmu menggigil saat hawa dingin menyengat (peringatan untuk cari selimut), dan mengeluarkan keringat (AC Alami) saat kepanasan.')">
                         <img src="assets/item/anatomi-kulit1.webp"><span>Sensor Suhu</span>
                     </div>
                 </div>
-                <button id="btn-start-ta-6" class="btn btn-play" style="width: 80%; display: none; background: #ff4757; margin-top: 1cqw;" onclick="startTaGlobal(6)">MULAI UJIAN TAHAP 6</button>
+                <button id="btn-start-ta-6" class="btn btn-play" style="width: 80%; display: none; background: #ff4757; margin-top: 1cqw;" onclick="startTaGlobal(6)">MULAI UJIAN POS 5</button>
             </div>
             ${generateTaUI(6)}
         </div>
@@ -2792,17 +4382,17 @@ function buildMission4() {
 
     // Modifikasi Otomatis Pengantar Teks Tahap 1
     startM4Intro('m4-text-1', [
-        "Selamat datang di SD Negeri Medowo 1! Ini adalah markas utama bagi para petualang pemberani sepertimu.",
-        "Sebelumnya, kita sudah belajar bahwa tubuh kita memiliki 5 alat sensor ajaib yang disebut Pancaindra (Mata, Telinga, Hidung, Lidah, dan Kulit).",
-        "Namun, indra kita bisa rusak jika tidak dijaga. Hari ini, kamu akan menghadapi rentetan Ujian Dadakan untuk membuktikan seberapa pintar kamu merawat tubuhmu!"
+        "Selamat datang di SD Negeri Medowo 1! Hari ini sedang diadakan Pelatihan P3K (Pertolongan Pertama) untuk para Pramuka Siaga Cilik.",
+        "Meskipun kelima alat sensor ajaib (Pancaindra) kita sangat tangguh menavigasi dunia, mereka juga bisa rusak parah akibat kelalaian lingkungan.",
+        "Kak Pembina (Bapak Aprel) telah menyiapkan Pos Ujian Ketangkasan Keliling. Buktikan kamu layak menyandang gelar Pahlawan Siaga Medowo!"
     ]);
 
     // Modifikasi Otomatis Pengantar Teks Tahap 4
     const m4IntroAdaptasi = [
-        "Beberapa manusia ternyata memiliki kondisi medis khusus yang berkaitan dengan fungsi pancaindra mereka.",
-        "Hal ini bisa terjadi karena bawaan sejak lahir, efek penuaan, sakit parah, atau karena kecelakaan tak terduga.",
-        "Namun jangan sedih, mereka adalah pahlawan adaptasi! Meski memiliki kekurangan, mereka bisa menyesuaikan diri dengan cara luar biasa.",
-        "Klik Mading ini untuk mempelajari cara teman-teman kita menjalani hidup dengan pancaindra yang spesial!"
+        "Seorang Pahlawan Pramuka Sejati tidak hanya cekatan, tetapi juga memiliki rasa EMPATI (kepedulian) yang tinggi terhadap kondisi sesamanya.",
+        "Tahukah kamu? Beberapa teman kita di luar sana terlahir dengan fungsi pancaindra yang kurang sempurna akibat faktor genetik atau kecelakaan (Disabilitas Medis).",
+        "Namun, keterbatasan tidak membuat mereka menyerah. Mereka adalah Pahlawan Adaptasi sejati yang menyesuaikan diri dengan teknologi dan insting indra lainnya!",
+        "Klik Mading Posko ke-3 ini untuk mempelajari keterbatasan mereka, lalu jalani simulasi 'Coba Rasakan' untuk belajar berempati pada keadaan mereka."
     ];
     let currentAdaptasiIdx = 0;
     const txtAdaptasi = document.getElementById('m4-text-4');
@@ -2835,32 +4425,18 @@ let bossM4Timer;
 let bossM4TimeLeft = 100;
 let bossM4QuestionsActive = [];
 
-// 15 Bank Soal Pilihan Ganda
+// 10 Bank Soal Analisis Kasus (HOTS & Kearifan Lokal Kediri)
 const bossM4Data = [
-    // --- Merawat Pancaindra ---
-    { q: "Bagaimana cara merawat mata yang paling tepat saat kita sedang membaca buku?", opts: ["Membaca di tempat gelap gulita", "Membaca dengan lampu yang terang", "Membaca sambil tiduran", "Menempelkan buku ke wajah"], ans: "Membaca dengan lampu yang terang", msg: "Cahaya terang membantu otot mata tidak cepat lelah." },
-    { q: "Tindakan apa yang sangat BERBAHAYA dan dapat merusak selaput gendang telingamu?", opts: ["Mengorek telinga dengan lidi", "Mengeringkan telinga pakai handuk", "Menutup telinga saat ada ledakan", "Mendengarkan musik pelan"], ans: "Mengorek telinga dengan lidi", msg: "Benda keras bisa merobek selaput tipis di dalam telingamu!" },
-    { q: "Apa yang bisa terjadi jika kita sering makan makanan yang terlalu panas atau mendidih?", opts: ["Gigi menjadi lebih kuat", "Saraf pengecap lidah melepuh", "Tenggorokan menjadi dingin", "Hidung menjadi mampet"], ans: "Saraf pengecap lidah melepuh", msg: "Lidah bisa melepuh dan kehilangan kemampuannya mengecap rasa sementara." },
-    
-    // --- Kondisi Khusus ---
-    { q: "Teman kita yang Tunanetra (tidak bisa melihat) dapat membaca buku cerita menggunakan huruf timbul yang disebut...", opts: ["Huruf Alfabet", "Huruf Morse", "Huruf Braille", "Huruf Hijaiyah"], ans: "Huruf Braille", msg: "Huruf Braille dibaca menggunakan indra peraba pada ujung jari." },
-    { q: "Orang yang mengalami kondisi Buta Warna biasanya akan kesulitan untuk...", opts: ["Melihat benda di siang hari", "Mendengar suara dari jauh", "Membedakan warna merah & hijau", "Merasakan suhu panas"], ans: "Membedakan warna merah & hijau", msg: "Mereka tidak melihat gelap gulita, melainkan sulit membedakan warna tertentu." },
-    
-    // --- Penyakit Pancaindra ---
-    { q: "Sariawan adalah luka putih perih di lidah atau mulut. Penyakit ini terjadi karena tubuh kita kekurangan...", opts: ["Vitamin A", "Vitamin C", "Kalsium Tulang", "Karbohidrat"], ans: "Vitamin C", msg: "Makan buah-buahan seperti jeruk sangat bagus untuk mencegah sariawan." },
-    { q: "Penyakit Panu membuat kulit menjadi bercak putih dan sangat gatal. Penyakit ini disebabkan oleh...", opts: ["Gigitan Nyamuk", "Infeksi Jamur", "Alergi Makanan", "Terbakar Matahari"], ans: "Infeksi Jamur", msg: "Jamur sangat suka tumbuh di kulit yang kotor karena jarang mandi." },
-    { q: "Penyakit Konjungtivitis (Sakit Mata Merah) sangat mudah menular kepada orang lain melalui...", opts: ["Tatapan mata langsung", "Suara batuk & bersin", "Sentuhan barang yang kotor", "Udara di sekitar penderita"], ans: "Sentuhan barang yang kotor", msg: "Virus mata merah menular saat kita mengucek mata setelah menyentuh barang bekas penderita." },
-    
-    // --- Kemampuan Khusus Hewan ---
-    { q: "Meskipun buta di kegelapan, kelelawar bisa terbang malam hari tanpa menabrak berkat pantulan suara (Ekolokasi) yang ditangkap oleh...", opts: ["Mata besarnya", "Hidung tajamnya", "Telinga radarnya", "Sayap lebarnya"], ans: "Telinga radarnya", msg: "Telinga kelelawar bertindak sebagai radar penangkap pantulan suara." },
-    { q: "Burung elang mampu melihat tikus kecil yang berlari di rumput dari atas awan yang sangat tinggi. Hal ini membuktikan bahwa elang memiliki...", opts: ["Mata seperti teropong", "Hidung pencium darah", "Telinga radar", "Kumis sensor angin"], ans: "Mata seperti teropong", msg: "Mata elang memiliki kemampuan teleskopik yang berkali lipat lebih tajam dari manusia." },
-    { q: "Polisi sering menggunakan bantuan Anjing Pelacak untuk mencari jejak orang hilang karena anjing memiliki kemampuan super pada...", opts: ["Indra Pendengar", "Indra Pembau", "Indra Penglihat", "Indra Peraba"], ans: "Indra Pembau", msg: "Hidung anjing memiliki jutaan sel saraf ekstra untuk mendeteksi partikel bau." },
-    { q: "Di manakah letak sensor ajaib Ikan Lele yang membuatnya bisa mengecap rasa makanan di dalam air sungai yang sangat keruh?", opts: ["Hanya di ujung lidah", "Di seluruh kulit & kumisnya", "Di dalam matanya", "Di sirip ekornya"], ans: "Di seluruh kulit & kumisnya", msg: "Seluruh tubuh lele dipenuhi saraf pengecap rasa!" },
-    
-    // --- Pancaindra Rahasia Manusia ---
-    { q: "Selain untuk mendengar, bagian terdalam dari telinga kita memiliki cairan khusus yang berfungsi sebagai...", opts: ["Indra Sensor Suhu", "Indra Keseimbangan Tubuh", "Indra Pencium Bau", "Indra Pengecap Darah"], ans: "Indra Keseimbangan Tubuh", msg: "Cairan ini menjaga tubuhmu agar tegak dan tidak mudah jatuh saat berlari." },
-    { q: "Saat udara di ruangan terasa sangat panas, indra rahasia di kulit kita akan bekerja dengan cara...", opts: ["Mengeluarkan keringat", "Menumbuhkan rambut", "Membuat kulit pucat", "Membuat gigi menggigil"], ans: "Mengeluarkan keringat", msg: "Kulit mendeteksi suhu panas dan mengeluarkan keringat untuk mendinginkan tubuh." },
-    { q: "Kita bisa menyentuh ujung hidung dengan tepat meskipun mata sedang ditutup. Ini berkat Indra Propriosepsi (Posisi Tubuh) yang terletak di...", opts: ["Rongga Hidung", "Daun Telinga", "Otot dan Sendi", "Bola Mata"], ans: "Otot dan Sendi", msg: "Saraf di otot berfungsi sebagai GPS alami yang memberitahu otak posisi anggota tubuhmu." }
+    { q: "Saat sedang mendirikan tenda di Gunung Kelud, tiba-tiba angin kencang meniupkan abu vulkanik tajam ke arah wajahmu. Apa tindakan medis pertama yang paling logis?", opts: ["Meniup mata dari jarak dekat", "Membilas mata dengan air mengalir", "Mengucek kelopak mata sekuat tenaga", "Meneteskan air sabun antiseptik"], ans: "Membilas mata dengan air mengalir", msg: "Air bersih akan menghanyutkan debu tajam tanpa menggores lensa kornea matamu." },
+    { q: "Kakek sering kesulitan merespons pertanyaan jika dipanggil dari jarak jauh karena faktor usia. Bentuk adaptasi teknologi apa yang paling tepat untuk diberikan kepadanya?", opts: ["Kacamata Lensa Buta Warna", "Alat Bantu Dengar", "Tongkat Putih Lipat Braille", "Sepatu Alas Tebal Mati Rasa"], ans: "Alat Bantu Dengar", msg: "Alat medis ini dipasang di telinga untuk menangkap gelombang suara dan memperkeras volumenya ke gendang telinga Kakek." },
+    { q: "Sita selalu mengeluh perih di lidahnya (Sariawan) setiap kali ia mengunyah makanan. Setelah dianalisis, penyakit ini disebabkan karena tubuh Sita kekurangan asupan...", opts: ["Karbohidrat (Nasi Jagung)", "Kalsium (Susu Sapi Segar)", "Vitamin C (Buah Jeruk)", "Protein (Daging Ayam)"], ans: "Vitamin C (Buah Jeruk)", msg: "Vitamin C dari buah-buahan sangat krusial untuk memperbaiki dan menjaga kesehatan selaput tipis pelindung mulut dan lidah." },
+    { q: "Adit sering malas mandi usai bermain bola seharian di Lapangan Tambi yang terik. Akibatnya, muncul bercak putih yang sangat gatal dan menular di kulit punggungnya. Penyakit apakah ini?", opts: ["Katarak Mata", "Panu (Infeksi Jamur)", "Anosmia (Hilang Penciuman)", "Sariawan (Luka Putih)"], ans: "Panu (Infeksi Jamur)", msg: "Keringat kotor dan lembap yang menempel di baju adalah habitat favorit jamur kulit untuk berkembang biak liar." },
+    { q: "Saat berjalan menyeberangi jembatan gantung yang bergoyang kencang, Doni tidak terjatuh. Organ pendeteksi rahasia penyeimbang gravitasi tubuh ini sesungguhnya tersembunyi di dalam...", opts: ["Telinga Bagian Dalam", "Ujung Akar Rambut Kulit", "Lapisan Permukaan Lidah", "Lensa Bagian Luar Mata"], ans: "Telinga Bagian Dalam", msg: "Cairan khusus yang bergoyang di dalam lorong terdalam telinga bertindak layaknya alat waterpass (penyeimbang kemiringan)." },
+    { q: "Andi mendapati ada adik kelas yang Tunanetra (tidak bisa melihat) sedang kebingungan mencari arah ke UKS. Cara P3K paling sopan dan aman untuk menuntunnya berjalan adalah...", opts: ["Meninggalkannya dan memanggil guru dari jauh", "Menawarkan lenganmu untuk ia pegang selama berjalan", "Menarik paksa tongkat putihnya ke arah UKS", "Berteriak kencang di samping telinganya"], ans: "Menawarkan lenganmu untuk ia pegang selama berjalan", msg: "Menawarkan siku lengan sebagai pegangan akan memberinya rasa aman dan kemudi arah yang sangat akurat tanpa unsur paksaan." },
+    { q: "Burung Elang Jawa yang bertengger tinggi di lereng Gunung Wilis dapat melihat tepat tikus kecil berlari di rumput bawah. Adaptasi lensa mata burung elang ini bekerja persis seperti fungsi...", opts: ["Lensa Pembesar Mikroskop Air", "Cermin Pantul Cahaya Kendaraan", "Lensa Teleskop Teropong Jauh", "Kaca Anti Silau (Kacamata Hitam)"], ans: "Lensa Teleskop Teropong Jauh", msg: "Otot lensa mata elang mampu melakukan pemfokusan pandangan (*Optical Zoom*) dengan resolusi tinggi hingga berjarak ribuan meter." },
+    { q: "Saat kamu sakit pilek berat dan hidungmu mampet, kamu juga akan mendadak kesulitan mengecap rasa lezat pada makananmu. Mengapa hal medis ini bisa terjadi berbarengan?", opts: ["Saraf pembau hidung yang tertutup lendir memutus informasi aroma rasa ke otak", "Bakteri pilek langsung menyerang dan mematikan seluruh papila lidah", "Karena air mata merah (konjungtivitis) menetes masuk ke tenggorokan", "Saraf kulit bibir menjadi kebal dan mati rasa mendadak"], ans: "Saraf pembau hidung yang tertutup lendir memutus informasi aroma rasa ke otak", msg: "Faktanya, 80% kenikmatan rasa makanan yang ditangkap otak manusia sebenarnya berasal dari informasi *aroma penciuman* hidung, bukan lidah!" },
+    { q: "Mengapa tangan manusia akan refleks menarik diri dengan secepat kilat saat ujung jarinya tanpa sengaja menyentuh logam panci mendidih di dapur?", opts: ["Karena telinga mendadak menangkap gelombang suara uap air mendidih", "Saraf kulit peraba seketika menembakkan sinyal alarm bahaya nyeri ke otak", "Karena mata mendeteksi perubahan pancaran cahaya warna merah di panci", "Saraf pembau (hidung) menolak bau karat logam panas"], ans: "Saraf kulit peraba seketika menembakkan sinyal alarm bahaya nyeri ke otak", msg: "Sistem saraf mengirimkan impuls listrik sepersekian detik ke otak belakang untuk memerintahkan otot tangan menjauh agar kulit tidak rusak terbakar." },
+    { q: "Hewan nokturnal Kelelawar beradaptasi hidup di ruang gelap gulita Gua Selomangleng tanpa mengandalkan cahaya mata, melainkan memancarkan gelombang pantulan suara ultrasonik dari telinga yang disebut...", opts: ["Kamuflase Fisik", "Proses Fotosintesis", "Ekolokasi Sonar", "Metamorfosis Aktif"], ans: "Ekolokasi Sonar", msg: "Gema pantulan ultrasonik ini dianalisis oleh telinga kelelawar sebagai 'Peta 3D' untuk mendeteksi dinding goa dan nyamuk mangsanya di udara kosong." }
 ];
 
 // Menjalankan Boss Kuis Cepat
@@ -3517,32 +5093,7 @@ window.handleBossM6Timeout = function() {
     showCustomModal("WAKTU HABIS!", "Wah, waktumu habis! Membaca dan berpikirlah dengan lebih cepat.\n(Nyawa Berkurang 1)", lockIcon, "error", () => loadBossM6Question());
 };
 
-// ================= PENYIMPANAN SKOR (TAMAT BAB 1) =================
-const btnSaveScore = document.getElementById('btn-save-score');
-if (btnSaveScore) {
-    btnSaveScore.addEventListener('click', () => {
-        // Ambil nama dari inputan (Beri nama bawaan jika kosong)
-        const playerName = document.getElementById('player-name-input').value.trim() || "Pahlawan Tanpa Nama";
-        
-        // Ambil data skor lama (jika sebelumnya sudah ada yang main)
-        let savedScores = JSON.parse(localStorage.getItem('leaderboard')) || [];
-        
-        // Tambahkan skor milik siswa saat ini ke dalam array
-        savedScores.push({ name: playerName, score: globalScore });
-        
-        // Kemas ulang menjadi teks dan simpan permanen ke dalam otak browser
-        localStorage.setItem('leaderboard', JSON.stringify(savedScores));
-        
-        // Sembunyikan Pop-up input nama
-        document.getElementById('name-modal').classList.remove('active');
-        
-        // Beri tahu siswa bahwa ia berhasil masuk peringkat, lalu lempar kembali ke Peta
-        const checkIcon = `<svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M14 2h2v2h-2V2zm-2 2h2v2h-2V4zm-2 2h2v2h-2V6zm-2 2h2v2H8V8zm-2 2h2v2H6v-2zm-2 2h2v2H4v-2zm-2-2h2v2H2v-2zm-2-2h2v2H0v-2z"/></svg>`;
-        showCustomModal("SKOR TERSIMPAN!", `Luar biasa ${playerName}! Skormu berhasil dicatat di Papan Peringkat.`, checkIcon, "alert", () => {
-            exitMissionScreen();
-        });
-    });
-}
+// Blok Penyimpanan Skor telah dipindahkan ke engine.js untuk sistem Auto-Save Realtime
 
 /**
  * Fungsi Pintar Analisis Warna (Mode HSL)
@@ -3627,7 +5178,22 @@ function loadMisi1BossQuestion() {
             checkIcon, 
             "alert", 
             () => {
-                triggerPostDialog(7); // Panggil dialog Visual Novel kelulusan Boss
+                // LOGIKA MISI 1 SELESAI SEPENUHNYA
+                const currentMissionId = 1;
+                const nextMissionId = currentMissionId + 1;
+                    
+                localStorage.setItem(`misi_${currentMissionId}_completed`, 'true');
+                localStorage.setItem(`kandangan_misi_${nextMissionId}`, 'unlocked');
+                    
+                loadKandanganProgress();
+                    
+                if (typeof startJurnal === 'function') {
+                    startJurnal(currentMissionId, () => {
+                        exitMissionScreen();
+                    });
+                } else {
+                    exitMissionScreen();
+                }
             }
         );
         return;
@@ -3678,3 +5244,710 @@ function loadMisi1BossQuestion() {
         optBox.appendChild(btn);
     });
 }
+
+// ================= LOGIKA MINI GAME SCAN QR (MISI 3 TAHAP 1) =================
+window.m3QRScannedCount = 0;
+window.m3ScannedCodes = [];
+window.m3QRStream = null;
+window.m3QRLoop = null;
+window.m3CurrentItem = null;
+window.m3InspectedSenses = new Set();
+
+// Database Barang Rahasia Misi 3
+const m3ItemsData = {
+    'Mangga': { img: 'mangga.webp', ans: 'Buah Mangga', opts: ['Buah Mangga', 'Buah Jeruk', 'Buah Apel', 'Buah Salak'], desc: { mata: 'Kulitnya berwarna hijau kekuningan.', telinga: 'Tidak mengeluarkan suara.', hidung: 'Harum manis khas mangga.', lidah: 'Rasanya manis menyegarkan.', kulit: 'Kulitnya halus dan empuk.' } },
+    'Apel': { img: 'apel.webp', ans: 'Buah Apel', opts: ['Buah Apel', 'Buah Salak', 'Buah Mangga', 'Buah Semangka'], desc: { mata: 'Bentuknya bulat dan warnanya merah cerah.', telinga: 'Bunyi renyah saat digigit.', hidung: 'Aroma segar khas buah apel.', lidah: 'Rasanya manis sedikit asam.', kulit: 'Kulit luarnya licin dan keras.' } },
+    'Jeruk': { img: 'jeruk.webp', ans: 'Buah Jeruk', opts: ['Buah Jeruk', 'Buah Mangga', 'Buah Apel', 'Buah Salak'], desc: { mata: 'Warnanya oranye dengan pori-pori kecil di kulit.', telinga: 'Tidak ada suara.', hidung: 'Aromanya asam menyegarkan.', lidah: 'Mengecap rasa asam dan manis.', kulit: 'Permukaan kulitnya sedikit berpori.' } },
+    'Salak': { img: 'salak.webp', ans: 'Buah Salak', opts: ['Buah Salak', 'Buah Semangka', 'Buah Jeruk', 'Kucing Lucu'], desc: { mata: 'Bentuknya agak meruncing ke atas dan berwarna cokelat.', telinga: 'Tidak ada suara.', hidung: 'Aromanya sedikit sepat manis.', lidah: 'Rasanya manis kesat.', kulit: 'Kulitnya kasar seperti sisik ular.' } },
+    'Anggur': { img: 'anggur.webp', ans: 'Buah Anggur', opts: ['Buah Anggur', 'Buah Apel', 'Bunga Mawar', 'Mainan Mobil'], desc: { mata: 'Bentuknya bulat kecil-kecil berkelompok.', telinga: 'Tidak bersuara.', hidung: 'Aroma buah yang ringan.', lidah: 'Rasanya manis dan banyak air.', kulit: 'Kulitnya sangat tipis dan licin.' } },
+    'Mawar': { img: 'mawar.webp', ans: 'Bunga Mawar', opts: ['Bunga Mawar', 'Buah Apel', 'Buah Semangka', 'Sampah Botol'], desc: { mata: 'Kelopaknya berwarna merah berlapis-lapis.', telinga: 'Sunyi, tidak ada suara.', hidung: 'Aromanya sangat harum semerbak.', lidah: 'Berbahaya! Bukan makanan.', kulit: 'Tangkainya berduri tajam.' } },
+    'Semangka': { img: 'semangka.webp', ans: 'Buah Semangka', opts: ['Buah Semangka', 'Buah Mangga', 'Bunga Mawar', 'Paku Berkarat'], desc: { mata: 'Bentuknya besar, kulit hijau bergaris, daging merah.', telinga: 'Bunyi nyaring saat ditepuk.', hidung: 'Aroma air yang segar.', lidah: 'Sangat manis dan banyak air.', kulit: 'Kulit luarnya keras dan licin.' } },
+    'kucing': { img: 'kucing.webp', ans: 'Kucing Lucu', opts: ['Kucing Lucu', 'Mainan Mobil', 'Paku Berkarat', 'Buah Jeruk'], desc: { mata: 'Memiliki ekor panjang dan kumis.', telinga: 'Terdengar suara mengeong (Meow).', hidung: 'Aroma hewan berbulu.', lidah: 'Bukan makanan.', kulit: 'Bulunya sangat lembut saat dielus.' } },
+    'mobil': { img: 'mobil.webp', ans: 'Mainan Mobil', opts: ['Mainan Mobil', 'Kucing Lucu', 'Sampah Botol', 'Buah Salak'], desc: { mata: 'Memiliki empat roda dan kaca jendela.', telinga: 'Terdengar suara mesin menderu.', hidung: 'Kadang tercium bau bensin.', lidah: 'Benda logam, bukan makanan.', kulit: 'Permukaannya keras dan dingin.' } },
+    'paku': { img: 'paku.webp', ans: 'Paku Berkarat', opts: ['Paku Berkarat', 'Sampah Kaleng', 'Mainan Mobil', 'Kucing Lucu'], desc: { mata: 'Benda kecil panjang berwarna kecokelatan kusam.', telinga: 'Berdenting saat jatuh ke lantai.', hidung: 'Bau logam berkarat.', lidah: 'Berbahaya! Bukan makanan.', kulit: 'Ujungnya sangat tajam dan kasar.' } },
+    'sampah-botol': { img: 'sampah-botol.webp', ans: 'Sampah Botol', opts: ['Sampah Botol', 'Sampah Kaleng', 'Buah Anggur', 'Paku Berkarat'], desc: { mata: 'Benda transparan yang terlihat kusam.', telinga: 'Berbunyi kresek saat diremas.', hidung: 'Bau sisa minuman manis yang basi.', lidah: 'Kotor, jangan dijilat!', kulit: 'Permukaannya licin dan penyok.' } },
+    'sampah-kaleng': { img: 'sampah-kaleng.webp', ans: 'Sampah Kaleng', opts: ['Sampah Kaleng', 'Sampah Botol', 'Mainan Mobil', 'Buah Salak'], desc: { mata: 'Berbentuk tabung logam dan mereknya pudar.', telinga: 'Berdenting nyaring saat ditendang.', hidung: 'Bau karat dan sisa minuman.', lidah: 'Kotor dan bisa beracun.', kulit: 'Keras dan bisa melukai jika tajam.' } }
+};
+
+window.startM3QRScanner = function() {
+    document.getElementById('m3-s1-intro').style.display = 'none';
+    document.getElementById('m3-s1-camera-area').style.display = 'flex';
+    document.getElementById('m3-qr-score-txt').innerText = window.m3QRScannedCount + ' / 5';
+
+    const video = document.getElementById('m3-qr-video');
+    const canvas = document.getElementById('m3-qr-canvas');
+    const ctx = canvas.getContext('2d', { willReadFrequently: true });
+
+    video.style.transform = 'none'; 
+    video.setAttribute("playsinline", true);
+
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+        const warnIcon = `<svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M6 0h4v2h2v2h2v8h-2v2H6v-2H4V4h2V2zm2 2H6v10h4V2zm0 8h2v2H8v-2zm0-6h2v4H8V4z"/></svg>`;
+        showCustomModal("KAMERA TIDAK DIDUKUNG!", "Perangkat atau peramban tidak mendukung akses kamera secara langsung.", warnIcon, "error", () => abortM3QRScanner());
+        return;
+    }
+
+    navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } })
+    .then(stream => {
+        window.m3QRStream = stream;
+        video.srcObject = stream;
+        video.play();
+        requestAnimationFrame(scanM3QR);
+    })
+    .catch(err => {
+        const warnIcon = `<svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M6 0h4v2h2v2h2v8h-2v2H6v-2H4V4h2V2zm2 2H6v10h4V2zm0 8h2v2H8v-2zm0-6h2v4H8V4z"/></svg>`;
+        showCustomModal("KAMERA DIBLOKIR!", "Tantangan ini butuh akses kamera. Izinkan akses kamera lalu ulangi!", warnIcon, "error", () => abortM3QRScanner());
+    });
+
+    function scanM3QR() {
+        if (video.readyState === video.HAVE_ENOUGH_DATA) {
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+            let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            
+            if (typeof jsQR !== 'undefined') {
+                // Diubah ke "attemptBoth" agar kebal terhadap pantulan cahaya layar HP (Glare)
+                let code = jsQR(imageData.data, imageData.width, imageData.height, { inversionAttempts: "attemptBoth" });
+                
+                if (code && code.data) {
+                    // Paksa huruf menjadi kecil semua untuk menghindari perbedaan (Case-Insensitive)
+                    let scannedText = code.data.trim().toLowerCase(); 
+                    
+                    // Cari barang di database yang cocok namanya, abaikan kapitalisasinya
+                    let matchedKey = Object.keys(m3ItemsData).find(key => key.toLowerCase() === scannedText);
+                    
+                    if (matchedKey) {
+                        if (!window.m3ScannedCodes.includes(matchedKey)) {
+                            window.m3ScannedCodes.push(matchedKey);
+                            window.m3CurrentItem = matchedKey;
+                            
+                            if (window.m3QRStream) {
+                                window.m3QRStream.getTracks().forEach(track => track.stop());
+                                window.m3QRStream = null;
+                            }
+                            if(typeof sfxTangkap !== 'undefined') { sfxTangkap.currentTime=0; sfxTangkap.play(); }
+                            
+                            openM3InvestigateUI(matchedKey);
+                            return; // Keluar dari perputaran kamera
+                        } else {
+                            // Munculkan peringatan jika barang sudah pernah dipindai
+                            document.querySelector('#m3-s1-camera-area .ar-score-box').innerText = "Barang sudah dipindai!";
+                            setTimeout(() => {
+                                document.querySelector('#m3-s1-camera-area .ar-score-box').innerHTML = `Barang Ditemukan: <span id="m3-qr-score-txt">${window.m3QRScannedCount} / 5</span>`;
+                            }, 2000);
+                        }
+                    } else {
+                        // MUNCULKAN TEKS ASING: Jika QR terbaca namun isinya tidak ada di database kita
+                        document.querySelector('#m3-s1-camera-area .ar-score-box').innerText = "QR Asing: " + code.data;
+                    }
+                }
+            } else {
+                // TEKS ERROR: Menandakan kamu salah menyimpan file jsQR.js (Terunduh versi HTML)
+                document.querySelector('#m3-s1-camera-area .ar-score-box').innerText = "ERROR: jsQR gagal dimuat!";
+            }
+        }
+        window.m3QRLoop = requestAnimationFrame(scanM3QR);
+    }
+};
+
+window.openM3InvestigateUI = function(itemKey) {
+    document.getElementById('m3-s1-camera-area').style.display = 'none';
+    document.getElementById('m3-s1-investigate-area').style.display = 'flex';
+    
+    document.getElementById('m3-inv-count').innerText = (window.m3QRScannedCount + 1);
+    window.m3InspectedSenses.clear();
+    
+    document.getElementById('m3-inspect-quiz').style.display = 'none';
+    document.getElementById('m3-inspect-tools-container').style.display = 'flex';
+    
+    document.querySelectorAll('#m3-s1-investigate-area .m1-tool-btn').forEach(btn => {
+        btn.classList.remove('used');
+        btn.style.filter = '';
+        btn.style.opacity = '1';
+        btn.style.pointerEvents = 'auto';
+    });
+};
+
+window.inspectM3Item = function(sense, toolElem) {
+    if (toolElem.classList.contains('used')) return;
+    toolElem.classList.add('used');
+    toolElem.style.filter = 'grayscale(100%)';
+    toolElem.style.opacity = '0.4';
+    toolElem.style.pointerEvents = 'none';
+
+    if(typeof sfxTangkap !== 'undefined') { sfxTangkap.currentTime=0; sfxTangkap.play(); }
+
+    let itemData = m3ItemsData[window.m3CurrentItem];
+    let descText = itemData.desc[sense];
+    window.m3InspectedSenses.add(sense);
+
+    const senseIconSvg = `<svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M8 2a6 6 0 100 12A6 6 0 008 2zM7 5h2v2H7V5zm0 3h2v3H7V8z"/></svg>`;
+    showCustomModal(`HASIL INDRA ${sense.toUpperCase()}`, descText, senseIconSvg, "alert", () => {
+        if (window.m3InspectedSenses.size >= 5) {
+            document.getElementById('m3-inspect-tools-container').style.display = 'none';
+            document.getElementById('m3-inspect-quiz').style.display = 'flex';
+            
+            let optsBox = document.getElementById('m3-inspect-opts');
+            optsBox.innerHTML = '';
+            let shuffled = [...itemData.opts].sort(() => Math.random() - 0.5);
+            
+            shuffled.forEach(opt => {
+                let btn = document.createElement('button');
+                btn.className = 'btn-explore';
+                btn.innerText = opt;
+                btn.onclick = function() {
+                    if (btn.classList.contains('btn-correct') || btn.classList.contains('btn-wrong')) return;
+                    if (opt === itemData.ans) {
+                        btn.classList.add('btn-correct');
+                        if(typeof sfxBenar !== 'undefined') { sfxBenar.currentTime=0; sfxBenar.play(); }
+                        addScore(20);
+                        
+                        window.m3QRScannedCount++;
+                        
+                        const imgBox = document.querySelector('#m3-s1-investigate-area .m1-modal-box > div');
+                        imgBox.innerHTML = `<img src="assets/item/${itemData.img}" style="width:100%; height:100%; object-fit:contain; animation: popIn 0.5s forwards;">`;
+                        imgBox.style.background = 'transparent';
+                        imgBox.style.border = 'none';
+                        
+                        setTimeout(() => {
+                            imgBox.innerHTML = `<span style="font-size: 5cqw; color: #fff; font-family: monospace;">?</span>`;
+                            imgBox.style.background = '#111';
+                            imgBox.style.border = '0.3cqw solid #fff';
+
+                            if (window.m3QRScannedCount >= 5) {
+                                const checkIcon = `<svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M14 2h2v2h-2V2zm-2 2h2v2h-2V4zm-2 2h2v2h-2V6zm-2 2h2v2H8V8zm-2 2h2v2H6v-2zm-2 2h2v2H4v-2zm-2-2h2v2H2v-2zm-2-2h2v2H0v-2z"/></svg>`;
+                                showCustomModal("INSPEKSI SELESAI!", "Hebat! Kamu berhasil mengidentifikasi 5 barang rahasia. Saatnya kita perbaiki Hologram Medis di Puskesmas!", checkIcon, "alert", () => {
+                                    
+                                    // Matikan Fullscreen untuk menuju Tahap 2
+                                    document.querySelector('.mission-wrapper').classList.remove('fullscreen-mode');
+                                    document.querySelector('.mission-full-box').classList.remove('fullscreen-mode');
+                                    document.querySelector('.mission-header').style.display = 'flex';
+                                    
+                                    nextMissionStage(2);
+                                });
+                            } else {
+                                document.getElementById('m3-s1-investigate-area').style.display = 'none';
+                                startM3QRScanner(); 
+                            }
+                        }, 1000);
+                    } else {
+                        btn.classList.add('btn-wrong');
+                        if(typeof sfxSalah !== 'undefined') { sfxSalah.currentTime=0; sfxSalah.play(); }
+                        reduceLife();
+                        const lockIcon = `<svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M4 2h8v2h2v10H2V4h2V2zm2 2v2h4V4H6zm-2 4v4h8V8H4z"/></svg>`;
+                        showCustomModal("TEBAKAN SALAH!", "Itu bukan barangnya! Coba ingat kembali hasil analisis kelima indramu. (Nyawa -1)", lockIcon, "error");
+                    }
+                };
+                optsBox.appendChild(btn);
+            });
+        }
+    });
+};
+
+window.abortM3QRScanner = function() {
+    if (window.m3QRStream) {
+        window.m3QRStream.getTracks().forEach(track => track.stop());
+        window.m3QRStream = null;
+    }
+    cancelAnimationFrame(window.m3QRLoop);
+    
+    document.querySelector('.mission-wrapper').classList.remove('fullscreen-mode');
+    document.querySelector('.mission-full-box').classList.remove('fullscreen-mode');
+    document.querySelector('.mission-header').style.display = 'flex';
+    exitMissionScreen();
+};
+
+// ================= LOGIKA MINI GAME DETEKTIF BAU (MISI 4 SEBELUM TAHAP 1) =================
+window.m4QRScannedCount = 0;
+window.m4ScannedCodes = [];
+window.m4QRStream = null;
+window.m4QRLoop = null;
+
+const m4SmellData = {
+    'jeruk': { img: 'jeruk.webp', q: 'Aroma apa yang dikeluarkan oleh kulit buah jeruk ini saat dikupas?', ans: 'Asam segar khas buah', opts: ['Asam segar khas buah', 'Bau tanah basah', 'Bau gosong', 'Bau amis laut'] },
+    'mawar': { img: 'mawar.webp', q: 'Aroma apa yang tercium dari bunga mawar yang mekar ini?', ans: 'Harum semerbak', opts: ['Harum semerbak', 'Bau asap pembakaran', 'Bau asam menyengat', 'Bau amis'] },
+    'sampah-botol': { img: 'sampah-botol.webp', q: 'Bagaimana bau dari sisa minuman yang membusuk di dalam botol ini?', ans: 'Bau asam dan tidak sedap', opts: ['Bau asam dan tidak sedap', 'Harum seperti parfum', 'Wangi buah-buahan segar', 'Bau mint'] },
+    'sampah-kaleng': { img: 'sampah-kaleng.webp', q: 'Aroma apa yang tercium dari kaleng berkarat yang kotor ini?', ans: 'Bau logam dan kotoran', opts: ['Bau logam dan kotoran', 'Wangi melati', 'Bau manis gula', 'Harum bedak bayi'] },
+    'mangga': { img: 'mangga.webp', q: 'Bagaimana aroma dari buah mangga yang sudah matang ini?', ans: 'Harum manis menyegarkan', opts: ['Harum manis menyegarkan', 'Bau busuk menyengat', 'Bau asap knalpot', 'Tidak ada bau sama sekali'] },
+    'kucing': { img: 'kucing.webp', q: 'Bau apa yang biasanya tercium dari tubuh hewan berbulu ini jika tidak dimandikan secara rutin?', ans: 'Bau khas hewan / agak amis', opts: ['Bau khas hewan / agak amis', 'Wangi parfum stroberi', 'Bau gosong terbakar', 'Aroma mint segar'] },
+    'mobil': { img: 'mobil.webp', q: 'Saat mesin dinyalakan, bau gas apa yang keluar dari knalpot mobil ini?', ans: 'Bau asap pembakaran bensin', opts: ['Bau asap pembakaran bensin', 'Wangi bunga mawar', 'Aroma manis permen', 'Bau amis ikan'] }
+};
+
+window.startM4QRScanner = function() {
+    document.getElementById('m4-qr-intro').style.display = 'none';
+    document.getElementById('m4-qr-camera-area').style.display = 'flex';
+    document.getElementById('m4-qr-score-txt').innerText = window.m4QRScannedCount + ' / 5';
+
+    const video = document.getElementById('m4-qr-video');
+    const canvas = document.getElementById('m4-qr-canvas');
+    const ctx = canvas.getContext('2d', { willReadFrequently: true });
+
+    video.style.transform = 'none'; 
+    video.setAttribute("playsinline", true);
+
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+        const warnIcon = `<svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M6 0h4v2h2v2h2v8h-2v2H6v-2H4V4h2V2zm2 2H6v10h4V2zm0 8h2v2H8v-2zm0-6h2v4H8V4z"/></svg>`;
+        showCustomModal("KAMERA TIDAK DIDUKUNG!", "Perangkat atau peramban tidak mendukung akses kamera secara langsung.", warnIcon, "error", () => abortM4QRScanner());
+        return;
+    }
+
+    navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } })
+    .then(stream => {
+        window.m4QRStream = stream;
+        video.srcObject = stream;
+        video.play();
+        requestAnimationFrame(scanM4QR);
+    })
+    .catch(err => {
+        const warnIcon = `<svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M6 0h4v2h2v2h2v8h-2v2H6v-2H4V4h2V2zm2 2H6v10h4V2zm0 8h2v2H8v-2zm0-6h2v4H8V4z"/></svg>`;
+        showCustomModal("KAMERA DIBLOKIR!", "Tantangan ini butuh akses kamera. Izinkan akses kamera lalu ulangi!", warnIcon, "error", () => abortM4QRScanner());
+    });
+
+    function scanM4QR() {
+        if (video.readyState === video.HAVE_ENOUGH_DATA) {
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+            let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            
+            if (typeof jsQR !== 'undefined') {
+                let code = jsQR(imageData.data, imageData.width, imageData.height, { inversionAttempts: "attemptBoth" });
+                
+                if (code && code.data) {
+                    let scannedText = code.data.trim().toLowerCase(); 
+                    let matchedKey = Object.keys(m4SmellData).find(key => key.toLowerCase() === scannedText);
+                    
+                    if (matchedKey) {
+                        if (!window.m4ScannedCodes.includes(matchedKey)) {
+                            window.m4ScannedCodes.push(matchedKey);
+                            
+                            if (window.m4QRStream) {
+                                window.m4QRStream.getTracks().forEach(track => track.stop());
+                                window.m4QRStream = null;
+                            }
+                            if(typeof sfxTangkap !== 'undefined') { sfxTangkap.currentTime=0; sfxTangkap.play(); }
+                            
+                            openM4SmellQuiz(matchedKey);
+                            return; 
+                        } else {
+                            document.querySelector('#m4-qr-camera-area .ar-score-box').innerText = "Barang sudah dipindai!";
+                            setTimeout(() => {
+                                document.querySelector('#m4-qr-camera-area .ar-score-box').innerHTML = `Barang Ditemukan: <span id="m4-qr-score-txt">${window.m4QRScannedCount} / 5</span>`;
+                            }, 2000);
+                        }
+                    } else {
+                        document.querySelector('#m4-qr-camera-area .ar-score-box').innerText = "QR Asing: " + code.data;
+                    }
+                }
+            } else {
+                document.querySelector('#m4-qr-camera-area .ar-score-box').innerText = "ERROR: jsQR gagal dimuat!";
+            }
+        }
+        window.m4QRLoop = requestAnimationFrame(scanM4QR);
+    }
+};
+
+window.openM4SmellQuiz = function(itemKey) {
+    document.getElementById('m4-qr-camera-area').style.display = 'none';
+    document.getElementById('m4-qr-quiz-area').style.display = 'flex';
+    
+    document.getElementById('m4-qr-count').innerText = (window.m4QRScannedCount + 1);
+    
+    let itemData = m4SmellData[itemKey];
+    document.getElementById('m4-qr-item-img').src = `assets/item/${itemData.img}`;
+    document.getElementById('m4-qr-question').innerText = itemData.q;
+    
+    let optsBox = document.getElementById('m4-qr-opts');
+    optsBox.innerHTML = '';
+    let shuffled = [...itemData.opts].sort(() => Math.random() - 0.5);
+    
+    shuffled.forEach(opt => {
+        let btn = document.createElement('button');
+        btn.className = 'btn-explore';
+        btn.innerText = opt;
+        btn.onclick = function() {
+            if (btn.classList.contains('btn-correct') || btn.classList.contains('btn-wrong')) return;
+            if (opt === itemData.ans) {
+                btn.classList.add('btn-correct');
+                if(typeof sfxBenar !== 'undefined') { sfxBenar.currentTime=0; sfxBenar.play(); }
+                addScore(20);
+                
+                window.m4QRScannedCount++;
+                
+                setTimeout(() => {
+                    if (window.m4QRScannedCount >= 5) {
+                        const checkIcon = `<svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M14 2h2v2h-2V2zm-2 2h2v2h-2V4zm-2 2h2v2h-2V6zm-2 2h2v2H8V8zm-2 2h2v2H6v-2zm-2 2h2v2H4v-2zm-2-2h2v2H2v-2zm-2-2h2v2H0v-2z"/></svg>`;
+                        showCustomModal("DETEKTIF BAU SELESAI!", "Luar biasa! Hidungmu sangat tajam mengenali berbagai memori aroma. Mari kita mulai pelatihan P3K Pramuka!", checkIcon, "alert", () => {
+                            
+                            // Matikan Fullscreen untuk menuju Tahap 1 Intro biasa
+                            document.querySelector('.mission-wrapper').classList.remove('fullscreen-mode');
+                            document.querySelector('.mission-full-box').classList.remove('fullscreen-mode');
+                            document.querySelector('.mission-header').style.display = 'flex';
+                            
+                            nextMissionStage(1);
+                        });
+                    } else {
+                        document.getElementById('m4-qr-quiz-area').style.display = 'none';
+                        startM4QRScanner(); 
+                    }
+                }, 1000);
+            } else {
+                btn.classList.add('btn-wrong');
+                if(typeof sfxSalah !== 'undefined') { sfxSalah.currentTime=0; sfxSalah.play(); }
+                reduceLife();
+                const lockIcon = `<svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M4 2h8v2h2v10H2V4h2V2zm2 2v2h4V4H6zm-2 4v4h8V8H4z"/></svg>`;
+                showCustomModal("SALAH AROMA!", "Itu bukan bau yang tepat! Coba ingat-ingat lagi memori aromanya. (Nyawa -1)", lockIcon, "error");
+            }
+        };
+        optsBox.appendChild(btn);
+    });
+};
+
+window.abortM4QRScanner = function() {
+    if (window.m4QRStream) {
+        window.m4QRStream.getTracks().forEach(track => track.stop());
+        window.m4QRStream = null;
+    }
+    cancelAnimationFrame(window.m4QRLoop);
+    
+    document.querySelector('.mission-wrapper').classList.remove('fullscreen-mode');
+    document.querySelector('.mission-full-box').classList.remove('fullscreen-mode');
+    document.querySelector('.mission-header').style.display = 'flex';
+    exitMissionScreen();
+};
+
+// ================= LOGIKA MINI GAME AR TANGKAP BUAH (MISI 3) =================
+window.mulaiM3AR = function() {
+    // Paksa aktifkan mode layar penuh
+    document.querySelector('.mission-header').style.display = 'none';
+    document.querySelector('.mission-wrapper').classList.add('fullscreen-mode');
+    document.querySelector('.mission-full-box').classList.add('fullscreen-mode');
+
+    nextMissionStage('m3-ar');
+    
+    // Beri jeda sejenak, lalu munculkan percakapan transisi NPC
+    setTimeout(() => {
+        const dialogIntroAR = [
+            { text: "Kerja yang bagus! Kamu berhasil merawat telinga pasien dengan sangat baik.", mood: "happy", name: "Petualang Nagata", npc: "npc1" },
+            { text: "Tapi tunggu, pasien penari Jaranan kita butuh asupan vitamin! Ayo tangkap 30 buah segar yang jatuh dari pohon.", mood: "happy", name: "Petualang Nagata", npc: "npc1" },
+            { text: "Arahkan tanganmu di udara dan sapu buahnya. Ingat, hindari buah jebakan yang disebutkan ya!", mood: "warning", name: "Petualang Nagata", npc: "npc1" }
+        ];
+        startVnDialog(dialogIntroAR, "Petualang Nagata", "npc1", () => {
+            startM3AR(); 
+        });
+    }, 500);
+};
+
+window.abortM3AR = function() {
+    bgmBoss.pause();
+    bgmBoss.currentTime = 0;
+    if (window.arStream) {
+        window.arStream.getTracks().forEach(track => track.stop());
+        window.arStream = null;
+    }
+    window.arActive = false;
+    clearInterval(window.arLoop);
+    clearInterval(window.arSpawner);
+    
+    document.querySelector('.mission-wrapper').classList.remove('fullscreen-mode');
+    document.querySelector('.mission-full-box').classList.remove('fullscreen-mode');
+    document.querySelector('.mission-header').style.display = 'flex';
+    exitMissionScreen();
+};
+
+window.startM3AR = function() {
+    document.getElementById('m3-ar-game-area').style.display = 'flex';
+    
+    bgmMission.pause();
+    bgmBoss.currentTime = 0;
+    bgmBoss.play().catch(e => console.log(e));
+
+    const video = document.getElementById('m3-ar-video');
+    const canvas = document.getElementById('m3-ar-hidden-canvas');
+    if (!video || !canvas) return;
+    
+    const ctx = canvas.getContext('2d', { willReadFrequently: true });
+    canvas.width = 160; 
+    canvas.height = 90;
+
+    let previousImg = null;
+    let arBoxesData = [];
+    let arScore = 0;
+    window.arActive = false; 
+
+    // Target buah acak dengan jebakan
+    let targetPhases = [
+        { fruits: ['apel'], text: 'HINDARI BUAH APEL!' },
+        { fruits: ['mangga'], text: 'HINDARI BUAH MANGGA!' },
+        { fruits: ['pisang'], text: 'HINDARI BUAH PISANG!' },
+        { fruits: ['jeruk'], text: 'HINDARI BUAH JERUK!' },
+        { fruits: ['semangka'], text: 'HINDARI BUAH SEMANGKA!' }
+    ].sort(() => Math.random() - 0.5);
+    
+    let currentPhaseIndex = 0;
+
+    function showPhaseOverlay(phase) {
+        window.arActive = false; 
+        const wrapper = document.getElementById('m3-ar-target-overlay-wrapper');
+        const overlay = document.getElementById('m3-ar-target-overlay');
+        overlay.innerText = phase.text;
+        wrapper.style.display = 'flex';
+        overlay.classList.remove('animate-pop');
+        void overlay.offsetWidth; 
+        overlay.classList.add('animate-pop');
+
+        try {
+            if(typeof audioArCmd !== 'undefined' && audioArCmd[phase.text]) {
+                audioArCmd[phase.text].currentTime = 0;
+                audioArCmd[phase.text].play().catch(() => {});
+            }
+        } catch (e) {}
+
+        setTimeout(() => {
+            wrapper.style.display = 'none';
+            window.arActive = true; 
+        }, 2500); 
+    }
+
+    navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" } })
+    .then(stream => {
+        window.arStream = stream;
+        video.srcObject = stream;
+        video.play();
+        
+        const faceGuide = document.getElementById('m3-ar-face-guide');
+        if (faceGuide) {
+            faceGuide.style.opacity = '1';
+            setTimeout(() => { faceGuide.style.opacity = '0'; }, 4000);
+        }
+        
+        setTimeout(() => { showPhaseOverlay(targetPhases[currentPhaseIndex]); }, 500);
+        
+        let lastLane = -1;
+
+        window.arSpawner = setInterval(() => {
+            if (!window.arActive) return;
+            const fruits = ['apel', 'pisang', 'jeruk', 'anggur', 'mangga', 'semangka', 'stroberi'];
+            let type = fruits[Math.floor(Math.random() * fruits.length)];
+            
+            let boxEl = document.createElement('div');
+            boxEl.className = 'ar-fruit ' + type;
+            
+            let lane;
+            do { lane = Math.floor(Math.random() * 6); } while (lane === lastLane);
+            lastLane = lane;
+            
+            let startX = 10 + (lane * 14); 
+            boxEl.style.left = startX + '%';
+            boxEl.style.top = '-15%';
+            document.getElementById('m3-ar-game-area').appendChild(boxEl);
+            
+            arBoxesData.push({
+                el: boxEl, x: startX, y: -15, type: type, isHit: false,
+                speed: Math.random() * 0.6 + 0.8 
+            });
+        }, 1200);
+
+        window.arLoop = setInterval(() => {
+            if (!window.arActive) return;
+
+            for (let i = arBoxesData.length - 1; i >= 0; i--) {
+                const box = arBoxesData[i];
+
+                box.y += box.speed;
+                box.el.style.top = box.y + '%';
+
+                if (box.y > 110) {
+                    box.el.remove();
+                    arBoxesData.splice(i, 1);
+                }
+            }
+            
+            try {
+                ctx.drawImage(video, 0, 0, 160, 90);
+                let currentImg = ctx.getImageData(0, 0, 160, 90);
+                
+                if (previousImg) {
+                    arBoxesData.forEach(box => {
+                        if (box.isHit || box.y < 0 || box.y > 90) return;
+                        
+                        let canvasX = Math.floor((1 - (box.x/100) - 0.08) * 160); 
+                        let canvasY = Math.floor((box.y/100) * 90);
+                        
+                        let motionPx = 0, totalPx = 0;
+                        for (let y = canvasY-5; y < canvasY + 25; y++) {
+                            for (let x = canvasX-5; x < canvasX + 25; x++) {
+                                if (x >= 0 && x < 160 && y >= 0 && y < 90) {
+                                    let idx = (y * 160 + x) * 4;
+                                    let r = currentImg.data[idx];
+                                    let g = currentImg.data[idx+1];
+                                    let b = currentImg.data[idx+2];
+                                    
+                                    let rDiff = Math.abs(r - previousImg.data[idx]);
+                                    let gDiff = Math.abs(g - previousImg.data[idx+1]);
+                                    let bDiff = Math.abs(b - previousImg.data[idx+2]);
+                                    
+                                    if (rDiff + gDiff + bDiff > 90) { 
+                                        let isSkin = (r > 60 && g > 35 && b > 15 && r > g && r > b && Math.abs(r - g) > 10);
+                                        if (isSkin) {
+                                            let isHead = (x > 60 && x < 100 && y > 15 && y < 55);
+                                            let isBody = (x > 40 && x < 120 && y >= 55);
+                                            if (!(isHead || isBody)) motionPx++;
+                                        }
+                                    }
+                                    totalPx++;
+                                }
+                            }
+                        }
+                        
+                        if (totalPx > 0 && (motionPx / totalPx) > 0.05) {
+                            box.isHit = true;
+                            handleARHit(box);
+                        }
+                    });
+                }
+                previousImg = currentImg;
+            } catch(e) {}
+        }, 50);
+    })
+    .catch(err => {
+        const warnIcon = `<svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M6 0h4v2h2v2h2v8h-2v2H6v-2H4V4h2V2zm2 2H6v10h4V2zm0 8h2v2H8v-2zm0-6h2v4H8V4z"/></svg>`;
+        showCustomModal("KAMERA DIBLOKIR!", "Tantangan ini butuh akses kamera. Izinkan akses kamera lalu ulangi!", warnIcon, "error", () => abortM3AR());
+    });
+
+    function handleARHit(box) {
+        const currentTarget = targetPhases[currentPhaseIndex];
+        const lockIcon = `<svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M4 2h8v2h2v10H2V4h2V2zm2 2v2h4V4H6zm-2 4v4h8V8H4z"/></svg>`;
+        const checkIcon = `<svg class="svg-icon" viewBox="0 0 16 16"><path fill="currentColor" d="M14 2h2v2h-2V2zm-2 2h2v2h-2V4zm-2 2h2v2h-2V6zm-2 2h2v2H8V8zm-2 2h2v2H6v-2zm-2 2h2v2H4v-2zm-2-2h2v2H2v-2zm-2-2h2v2H0v-2z"/></svg>`;
+
+        if (!currentTarget.fruits.includes(box.type)) {
+            box.el.classList.add('ar-effect');
+            setTimeout(() => box.el.remove(), 200);
+            
+            arScore++;
+            document.getElementById('m3-ar-score-txt').innerText = `${arScore} / 30`;
+            addScore(10, true); 
+
+            if (arScore >= 30) {
+                bgmBoss.pause();
+                bgmBoss.currentTime = 0;
+                window.arActive = false;
+                
+                if (window.arStream) {
+                    window.arStream.getTracks().forEach(track => track.stop());
+                    window.arStream = null;
+                }
+                clearInterval(window.arLoop);
+                clearInterval(window.arSpawner);
+
+                showCustomModal("PANEN BERHASIL!", "Luar biasa! Pasien penari kita pasti cepat sembuh. Saatnya masuk ke ruangan Hidung!", checkIcon, "alert", () => {
+                    // Kembali ke mode kotak normal untuk Stage 4
+                    document.querySelector('.mission-wrapper').classList.remove('fullscreen-mode');
+                    document.querySelector('.mission-full-box').classList.remove('fullscreen-mode');
+                    document.querySelector('.mission-header').style.display = 'flex';
+                    
+                    bgmMission.currentTime = 0;
+                    bgmMission.play().catch(e => console.log(e));
+                    
+                    nextMissionStage(4); 
+                });
+
+            } else if (arScore % 10 === 0 && currentPhaseIndex < targetPhases.length - 1) {
+                currentPhaseIndex++;
+                showPhaseOverlay(targetPhases[currentPhaseIndex]);
+            }
+        } else {
+            reduceLife(true); 
+            window.arActive = false; 
+            const expected = currentTarget.text.replace('HINDARI ', '').replace('!', '');
+            
+            showCustomModal("AWAS JEBAKAN!", `Fokuskan matamu! Kamu harus menghindari: ${expected}\\n(Nyawa Berkurang 1)`, lockIcon, "error", () => {
+                if (chapterLives[currentChapter] > 0) {
+                    setTimeout(() => { window.arActive = true; }, 1500);
+                } else {
+                    abortM3AR(); 
+                }
+            });
+        }
+    }
+};
+
+// ================= LOGIKA PELUNCUR MINI GAME KATALOG =================
+window.launchMiniGame = function(gameCode) {
+    // Tandai bahwa kita sedang bermain lewat jalur pintas Katalog (Arcade Mode)
+    window.isArcadeMode = true;
+    
+    // Sembunyikan layar menu katalog DAN layar beranda utama
+    document.getElementById('minigame-screen').classList.remove('active');
+    document.getElementById('title-screen').classList.remove('active');
+
+    // Beri jeda sedikit agar layar menu tertutup rapi sebelum transisi Persona dimulai
+    setTimeout(() => {
+        if (gameCode === 'warna') {
+            buildMission1();
+            enterMissionScreen("MINI GAME", "DETEKTIF WARNA", 1, 'm1-color');
+            setTimeout(() => { startM1ColorGame(); }, 2800);
+        } 
+        else if (gameCode === 'buah') {
+            buildMission5();
+            enterMissionScreen("MINI GAME", "PANEN BUAH AR", 5, 1);
+            setTimeout(() => { startBanyuBeningAR(); }, 2800);
+        } 
+        else if (gameCode === 'wasit') {
+            buildMission2();
+            enterMissionScreen("MINI GAME", "UJI REFLEKS", 2, 'arcade');
+            setTimeout(() => { startArcadeM2(); }, 2800);
+        } 
+        else if (gameCode === 'sampah') {
+            buildMission1();
+            enterMissionScreen("MINI GAME", "BERSIH PASAR", 1, 3);
+            setTimeout(() => { startCariSampah(); }, 2800);
+        } 
+        else if (gameCode === 'suara') {
+            buildMission2();
+            enterMissionScreen("MINI GAME", "DETEKTIF SUARA", 2, 'audio-detektif');
+            setTimeout(() => { startAudioDetektifM2(); }, 2800);
+        } 
+        else if (gameCode === 'bau') {
+            buildMission4();
+            enterMissionScreen("MINI GAME", "DETEKTIF BAU QR", 4, 'm4-qr');
+        }
+        else if (gameCode === 'qr-barang') {
+            buildMission3();
+            enterMissionScreen("MINI GAME", "INSPEKSI QR", 3, 1);
+        }
+        else if (gameCode === 'senter-pasar') {
+            buildMission1();
+            enterMissionScreen("MINI GAME", "SENTER PASAR", 1, 1);
+        }
+        else if (gameCode === 'senter-alam') {
+            buildMission5();
+            enterMissionScreen("MINI GAME", "DETEKTIF ALAM", 5, 2);
+        }
+        else if (gameCode === 'senter-malam') {
+            buildMission6();
+            enterMissionScreen("MINI GAME", "DETEKTIF MALAM", 6, 5);
+        }
+        else if (gameCode === 'sim-netra') {
+            buildMission4();
+            enterMissionScreen("MINI GAME", "SIM. TUNANETRA", 4, 4);
+            setTimeout(() => { startAdaptationSim(1); }, 2800);
+        }
+        else if (gameCode === 'sim-rungu') {
+            buildMission4();
+            enterMissionScreen("MINI GAME", "SIM. TUNARUNGU", 4, 4);
+            setTimeout(() => { startAdaptationSim(2); }, 2800);
+        }
+        else if (gameCode === 'sim-butawarna') {
+            buildMission4();
+            enterMissionScreen("MINI GAME", "SIM. BUTA WARNA", 4, 4);
+            setTimeout(() => { startAdaptationSim(3); }, 2800);
+        }
+        else if (gameCode === 'sim-matirasa') {
+            buildMission4();
+            enterMissionScreen("MINI GAME", "SIM. MATI RASA", 4, 4);
+            setTimeout(() => { startAdaptationSim(4); }, 2800);
+        }
+    }, 300);
+};
